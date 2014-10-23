@@ -139,15 +139,21 @@ static NSString* cell_identifier = @"master-view-cell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
     switch(indexPath.row){
-        case tableViewItemPlumbLine:
-            [self.navigationController pushViewController:[[PACPlumbLineViewController alloc] init] animated:YES];
+        case tableViewItemPlumbLine: {
+            PACPlumbLineViewController* view_controller =  [[PACPlumbLineViewController alloc] init];
+            [self.navigationController pushViewController:view_controller animated:YES];
             break;
-        case tableViewItemAlignedInRelation:
-            [self.navigationController pushViewController:[[PACRelativeAlignmentViewController alloc] init] animated:YES];
+                                     }
+        case tableViewItemAlignedInRelation: {
+            PACRelativeAlignmentViewController* view_controller = [[PACRelativeAlignmentViewController alloc] init];
+            [self.navigationController pushViewController:view_controller animated:YES];
             break;
-        case tableViewItemSideView:
-            [self.navigationController pushViewController:[[PACSideViewTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
+                                             }
+        case tableViewItemSideView:{
+            PACSideViewTableViewController* view_controller = [[PACSideViewTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            [self.navigationController pushViewController:view_controller animated:YES];
             break;
+                                   }
         case tableViewItemFrontView:
             break;
         case tableViewItemBackView:

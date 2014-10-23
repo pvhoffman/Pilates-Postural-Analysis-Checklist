@@ -35,8 +35,31 @@ typedef enum {
             , plumbKneesBehind      = (1 << 14)
 } PACPlumbLineAlignment_t;
 
+typedef enum {
+    sideViewCheckListAnkleJoint = (1 << 0)
+        , sideViewCheckListKnee = (1 << 1)
+} PACChecklistSideView_t;
+
+typedef enum {
+    ankleAlignmentNeutral = 0
+        ,ankleAlignmentPlantarflex = 1
+        ,ankleAlignmentDorsiflex = 2
+} PACAnkleAlignment;
+
 extern unsigned int PACChecklistMain;
 extern unsigned int PACPlumbLineAlignment;
 
+extern unsigned int PACChecklistSideView;
+
+extern int PACAnkleAlignmentLeft;
+extern int PACAnkleAlignmentRight;
+
+extern int PACKneeAlignmentSideLeft;
+extern int PACKneeAlignmentSideRight;
+
 extern const char* PACCheckListMainDidChange;
+extern const char* PACCheckListSideViewDidChange;
+
+
 #endif
+

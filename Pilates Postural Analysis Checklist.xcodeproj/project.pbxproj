@@ -14,6 +14,10 @@
 		E711C5AC19F9A3BF0036873E /* PACAnkleJointsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E711C5AB19F9A3BF0036873E /* PACAnkleJointsViewController.m */; };
 		E711C5AE19F9A6BA0036873E /* look.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E711C5AD19F9A6BA0036873E /* look.jpg */; };
 		E711C5B019F9A6C30036873E /* touch.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E711C5AF19F9A6C30036873E /* touch.jpg */; };
+		E711C5B219F9A84B0036873E /* angle_detail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E711C5B119F9A84B0036873E /* angle_detail.jpg */; };
+		E711C5B419F9B5460036873E /* knee_detail.png in Resources */ = {isa = PBXBuildFile; fileRef = E711C5B319F9B5460036873E /* knee_detail.png */; };
+		E711C5B719F9B5780036873E /* PACKneeSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E711C5B619F9B5780036873E /* PACKneeSideViewController.m */; };
+		E711C5BB19F9BABB0036873E /* PACHipJointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E711C5BA19F9BABB0036873E /* PACHipJointViewController.m */; };
 		E7B0E9BE19F702200011BB49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B0E9BD19F702200011BB49 /* main.m */; };
 		E7B0E9C119F702200011BB49 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B0E9C019F702200011BB49 /* AppDelegate.m */; };
 		E7B0E9C419F702200011BB49 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B0E9C319F702200011BB49 /* MasterViewController.m */; };
@@ -48,6 +52,12 @@
 		E711C5AB19F9A3BF0036873E /* PACAnkleJointsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACAnkleJointsViewController.m; sourceTree = "<group>"; };
 		E711C5AD19F9A6BA0036873E /* look.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = look.jpg; sourceTree = "<group>"; };
 		E711C5AF19F9A6C30036873E /* touch.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = touch.jpg; sourceTree = "<group>"; };
+		E711C5B119F9A84B0036873E /* angle_detail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = angle_detail.jpg; sourceTree = "<group>"; };
+		E711C5B319F9B5460036873E /* knee_detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = knee_detail.png; sourceTree = "<group>"; };
+		E711C5B519F9B5780036873E /* PACKneeSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACKneeSideViewController.h; sourceTree = "<group>"; };
+		E711C5B619F9B5780036873E /* PACKneeSideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACKneeSideViewController.m; sourceTree = "<group>"; };
+		E711C5B919F9BABB0036873E /* PACHipJointViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACHipJointViewController.h; sourceTree = "<group>"; };
+		E711C5BA19F9BABB0036873E /* PACHipJointViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACHipJointViewController.m; sourceTree = "<group>"; };
 		E7B0E9B819F702200011BB49 /* Pilates Postural Analysis Checklist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pilates Postural Analysis Checklist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7B0E9BC19F702200011BB49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7B0E9BD19F702200011BB49 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -112,23 +122,27 @@
 			children = (
 				E7B0E9BF19F702200011BB49 /* AppDelegate.h */,
 				E7B0E9C019F702200011BB49 /* AppDelegate.m */,
-				E7B0E9C219F702200011BB49 /* MasterViewController.h */,
-				E7B0E9C319F702200011BB49 /* MasterViewController.m */,
 				E7B0E9C519F702200011BB49 /* DetailViewController.h */,
 				E7B0E9C619F702200011BB49 /* DetailViewController.m */,
 				E7B0E9CB19F702200011BB49 /* Images.xcassets */,
 				E7B0E9CD19F702200011BB49 /* LaunchScreen.xib */,
-				E7B0E9BB19F702200011BB49 /* Supporting Files */,
-				E7B0E9F119F813940011BB49 /* PACGlobal.m */,
+				E7B0E9C219F702200011BB49 /* MasterViewController.h */,
+				E7B0E9C319F702200011BB49 /* MasterViewController.m */,
+				E711C5AA19F9A3BF0036873E /* PACAnkleJointsViewController.h */,
+				E711C5AB19F9A3BF0036873E /* PACAnkleJointsViewController.m */,
 				E7B0E9F319F813B70011BB49 /* PACGlobal.h */,
+				E7B0E9F119F813940011BB49 /* PACGlobal.m */,
+				E711C5B919F9BABB0036873E /* PACHipJointViewController.h */,
+				E711C5BA19F9BABB0036873E /* PACHipJointViewController.m */,
+				E711C5B519F9B5780036873E /* PACKneeSideViewController.h */,
+				E711C5B619F9B5780036873E /* PACKneeSideViewController.m */,
 				E7B0E9F419F8165E0011BB49 /* PACPlumbLineViewController.h */,
 				E7B0E9F519F8165E0011BB49 /* PACPlumbLineViewController.m */,
 				E711C5A219F979540036873E /* PACRelativeAlignmentViewController.h */,
 				E711C5A319F979540036873E /* PACRelativeAlignmentViewController.m */,
 				E711C5A719F98F390036873E /* PACSideViewTableViewController.h */,
 				E711C5A819F98F390036873E /* PACSideViewTableViewController.m */,
-				E711C5AA19F9A3BF0036873E /* PACAnkleJointsViewController.h */,
-				E711C5AB19F9A3BF0036873E /* PACAnkleJointsViewController.m */,
+				E7B0E9BB19F702200011BB49 /* Supporting Files */,
 			);
 			path = "Pilates Postural Analysis Checklist";
 			sourceTree = "<group>";
@@ -162,6 +176,8 @@
 		E7B0E9E419F707BD0011BB49 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				E711C5B319F9B5460036873E /* knee_detail.png */,
+				E711C5B119F9A84B0036873E /* angle_detail.jpg */,
 				E711C5AF19F9A6C30036873E /* touch.jpg */,
 				E711C5AD19F9A6BA0036873E /* look.jpg */,
 				E711C5A519F97A2E0036873E /* alignment_main.jpg */,
@@ -254,11 +270,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E711C5A619F97A2E0036873E /* alignment_main.jpg in Resources */,
+				E711C5B419F9B5460036873E /* knee_detail.png in Resources */,
 				E711C5AE19F9A6BA0036873E /* look.jpg in Resources */,
 				E7B0E9F019F813400011BB49 /* plumbline_main.jpg in Resources */,
 				E711C5B019F9A6C30036873E /* touch.jpg in Resources */,
 				E7B0E9CF19F702200011BB49 /* LaunchScreen.xib in Resources */,
 				E7B0E9F819F81EBD0011BB49 /* plumbline_detail.gif in Resources */,
+				E711C5B219F9A84B0036873E /* angle_detail.jpg in Resources */,
 				E7B0E9CC19F702200011BB49 /* Images.xcassets in Resources */,
 				E711C5A119F976C80036873E /* alignment_detail.jpg in Resources */,
 			);
@@ -279,6 +297,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E711C5AC19F9A3BF0036873E /* PACAnkleJointsViewController.m in Sources */,
+				E711C5BB19F9BABB0036873E /* PACHipJointViewController.m in Sources */,
+				E711C5B719F9B5780036873E /* PACKneeSideViewController.m in Sources */,
 				E7B0E9C119F702200011BB49 /* AppDelegate.m in Sources */,
 				E7B0E9C419F702200011BB49 /* MasterViewController.m in Sources */,
 				E7B0E9F619F8165E0011BB49 /* PACPlumbLineViewController.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "PACSideViewTableViewController.h"
 #import "PACAnkleJointsViewController.h"
+#import "PACKneeSideViewController.h"
 #import "PACGlobal.h"
 
 enum {
@@ -26,7 +27,7 @@ enum {
 static NSString* cell_identifier = @"sideview-view-cell";
 
 @interface PACSideViewTableViewController ()
-
+-(void) sideViewCheckListDidChange:(NSNotification*)notification; 
 @end
 
 @implementation PACSideViewTableViewController
@@ -43,6 +44,7 @@ static NSString* cell_identifier = @"sideview-view-cell";
 
     self.navigationItem.title = @"Side View";//[detailItem description];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sideViewCheckListDidChange:) name:[NSString stringWithUTF8String:PACCheckListSideViewDidChange] object:nil];
    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
@@ -78,9 +80,16 @@ static NSString* cell_identifier = @"sideview-view-cell";
 
     switch(indexPath.row){
         case tableViewItemAnkleJoints:
+
+            if((PACChecklistSideView & sideViewCheckListAnkleJoint) == sideViewCheckListAnkleJoint){
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
             cell.textLabel.text  = @"Ankle Joints";
             break;
         case tableViewItemKnees:
+            if((PACChecklistSideView & sideViewCheckListKnee) == sideViewCheckListKnee){
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
             cell.textLabel.text  = @"Knees";
             break;
         case tableViewItemHipJoints:
@@ -116,8 +125,10 @@ static NSString* cell_identifier = @"sideview-view-cell";
 {
     switch(indexPath.row){
         case tableViewItemAnkleJoints:
+            [self.navigationController pushViewController:[[PACAnkleJointsViewController alloc] init] animated:YES];
             break;
         case tableViewItemKnees:
+            [self.navigationController pushViewController:[[PACKneeSideViewController alloc] init] animated:YES];
             break;
         case tableViewItemHipJoints:
             break;
@@ -136,6 +147,10 @@ static NSString* cell_identifier = @"sideview-view-cell";
     }
 }
  
+-(void) sideViewCheckListDidChange:(NSNotification*)notification
+{
+    [self.tableView reloadData];
+}
 
 /*
 // Override to support conditional editing of the table view.

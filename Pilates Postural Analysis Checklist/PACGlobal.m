@@ -13,5 +13,14 @@
 
 unsigned int PACChecklistMain = 0;
 unsigned int PACPlumbLineAlignment = 0;
+unsigned int PACChecklistSideView = 0;
+
+int PACAnkleAlignmentLeft = -1;
+int PACAnkleAlignmentRight = -1;
 
 const char* PACCheckListMainDidChange = "PACCheckListMainDidChange";
+const char* PACCheckListSideViewDidChange = "PACCheckListSideViewDidChange";
+
+
+int PACKneeAlignmentSideLeft = -1;
+int PACKneeAlignmentSideRight = -1;

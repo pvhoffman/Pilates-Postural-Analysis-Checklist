@@ -1,5 +1,5 @@
 //
-//  PACAnkleJointsViewController.h
+//  PACKneeSideViewController.h
 //  Pilates Postural Analysis Checklist
 //
 //  Created by Paul Hoffman on 10/23/14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PACAnkleJointsViewController : UIViewController  <UITableViewDelegate
+@interface PACKneeSideViewController : UIViewController <UITableViewDelegate
                                                                 , UITableViewDataSource
                                                                 >
 
