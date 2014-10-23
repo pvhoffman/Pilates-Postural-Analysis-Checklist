@@ -8,7 +8,11 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
+
 #import "PACPlumbLineViewController.h"
+#import "PACRelativeAlignmentViewController.h"
+#import "PACSideViewTableViewController.h"
+
 #import "PACGlobal.h"
 
 
@@ -96,20 +100,23 @@ static NSString* cell_identifier = @"master-view-cell";
 
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cell_identifier];
-        cell.accessoryType   = UITableViewCellAccessoryDisclosureIndicator;
     }
+    cell.accessoryType   = UITableViewCellAccessoryDisclosureIndicator;
 
     switch(indexPath.row){
         case tableViewItemPlumbLine:
-            cell.textLabel.text  = @"Plumb Line";//[NSString stringWithFormat:@"cell %d", (int)indexPath.row];
-            cell.imageView.image = [UIImage imageNamed:@"plumbline_main.jpg"];
+            cell.textLabel.text  = @"Plumb Line";
+            //cell.imageView.image = [UIImage imageNamed:@"plumbline_main.jpg"];
             if((PACChecklistMain & mainChecklistPlumbline) == mainChecklistPlumbline){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemAlignedInRelation:
-            cell.textLabel.text = @"Relative Alignment";//[NSString stringWithFormat:@"cell %d", (int)indexPath.row];
-            //cell.imageView.image = [UIImage imageNamed:@"posture2.jpg"];
+            cell.textLabel.text = @"Relative Alignment";
+            //cell.imageView.image = [UIImage imageNamed:@"alignment_main.jpg"];
+            if((PACChecklistMain & mainChecklistAlignedInRelation) == mainChecklistAlignedInRelation){
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
             break;
         case tableViewItemSideView:
             cell.textLabel.text = @"Side View";//[NSString stringWithFormat:@"cell %d", (int)indexPath.row];
@@ -136,8 +143,10 @@ static NSString* cell_identifier = @"master-view-cell";
             [self.navigationController pushViewController:[[PACPlumbLineViewController alloc] init] animated:YES];
             break;
         case tableViewItemAlignedInRelation:
+            [self.navigationController pushViewController:[[PACRelativeAlignmentViewController alloc] init] animated:YES];
             break;
         case tableViewItemSideView:
+            [self.navigationController pushViewController:[[PACSideViewTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
             break;
         case tableViewItemFrontView:
             break;
