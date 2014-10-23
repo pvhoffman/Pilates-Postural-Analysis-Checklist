@@ -140,7 +140,7 @@ static NSString* cell_identifier = @"knee-side-cell";
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor blackColor];
     label.font = [UIFont boldSystemFontOfSize:16.0];
-    label.text = NSLocalizedString(@"Use greater trochanter and anterior to lateral malleolus and relate to plumb line", @"");
+    label.text = NSLocalizedString(@"●Use greater trochanter and anterior to lateral malleolus and relate to plumb line", @"");
     label.numberOfLines = 0;
     label.lineBreakMode = NSLineBreakByWordWrapping;
     return label;

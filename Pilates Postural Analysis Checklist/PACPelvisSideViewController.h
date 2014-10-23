@@ -1,5 +1,5 @@
 //
-//  PACHipJointViewController.h
+//  PACPelvisSideViewController.h
 //  Pilates Postural Analysis Checklist
 //
 //  Created by Paul Hoffman on 10/23/14.
@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PACHipJointViewController : UIViewController <UITableViewDelegate
+@interface PACPelvisSideViewController : UIViewController <UITableViewDelegate
                                                                 , UITableViewDataSource
                                                                 >
+
 
 @end

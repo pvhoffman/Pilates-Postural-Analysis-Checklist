@@ -24,3 +24,10 @@ const char* PACCheckListSideViewDidChange = "PACCheckListSideViewDidChange";
 
 int PACKneeAlignmentSideLeft = -1;
 int PACKneeAlignmentSideRight = -1;
+
+int PACHipAlignmentLeft = -1;
+int PACHipAlignmentRight = -1;
+
+
+int PACPelvisSideAlignmentLeft = -1;
+int PACPelvisSideAlignmentRight = -1;

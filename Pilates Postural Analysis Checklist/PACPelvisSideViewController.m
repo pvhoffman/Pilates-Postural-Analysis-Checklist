@@ -1,12 +1,12 @@
 //
-//  PACHipJointViewController.m
+//  PACPelvisSideViewController.m
 //  Pilates Postural Analysis Checklist
 //
 //  Created by Paul Hoffman on 10/23/14.
 //  Copyright (c) 2014 Paul Hoffman. All rights reserved.
 //
 
-#import "PACHipJointViewController.h"
+#import "PACPelvisSideViewController.h"
 #import "PACGlobal.h"
 
 enum {
@@ -15,18 +15,18 @@ enum {
 };
 
 enum {
-        tableViewRowLeftHip = 0
-            , tableViewRowRightHip = 1
+        tableViewRowLeftPelvis = 0
+            , tableViewRowRightPelvis = 1
             , tableViewRowCount
 };
+static NSString* cell_identifier = @"pelvis-side-cell";
 
-static NSString* cell_identifier = @"hip-joint-cell";
 
-@interface PACHipJointViewController ()
+@interface PACPelvisSideViewController ()
 -(void) segmentvaluechanged:(id)sender;
 @end
 
-@implementation PACHipJointViewController
+@implementation PACPelvisSideViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -52,7 +52,7 @@ static NSString* cell_identifier = @"hip-joint-cell";
 {
     [super loadView];
 
-    self.navigationItem.title = @"Hip Joints";
+    self.navigationItem.title = @"Pelvis - Side";
 
     CGRect frame = self.view.frame;
     float fy = 5.0f;
@@ -63,7 +63,7 @@ static NSString* cell_identifier = @"hip-joint-cell";
     content_view.tag = tagContentView;
     content_view.backgroundColor = [UIColor whiteColor];
 
-    UIImage* image = [UIImage imageNamed:@"hipjoint_detail.png"];
+    UIImage* image = [UIImage imageNamed:@"pelvisside_detail.gif"];
 
     UIImageView* image_view = [[UIImageView alloc] initWithFrame:CGRectMake( (frame.size.width / 2.0f) - (image.size.width / 2.0f), fy, image.size.width, image.size.height)];
     image_view.image = image;
@@ -83,7 +83,7 @@ static NSString* cell_identifier = @"hip-joint-cell";
 
     fy = fy + look.size.height + fgutter;
 
-    UITableView* tableView = [[UITableView alloc] initWithFrame:CGRectMake(3.0f, fy + 15.0f, frame.size.width - 3.0f, 220.0f) style:UITableViewStyleGrouped];
+    UITableView* tableView = [[UITableView alloc] initWithFrame:CGRectMake(3.0f, fy + 30.0f, frame.size.width - 3.0f, 220.0f) style:UITableViewStyleGrouped];
     tableView.tag = tagTableView;
     tableView.dataSource = self;
     tableView.delegate = self;
@@ -96,7 +96,6 @@ static NSString* cell_identifier = @"hip-joint-cell";
 
 
     [self.view addSubview:content_view];
-
 
 }
 #pragma mark -
@@ -112,11 +111,11 @@ static NSString* cell_identifier = @"hip-joint-cell";
 
     if(!cell.accessoryView){
         UISegmentedControl *segment = [[UISegmentedControl alloc] init];
-        segment.frame = CGRectMake(0,0,260,30);
+        segment.frame = CGRectMake(0,0,220,30);
         segment.tag   = indexPath.row;
         [segment insertSegmentWithTitle:@"Neutral" atIndex:0 animated:NO];
-        [segment insertSegmentWithTitle:@"Extended" atIndex:1 animated:NO];
-        [segment insertSegmentWithTitle:@"Flexed"  atIndex:2 animated:NO];
+        [segment insertSegmentWithTitle:@"Ant Tilt" atIndex:1 animated:NO];
+        [segment insertSegmentWithTitle:@"Post Tilt"  atIndex:2 animated:NO];
         [segment addTarget:self action:@selector(segmentvaluechanged:) forControlEvents:UIControlEventValueChanged];
         
         cell.accessoryView = segment;
@@ -125,13 +124,13 @@ static NSString* cell_identifier = @"hip-joint-cell";
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 
     switch(indexPath.row){
-        case tableViewRowLeftHip:
-            cell.textLabel.text = @"Left Hip";
-            ((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = PACHipAlignmentLeft;
+        case tableViewRowLeftPelvis:
+            cell.textLabel.text = @"Left Pelvis";
+            ((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = PACPelvisSideAlignmentLeft;
             break;
-        case tableViewRowRightHip:
-            cell.textLabel.text = @"Right Hip";
-            ((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = PACHipAlignmentRight;
+        case tableViewRowRightPelvis:
+            cell.textLabel.text = @"Right Pelvis";
+            ((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = PACPelvisSideAlignmentRight;
             break;
     }
 
@@ -147,35 +146,19 @@ static NSString* cell_identifier = @"hip-joint-cell";
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView* res = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, tableView.frame.size.width, 63.0f)];
-
-    res.backgroundColor = [UIColor clearColor];
-
-    UILabel* label1 = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0f, tableView.frame.size.width, 42.0f)];
-    label1.backgroundColor = [UIColor clearColor];
-    label1.textColor = [UIColor blackColor];
-    label1.font = [UIFont boldSystemFontOfSize:16.0];
-    label1.text = NSLocalizedString(@"●Palpate ASIS and PSIS to find the midpoint of the iliac crest.", @"");
-    label1.numberOfLines = 0;
-    label1.lineBreakMode = NSLineBreakByWordWrapping;
-    [res addSubview:label1];
-
-    UILabel* label2 = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 46.0f, tableView.frame.size.width, 21.0f)];
-    label2.backgroundColor = [UIColor clearColor];
-    label2.textColor = [UIColor blackColor];
-    label2.font = [UIFont boldSystemFontOfSize:16.0];
-    label2.text = NSLocalizedString(@"●Palpate greater trochanter and compare.", @"");
-    label2.numberOfLines = 0;
-    label2.lineBreakMode = NSLineBreakByWordWrapping;
-    [res addSubview:label2];
-
-
-    return res;
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0f, tableView.frame.size.width, 42.0f)];
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = [UIColor blackColor];
+    label.font = [UIFont boldSystemFontOfSize:16.0];
+    label.text = NSLocalizedString(@"●Palpate ASIS and PSIS and compare to horizontal plane", @"");
+    label.numberOfLines = 0;
+    label.lineBreakMode = NSLineBreakByWordWrapping;
+    return label;
 
 }
 -(CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
 {
-	return 68.0f;
+	return 44.0f;
 }
 #pragma mark -
 #pragma mark UITableViewDelegate
@@ -185,26 +168,25 @@ static NSString* cell_identifier = @"hip-joint-cell";
 #pragma mark -
 -(void) segmentvaluechanged:(id)sender
 {
-
     UISegmentedControl *segment = (UISegmentedControl*)sender; 
 
     switch(segment.tag){
-        case tableViewRowLeftHip:
-            PACHipAlignmentLeft = segment.selectedSegmentIndex;
+        case tableViewRowLeftPelvis:
+            PACPelvisSideAlignmentLeft = segment.selectedSegmentIndex;
             break;
-        case tableViewRowRightHip:
-            PACHipAlignmentRight = segment.selectedSegmentIndex;
+        case tableViewRowRightPelvis:
+            PACPelvisSideAlignmentRight = segment.selectedSegmentIndex;
             break;
     }
 
-    if(PACHipAlignmentRight > -1 && PACHipAlignmentLeft > -1){
-        if(!((PACChecklistSideView & sideViewCheckListHipJoint) == sideViewCheckListHipJoint)){
-            PACChecklistSideView |= sideViewCheckListHipJoint;
+    if(PACPelvisSideAlignmentRight > -1 && PACPelvisSideAlignmentLeft > -1){
+        if(!((PACChecklistSideView & sideViewCheckListPelvis) == sideViewCheckListPelvis)){
+            PACChecklistSideView |= sideViewCheckListPelvis;
             [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListSideViewDidChange] object:nil];
         }
     } else {
-        if((PACChecklistSideView & sideViewCheckListHipJoint) == sideViewCheckListHipJoint){
-            PACChecklistSideView &= ~sideViewCheckListHipJoint;
+        if((PACChecklistSideView & sideViewCheckListPelvis) == sideViewCheckListPelvis){
+            PACChecklistSideView &= ~sideViewCheckListPelvis;
             [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListSideViewDidChange] object:nil];
         }
         

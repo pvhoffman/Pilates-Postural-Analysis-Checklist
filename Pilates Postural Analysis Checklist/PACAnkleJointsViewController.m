@@ -56,6 +56,7 @@ static NSString* cell_identifier = @"ankle-joint-cell";
 
     UIImageView* image_view = [[UIImageView alloc] initWithFrame:CGRectMake( (frame.size.width / 2.0f) - (image.size.width / 2.0f), fy, image.size.width, image.size.height)];
     image_view.image = image;
+    [content_view addSubview:image_view];
 
     fy = fy + image.size.height + fgutter;
 
@@ -157,7 +158,7 @@ static NSString* cell_identifier = @"ankle-joint-cell";
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor blackColor];
     label.font = [UIFont boldSystemFontOfSize:16.0];
-    label.text = NSLocalizedString(@"Examine the angle of the ankle joint created by the front of the shin and of the foot.", @"");
+    label.text = NSLocalizedString(@"●Examine the angle of the ankle joint created by the front of the shin and of the foot.", @"");
     label.numberOfLines = 0;
     label.lineBreakMode = NSLineBreakByWordWrapping;
     return label;
