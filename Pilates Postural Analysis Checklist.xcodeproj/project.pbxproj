@@ -11,10 +11,13 @@
 		E7B0E9C119F702200011BB49 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B0E9C019F702200011BB49 /* AppDelegate.m */; };
 		E7B0E9C419F702200011BB49 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B0E9C319F702200011BB49 /* MasterViewController.m */; };
 		E7B0E9C719F702200011BB49 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B0E9C619F702200011BB49 /* DetailViewController.m */; };
-		E7B0E9CA19F702200011BB49 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7B0E9C819F702200011BB49 /* Main.storyboard */; };
 		E7B0E9CC19F702200011BB49 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7B0E9CB19F702200011BB49 /* Images.xcassets */; };
 		E7B0E9CF19F702200011BB49 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7B0E9CD19F702200011BB49 /* LaunchScreen.xib */; };
 		E7B0E9DB19F702200011BB49 /* Pilates_Postural_Analysis_ChecklistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B0E9DA19F702200011BB49 /* Pilates_Postural_Analysis_ChecklistTests.m */; };
+		E7B0E9F019F813400011BB49 /* plumbline_main.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E7B0E9EF19F813400011BB49 /* plumbline_main.jpg */; };
+		E7B0E9F219F813940011BB49 /* PACGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B0E9F119F813940011BB49 /* PACGlobal.m */; };
+		E7B0E9F619F8165E0011BB49 /* PACPlumbLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B0E9F519F8165E0011BB49 /* PACPlumbLineViewController.m */; };
+		E7B0E9F819F81EBD0011BB49 /* plumbline_detail.gif in Resources */ = {isa = PBXBuildFile; fileRef = E7B0E9F719F81EBD0011BB49 /* plumbline_detail.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,12 +40,17 @@
 		E7B0E9C319F702200011BB49 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		E7B0E9C519F702200011BB49 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		E7B0E9C619F702200011BB49 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		E7B0E9C919F702200011BB49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E7B0E9CB19F702200011BB49 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E7B0E9CE19F702200011BB49 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		E7B0E9D419F702200011BB49 /* Pilates Postural Analysis ChecklistTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pilates Postural Analysis ChecklistTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7B0E9D919F702200011BB49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7B0E9DA19F702200011BB49 /* Pilates_Postural_Analysis_ChecklistTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Pilates_Postural_Analysis_ChecklistTests.m; sourceTree = "<group>"; };
+		E7B0E9EF19F813400011BB49 /* plumbline_main.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = plumbline_main.jpg; sourceTree = "<group>"; };
+		E7B0E9F119F813940011BB49 /* PACGlobal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACGlobal.m; sourceTree = "<group>"; };
+		E7B0E9F319F813B70011BB49 /* PACGlobal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACGlobal.h; sourceTree = "<group>"; };
+		E7B0E9F419F8165E0011BB49 /* PACPlumbLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACPlumbLineViewController.h; sourceTree = "<group>"; };
+		E7B0E9F519F8165E0011BB49 /* PACPlumbLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACPlumbLineViewController.m; sourceTree = "<group>"; };
+		E7B0E9F719F81EBD0011BB49 /* plumbline_detail.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = plumbline_detail.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +74,7 @@
 		E7B0E9AF19F702200011BB49 = {
 			isa = PBXGroup;
 			children = (
+				E7B0E9E419F707BD0011BB49 /* images */,
 				E7B0E9BA19F702200011BB49 /* Pilates Postural Analysis Checklist */,
 				E7B0E9D719F702200011BB49 /* Pilates Postural Analysis ChecklistTests */,
 				E7B0E9B919F702200011BB49 /* Products */,
@@ -90,10 +99,13 @@
 				E7B0E9C319F702200011BB49 /* MasterViewController.m */,
 				E7B0E9C519F702200011BB49 /* DetailViewController.h */,
 				E7B0E9C619F702200011BB49 /* DetailViewController.m */,
-				E7B0E9C819F702200011BB49 /* Main.storyboard */,
 				E7B0E9CB19F702200011BB49 /* Images.xcassets */,
 				E7B0E9CD19F702200011BB49 /* LaunchScreen.xib */,
 				E7B0E9BB19F702200011BB49 /* Supporting Files */,
+				E7B0E9F119F813940011BB49 /* PACGlobal.m */,
+				E7B0E9F319F813B70011BB49 /* PACGlobal.h */,
+				E7B0E9F419F8165E0011BB49 /* PACPlumbLineViewController.h */,
+				E7B0E9F519F8165E0011BB49 /* PACPlumbLineViewController.m */,
 			);
 			path = "Pilates Postural Analysis Checklist";
 			sourceTree = "<group>";
@@ -122,6 +134,15 @@
 				E7B0E9D919F702200011BB49 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E7B0E9E419F707BD0011BB49 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				E7B0E9F719F81EBD0011BB49 /* plumbline_detail.gif */,
+				E7B0E9EF19F813400011BB49 /* plumbline_main.jpg */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,6 +194,7 @@
 				TargetAttributes = {
 					E7B0E9B719F702200011BB49 = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = R2KK25H5U8;
 					};
 					E7B0E9D319F702200011BB49 = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -204,8 +226,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7B0E9CA19F702200011BB49 /* Main.storyboard in Resources */,
+				E7B0E9F019F813400011BB49 /* plumbline_main.jpg in Resources */,
 				E7B0E9CF19F702200011BB49 /* LaunchScreen.xib in Resources */,
+				E7B0E9F819F81EBD0011BB49 /* plumbline_detail.gif in Resources */,
 				E7B0E9CC19F702200011BB49 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,6 +249,8 @@
 			files = (
 				E7B0E9C119F702200011BB49 /* AppDelegate.m in Sources */,
 				E7B0E9C419F702200011BB49 /* MasterViewController.m in Sources */,
+				E7B0E9F619F8165E0011BB49 /* PACPlumbLineViewController.m in Sources */,
+				E7B0E9F219F813940011BB49 /* PACGlobal.m in Sources */,
 				E7B0E9BE19F702200011BB49 /* main.m in Sources */,
 				E7B0E9C719F702200011BB49 /* DetailViewController.m in Sources */,
 			);
@@ -250,14 +275,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E7B0E9C819F702200011BB49 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E7B0E9C919F702200011BB49 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E7B0E9CD19F702200011BB49 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -349,6 +366,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Pilates Postural Analysis Checklist/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -359,6 +377,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Pilates Postural Analysis Checklist/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "DetailViewController.h"
-
+//#import "DetailViewController.h"
+#import "MasterViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -16,8 +16,17 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] ;
+    
+    MasterViewController* masterviewcontroller = [[MasterViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+    UINavigationController* navigationcontroller = [[UINavigationController alloc]  initWithRootViewController:masterviewcontroller];
+    self.window.rootViewController = navigationcontroller;
+    
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

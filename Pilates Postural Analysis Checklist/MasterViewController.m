@@ -8,33 +8,59 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
+#import "PACPlumbLineViewController.h"
+#import "PACGlobal.h"
+
+
+enum {
+    tableViewItemPlumbLine               = 0
+        , tableViewItemAlignedInRelation = 1
+        , tableViewItemSideView          = 2
+        , tableViewItemFrontView         = 3
+        , tableViewItemBackView          = 4
+        , tableViewItemCount             = 5
+};
+
+static NSString* cell_identifier = @"master-view-cell";
 
 @interface MasterViewController ()
+-(void) mainCheckListDidChange:(NSNotification*)notification; 
 
 @property NSMutableArray *objects;
 @end
 
 @implementation MasterViewController
 
-- (void)awakeFromNib {
+- (void)awakeFromNib 
+{
     [super awakeFromNib];
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad 
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+    //UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+    //self.navigationItem.rightBarButtonItem = addButton;
+    [self.tableView registerClass:[UITableViewCell class ] forCellReuseIdentifier:cell_identifier];
+
+    self.navigationItem.title = @"Main";//[detailItem description];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mainCheckListDidChange:) name:[NSString stringWithUTF8String:PACCheckListMainDidChange] object:nil];
+
+
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning 
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)insertNewObject:(id)sender {
+- (void)insertNewObject:(id)sender 
+{
     if (!self.objects) {
         self.objects = [[NSMutableArray alloc] init];
     }
@@ -42,47 +68,102 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
-
+/*
 #pragma mark - Segues
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender 
+{
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSDate *object = self.objects[indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
     }
 }
-
+*/
 #pragma mark - Table View
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
+{
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.objects.count;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
+{
+    return tableViewItemCount;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cell_identifier forIndexPath:indexPath];
 
-    NSDate *object = self.objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cell_identifier];
+        cell.accessoryType   = UITableViewCellAccessoryDisclosureIndicator;
+    }
+
+    switch(indexPath.row){
+        case tableViewItemPlumbLine:
+            cell.textLabel.text  = @"Plumb Line";//[NSString stringWithFormat:@"cell %d", (int)indexPath.row];
+            cell.imageView.image = [UIImage imageNamed:@"plumbline_main.jpg"];
+            if((PACChecklistMain & mainChecklistPlumbline) == mainChecklistPlumbline){
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
+            break;
+        case tableViewItemAlignedInRelation:
+            cell.textLabel.text = @"Relative Alignment";//[NSString stringWithFormat:@"cell %d", (int)indexPath.row];
+            //cell.imageView.image = [UIImage imageNamed:@"posture2.jpg"];
+            break;
+        case tableViewItemSideView:
+            cell.textLabel.text = @"Side View";//[NSString stringWithFormat:@"cell %d", (int)indexPath.row];
+            //cell.imageView.image = [UIImage imageNamed:@"sideview.jpg"];
+            break;
+        case tableViewItemFrontView:
+            cell.textLabel.text = @"Front View";//[NSString stringWithFormat:@"cell %d", (int)indexPath.row];
+            //cell.imageView.image = [UIImage imageNamed:@"frontview.jpg"];
+            break;
+        case tableViewItemBackView:
+            cell.textLabel.text = @"Back View";//[NSString stringWithFormat:@"cell %d", (int)indexPath.row];
+            //cell.imageView.image = [UIImage imageNamed:@"frontview.jpg"];
+            break;
+        default:
+            cell.textLabel.text = [NSString stringWithFormat:@"cell %d", (int)indexPath.row];
+            break;
+    }
     return cell;
 }
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.objects removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    switch(indexPath.row){
+        case tableViewItemPlumbLine:
+            [self.navigationController pushViewController:[[PACPlumbLineViewController alloc] init] animated:YES];
+            break;
+        case tableViewItemAlignedInRelation:
+            break;
+        case tableViewItemSideView:
+            break;
+        case tableViewItemFrontView:
+            break;
+        case tableViewItemBackView:
+            break;
+        default:
+            break;
     }
 }
-
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+    // Return NO if you do not want the specified item to be editable.
+    return NO;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0.0f;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.0f;
+}
+#pragma mark -
+-(void) mainCheckListDidChange:(NSNotification*)notification;
+{
+        [self.tableView reloadData];
+}
 @end
+
