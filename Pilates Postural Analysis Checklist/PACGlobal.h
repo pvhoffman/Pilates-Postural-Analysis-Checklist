@@ -40,7 +40,8 @@ typedef enum {
     sideViewCheckListAnkleJoint = (1 << 0)
         , sideViewCheckListKnee = (1 << 1)
         , sideViewCheckListHipJoint = (1 << 2)
-        , sideViewCheckListPelvis = (1 << 3)
+        , sideViewCheckListPelvis   = (1 << 3)
+        , sideViewCheckListLumbar   = (1 << 4)
 } PACChecklistSideView_t;
 
 // Side View Ankle
@@ -48,28 +49,35 @@ typedef enum {
     ankleAlignmentNeutral = 0
         ,ankleAlignmentPlantarflex = 1
         ,ankleAlignmentDorsiflex = 2
-} PACAnkleAlignment;
+} PACAnkleAlignment_t;
 
 // Side View Knee
 typedef enum {
     kneeSideAlignmentNeutral = 0
         ,kneeSideAlignmentHyperextended = 1
         ,kneeSideAlignmentFlexed = 2
-} PACKneeSideAlignment;
+} PACKneeSideAlignment_t;
 
 // Side View Hip
 typedef enum {
     hipAlignmentNeutral = 0
         ,hipAlignmentExtended = 1
         ,hipAlignmentFlexed = 2
-} PACHipAlignment;
+} PACHipAlignment_t;
 
 // Side View Pelvis
 typedef enum {
     pelvisSideAlignmentNeutral = 0
         ,pelvisSideAlignmentAnteriorTilt = 1
         ,pelvisSideAlignmentPosteriorTilt = 2
-} PACPelvisSideAlignment;
+} PACPelvisSideAlignment_t;
+
+// Side View Lumbar Spine
+typedef enum {
+    lumbarAlignmentNeutral = 0
+        ,lumbarAlignmentFlat = 1
+        ,lumbarAlignmentFlexed = 2
+} PACLumbarAlignment_t;
 
 extern unsigned int PACChecklistMain;
 extern unsigned int PACPlumbLineAlignment;
@@ -87,6 +95,8 @@ extern int PACHipAlignmentRight;
 
 extern int PACPelvisSideAlignmentLeft;
 extern int PACPelvisSideAlignmentRight;
+
+extern int PACLumbarAlignment;
 
 extern const char* PACCheckListMainDidChange;
 extern const char* PACCheckListSideViewDidChange;

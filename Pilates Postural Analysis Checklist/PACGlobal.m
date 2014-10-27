@@ -31,3 +31,7 @@ int PACHipAlignmentRight = -1;
 
 int PACPelvisSideAlignmentLeft = -1;
 int PACPelvisSideAlignmentRight = -1;
+
+
+int PACLumbarAlignment = -1;
+

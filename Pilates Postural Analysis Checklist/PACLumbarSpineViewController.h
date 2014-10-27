@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PACLumbarSpineViewController : UIViewController
+@interface PACLumbarSpineViewController : UIViewController <UITableViewDelegate
+                                                                , UITableViewDataSource
+                                                                >
+
 
 @end

@@ -11,6 +11,7 @@
 #import "PACKneeSideViewController.h"
 #import "PACHipJointViewController.h"
 #import "PACPelvisSideViewController.h"
+#import "PACLumbarSpineViewController.h"
 #import "PACGlobal.h"
 
 enum {
@@ -107,6 +108,9 @@ static NSString* cell_identifier = @"sideview-view-cell";
             cell.textLabel.text  = @"Pelvis";
             break;
         case tableViewItemLumbarSpine:
+            if((PACChecklistSideView & sideViewCheckListLumbar) == sideViewCheckListLumbar){
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
             cell.textLabel.text  = @"Lumbar Spine";
             break;
         case tableViewItemLowerThoracicSpine:
@@ -145,6 +149,7 @@ static NSString* cell_identifier = @"sideview-view-cell";
             [self.navigationController pushViewController:[[PACPelvisSideViewController alloc] init] animated:YES];
             break;
         case tableViewItemLumbarSpine:
+            [self.navigationController pushViewController:[[PACLumbarSpineViewController alloc] init] animated:YES];
             break;
         case tableViewItemLowerThoracicSpine:
             break;
