@@ -180,10 +180,10 @@ static NSString* cell_identifier = @"ankle-joint-cell";
 
     switch(segment.tag){
         case tableViewRowLeftAnkle:
-            PACAnkleAlignmentLeft = segment.selectedSegmentIndex;
+            PACAnkleAlignmentLeft = (int)segment.selectedSegmentIndex;
             break;
         case tableViewRowRightAnkle:
-            PACAnkleAlignmentRight = segment.selectedSegmentIndex;
+            PACAnkleAlignmentRight = (int)segment.selectedSegmentIndex;
             break;
     }
 

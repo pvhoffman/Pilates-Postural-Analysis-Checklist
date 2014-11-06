@@ -12,6 +12,10 @@
 #import "PACHipJointViewController.h"
 #import "PACPelvisSideViewController.h"
 #import "PACLumbarSpineViewController.h"
+#import "PACLowerThoracicSpineViewController.h"
+#import "PACUpperThoracicSpineViewController.h"
+#import "PACCervicalSpineViewController.h"
+#import "PACHeadSideViewController.h"
 #import "PACGlobal.h"
 
 enum {
@@ -114,22 +118,31 @@ static NSString* cell_identifier = @"sideview-view-cell";
             cell.textLabel.text  = @"Lumbar Spine";
             break;
         case tableViewItemLowerThoracicSpine:
-            cell.textLabel.text  = @"Lower Thracic Spine";
+            if((PACChecklistSideView & sideViewCheckListLowerThoracic) == sideViewCheckListLowerThoracic){
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
+            cell.textLabel.text  = @"Lower Thoracic Spine";
             break;
         case tableViewItemUpperThoracicSpine:
-            cell.textLabel.text  = @"Upper Thracic Spine";
+            if((PACChecklistSideView & sideViewCheckListUpperThoracic) == sideViewCheckListUpperThoracic){
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
+            cell.textLabel.text  = @"Upper Thoracic Spine";
             break;
         case tableViewItemCervicalSpine:
+            if((PACChecklistSideView & sideViewCheckListCervicalSpine) == sideViewCheckListCervicalSpine){
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
             cell.textLabel.text  = @"Cervical Spine";
             break;
         case tableViewItemHead:
+            if((PACChecklistSideView & sideViewCheckListHead) == sideViewCheckListHead){
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
             cell.textLabel.text  = @"Head";
             break;
  
     }
- 
-    
-    // Configure the cell...
     
     return cell;
 }
@@ -152,12 +165,16 @@ static NSString* cell_identifier = @"sideview-view-cell";
             [self.navigationController pushViewController:[[PACLumbarSpineViewController alloc] init] animated:YES];
             break;
         case tableViewItemLowerThoracicSpine:
+            [self.navigationController pushViewController:[[PACLowerThoracicSpineViewController alloc] init] animated:YES];
             break;
         case tableViewItemUpperThoracicSpine:
+            [self.navigationController pushViewController:[[PACUpperThoracicSpineViewController alloc] init] animated:YES];
             break;
         case tableViewItemCervicalSpine:
+            [self.navigationController pushViewController:[[PACCervicalSpineViewController alloc] init] animated:YES];
             break;
         case tableViewItemHead:
+            [self.navigationController pushViewController:[[PACHeadSideViewController alloc] init] animated:YES];
             break;
     }
 }
@@ -165,50 +182,27 @@ static NSString* cell_identifier = @"sideview-view-cell";
 -(void) sideViewCheckListDidChange:(NSNotification*)notification
 {
     [self.tableView reloadData];
+    
+    if((PACChecklistSideView & sideViewCheckListAnkleJoint) == sideViewCheckListAnkleJoint  
+            && (PACChecklistSideView & sideViewCheckListKnee) == sideViewCheckListKnee
+            && (PACChecklistSideView & sideViewCheckListHipJoint) == sideViewCheckListHipJoint
+            && (PACChecklistSideView & sideViewCheckListPelvis) == sideViewCheckListPelvis
+            && (PACChecklistSideView & sideViewCheckListLumbar) == sideViewCheckListLumbar
+            && (PACChecklistSideView & sideViewCheckListLowerThoracic) == sideViewCheckListLowerThoracic
+            && (PACChecklistSideView & sideViewCheckListUpperThoracic) == sideViewCheckListUpperThoracic
+            && (PACChecklistSideView & sideViewCheckListCervicalSpine) == sideViewCheckListCervicalSpine
+            && (PACChecklistSideView & sideViewCheckListHead) == sideViewCheckListHead){
+        if((PACChecklistMain & mainChecklistSideView) != mainChecklistSideView){
+            PACChecklistMain = PACChecklistMain | mainChecklistSideView;
+            [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListMainDidChange] object:nil];
+        }
+    } else {
+        if((PACChecklistMain & mainChecklistSideView) == mainChecklistSideView){
+            PACChecklistMain = PACChecklistMain & ~mainChecklistSideView;
+            [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListMainDidChange] object:nil];
+        }
+    }
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

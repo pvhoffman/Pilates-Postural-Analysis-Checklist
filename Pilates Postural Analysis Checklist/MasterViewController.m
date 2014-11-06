@@ -120,6 +120,9 @@ static NSString* cell_identifier = @"master-view-cell";
             break;
         case tableViewItemSideView:
             cell.textLabel.text = @"Side View";//[NSString stringWithFormat:@"cell %d", (int)indexPath.row];
+            if((PACChecklistMain & mainChecklistSideView) == mainChecklistSideView){
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
             //cell.imageView.image = [UIImage imageNamed:@"sideview.jpg"];
             break;
         case tableViewItemFrontView:

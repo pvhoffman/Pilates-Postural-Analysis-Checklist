@@ -1,12 +1,12 @@
 //
-//  PACLumbarSpineViewController.m
+//  PACHeadSideViewController.m
 //  Pilates Postural Analysis Checklist
 //
-//  Created by Paul Hoffman on 10/23/14.
+//  Created by Paul Hoffman on 11/5/14.
 //  Copyright (c) 2014 Paul Hoffman. All rights reserved.
 //
 
-#import "PACLumbarSpineViewController.h"
+#import "PACHeadSideViewController.h"
 #import "PACGlobal.h"
 
 enum {
@@ -15,13 +15,13 @@ enum {
 };
 
 
-static NSString*  cell_identifier_sideview_lumbar = @"lumbar-spine-cell";
+static NSString*  cell_identifier_sideview_head_side = @"head-side-cell";
 
-@interface PACLumbarSpineTableViewCell : UITableViewCell
+@interface PACHeadSideTableViewCell : UITableViewCell
 @end
 
 
-@implementation PACLumbarSpineTableViewCell 
+@implementation PACHeadSideTableViewCell 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
         self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
@@ -29,11 +29,14 @@ static NSString*  cell_identifier_sideview_lumbar = @"lumbar-spine-cell";
 }
 @end
 
-@interface PACLumbarSpineViewController ()
+
+
+
+@interface PACHeadSideViewController ()
 
 @end
 
-@implementation PACLumbarSpineViewController
+@implementation PACHeadSideViewController
 
 - (void)viewDidLoad 
 {
@@ -46,12 +49,11 @@ static NSString*  cell_identifier_sideview_lumbar = @"lumbar-spine-cell";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 -(void) loadView
 {
     [super loadView];
 
-    self.navigationItem.title = @"Lumbar Spine";
+    self.navigationItem.title = @"Head";
 
     CGRect frame = self.view.frame;
     float fy = 5.0f;
@@ -62,7 +64,7 @@ static NSString*  cell_identifier_sideview_lumbar = @"lumbar-spine-cell";
     content_view.tag = tagContentView;
     content_view.backgroundColor = [UIColor whiteColor];
 
-    UIImage* image = [UIImage imageNamed:@"lumbarspineside_detail.jpg"];
+    UIImage* image = [UIImage imageNamed:@"head_detail.jpg"];
 
     UIImageView* image_view = [[UIImageView alloc] initWithFrame:CGRectMake( (frame.size.width / 2.0f) - (image.size.width / 2.0f), fy, image.size.width, image.size.height)];
     image_view.image = image;
@@ -74,12 +76,12 @@ static NSString*  cell_identifier_sideview_lumbar = @"lumbar-spine-cell";
     UIImageView* look_view = [[UIImageView alloc] initWithFrame:CGRectMake( 5.0f, fy, look.size.width, look.size.height )];
     look_view.image = look;
     [content_view addSubview:look_view];
-
+/*
     UIImage* touch = [UIImage imageNamed:@"touch.jpg"];
     UIImageView* touch_view = [[UIImageView alloc] initWithFrame:CGRectMake( 7.0f + look.size.width, fy, touch.size.width, touch.size.height )];
     touch_view.image = touch;
     [content_view addSubview:touch_view];
-
+*/
     fy = fy + look.size.height + fgutter;
 
     UITableView* tableView = [[UITableView alloc] initWithFrame:CGRectMake(3.0f, fy + 30.0f, frame.size.width - 3.0f, 220.0f) style:UITableViewStyleGrouped];
@@ -89,7 +91,7 @@ static NSString*  cell_identifier_sideview_lumbar = @"lumbar-spine-cell";
     tableView.scrollEnabled = NO;
     [content_view addSubview:tableView];
 
-    [tableView registerClass:[PACLumbarSpineTableViewCell class ] forCellReuseIdentifier:cell_identifier_sideview_lumbar];
+    [tableView registerClass:[PACHeadSideTableViewCell class] forCellReuseIdentifier:cell_identifier_sideview_head_side];
 
     fy = fy + 220.0f + 30.0f + fgutter;
 
@@ -97,35 +99,26 @@ static NSString*  cell_identifier_sideview_lumbar = @"lumbar-spine-cell";
     [self.view addSubview:content_view];
 
 }
-
 #pragma mark -
 #pragma mark UITableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
-    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cell_identifier_sideview_lumbar forIndexPath:indexPath];
-    PACLumbarSpineTableViewCell* cell = (PACLumbarSpineTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cell_identifier_sideview_lumbar forIndexPath:indexPath];
+    PACHeadSideTableViewCell* cell = (PACHeadSideTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cell_identifier_sideview_head_side forIndexPath:indexPath];
 
-    if (cell == nil) {
-        cell = [[PACLumbarSpineTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cell_identifier_sideview_lumbar];
-    }
-
-    //[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 
     switch(indexPath.row){
-        case lumbarAlignmentNeutral:
+        case headSideAlignmentNeutral:
             cell.textLabel.text = @"Neutral";
             break;
-        case lumbarAlignmentFlat:
-            cell.textLabel.text = @"Flat";
-            cell.detailTextLabel.text = @"(decreased convex curve posteriorly)";
+        case headSideAlignmentForward:
+            cell.textLabel.text = @"Forward";
             break;
-        case lumbarAlignmentFlexed:
-            cell.textLabel.text = @"Excessive flexion";
-            cell.detailTextLabel.text = @"(increased convex curve posteriorly)";
+        case headSideAlignmentRetracted:
+            cell.textLabel.text = @"Retracted";
             break;
     }
 
-    cell.accessoryType = ((indexPath.row == PACLumbarAlignment) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
+    cell.accessoryType = ((indexPath.row == PACHeadSideAlignment) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
 
     return cell;
 }
@@ -143,7 +136,7 @@ static NSString*  cell_identifier_sideview_lumbar = @"lumbar-spine-cell";
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor blackColor];
     label.font = [UIFont boldSystemFontOfSize:16.0];
-    label.text = NSLocalizedString(@"● Feel L1 to L5 to get an idea of the curvature", @"");
+    label.text = NSLocalizedString(@"● Use the ear (auditory meatus) and acromion process", @"");
     label.numberOfLines = 0;
     label.lineBreakMode = NSLineBreakByWordWrapping;
     return label;
@@ -157,13 +150,15 @@ static NSString*  cell_identifier_sideview_lumbar = @"lumbar-spine-cell";
 #pragma mark UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PACLumbarAlignment = (int)indexPath.row;
+    PACHeadSideAlignment = (int)indexPath.row;
     [tableView reloadData];
 
-    if(!((PACChecklistSideView & sideViewCheckListLumbar) == sideViewCheckListLumbar)){
-        PACChecklistSideView |= sideViewCheckListLumbar;
+    if(!((PACChecklistSideView & sideViewCheckListHead) == sideViewCheckListHead)){
+        PACChecklistSideView |= sideViewCheckListHead;
         [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListSideViewDidChange] object:nil];
     }
 }
+
+
 
 @end

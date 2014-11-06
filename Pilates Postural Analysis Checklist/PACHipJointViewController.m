@@ -190,10 +190,10 @@ static NSString* cell_identifier = @"hip-joint-cell";
 
     switch(segment.tag){
         case tableViewRowLeftHip:
-            PACHipAlignmentLeft = segment.selectedSegmentIndex;
+            PACHipAlignmentLeft = (int)segment.selectedSegmentIndex;
             break;
         case tableViewRowRightHip:
-            PACHipAlignmentRight = segment.selectedSegmentIndex;
+            PACHipAlignmentRight = (int)segment.selectedSegmentIndex;
             break;
     }
 

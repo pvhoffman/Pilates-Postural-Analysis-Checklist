@@ -172,10 +172,10 @@ static NSString* cell_identifier = @"pelvis-side-cell";
 
     switch(segment.tag){
         case tableViewRowLeftPelvis:
-            PACPelvisSideAlignmentLeft = segment.selectedSegmentIndex;
+            PACPelvisSideAlignmentLeft = (int)segment.selectedSegmentIndex;
             break;
         case tableViewRowRightPelvis:
-            PACPelvisSideAlignmentRight = segment.selectedSegmentIndex;
+            PACPelvisSideAlignmentRight = (int)segment.selectedSegmentIndex;
             break;
     }
 

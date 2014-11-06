@@ -162,10 +162,10 @@ static NSString* cell_identifier = @"knee-side-cell";
 
     switch(segment.tag){
         case tableViewRowLeftKnee:
-            PACKneeAlignmentSideLeft = segment.selectedSegmentIndex;
+            PACKneeAlignmentSideLeft = (int)segment.selectedSegmentIndex;
             break;
         case tableViewRowRightKnee:
-            PACKneeAlignmentSideRight = segment.selectedSegmentIndex;
+            PACKneeAlignmentSideRight = (int)segment.selectedSegmentIndex;
             break;
     }
 

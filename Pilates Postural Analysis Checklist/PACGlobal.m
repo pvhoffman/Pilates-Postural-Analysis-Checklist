@@ -35,3 +35,8 @@ int PACPelvisSideAlignmentRight = -1;
 
 int PACLumbarAlignment = -1;
 
+int PACLowerThoracicAlignment = -1;
+int PACUpperThoracicAlignment = -1;
+int PACCervicalSpineAlignment = -1;
+
+int PACHeadSideAlignment = -1;

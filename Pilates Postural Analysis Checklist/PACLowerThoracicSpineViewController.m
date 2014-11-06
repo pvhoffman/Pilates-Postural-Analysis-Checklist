@@ -1,27 +1,28 @@
 //
-//  PACLumbarSpineViewController.m
+//  PACLowerThoracicSpineViewController.m
 //  Pilates Postural Analysis Checklist
 //
-//  Created by Paul Hoffman on 10/23/14.
+//  Created by Paul Hoffman on 10/27/14.
 //  Copyright (c) 2014 Paul Hoffman. All rights reserved.
 //
 
-#import "PACLumbarSpineViewController.h"
+#import "PACLowerThoracicSpineViewController.h"
 #import "PACGlobal.h"
 
+//#import "PACUpperThoracicSpineViewController.h"
 enum {
         tagContentView = 100
             , tagTableView
 };
 
 
-static NSString*  cell_identifier_sideview_lumbar = @"lumbar-spine-cell";
+static NSString*  cell_identifier_sideview_lower_thoracic = @"lower-thoracic-spine-cell";
 
-@interface PACLumbarSpineTableViewCell : UITableViewCell
+@interface PACLowerThoracicSpineTableViewCell : UITableViewCell
 @end
 
 
-@implementation PACLumbarSpineTableViewCell 
+@implementation PACLowerThoracicSpineTableViewCell 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
         self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
@@ -29,11 +30,12 @@ static NSString*  cell_identifier_sideview_lumbar = @"lumbar-spine-cell";
 }
 @end
 
-@interface PACLumbarSpineViewController ()
+
+@interface PACLowerThoracicSpineViewController ()
 
 @end
 
-@implementation PACLumbarSpineViewController
+@implementation PACLowerThoracicSpineViewController
 
 - (void)viewDidLoad 
 {
@@ -46,12 +48,11 @@ static NSString*  cell_identifier_sideview_lumbar = @"lumbar-spine-cell";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 -(void) loadView
 {
     [super loadView];
 
-    self.navigationItem.title = @"Lumbar Spine";
+    self.navigationItem.title = @"Lower Thoracic Spine";
 
     CGRect frame = self.view.frame;
     float fy = 5.0f;
@@ -62,7 +63,7 @@ static NSString*  cell_identifier_sideview_lumbar = @"lumbar-spine-cell";
     content_view.tag = tagContentView;
     content_view.backgroundColor = [UIColor whiteColor];
 
-    UIImage* image = [UIImage imageNamed:@"lumbarspineside_detail.jpg"];
+    UIImage* image = [UIImage imageNamed:@"lower_thoracic_detail.gif"];
 
     UIImageView* image_view = [[UIImageView alloc] initWithFrame:CGRectMake( (frame.size.width / 2.0f) - (image.size.width / 2.0f), fy, image.size.width, image.size.height)];
     image_view.image = image;
@@ -89,7 +90,7 @@ static NSString*  cell_identifier_sideview_lumbar = @"lumbar-spine-cell";
     tableView.scrollEnabled = NO;
     [content_view addSubview:tableView];
 
-    [tableView registerClass:[PACLumbarSpineTableViewCell class ] forCellReuseIdentifier:cell_identifier_sideview_lumbar];
+    [tableView registerClass:[PACLowerThoracicSpineTableViewCell class] forCellReuseIdentifier:cell_identifier_sideview_lower_thoracic ];
 
     fy = fy + 220.0f + 30.0f + fgutter;
 
@@ -102,30 +103,24 @@ static NSString*  cell_identifier_sideview_lumbar = @"lumbar-spine-cell";
 #pragma mark UITableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
-    //UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cell_identifier_sideview_lumbar forIndexPath:indexPath];
-    PACLumbarSpineTableViewCell* cell = (PACLumbarSpineTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cell_identifier_sideview_lumbar forIndexPath:indexPath];
+    PACLowerThoracicSpineTableViewCell* cell = (PACLowerThoracicSpineTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cell_identifier_sideview_lower_thoracic forIndexPath:indexPath];
 
-    if (cell == nil) {
-        cell = [[PACLumbarSpineTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cell_identifier_sideview_lumbar];
-    }
-
-    //[cell setSelectionStyle:UITableViewCellSelectionStyleNone];
 
     switch(indexPath.row){
-        case lumbarAlignmentNeutral:
+        case lowerThoracicAlignmentNeutral:
             cell.textLabel.text = @"Neutral";
             break;
-        case lumbarAlignmentFlat:
+        case lowerThoracicAlignmentFlat: 
             cell.textLabel.text = @"Flat";
             cell.detailTextLabel.text = @"(decreased convex curve posteriorly)";
             break;
-        case lumbarAlignmentFlexed:
+        case lowerThoracicAlignmentFlexed:
             cell.textLabel.text = @"Excessive flexion";
             cell.detailTextLabel.text = @"(increased convex curve posteriorly)";
             break;
     }
 
-    cell.accessoryType = ((indexPath.row == PACLumbarAlignment) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
+    cell.accessoryType = ((indexPath.row == PACLowerThoracicAlignment) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone);
 
     return cell;
 }
@@ -143,7 +138,7 @@ static NSString*  cell_identifier_sideview_lumbar = @"lumbar-spine-cell";
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor blackColor];
     label.font = [UIFont boldSystemFontOfSize:16.0];
-    label.text = NSLocalizedString(@"● Feel L1 to L5 to get an idea of the curvature", @"");
+    label.text = NSLocalizedString(@"● Feel T6 to T12 to get an idea of the curvature", @"");
     label.numberOfLines = 0;
     label.lineBreakMode = NSLineBreakByWordWrapping;
     return label;
@@ -157,13 +152,12 @@ static NSString*  cell_identifier_sideview_lumbar = @"lumbar-spine-cell";
 #pragma mark UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PACLumbarAlignment = (int)indexPath.row;
+    PACLowerThoracicAlignment = (int)indexPath.row;
     [tableView reloadData];
 
-    if(!((PACChecklistSideView & sideViewCheckListLumbar) == sideViewCheckListLumbar)){
-        PACChecklistSideView |= sideViewCheckListLumbar;
+    if(!((PACChecklistSideView & sideViewCheckListLowerThoracic) == sideViewCheckListLowerThoracic)){
+        PACChecklistSideView |= sideViewCheckListLowerThoracic;
         [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListSideViewDidChange] object:nil];
     }
 }
-
 @end

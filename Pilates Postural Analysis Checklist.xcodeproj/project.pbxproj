@@ -23,6 +23,12 @@
 		E711C5C219F9C7C80036873E /* PACPelvisSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E711C5C119F9C7C80036873E /* PACPelvisSideViewController.m */; };
 		E711C5C419F9CD460036873E /* lumbarspineside_detail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E711C5C319F9CD460036873E /* lumbarspineside_detail.jpg */; };
 		E711C5C719F9CD7E0036873E /* PACLumbarSpineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E711C5C619F9CD7E0036873E /* PACLumbarSpineViewController.m */; };
+		E711C5CC19FECDF10036873E /* PACLowerThoracicSpineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E711C5CB19FECDF10036873E /* PACLowerThoracicSpineViewController.m */; };
+		E711C5CE19FECF950036873E /* lower_thoracic_detail.gif in Resources */ = {isa = PBXBuildFile; fileRef = E711C5CD19FECF950036873E /* lower_thoracic_detail.gif */; };
+		E711C5D019FEF65D0036873E /* upper_thoracic_detail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E711C5CF19FEF65D0036873E /* upper_thoracic_detail.jpg */; };
+		E711C5D319FEF6A10036873E /* PACUpperThoracicSpineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E711C5D219FEF6A10036873E /* PACUpperThoracicSpineViewController.m */; };
+		E711C5D519FEFA170036873E /* cervical_spine_detail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E711C5D419FEFA170036873E /* cervical_spine_detail.jpg */; };
+		E711C5D819FEFBB80036873E /* PACCervicalSpineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E711C5D719FEFBB80036873E /* PACCervicalSpineViewController.m */; };
 		E7B0E9BE19F702200011BB49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B0E9BD19F702200011BB49 /* main.m */; };
 		E7B0E9C119F702200011BB49 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B0E9C019F702200011BB49 /* AppDelegate.m */; };
 		E7B0E9C419F702200011BB49 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B0E9C319F702200011BB49 /* MasterViewController.m */; };
@@ -34,6 +40,8 @@
 		E7B0E9F219F813940011BB49 /* PACGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B0E9F119F813940011BB49 /* PACGlobal.m */; };
 		E7B0E9F619F8165E0011BB49 /* PACPlumbLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B0E9F519F8165E0011BB49 /* PACPlumbLineViewController.m */; };
 		E7B0E9F819F81EBD0011BB49 /* plumbline_detail.gif in Resources */ = {isa = PBXBuildFile; fileRef = E7B0E9F719F81EBD0011BB49 /* plumbline_detail.gif */; };
+		E7C42B231A0AEFF0003FF7B9 /* head_detail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E7C42B221A0AEFF0003FF7B9 /* head_detail.jpg */; };
+		E7C42B261A0AF059003FF7B9 /* PACHeadSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C42B251A0AF059003FF7B9 /* PACHeadSideViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +78,15 @@
 		E711C5C319F9CD460036873E /* lumbarspineside_detail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lumbarspineside_detail.jpg; sourceTree = "<group>"; };
 		E711C5C519F9CD7E0036873E /* PACLumbarSpineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACLumbarSpineViewController.h; sourceTree = "<group>"; };
 		E711C5C619F9CD7E0036873E /* PACLumbarSpineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACLumbarSpineViewController.m; sourceTree = "<group>"; };
+		E711C5CA19FECDF10036873E /* PACLowerThoracicSpineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACLowerThoracicSpineViewController.h; sourceTree = "<group>"; };
+		E711C5CB19FECDF10036873E /* PACLowerThoracicSpineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACLowerThoracicSpineViewController.m; sourceTree = "<group>"; };
+		E711C5CD19FECF950036873E /* lower_thoracic_detail.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = lower_thoracic_detail.gif; sourceTree = "<group>"; };
+		E711C5CF19FEF65D0036873E /* upper_thoracic_detail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = upper_thoracic_detail.jpg; sourceTree = "<group>"; };
+		E711C5D119FEF6A10036873E /* PACUpperThoracicSpineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACUpperThoracicSpineViewController.h; sourceTree = "<group>"; };
+		E711C5D219FEF6A10036873E /* PACUpperThoracicSpineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACUpperThoracicSpineViewController.m; sourceTree = "<group>"; };
+		E711C5D419FEFA170036873E /* cervical_spine_detail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cervical_spine_detail.jpg; sourceTree = "<group>"; };
+		E711C5D619FEFBB80036873E /* PACCervicalSpineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACCervicalSpineViewController.h; sourceTree = "<group>"; };
+		E711C5D719FEFBB80036873E /* PACCervicalSpineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACCervicalSpineViewController.m; sourceTree = "<group>"; };
 		E7B0E9B819F702200011BB49 /* Pilates Postural Analysis Checklist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pilates Postural Analysis Checklist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7B0E9BC19F702200011BB49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7B0E9BD19F702200011BB49 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -90,6 +107,9 @@
 		E7B0E9F419F8165E0011BB49 /* PACPlumbLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACPlumbLineViewController.h; sourceTree = "<group>"; };
 		E7B0E9F519F8165E0011BB49 /* PACPlumbLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACPlumbLineViewController.m; sourceTree = "<group>"; };
 		E7B0E9F719F81EBD0011BB49 /* plumbline_detail.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = plumbline_detail.gif; sourceTree = "<group>"; };
+		E7C42B221A0AEFF0003FF7B9 /* head_detail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = head_detail.jpg; sourceTree = "<group>"; };
+		E7C42B241A0AF059003FF7B9 /* PACHeadSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACHeadSideViewController.h; sourceTree = "<group>"; };
+		E7C42B251A0AF059003FF7B9 /* PACHeadSideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACHeadSideViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +179,14 @@
 				E711C5A719F98F390036873E /* PACSideViewTableViewController.h */,
 				E711C5A819F98F390036873E /* PACSideViewTableViewController.m */,
 				E7B0E9BB19F702200011BB49 /* Supporting Files */,
+				E711C5CA19FECDF10036873E /* PACLowerThoracicSpineViewController.h */,
+				E711C5CB19FECDF10036873E /* PACLowerThoracicSpineViewController.m */,
+				E711C5D119FEF6A10036873E /* PACUpperThoracicSpineViewController.h */,
+				E711C5D219FEF6A10036873E /* PACUpperThoracicSpineViewController.m */,
+				E711C5D619FEFBB80036873E /* PACCervicalSpineViewController.h */,
+				E711C5D719FEFBB80036873E /* PACCervicalSpineViewController.m */,
+				E7C42B241A0AF059003FF7B9 /* PACHeadSideViewController.h */,
+				E7C42B251A0AF059003FF7B9 /* PACHeadSideViewController.m */,
 			);
 			path = "Pilates Postural Analysis Checklist";
 			sourceTree = "<group>";
@@ -192,6 +220,10 @@
 		E7B0E9E419F707BD0011BB49 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				E7C42B221A0AEFF0003FF7B9 /* head_detail.jpg */,
+				E711C5D419FEFA170036873E /* cervical_spine_detail.jpg */,
+				E711C5CF19FEF65D0036873E /* upper_thoracic_detail.jpg */,
+				E711C5CD19FECF950036873E /* lower_thoracic_detail.gif */,
 				E711C5A019F976C80036873E /* alignment_detail.jpg */,
 				E711C5A519F97A2E0036873E /* alignment_main.jpg */,
 				E711C5B119F9A84B0036873E /* angle_detail.jpg */,
@@ -288,12 +320,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E711C5D019FEF65D0036873E /* upper_thoracic_detail.jpg in Resources */,
+				E711C5D519FEFA170036873E /* cervical_spine_detail.jpg in Resources */,
+				E7C42B231A0AEFF0003FF7B9 /* head_detail.jpg in Resources */,
 				E711C5A619F97A2E0036873E /* alignment_main.jpg in Resources */,
 				E711C5B419F9B5460036873E /* knee_detail.png in Resources */,
 				E711C5AE19F9A6BA0036873E /* look.jpg in Resources */,
 				E711C5BD19F9BE620036873E /* hipjoint_detail.png in Resources */,
 				E7B0E9F019F813400011BB49 /* plumbline_main.jpg in Resources */,
 				E711C5B019F9A6C30036873E /* touch.jpg in Resources */,
+				E711C5CE19FECF950036873E /* lower_thoracic_detail.gif in Resources */,
 				E7B0E9CF19F702200011BB49 /* LaunchScreen.xib in Resources */,
 				E711C5BF19F9C7970036873E /* pelvisside_detail.gif in Resources */,
 				E7B0E9F819F81EBD0011BB49 /* plumbline_detail.gif in Resources */,
@@ -326,9 +362,13 @@
 				E7B0E9F619F8165E0011BB49 /* PACPlumbLineViewController.m in Sources */,
 				E711C5A419F979540036873E /* PACRelativeAlignmentViewController.m in Sources */,
 				E711C5A919F98F390036873E /* PACSideViewTableViewController.m in Sources */,
+				E711C5CC19FECDF10036873E /* PACLowerThoracicSpineViewController.m in Sources */,
 				E7B0E9F219F813940011BB49 /* PACGlobal.m in Sources */,
 				E711C5C719F9CD7E0036873E /* PACLumbarSpineViewController.m in Sources */,
 				E7B0E9BE19F702200011BB49 /* main.m in Sources */,
+				E711C5D819FEFBB80036873E /* PACCervicalSpineViewController.m in Sources */,
+				E711C5D319FEF6A10036873E /* PACUpperThoracicSpineViewController.m in Sources */,
+				E7C42B261A0AF059003FF7B9 /* PACHeadSideViewController.m in Sources */,
 				E7B0E9C719F702200011BB49 /* DetailViewController.m in Sources */,
 				E711C5C219F9C7C80036873E /* PACPelvisSideViewController.m in Sources */,
 			);
