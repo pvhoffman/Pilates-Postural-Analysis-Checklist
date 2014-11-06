@@ -7,6 +7,7 @@
 //
 
 #import "PACFrontViewTableViewController.h"
+#import "PACFeetFrontViewController.h"
 #import "PACGlobal.h"
 
 
@@ -92,6 +93,13 @@ static NSString* cell_identifier = @"frontview-view-cell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
+
+    switch(indexPath.row) {
+        case tableViewItemFeet:
+            [self.navigationController pushViewController:[[PACFeetFrontViewController alloc] init] animated:YES];
+            break;
+    }
+
 }
 
 @end

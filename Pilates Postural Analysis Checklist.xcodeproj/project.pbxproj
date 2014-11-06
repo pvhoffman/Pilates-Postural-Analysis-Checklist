@@ -43,6 +43,8 @@
 		E7C42B231A0AEFF0003FF7B9 /* head_detail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E7C42B221A0AEFF0003FF7B9 /* head_detail.jpg */; };
 		E7C42B261A0AF059003FF7B9 /* PACHeadSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C42B251A0AF059003FF7B9 /* PACHeadSideViewController.m */; };
 		E7C42B291A0AF81A003FF7B9 /* PACFrontViewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C42B281A0AF81A003FF7B9 /* PACFrontViewTableViewController.m */; };
+		E7C42B2C1A0AFD89003FF7B9 /* PACFeetFrontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C42B2B1A0AFD89003FF7B9 /* PACFeetFrontViewController.m */; };
+		E7C42B2E1A0AFEE5003FF7B9 /* feet_front_detail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E7C42B2D1A0AFEE5003FF7B9 /* feet_front_detail.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +115,9 @@
 		E7C42B251A0AF059003FF7B9 /* PACHeadSideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACHeadSideViewController.m; sourceTree = "<group>"; };
 		E7C42B271A0AF81A003FF7B9 /* PACFrontViewTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACFrontViewTableViewController.h; sourceTree = "<group>"; };
 		E7C42B281A0AF81A003FF7B9 /* PACFrontViewTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACFrontViewTableViewController.m; sourceTree = "<group>"; };
+		E7C42B2A1A0AFD89003FF7B9 /* PACFeetFrontViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACFeetFrontViewController.h; sourceTree = "<group>"; };
+		E7C42B2B1A0AFD89003FF7B9 /* PACFeetFrontViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACFeetFrontViewController.m; sourceTree = "<group>"; };
+		E7C42B2D1A0AFEE5003FF7B9 /* feet_front_detail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = feet_front_detail.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +197,8 @@
 				E7C42B251A0AF059003FF7B9 /* PACHeadSideViewController.m */,
 				E7C42B271A0AF81A003FF7B9 /* PACFrontViewTableViewController.h */,
 				E7C42B281A0AF81A003FF7B9 /* PACFrontViewTableViewController.m */,
+				E7C42B2A1A0AFD89003FF7B9 /* PACFeetFrontViewController.h */,
+				E7C42B2B1A0AFD89003FF7B9 /* PACFeetFrontViewController.m */,
 			);
 			path = "Pilates Postural Analysis Checklist";
 			sourceTree = "<group>";
@@ -225,6 +232,7 @@
 		E7B0E9E419F707BD0011BB49 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				E7C42B2D1A0AFEE5003FF7B9 /* feet_front_detail.jpg */,
 				E7C42B221A0AEFF0003FF7B9 /* head_detail.jpg */,
 				E711C5D419FEFA170036873E /* cervical_spine_detail.jpg */,
 				E711C5CF19FEF65D0036873E /* upper_thoracic_detail.jpg */,
@@ -333,6 +341,7 @@
 				E711C5AE19F9A6BA0036873E /* look.jpg in Resources */,
 				E711C5BD19F9BE620036873E /* hipjoint_detail.png in Resources */,
 				E7B0E9F019F813400011BB49 /* plumbline_main.jpg in Resources */,
+				E7C42B2E1A0AFEE5003FF7B9 /* feet_front_detail.jpg in Resources */,
 				E711C5B019F9A6C30036873E /* touch.jpg in Resources */,
 				E711C5CE19FECF950036873E /* lower_thoracic_detail.gif in Resources */,
 				E7B0E9CF19F702200011BB49 /* LaunchScreen.xib in Resources */,
@@ -359,6 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7C42B2C1A0AFD89003FF7B9 /* PACFeetFrontViewController.m in Sources */,
 				E711C5AC19F9A3BF0036873E /* PACAnkleJointsViewController.m in Sources */,
 				E711C5BB19F9BABB0036873E /* PACHipJointViewController.m in Sources */,
 				E711C5B719F9B5780036873E /* PACKneeSideViewController.m in Sources */,

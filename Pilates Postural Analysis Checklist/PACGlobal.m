@@ -40,3 +40,8 @@ int PACUpperThoracicAlignment = -1;
 int PACCervicalSpineAlignment = -1;
 
 int PACHeadSideAlignment = -1;
+
+unsigned int PACChecklistFrontView = 0;
+
+int PACFeetFrontAlignmentLeft = -1;
+int PACFeetFrontAlignmentRight = -1;

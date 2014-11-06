@@ -104,11 +104,29 @@ typedef enum {
         , cervicalSpineAlignmentFlexed = 2
 } PACCervicalSpineAlignment_t;
 
+// Side View Head
 typedef enum {
         headSideAlignmentNeutral = 0
             , headSideAlignmentForward = 1
             , headSideAlignmentRetracted = 2
 }PACHeadSideAlignment_t;
+
+// Front View Check List
+typedef enum {
+        frontViewCheckListFeet = (1 << 0)
+            , frontViewCheckListKnees = (1 << 1)
+            , frontViewCheckListPelvis = (1 << 2)
+            , fontViewCheckListRibcage = (1 << 3)
+            , frontViewCheckListShoulders = (1 << 4)
+            , frontViewcheckListHead = (1 << 5)
+} PACChecklistFrontView_t;
+
+// Front View Feet
+typedef enum {
+    feetFrontAlignmentNeutral = 0
+        , feetFrontAlignmentInverted = 1
+        , feetFrontAlignmentEverted = 2
+}PACFeetFrontAlignment_t;
 
 extern unsigned int PACChecklistMain;
 extern unsigned int PACPlumbLineAlignment;
@@ -133,6 +151,11 @@ extern int PACLowerThoracicAlignment;
 extern int PACUpperThoracicAlignment;
 extern int PACCervicalSpineAlignment;
 extern int PACHeadSideAlignment;
+
+extern unsigned int PACChecklistFrontView;
+
+extern int PACFeetFrontAlignmentLeft;
+extern int PACFeetFrontAlignmentRight;
 
 extern const char* PACCheckListMainDidChange;
 extern const char* PACCheckListSideViewDidChange;
