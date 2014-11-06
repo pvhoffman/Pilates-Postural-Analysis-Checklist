@@ -8,6 +8,7 @@
 
 #import "PACFrontViewTableViewController.h"
 #import "PACFeetFrontViewController.h"
+#import "PACKneeFrontViewController.h"
 #import "PACGlobal.h"
 
 
@@ -72,6 +73,9 @@ static NSString* cell_identifier = @"frontview-view-cell";
             break;
         case tableViewItemKnees:
             cell.textLabel.text  = @"Knees";
+            if((PACChecklistFrontView & frontViewCheckListKnees) == frontViewCheckListKnees){
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
             break;
         case tableViewItemPelvis:
             cell.textLabel.text  = @"Pelvis";
@@ -103,6 +107,10 @@ static NSString* cell_identifier = @"frontview-view-cell";
         case tableViewItemFeet:
             [self.navigationController pushViewController:[[PACFeetFrontViewController alloc] init] animated:YES];
             break;
+        case tableViewItemKnees:
+            [self.navigationController pushViewController:[[PACKneeFrontViewController alloc] init] animated:YES];
+            break;
+
     }
 
 }

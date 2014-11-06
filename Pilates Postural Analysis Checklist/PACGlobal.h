@@ -128,6 +128,13 @@ typedef enum {
         , feetFrontAlignmentEverted = 2
 }PACFeetFrontAlignment_t;
 
+// Front View Knees
+typedef enum {
+        kneeFrontAlignmentNeutral = 0
+            , kneeFrontAlignmentKnocked = 1
+            , kneeFrontAlignmentBow = 2
+} PACKneeFrontAlignment_t;
+
 extern unsigned int PACChecklistMain;
 extern unsigned int PACPlumbLineAlignment;
 
@@ -156,6 +163,9 @@ extern unsigned int PACChecklistFrontView;
 
 extern int PACFeetFrontAlignmentLeft;
 extern int PACFeetFrontAlignmentRight;
+
+extern int PACKneeFrontAlignmentLeft;
+extern int PACKneeFrontAlignmentRight;
 
 extern const char* PACCheckListMainDidChange;
 extern const char* PACCheckListSideViewDidChange;

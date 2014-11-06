@@ -29,6 +29,8 @@
 		E711C5D319FEF6A10036873E /* PACUpperThoracicSpineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E711C5D219FEF6A10036873E /* PACUpperThoracicSpineViewController.m */; };
 		E711C5D519FEFA170036873E /* cervical_spine_detail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E711C5D419FEFA170036873E /* cervical_spine_detail.jpg */; };
 		E711C5D819FEFBB80036873E /* PACCervicalSpineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E711C5D719FEFBB80036873E /* PACCervicalSpineViewController.m */; };
+		E7134E661A0BE9F900F2CEE8 /* knee_front_detail.png in Resources */ = {isa = PBXBuildFile; fileRef = E7134E651A0BE9F900F2CEE8 /* knee_front_detail.png */; };
+		E7134E691A0BEA2100F2CEE8 /* PACKneeFrontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7134E681A0BEA2100F2CEE8 /* PACKneeFrontViewController.m */; };
 		E7B0E9BE19F702200011BB49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B0E9BD19F702200011BB49 /* main.m */; };
 		E7B0E9C119F702200011BB49 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B0E9C019F702200011BB49 /* AppDelegate.m */; };
 		E7B0E9C419F702200011BB49 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B0E9C319F702200011BB49 /* MasterViewController.m */; };
@@ -90,6 +92,9 @@
 		E711C5D419FEFA170036873E /* cervical_spine_detail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cervical_spine_detail.jpg; sourceTree = "<group>"; };
 		E711C5D619FEFBB80036873E /* PACCervicalSpineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACCervicalSpineViewController.h; sourceTree = "<group>"; };
 		E711C5D719FEFBB80036873E /* PACCervicalSpineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACCervicalSpineViewController.m; sourceTree = "<group>"; };
+		E7134E651A0BE9F900F2CEE8 /* knee_front_detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = knee_front_detail.png; sourceTree = "<group>"; };
+		E7134E671A0BEA2100F2CEE8 /* PACKneeFrontViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACKneeFrontViewController.h; sourceTree = "<group>"; };
+		E7134E681A0BEA2100F2CEE8 /* PACKneeFrontViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACKneeFrontViewController.m; sourceTree = "<group>"; };
 		E7B0E9B819F702200011BB49 /* Pilates Postural Analysis Checklist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pilates Postural Analysis Checklist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7B0E9BC19F702200011BB49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7B0E9BD19F702200011BB49 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -199,6 +204,8 @@
 				E711C5D119FEF6A10036873E /* PACUpperThoracicSpineViewController.h */,
 				E711C5D219FEF6A10036873E /* PACUpperThoracicSpineViewController.m */,
 				E7B0E9BB19F702200011BB49 /* Supporting Files */,
+				E7134E671A0BEA2100F2CEE8 /* PACKneeFrontViewController.h */,
+				E7134E681A0BEA2100F2CEE8 /* PACKneeFrontViewController.m */,
 			);
 			path = "Pilates Postural Analysis Checklist";
 			sourceTree = "<group>";
@@ -246,6 +253,7 @@
 				E711C5C319F9CD460036873E /* lumbarspineside_detail.jpg */,
 				E711C5BE19F9C7970036873E /* pelvisside_detail.gif */,
 				E7B0E9F719F81EBD0011BB49 /* plumbline_detail.gif */,
+				E7134E651A0BE9F900F2CEE8 /* knee_front_detail.png */,
 				E7B0E9EF19F813400011BB49 /* plumbline_main.jpg */,
 				E711C5AF19F9A6C30036873E /* touch.jpg */,
 			);
@@ -349,6 +357,7 @@
 				E7B0E9F819F81EBD0011BB49 /* plumbline_detail.gif in Resources */,
 				E711C5B219F9A84B0036873E /* angle_detail.jpg in Resources */,
 				E711C5C419F9CD460036873E /* lumbarspineside_detail.jpg in Resources */,
+				E7134E661A0BE9F900F2CEE8 /* knee_front_detail.png in Resources */,
 				E7B0E9CC19F702200011BB49 /* Images.xcassets in Resources */,
 				E711C5A119F976C80036873E /* alignment_detail.jpg in Resources */,
 			);
@@ -374,6 +383,7 @@
 				E711C5B719F9B5780036873E /* PACKneeSideViewController.m in Sources */,
 				E7B0E9C119F702200011BB49 /* AppDelegate.m in Sources */,
 				E7B0E9C419F702200011BB49 /* MasterViewController.m in Sources */,
+				E7134E691A0BEA2100F2CEE8 /* PACKneeFrontViewController.m in Sources */,
 				E7B0E9F619F8165E0011BB49 /* PACPlumbLineViewController.m in Sources */,
 				E711C5A419F979540036873E /* PACRelativeAlignmentViewController.m in Sources */,
 				E7C42B291A0AF81A003FF7B9 /* PACFrontViewTableViewController.m in Sources */,

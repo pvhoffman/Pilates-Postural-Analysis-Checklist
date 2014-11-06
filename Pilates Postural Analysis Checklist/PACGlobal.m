@@ -46,3 +46,7 @@ unsigned int PACChecklistFrontView = 0;
 
 int PACFeetFrontAlignmentLeft = -1;
 int PACFeetFrontAlignmentRight = -1;
+
+int PACKneeFrontAlignmentLeft = -1;
+int PACKneeFrontAlignmentRight = -1;
+
