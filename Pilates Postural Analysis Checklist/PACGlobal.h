@@ -135,6 +135,15 @@ typedef enum {
             , kneeFrontAlignmentBow = 2
 } PACKneeFrontAlignment_t;
 
+// Front View Pelvis
+typedef enum {
+    pelvisFrontAlignmentLevel = 0
+        , pelvisFrontAlignmentElevatedLeft = 1
+        , pelvisFrontAlignmentElevatedRight = 2
+        , pelvisFrontAlignmentRotatedClockwise = 3
+        , pelvisFrontAlignmentRotatedCounterClockwise = 4
+} PACPelvisFrontAlignment_t;
+
 extern unsigned int PACChecklistMain;
 extern unsigned int PACPlumbLineAlignment;
 
@@ -166,6 +175,8 @@ extern int PACFeetFrontAlignmentRight;
 
 extern int PACKneeFrontAlignmentLeft;
 extern int PACKneeFrontAlignmentRight;
+
+extern int PACPelvisFrontAlignment;
 
 extern const char* PACCheckListMainDidChange;
 extern const char* PACCheckListSideViewDidChange;
