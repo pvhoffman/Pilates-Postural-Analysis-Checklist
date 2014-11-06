@@ -42,6 +42,7 @@
 		E7B0E9F819F81EBD0011BB49 /* plumbline_detail.gif in Resources */ = {isa = PBXBuildFile; fileRef = E7B0E9F719F81EBD0011BB49 /* plumbline_detail.gif */; };
 		E7C42B231A0AEFF0003FF7B9 /* head_detail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E7C42B221A0AEFF0003FF7B9 /* head_detail.jpg */; };
 		E7C42B261A0AF059003FF7B9 /* PACHeadSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C42B251A0AF059003FF7B9 /* PACHeadSideViewController.m */; };
+		E7C42B291A0AF81A003FF7B9 /* PACFrontViewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7C42B281A0AF81A003FF7B9 /* PACFrontViewTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,8 @@
 		E7C42B221A0AEFF0003FF7B9 /* head_detail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = head_detail.jpg; sourceTree = "<group>"; };
 		E7C42B241A0AF059003FF7B9 /* PACHeadSideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACHeadSideViewController.h; sourceTree = "<group>"; };
 		E7C42B251A0AF059003FF7B9 /* PACHeadSideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACHeadSideViewController.m; sourceTree = "<group>"; };
+		E7C42B271A0AF81A003FF7B9 /* PACFrontViewTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACFrontViewTableViewController.h; sourceTree = "<group>"; };
+		E7C42B281A0AF81A003FF7B9 /* PACFrontViewTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACFrontViewTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +190,8 @@
 				E711C5D719FEFBB80036873E /* PACCervicalSpineViewController.m */,
 				E7C42B241A0AF059003FF7B9 /* PACHeadSideViewController.h */,
 				E7C42B251A0AF059003FF7B9 /* PACHeadSideViewController.m */,
+				E7C42B271A0AF81A003FF7B9 /* PACFrontViewTableViewController.h */,
+				E7C42B281A0AF81A003FF7B9 /* PACFrontViewTableViewController.m */,
 			);
 			path = "Pilates Postural Analysis Checklist";
 			sourceTree = "<group>";
@@ -361,6 +366,7 @@
 				E7B0E9C419F702200011BB49 /* MasterViewController.m in Sources */,
 				E7B0E9F619F8165E0011BB49 /* PACPlumbLineViewController.m in Sources */,
 				E711C5A419F979540036873E /* PACRelativeAlignmentViewController.m in Sources */,
+				E7C42B291A0AF81A003FF7B9 /* PACFrontViewTableViewController.m in Sources */,
 				E711C5A919F98F390036873E /* PACSideViewTableViewController.m in Sources */,
 				E711C5CC19FECDF10036873E /* PACLowerThoracicSpineViewController.m in Sources */,
 				E7B0E9F219F813940011BB49 /* PACGlobal.m in Sources */,

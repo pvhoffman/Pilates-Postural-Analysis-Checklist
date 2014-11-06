@@ -12,7 +12,7 @@
 #import "PACPlumbLineViewController.h"
 #import "PACRelativeAlignmentViewController.h"
 #import "PACSideViewTableViewController.h"
-
+#import "PACFrontViewTableViewController.h"
 #import "PACGlobal.h"
 
 
@@ -157,8 +157,11 @@ static NSString* cell_identifier = @"master-view-cell";
             [self.navigationController pushViewController:view_controller animated:YES];
             break;
                                    }
-        case tableViewItemFrontView:
+        case tableViewItemFrontView: {
+            PACFrontViewTableViewController* view_controller = [[PACFrontViewTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+            [self.navigationController pushViewController:view_controller animated:YES];
             break;
+                                     }
         case tableViewItemBackView:
             break;
         default:
