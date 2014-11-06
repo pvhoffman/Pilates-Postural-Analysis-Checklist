@@ -11,6 +11,7 @@
 #import "PACKneeFrontViewController.h"
 #import "PACPelvisFrontViewController.h"
 #import "PACRibCageViewController.h"
+#import "PACShouldersFrontViewController.h"
 #import "PACGlobal.h"
 
 
@@ -93,6 +94,9 @@ static NSString* cell_identifier = @"frontview-view-cell";
             break;
         case tableViewItemShoulders:
             cell.textLabel.text  = @"Shoulders";
+            if((PACChecklistFrontView & frontViewCheckListShoulders) == frontViewCheckListShoulders){
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
             break;
         case tableViewItemHead:
             cell.textLabel.text  = @"Head";
@@ -124,8 +128,9 @@ static NSString* cell_identifier = @"frontview-view-cell";
         case tableViewItemRibcage:
             [self.navigationController pushViewController:[[PACRibCageViewController alloc] init] animated:YES];
             break;
-
-
+        case tableViewItemShoulders:
+            [self.navigationController pushViewController:[[PACShouldersFrontViewController alloc] init] animated:YES];
+            break;
 
     }
 

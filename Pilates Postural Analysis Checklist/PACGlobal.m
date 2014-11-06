@@ -54,3 +54,5 @@ int PACPelvisFrontAlignment = -1;
 
 int PACRibCageFrontAlignment = -1;
 
+int PACShouldersFrontAlignment = 0;
+

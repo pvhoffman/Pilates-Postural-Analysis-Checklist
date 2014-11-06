@@ -35,6 +35,8 @@
 		E7134E6E1A0BF2B400F2CEE8 /* pelvis_front_detail.gif in Resources */ = {isa = PBXBuildFile; fileRef = E7134E6D1A0BF2B400F2CEE8 /* pelvis_front_detail.gif */; };
 		E7134E711A0BF8F200F2CEE8 /* PACRibCageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7134E701A0BF8F200F2CEE8 /* PACRibCageViewController.m */; };
 		E7134E731A0C026000F2CEE8 /* ribcage_front_detail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E7134E721A0C026000F2CEE8 /* ribcage_front_detail.jpg */; };
+		E7134E761A0C1F5500F2CEE8 /* PACShouldersFrontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7134E751A0C1F5500F2CEE8 /* PACShouldersFrontViewController.m */; };
+		E7134E781A0C26C200F2CEE8 /* shoulder_front_detail.png in Resources */ = {isa = PBXBuildFile; fileRef = E7134E771A0C26C200F2CEE8 /* shoulder_front_detail.png */; };
 		E7B0E9BE19F702200011BB49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B0E9BD19F702200011BB49 /* main.m */; };
 		E7B0E9C119F702200011BB49 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B0E9C019F702200011BB49 /* AppDelegate.m */; };
 		E7B0E9C419F702200011BB49 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B0E9C319F702200011BB49 /* MasterViewController.m */; };
@@ -105,6 +107,9 @@
 		E7134E6F1A0BF8F200F2CEE8 /* PACRibCageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACRibCageViewController.h; sourceTree = "<group>"; };
 		E7134E701A0BF8F200F2CEE8 /* PACRibCageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACRibCageViewController.m; sourceTree = "<group>"; };
 		E7134E721A0C026000F2CEE8 /* ribcage_front_detail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ribcage_front_detail.jpg; sourceTree = "<group>"; };
+		E7134E741A0C1F5500F2CEE8 /* PACShouldersFrontViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACShouldersFrontViewController.h; sourceTree = "<group>"; };
+		E7134E751A0C1F5500F2CEE8 /* PACShouldersFrontViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACShouldersFrontViewController.m; sourceTree = "<group>"; };
+		E7134E771A0C26C200F2CEE8 /* shoulder_front_detail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shoulder_front_detail.png; sourceTree = "<group>"; };
 		E7B0E9B819F702200011BB49 /* Pilates Postural Analysis Checklist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pilates Postural Analysis Checklist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7B0E9BC19F702200011BB49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7B0E9BD19F702200011BB49 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -220,6 +225,8 @@
 				E711C5D119FEF6A10036873E /* PACUpperThoracicSpineViewController.h */,
 				E711C5D219FEF6A10036873E /* PACUpperThoracicSpineViewController.m */,
 				E7B0E9BB19F702200011BB49 /* Supporting Files */,
+				E7134E741A0C1F5500F2CEE8 /* PACShouldersFrontViewController.h */,
+				E7134E751A0C1F5500F2CEE8 /* PACShouldersFrontViewController.m */,
 			);
 			path = "Pilates Postural Analysis Checklist";
 			sourceTree = "<group>";
@@ -269,6 +276,7 @@
 				E711C5C319F9CD460036873E /* lumbarspineside_detail.jpg */,
 				E711C5BE19F9C7970036873E /* pelvisside_detail.gif */,
 				E7B0E9F719F81EBD0011BB49 /* plumbline_detail.gif */,
+				E7134E771A0C26C200F2CEE8 /* shoulder_front_detail.png */,
 				E7134E651A0BE9F900F2CEE8 /* knee_front_detail.png */,
 				E7B0E9EF19F813400011BB49 /* plumbline_main.jpg */,
 				E711C5AF19F9A6C30036873E /* touch.jpg */,
@@ -375,6 +383,7 @@
 				E711C5B219F9A84B0036873E /* angle_detail.jpg in Resources */,
 				E711C5C419F9CD460036873E /* lumbarspineside_detail.jpg in Resources */,
 				E7134E661A0BE9F900F2CEE8 /* knee_front_detail.png in Resources */,
+				E7134E781A0C26C200F2CEE8 /* shoulder_front_detail.png in Resources */,
 				E7134E731A0C026000F2CEE8 /* ribcage_front_detail.jpg in Resources */,
 				E7B0E9CC19F702200011BB49 /* Images.xcassets in Resources */,
 				E711C5A119F976C80036873E /* alignment_detail.jpg in Resources */,
@@ -415,6 +424,7 @@
 				E711C5D819FEFBB80036873E /* PACCervicalSpineViewController.m in Sources */,
 				E711C5D319FEF6A10036873E /* PACUpperThoracicSpineViewController.m in Sources */,
 				E7C42B261A0AF059003FF7B9 /* PACHeadSideViewController.m in Sources */,
+				E7134E761A0C1F5500F2CEE8 /* PACShouldersFrontViewController.m in Sources */,
 				E7B0E9C719F702200011BB49 /* DetailViewController.m in Sources */,
 				E711C5C219F9C7C80036873E /* PACPelvisSideViewController.m in Sources */,
 			);
