@@ -116,9 +116,9 @@ typedef enum {
         frontViewCheckListFeet = (1 << 0)
             , frontViewCheckListKnees = (1 << 1)
             , frontViewCheckListPelvis = (1 << 2)
-            , fontViewCheckListRibcage = (1 << 3)
+            , frontViewCheckListRibcage = (1 << 3)
             , frontViewCheckListShoulders = (1 << 4)
-            , frontViewcheckListHead = (1 << 5)
+            , frontViewCheckListHead = (1 << 5)
 } PACChecklistFrontView_t;
 
 // Front View Feet
@@ -159,6 +159,7 @@ extern int PACFeetFrontAlignmentRight;
 
 extern const char* PACCheckListMainDidChange;
 extern const char* PACCheckListSideViewDidChange;
+extern const char* PACCheckListFrontViewDidChange;
 
 
 #endif

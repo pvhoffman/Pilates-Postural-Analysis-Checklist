@@ -20,6 +20,7 @@ int PACAnkleAlignmentRight = -1;
 
 const char* PACCheckListMainDidChange = "PACCheckListMainDidChange";
 const char* PACCheckListSideViewDidChange = "PACCheckListSideViewDidChange";
+const char* PACCheckListFrontViewDidChange = "PACCheckListFrontViewDidChange";
 
 
 int PACKneeAlignmentSideLeft = -1;

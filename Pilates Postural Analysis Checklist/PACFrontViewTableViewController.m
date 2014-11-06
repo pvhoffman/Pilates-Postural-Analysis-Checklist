@@ -25,7 +25,7 @@ enum {
 static NSString* cell_identifier = @"frontview-view-cell";
 
 @interface PACFrontViewTableViewController ()
-
+-(void) frontViewCheckListDidChange:(NSNotification*)notification; 
 @end
 
 @implementation PACFrontViewTableViewController
@@ -37,6 +37,8 @@ static NSString* cell_identifier = @"frontview-view-cell";
     [self.tableView registerClass:[UITableViewCell class ] forCellReuseIdentifier:cell_identifier];
 
     self.navigationItem.title = @"Front View";
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(frontViewCheckListDidChange:) name:[NSString stringWithUTF8String:PACCheckListFrontViewDidChange] object:nil];
     
 }
 
@@ -64,6 +66,9 @@ static NSString* cell_identifier = @"frontview-view-cell";
     switch(indexPath.row){
         case tableViewItemFeet:
             cell.textLabel.text  = @"Feet";
+            if((PACChecklistFrontView & frontViewCheckListFeet) == frontViewCheckListFeet){
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
             break;
         case tableViewItemKnees:
             cell.textLabel.text  = @"Knees";
@@ -101,5 +106,28 @@ static NSString* cell_identifier = @"frontview-view-cell";
     }
 
 }
+#pragma mark -
+#pragma mark private
+-(void) frontViewCheckListDidChange:(NSNotification*)notification
+{
+    [self.tableView reloadData];
 
+    if((PACChecklistFrontView & frontViewCheckListFeet) == frontViewCheckListFeet
+            && (PACChecklistFrontView & frontViewCheckListKnees) == frontViewCheckListKnees
+            && (PACChecklistFrontView & frontViewCheckListPelvis) == frontViewCheckListPelvis
+            && (PACChecklistFrontView & frontViewCheckListRibcage) == frontViewCheckListRibcage
+            && (PACChecklistFrontView & frontViewCheckListShoulders) == frontViewCheckListShoulders
+            && (PACChecklistFrontView & frontViewCheckListHead) == frontViewCheckListHead){
+        if(!((PACChecklistMain & mainChecklistFrontView) == mainChecklistFrontView)){
+                PACChecklistMain |= mainChecklistFrontView;
+                [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListMainDidChange] object:nil];
+        }
+    } else {
+        if((PACChecklistMain & mainChecklistFrontView) == mainChecklistFrontView){
+                PACChecklistMain &= ~mainChecklistFrontView;
+                [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListMainDidChange] object:nil];
+        }
+    }
+
+}
 @end

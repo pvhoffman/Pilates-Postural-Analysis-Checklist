@@ -65,12 +65,7 @@ static NSString* cell_identifier = @"foot-front-cell";
     UIImageView* look_view = [[UIImageView alloc] initWithFrame:CGRectMake( 5.0f, fy, look.size.width, look.size.height )];
     look_view.image = look;
     [content_view addSubview:look_view];
-/*
-    UIImage* touch = [UIImage imageNamed:@"touch.jpg"];
-    UIImageView* touch_view = [[UIImageView alloc] initWithFrame:CGRectMake( 7.0f + look.size.width, fy, touch.size.width, touch.size.height )];
-    touch_view.image = touch;
-    [content_view addSubview:touch_view];
-*/
+
     fy = fy + look.size.height + fgutter;
 
     UITableView* tableView = [[UITableView alloc] initWithFrame:CGRectMake(3.0f, fy + 30.0f, frame.size.width - 3.0f, 220.0f) style:UITableViewStyleGrouped];
@@ -167,6 +162,17 @@ static NSString* cell_identifier = @"foot-front-cell";
         case tableViewRowRightFoot:
             PACFeetFrontAlignmentRight = (int)segment.selectedSegmentIndex;
             break;
+    }
+    if(PACFeetFrontAlignmentLeft > -1 && PACFeetFrontAlignmentRight > -1){
+        if(!((PACChecklistFrontView & frontViewCheckListFeet) == frontViewCheckListFeet)){
+            PACChecklistFrontView = PACChecklistFrontView | frontViewCheckListFeet;
+            [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListFrontViewDidChange] object:nil];
+        }
+    } else {
+        if((PACChecklistFrontView & frontViewCheckListFeet) == frontViewCheckListFeet){
+                PACChecklistFrontView &= ~frontViewCheckListFeet;
+                [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListFrontViewDidChange] object:nil];
+        }
     }
 /*
     if(PACKneeAlignmentSideRight > -1 && PACKneeAlignmentSideLeft > -1){

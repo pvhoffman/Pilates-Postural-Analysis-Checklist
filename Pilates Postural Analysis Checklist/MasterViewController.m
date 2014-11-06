@@ -106,32 +106,30 @@ static NSString* cell_identifier = @"master-view-cell";
     switch(indexPath.row){
         case tableViewItemPlumbLine:
             cell.textLabel.text  = @"Plumb Line";
-            //cell.imageView.image = [UIImage imageNamed:@"plumbline_main.jpg"];
             if((PACChecklistMain & mainChecklistPlumbline) == mainChecklistPlumbline){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemAlignedInRelation:
             cell.textLabel.text = @"Relative Alignment";
-            //cell.imageView.image = [UIImage imageNamed:@"alignment_main.jpg"];
             if((PACChecklistMain & mainChecklistAlignedInRelation) == mainChecklistAlignedInRelation){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemSideView:
-            cell.textLabel.text = @"Side View";//[NSString stringWithFormat:@"cell %d", (int)indexPath.row];
+            cell.textLabel.text = @"Side View";
             if((PACChecklistMain & mainChecklistSideView) == mainChecklistSideView){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
-            //cell.imageView.image = [UIImage imageNamed:@"sideview.jpg"];
             break;
         case tableViewItemFrontView:
-            cell.textLabel.text = @"Front View";//[NSString stringWithFormat:@"cell %d", (int)indexPath.row];
-            //cell.imageView.image = [UIImage imageNamed:@"frontview.jpg"];
+            cell.textLabel.text = @"Front View";
+            if((PACChecklistMain & mainChecklistFrontView) == mainChecklistFrontView){
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
             break;
         case tableViewItemBackView:
-            cell.textLabel.text = @"Back View";//[NSString stringWithFormat:@"cell %d", (int)indexPath.row];
-            //cell.imageView.image = [UIImage imageNamed:@"frontview.jpg"];
+            cell.textLabel.text = @"Back View";
             break;
         default:
             cell.textLabel.text = [NSString stringWithFormat:@"cell %d", (int)indexPath.row];
