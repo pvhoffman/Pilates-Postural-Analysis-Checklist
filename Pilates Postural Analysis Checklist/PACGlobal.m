@@ -51,3 +51,6 @@ int PACKneeFrontAlignmentLeft = -1;
 int PACKneeFrontAlignmentRight = -1;
 
 int PACPelvisFrontAlignment = -1;
+
+int PACRibCageFrontAlignment = -1;
+

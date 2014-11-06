@@ -144,6 +144,17 @@ typedef enum {
         , pelvisFrontAlignmentRotatedCounterClockwise = 4
 } PACPelvisFrontAlignment_t;
 
+// Front View Rib Cage
+typedef enum {
+    ribCageAlignmentNeutral = 0
+        , ribCageAlignmentElevatedLeft = (1 << 0)
+        , ribCageAlignmentElevatedRight = (1 << 2)
+        , ribCageAlignmentShiftedLeft = (1 << 3)
+        , ribCageAlignmentShiftedRight = (1 << 4)
+        , ribCageAlignmentRotatedClockwise = (1 << 5)
+        , ribCageAlignmentRotatedCounterClockwise = (1 << 6)
+}PACRibCageFrontAlignment_t;
+
 extern unsigned int PACChecklistMain;
 extern unsigned int PACPlumbLineAlignment;
 
@@ -177,6 +188,8 @@ extern int PACKneeFrontAlignmentLeft;
 extern int PACKneeFrontAlignmentRight;
 
 extern int PACPelvisFrontAlignment;
+
+extern int PACRibCageFrontAlignment;
 
 extern const char* PACCheckListMainDidChange;
 extern const char* PACCheckListSideViewDidChange;
