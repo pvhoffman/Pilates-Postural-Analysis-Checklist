@@ -105,31 +105,34 @@ static NSString* cell_identifier = @"master-view-cell";
 
     switch(indexPath.row){
         case tableViewItemPlumbLine:
-            cell.textLabel.text  = @"Plumb Line";
+            cell.textLabel.text  = @"1. Plumb Line";
             if((PACChecklistMain & mainChecklistPlumbline) == mainChecklistPlumbline){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemAlignedInRelation:
-            cell.textLabel.text = @"Relative Alignment";
+            cell.textLabel.text = @"2. Relative Alignment";
             if((PACChecklistMain & mainChecklistAlignedInRelation) == mainChecklistAlignedInRelation){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemSideView:
-            cell.textLabel.text = @"Side View";
+            cell.textLabel.text = @"3. Side View";
             if((PACChecklistMain & mainChecklistSideView) == mainChecklistSideView){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemFrontView:
-            cell.textLabel.text = @"Front View";
+            cell.textLabel.text = @"4. Front View";
             if((PACChecklistMain & mainChecklistFrontView) == mainChecklistFrontView){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemBackView:
-            cell.textLabel.text = @"Back View";
+            cell.textLabel.text = @"5. Back View";
+            if((PACChecklistMain & mainChecklistBackView) == mainChecklistBackView){
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
             break;
         default:
             cell.textLabel.text = [NSString stringWithFormat:@"cell %d", (int)indexPath.row];

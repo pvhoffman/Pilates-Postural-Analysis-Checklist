@@ -7,8 +7,6 @@
 //
 
 #import "PACHeadFrontViewController.h"
-
-#import "PACShouldersFrontViewController.h"
 #import "PACGlobal.h"
 
 enum {
@@ -96,9 +94,164 @@ static NSString* cell_identifier = @"head-front-cell";
 {    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cell_identifier forIndexPath:indexPath];
 
+    // tilted and shifted have a left/right option
+    if(indexPath.row == tableViewRowHeadTilted || indexPath.row == tableViewRowHeadShifted){
+        if(!cell.accessoryView){
+            UISegmentedControl *segment = [[UISegmentedControl alloc] init];
+            segment.frame = CGRectMake(0,0,230,30);
+            segment.tag   = indexPath.row;
+            [segment insertSegmentWithTitle:@"Left" atIndex:0 animated:NO];
+            [segment insertSegmentWithTitle:@"Right" atIndex:1 animated:NO];
+            [segment addTarget:self action:@selector(segmentvaluechanged:) forControlEvents:UIControlEventValueChanged];
+
+            cell.accessoryView = segment;
+        }
+        
+    } else {
+        cell.accessoryView = nil;
+    }
+
+    cell.accessoryType = UITableViewCellAccessoryNone;
+
+    switch(indexPath.row){
+        case tableViewRowHeadNeutral:
+            cell.textLabel.text = @"Neutral";
+            if(PACHeadFrontAlignment == headFrontAlignmentNeutral){
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } 
+            break;
+        case tableViewRowHeadRotatedClockwise:
+            cell.textLabel.text = @"Rotated Clockwise";
+            if((PACHeadFrontAlignment & headFrontAlignmentRotatedClockwise) == headFrontAlignmentRotatedClockwise){
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } 
+            break;
+        case tableViewRowHeadRotatedCounterClockwise:
+            cell.textLabel.text = @"Rotated Counter-Clockwise";
+            if((PACHeadFrontAlignment & headFrontAlignmentRotatedCounterClockwise) == headFrontAlignmentRotatedCounterClockwise){
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            } 
+            break;
+        case tableViewRowHeadTilted:
+            cell.textLabel.text = @"Tilted";
+            ((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = -1;
+            if((PACHeadFrontAlignment & headFrontAlignmentTiltedLeft) == headFrontAlignmentTiltedLeft){
+                ((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = 0;
+            } else if((PACHeadFrontAlignment & headFrontAlignmentTiltedRight) == headFrontAlignmentTiltedRight){
+                ((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = 1;
+            }
+            break;
+        case tableViewRowHeadShifted:
+            cell.textLabel.text = @"Shifted";
+            ((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = -1;
+            if((PACHeadFrontAlignment & headFrontAlignmentShiftedLeft) == headFrontAlignmentShiftedLeft){
+                ((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = 0;
+            } else if((PACHeadFrontAlignment & headFrontAlignmentShiftedRight) == headFrontAlignmentShiftedRight){
+                ((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = 1;
+            }
+            break;
+    }
     return cell;
 }
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return 1;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return tableViewRowCount;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0f, tableView.frame.size.width, 42.0f)];
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = [UIColor blackColor];
+    label.font = [UIFont boldSystemFontOfSize:16.0];
+    label.text = NSLocalizedString(@"● Examine alignment of cranium on cervical spine.", @"");
+    label.numberOfLines = 0;
+    label.lineBreakMode = NSLineBreakByWordWrapping;
+    return label;
+
+}
+-(CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
+{
+	return 44.0f;
+}
+#pragma mark -
+#pragma mark UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BOOL reload = NO;
+    switch(indexPath.row){
+        case tableViewRowHeadNeutral:
+            PACHeadFrontAlignment = headFrontAlignmentNeutral;
+            reload = YES;
+            break;
+        case tableViewRowHeadRotatedClockwise:
+            PACHeadFrontAlignment &= ~headFrontAlignmentNeutral;
+            PACHeadFrontAlignment &= ~headFrontAlignmentRotatedCounterClockwise;
+            PACHeadFrontAlignment |=  headFrontAlignmentRotatedClockwise;
+            reload = YES;
+            break;
+        case tableViewRowHeadRotatedCounterClockwise:
+            PACHeadFrontAlignment &= ~headFrontAlignmentNeutral;
+            PACHeadFrontAlignment &= ~headFrontAlignmentRotatedClockwise;
+            PACHeadFrontAlignment |=  headFrontAlignmentRotatedCounterClockwise;
+            reload = YES;
+            break;
+    }
+    if(reload == YES){
+        [tableView reloadData];
+        if(!((PACChecklistFrontView & frontViewCheckListHead) == frontViewCheckListHead)){
+            PACChecklistFrontView |= frontViewCheckListHead;
+            [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListFrontViewDidChange] object:nil];
+        }
+    }
+}
+-(void) segmentvaluechanged:(id)sender
+{
+    BOOL reload = NO;
+    UISegmentedControl* segment = (UISegmentedControl*)sender;
+
+    if(segment.tag == tableViewRowHeadTilted){
+        switch(segment.selectedSegmentIndex){
+            case 0:  // left
+                PACHeadFrontAlignment &= ~headFrontAlignmentNeutral;
+                PACHeadFrontAlignment &= ~headFrontAlignmentTiltedRight;
+                PACHeadFrontAlignment |=  headFrontAlignmentTiltedLeft;
+                break;
+            case 1: // right
+                PACHeadFrontAlignment &= ~headFrontAlignmentNeutral;
+                PACHeadFrontAlignment &= ~headFrontAlignmentTiltedLeft;
+                PACHeadFrontAlignment |=  headFrontAlignmentTiltedRight;
+                break;
+        }
+        reload = YES;
+    } else if(segment.tag == tableViewRowHeadShifted){
+        switch(segment.selectedSegmentIndex){
+            case 0:  // left
+                PACHeadFrontAlignment &= ~headFrontAlignmentNeutral;
+                PACHeadFrontAlignment &= ~headFrontAlignmentShiftedRight;
+                PACHeadFrontAlignment |=  headFrontAlignmentShiftedLeft;
+                break;
+            case 1: // right
+                PACHeadFrontAlignment &= ~headFrontAlignmentNeutral;
+                PACHeadFrontAlignment &= ~headFrontAlignmentShiftedLeft;
+                PACHeadFrontAlignment |=  headFrontAlignmentShiftedRight;
+                break;
+        }
+        reload = YES;
+    }
 
 
+    if(reload == YES){
+        UITableView* tableView = (UITableView*)[[self.view viewWithTag:tagContentView] viewWithTag:tagTableView];
+        [tableView reloadData];
+        if(!((PACChecklistFrontView & frontViewCheckListHead) == frontViewCheckListHead)){
+            PACChecklistFrontView |= frontViewCheckListHead;
+            [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListFrontViewDidChange] object:nil];
+        }
+    }
+}
 
 @end
