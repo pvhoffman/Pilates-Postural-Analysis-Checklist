@@ -243,7 +243,7 @@ extern int PACFeetBackAlignmentRight;
 extern const char* PACCheckListMainDidChange;
 extern const char* PACCheckListSideViewDidChange;
 extern const char* PACCheckListFrontViewDidChange;
-extern const char* PACCheckListBackViewDidChange
+extern const char* PACCheckListBackViewDidChange;
 
 #endif
 

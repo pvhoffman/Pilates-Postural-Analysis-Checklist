@@ -62,6 +62,6 @@ int PACHeadFrontAlignment = 0;
 
 unsigned int PACChecklistBackView = 0;
 
-extern int PACFeetBackAlignmentLeft  = -1;
-extern int PACFeetBackAlignmentRight = -1;
+int PACFeetBackAlignmentLeft  = -1;
+int PACFeetBackAlignmentRight = -1;
 

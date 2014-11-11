@@ -13,6 +13,7 @@
 #import "PACRelativeAlignmentViewController.h"
 #import "PACSideViewTableViewController.h"
 #import "PACFrontViewTableViewController.h"
+#import "PACBackViewTableViewController.h"
 #import "PACGlobal.h"
 
 
@@ -164,6 +165,7 @@ static NSString* cell_identifier = @"master-view-cell";
             break;
                                      }
         case tableViewItemBackView:
+            [self.navigationController pushViewController:[[PACBackViewTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
             break;
         default:
             break;

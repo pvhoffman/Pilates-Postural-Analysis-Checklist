@@ -7,6 +7,7 @@
 //
 
 #import "PACBackViewTableViewController.h"
+#import "PACFeetBackViewController.h"
 #import "PACGlobal.h"
 
 enum {
@@ -53,7 +54,7 @@ static NSString* cell_identifier = @"backview-view-cell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
     // Return the number of rows in the section.
-    return 0;
+    return tableViewItemCount;
 }
 
 
@@ -101,10 +102,25 @@ static NSString* cell_identifier = @"backview-view-cell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
 {
+    switch(indexPath.row){
+        case tableViewItemFeet:
+            [self.navigationController pushViewController:[[PACFeetBackViewController alloc] init] animated:YES];
+            break;
+        case tableViewItemFemurs:
+            break;
+        case tableViewItemPelvis:
+            break;
+        case tableViewItemScapulae:
+            break;
+        case tableViewItemHumeri: 
+            break;
+    }
 }
 #pragma mark -
 #pragma mark private
 -(void) backViewCheckListDidChange:(NSNotification*)notification
 {
  
+    [self.tableView reloadData];
+}
 @end
