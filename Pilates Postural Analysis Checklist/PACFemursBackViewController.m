@@ -1,12 +1,12 @@
 //
-//  PACFeetBackViewController.m
+//  PACFemursBackViewController.m
 //  Pilates Postural Analysis Checklist
 //
-//  Created by Paul Hoffman on 11/10/14.
+//  Created by Paul Hoffman on 11/12/14.
 //  Copyright (c) 2014 Paul Hoffman. All rights reserved.
 //
 
-#import "PACFeetBackViewController.h"
+#import "PACFemursBackViewController.h"
 #import "PACGlobal.h"
 
 enum {
@@ -15,19 +15,18 @@ enum {
 };
 
 enum {
-    tableViewRowLeftFoot = 0
-        , tableViewRowRightFoot
+    tableViewRowLeftFemur = 0
+        , tableViewRowRightFemur
         , tableViewRowCount
 };
 
+static NSString* cell_identifier = @"femur-back-cell";
 
-static NSString* cell_identifier = @"feet-back-cell";
-
-@interface PACFeetBackViewController ()
+@interface PACFemursBackViewController ()
 -(void) segmentvaluechanged:(id)sender;
 @end
 
-@implementation PACFeetBackViewController
+@implementation PACFemursBackViewController
 
 - (void)viewDidLoad 
 {
@@ -42,7 +41,7 @@ static NSString* cell_identifier = @"feet-back-cell";
 {
     [super loadView];
 
-    self.navigationItem.title = @"Feet - Back";
+    self.navigationItem.title = @"Femurs - Back";
 
     CGRect frame = self.view.frame;
     float fy = 5.0f;
@@ -53,7 +52,7 @@ static NSString* cell_identifier = @"feet-back-cell";
     content_view.tag = tagContentView;
     content_view.backgroundColor = [UIColor whiteColor];
 
-    UIImage* image = [UIImage imageNamed:@"feet_back_detail.jpg"];
+    UIImage* image = [UIImage imageNamed:@"femurs_back_detail.gif"];
 
     UIImageView* image_view = [[UIImageView alloc] initWithFrame:CGRectMake( (frame.size.width / 2.0f) - (image.size.width / 2.0f), fy, image.size.width, image.size.height)];
     image_view.image = image;
@@ -99,8 +98,8 @@ static NSString* cell_identifier = @"feet-back-cell";
             segment.frame = CGRectMake(0,0,230,30);
             segment.tag   = indexPath.row;
             [segment insertSegmentWithTitle:@"Neutral" atIndex:0 animated:NO];
-            [segment insertSegmentWithTitle:@"Supinated" atIndex:1 animated:NO];
-            [segment insertSegmentWithTitle:@"Pronated" atIndex:1 animated:NO];
+            [segment insertSegmentWithTitle:@"Medial" atIndex:1 animated:NO];
+            [segment insertSegmentWithTitle:@"Lateral" atIndex:1 animated:NO];
             [segment addTarget:self action:@selector(segmentvaluechanged:) forControlEvents:UIControlEventValueChanged];
 
             cell.accessoryView = segment;
@@ -108,13 +107,13 @@ static NSString* cell_identifier = @"feet-back-cell";
     }
 
     switch(indexPath.row){
-        case tableViewRowLeftFoot:
-            cell.textLabel.text = @"Left Foot";
-            ((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = PACFeetBackAlignmentLeft;
+        case tableViewRowLeftFemur:
+            cell.textLabel.text = @"Left Femur";
+            ((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = PACFemurBackAlignmentLeft;
             break;
-        case tableViewRowRightFoot:
-            cell.textLabel.text = @"Right Foot";
-            ((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = PACFeetBackAlignmentRight;
+        case tableViewRowRightFemur:
+            cell.textLabel.text = @"Right Femur";
+            ((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = PACFemurBackAlignmentRight;
             break;
     }
 
@@ -134,7 +133,7 @@ static NSString* cell_identifier = @"feet-back-cell";
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor blackColor];
     label.font = [UIFont boldSystemFontOfSize:16.0];
-    label.text = NSLocalizedString(@"● Distinguish where the weight is distributed on the foot.\n● Examine common calcaneal tendons.", @"");
+    label.text = NSLocalizedString(@"● Palpate femoral condyles", @"");
     label.numberOfLines = 0;
     label.lineBreakMode = NSLineBreakByWordWrapping;
     return label;
@@ -154,15 +153,16 @@ static NSString* cell_identifier = @"feet-back-cell";
 {
     UISegmentedControl* segment = (UISegmentedControl*)sender;
 
-    int* iptr = ((segment.tag == tableViewRowLeftFoot) ? &PACFeetBackAlignmentLeft : &PACFeetBackAlignmentRight);
-    *iptr = (int)segment.selectedSegmentIndex;
+    int* var = (segment.tag == tableViewRowLeftFemur) ? &PACFemurBackAlignmentLeft : &PACFemurBackAlignmentRight; 
 
-    if(PACFeetBackAlignmentLeft > -1 && PACFeetBackAlignmentRight > -1 && !((PACChecklistBackView & backViewCheckListFeet) == backViewCheckListFeet)){
-        PACChecklistBackView |= backViewCheckListFeet;
-        [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListBackViewDidChange] object:nil];
+    *var = (int)segment.selectedSegmentIndex;
+
+    if(PACFemurBackAlignmentLeft > -1 && PACFemurBackAlignmentRight > -1){
+        if(!((PACChecklistBackView & backViewCheckListFemurs) == backViewCheckListFemurs)){
+                PACChecklistBackView |= backViewCheckListFemurs;
+                [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListBackViewDidChange] object:nil];
+        }
     }
 }
-
-
 
 @end

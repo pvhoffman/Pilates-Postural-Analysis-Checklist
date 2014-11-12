@@ -8,8 +8,8 @@
 
 #import "PACBackViewTableViewController.h"
 #import "PACFeetBackViewController.h"
+#import "PACFemursBackViewController.h"
 #import "PACGlobal.h"
-
 enum {
         tableViewItemFeet = 0
             , tableViewItemFemurs
@@ -107,6 +107,7 @@ static NSString* cell_identifier = @"backview-view-cell";
             [self.navigationController pushViewController:[[PACFeetBackViewController alloc] init] animated:YES];
             break;
         case tableViewItemFemurs:
+            [self.navigationController pushViewController:[[PACFemursBackViewController alloc] init] animated:YES];
             break;
         case tableViewItemPelvis:
             break;
@@ -122,5 +123,17 @@ static NSString* cell_identifier = @"backview-view-cell";
 {
  
     [self.tableView reloadData];
+
+    if((PACChecklistBackView & backViewCheckListFeet) == backViewCheckListFeet
+            && (PACChecklistBackView  & backViewCheckListFemurs) == backViewCheckListFemurs
+            && (PACChecklistBackView  & backViewCheckListPelvis) == backViewCheckListPelvis
+            && (PACChecklistBackView  & backViewCheckListScapulae) == backViewCheckListScapulae
+            && (PACChecklistBackView  & backViewCheckListHumeri) == backViewCheckListHumeri){
+
+        if(!((PACChecklistMain & mainChecklistBackView) == mainChecklistBackView)){
+            PACChecklistMain |= mainChecklistBackView;
+            [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListMainDidChange] object:nil];
+        }
+    }
 }
 @end

@@ -192,7 +192,12 @@ typedef enum {
         , feetBackAlignmentEverted  = 2
 }PACFeetBackAlignment_t;
 
-
+// Back View Femurs
+typedef enum {
+    femurBackAlignmentNeutral              = 0
+        , femurBackAlignmentRotatedMedial  = 1
+        , femurBackAlignmentRotatedLateral = 2
+} PACFemurBackAlignment_t;
 
 extern unsigned int PACChecklistMain;
 extern unsigned int PACPlumbLineAlignment;
@@ -239,6 +244,10 @@ extern unsigned int PACChecklistBackView;
 
 extern int PACFeetBackAlignmentLeft;
 extern int PACFeetBackAlignmentRight;
+
+extern int PACFemurBackAlignmentLeft;
+extern int PACFemurBackAlignmentRight;
+
 
 extern const char* PACCheckListMainDidChange;
 extern const char* PACCheckListSideViewDidChange;

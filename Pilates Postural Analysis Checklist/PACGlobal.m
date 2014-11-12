@@ -65,3 +65,8 @@ unsigned int PACChecklistBackView = 0;
 int PACFeetBackAlignmentLeft  = -1;
 int PACFeetBackAlignmentRight = -1;
 
+
+int PACFemurBackAlignmentLeft  = -1;
+int PACFemurBackAlignmentRight = -1;
+
+
