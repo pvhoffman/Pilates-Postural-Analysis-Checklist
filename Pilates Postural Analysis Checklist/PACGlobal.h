@@ -199,6 +199,15 @@ typedef enum {
         , femurBackAlignmentRotatedLateral = 2
 } PACFemurBackAlignment_t;
 
+// Back View Pelvis
+typedef enum {
+    pelvisBackAlignmentLevel                         = (1 << 0)
+        , pelvisBackAlignmentElevatedLeft            = (1 << 1)
+        , pelvisBackAlignmentElevatedRight           = (1 << 2)
+        , pelvisBackAlignmentRotatedClockwise        = (1 << 3)
+        , pelvisBackAlignmentRotatedCounterClockwise = (1 << 4)
+} PACPelvisBackAlignment_t;
+
 extern unsigned int PACChecklistMain;
 extern unsigned int PACPlumbLineAlignment;
 
@@ -248,6 +257,7 @@ extern int PACFeetBackAlignmentRight;
 extern int PACFemurBackAlignmentLeft;
 extern int PACFemurBackAlignmentRight;
 
+extern int PACPelvisBackAlignment;
 
 extern const char* PACCheckListMainDidChange;
 extern const char* PACCheckListSideViewDidChange;

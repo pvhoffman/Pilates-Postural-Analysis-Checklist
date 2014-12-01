@@ -27,10 +27,12 @@ enum {
 };
 
 static NSString* cell_identifier = @"master-view-cell";
+static NSMutableData* receivedData = 0; 
+static NSStringEncoding encoding;
 
 @interface MasterViewController ()
 -(void) mainCheckListDidChange:(NSNotification*)notification; 
-
+-(void) doSillyStuff;
 @property NSMutableArray *objects;
 @end
 
@@ -106,31 +108,31 @@ static NSString* cell_identifier = @"master-view-cell";
 
     switch(indexPath.row){
         case tableViewItemPlumbLine:
-            cell.textLabel.text  = @"1. Plumb Line";
+            cell.textLabel.text  = @"● Plumb Line";
             if((PACChecklistMain & mainChecklistPlumbline) == mainChecklistPlumbline){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemAlignedInRelation:
-            cell.textLabel.text = @"2. Relative Alignment";
+            cell.textLabel.text = @"● Relative Alignment";
             if((PACChecklistMain & mainChecklistAlignedInRelation) == mainChecklistAlignedInRelation){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemSideView:
-            cell.textLabel.text = @"3. Side View";
+            cell.textLabel.text = @"● Side View";
             if((PACChecklistMain & mainChecklistSideView) == mainChecklistSideView){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemFrontView:
-            cell.textLabel.text = @"4. Front View";
+            cell.textLabel.text = @"● Front View";
             if((PACChecklistMain & mainChecklistFrontView) == mainChecklistFrontView){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemBackView:
-            cell.textLabel.text = @"5. Back View";
+            cell.textLabel.text = @"● Back View";
             if((PACChecklistMain & mainChecklistBackView) == mainChecklistBackView){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
@@ -176,15 +178,34 @@ static NSString* cell_identifier = @"master-view-cell";
     // Return NO if you do not want the specified item to be editable.
     return NO;
 }
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    CGRect frame = tableView.frame;
+
+    UIView* res = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, frame.size.width, 215.0f)];
+
+    res.backgroundColor = [UIColor whiteColor];
+
+    UIImage* image = [UIImage imageNamed:@"main-view.jpg"];
+
+    UIImageView* image_view = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, image.size.height)];
+    image_view.contentMode = UIViewContentModeScaleAspectFit;
+    image_view.image = image;
+
+    [res addSubview:image_view];
+
+    return res;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 0.0f;
+    return 215.0f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 0.0f;
 }
 #pragma mark -
+#pragma mark Private
 -(void) mainCheckListDidChange:(NSNotification*)notification;
 {
         [self.tableView reloadData];

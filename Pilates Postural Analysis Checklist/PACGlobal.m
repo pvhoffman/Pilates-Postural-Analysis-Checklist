@@ -69,4 +69,5 @@ int PACFeetBackAlignmentRight = -1;
 int PACFemurBackAlignmentLeft  = -1;
 int PACFemurBackAlignmentRight = -1;
 
+int PACPelvisBackAlignment = 0;
 

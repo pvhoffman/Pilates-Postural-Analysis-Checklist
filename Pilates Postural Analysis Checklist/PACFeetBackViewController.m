@@ -141,7 +141,7 @@ static NSString* cell_identifier = @"feet-back-cell";
 }
 -(CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
 {
-	return 44.0f;
+	return 64.0f;
 }
 #pragma mark -
 #pragma mark UITableViewDelegate

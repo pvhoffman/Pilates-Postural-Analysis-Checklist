@@ -9,6 +9,7 @@
 #import "PACBackViewTableViewController.h"
 #import "PACFeetBackViewController.h"
 #import "PACFemursBackViewController.h"
+#import "PACPelvisBackViewController.h"
 #import "PACGlobal.h"
 enum {
         tableViewItemFeet = 0
@@ -66,31 +67,31 @@ static NSString* cell_identifier = @"backview-view-cell";
     // Configure the cell...
     switch(indexPath.row){
         case tableViewItemFeet:
-            cell.textLabel.text = @"1. Feet";
+            cell.textLabel.text = @"● Feet";
             if((PACChecklistBackView & backViewCheckListFeet) == backViewCheckListFeet){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemFemurs:
-            cell.textLabel.text = @"2. Femurs";
+            cell.textLabel.text = @"● Femurs";
             if((PACChecklistBackView & backViewCheckListFemurs) == backViewCheckListFemurs){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemPelvis:
-            cell.textLabel.text = @"3. Pelvis";
+            cell.textLabel.text = @"● Pelvis";
             if((PACChecklistBackView & backViewCheckListPelvis) == backViewCheckListPelvis){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemScapulae:
-            cell.textLabel.text = @"4. Scapulae";
+            cell.textLabel.text = @"● Scapulae";
             if((PACChecklistBackView & backViewCheckListScapulae) == backViewCheckListScapulae){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemHumeri:
-            cell.textLabel.text = @"5. Humeri";
+            cell.textLabel.text = @"● Humeri";
             if((PACChecklistBackView & backViewCheckListHumeri) == backViewCheckListHumeri){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
@@ -110,6 +111,7 @@ static NSString* cell_identifier = @"backview-view-cell";
             [self.navigationController pushViewController:[[PACFemursBackViewController alloc] init] animated:YES];
             break;
         case tableViewItemPelvis:
+            [self.navigationController pushViewController:[[PACPelvisBackViewController alloc] init] animated:YES];
             break;
         case tableViewItemScapulae:
             break;
