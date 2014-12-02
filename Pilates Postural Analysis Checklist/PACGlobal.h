@@ -222,6 +222,12 @@ typedef enum {
             , scapulaeBackAlignmentTipping     =  8
 } PACScapulaeBackAlignment_t;
 
+// Back View Humeri
+typedef enum {
+    humeriBackAlignmentNeutral       = 0
+        , humeriBackAlignmentRotated = 1
+} PACHumeriBackAlignment_t;
+
 extern unsigned int PACChecklistMain;
 extern unsigned int PACPlumbLineAlignment;
 
@@ -276,6 +282,9 @@ extern int PACPelvisBackAlignment;
 
 extern int PACScapulaeBackAlignmentLeft;
 extern int PACScapulaeBackAlignmentRight;
+
+extern int PACHumeriBackAlignmentLeft;
+extern int PACHumeriBackAlignmentRight;
 
 extern const char* PACCheckListMainDidChange;
 extern const char* PACCheckListSideViewDidChange;

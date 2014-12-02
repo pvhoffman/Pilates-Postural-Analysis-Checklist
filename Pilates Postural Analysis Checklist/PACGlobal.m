@@ -75,3 +75,6 @@ int PACPelvisBackAlignment = 0;
 int PACScapulaeBackAlignmentLeft  = -1;
 int PACScapulaeBackAlignmentRight = -1;
 
+int PACHumeriBackAlignmentLeft  = -1;
+int PACHumeriBackAlignmentRight = -1;
+
