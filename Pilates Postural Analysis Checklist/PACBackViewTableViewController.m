@@ -10,6 +10,7 @@
 #import "PACFeetBackViewController.h"
 #import "PACFemursBackViewController.h"
 #import "PACPelvisBackViewController.h"
+#import "PACScapulaeBackViewController.h"
 #import "PACGlobal.h"
 enum {
         tableViewItemFeet = 0
@@ -114,6 +115,7 @@ static NSString* cell_identifier = @"backview-view-cell";
             [self.navigationController pushViewController:[[PACPelvisBackViewController alloc] init] animated:YES];
             break;
         case tableViewItemScapulae:
+            [self.navigationController pushViewController:[[PACScapulaeBackViewController alloc] init] animated:YES];
             break;
         case tableViewItemHumeri: 
             break;

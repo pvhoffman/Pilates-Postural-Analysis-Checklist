@@ -208,6 +208,20 @@ typedef enum {
         , pelvisBackAlignmentRotatedCounterClockwise = (1 << 4)
 } PACPelvisBackAlignment_t;
 
+
+// Back View Scapulae
+typedef enum {
+        scapulaeBackAlignmentNeutral           =  0
+            , scapulaeBackAlignmentProtracted  =  1
+            , scapulaeBackAlignmentRetracted   =  2
+            , scapulaeBackAlignmentElevated    =  3
+            , scapulaeBackAlignmentDepressed   =  4
+            , scapulaeBackAlignmentRotatedUp   =  5
+            , scapulaeBackAlignmentRotatedDown =  6
+            , scapulaeBackAlignmentWinging     =  7
+            , scapulaeBackAlignmentTipping     =  8
+} PACScapulaeBackAlignment_t;
+
 extern unsigned int PACChecklistMain;
 extern unsigned int PACPlumbLineAlignment;
 
@@ -258,6 +272,10 @@ extern int PACFemurBackAlignmentLeft;
 extern int PACFemurBackAlignmentRight;
 
 extern int PACPelvisBackAlignment;
+
+
+extern int PACScapulaeBackAlignmentLeft;
+extern int PACScapulaeBackAlignmentRight;
 
 extern const char* PACCheckListMainDidChange;
 extern const char* PACCheckListSideViewDidChange;

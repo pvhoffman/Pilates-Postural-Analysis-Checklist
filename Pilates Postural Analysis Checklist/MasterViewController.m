@@ -27,12 +27,9 @@ enum {
 };
 
 static NSString* cell_identifier = @"master-view-cell";
-static NSMutableData* receivedData = 0; 
-static NSStringEncoding encoding;
 
 @interface MasterViewController ()
 -(void) mainCheckListDidChange:(NSNotification*)notification; 
--(void) doSillyStuff;
 @property NSMutableArray *objects;
 @end
 
