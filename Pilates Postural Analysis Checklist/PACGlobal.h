@@ -178,11 +178,12 @@ typedef enum {
 
 // Back View Check List
 typedef enum {
-        backViewCheckListFeet           = (1 << 0)
-            , backViewCheckListFemurs   = (1 << 1)
-            , backViewCheckListPelvis   = (1 << 2)
-            , backViewCheckListScapulae = (1 << 3)
-            , backViewCheckListHumeri   = (1 << 4)
+        backViewCheckListFeet                  = (1 << 0)
+            , backViewCheckListFemurs          = (1 << 1)
+            , backViewCheckListPelvis          = (1 << 2)
+            , backViewCheckListScapulae        = (1 << 3)
+            , backViewCheckListHumeri          = (1 << 4)
+            , backViewCheckListSpineSequencing = (1 << 5)
 } PACChecklistBackView_t;
 
 // Back View Feet
@@ -227,6 +228,27 @@ typedef enum {
     humeriBackAlignmentNeutral       = 0
         , humeriBackAlignmentRotated = 1
 } PACHumeriBackAlignment_t;
+
+// Back Sequencing through spine for flat spots
+typedef enum {
+    spineSequencingNone                = (1 << 0) // none
+        , spineSequencingUpperCervical = (1 << 1) // C1 - C4
+        , spineSequencingLowerCervical = (1 << 2) // C4 - C7
+        , spineSequencingUpperThoracic = (1 << 3) // T1 - T6
+        , spineSequencingLowerThoracic = (1 << 4) // T6 - T12
+        , spineSequencingUpperLumbar   = (1 << 5) // L1 - L3
+        , spineSequencingLowerLumbar   = (1 << 6) // L3 - L5
+} PACSpineSequencing_t;
+
+// Back Sequencing through spine for imbalances
+typedef enum {
+        spineImbalanceNone            = (1 << 0)
+            , spineImbalanceHead      = (1 << 1)
+            , spineImbalanceShoulders = (1 << 2)
+            , spineImbalancePelvis    = (1 << 3)
+            , spineImbalanceKnees     = (1 << 4)
+            , spineImbalanceAnkles    = (1 << 5)
+}PACSpineImbalance_t;
 
 extern unsigned int PACChecklistMain;
 extern unsigned int PACPlumbLineAlignment;
@@ -286,10 +308,14 @@ extern int PACScapulaeBackAlignmentRight;
 extern int PACHumeriBackAlignmentLeft;
 extern int PACHumeriBackAlignmentRight;
 
+extern int PACSpineSequencing;
+extern int PACSpineImbalance;
+
 extern const char* PACCheckListMainDidChange;
 extern const char* PACCheckListSideViewDidChange;
 extern const char* PACCheckListFrontViewDidChange;
 extern const char* PACCheckListBackViewDidChange;
+
 
 #endif
 

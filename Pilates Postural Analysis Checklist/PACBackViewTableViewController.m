@@ -12,13 +12,16 @@
 #import "PACPelvisBackViewController.h"
 #import "PACScapulaeBackViewController.h"
 #import "PACHumeriBackViewController.h"
+#import "PACSpineSequencingBackViewController.h"
 #import "PACGlobal.h"
+
 enum {
         tableViewItemFeet = 0
             , tableViewItemFemurs
             , tableViewItemPelvis
             , tableViewItemScapulae
             , tableViewItemHumeri
+            , tableViewItemSpineSequencing
             , tableViewItemCount
 };
 
@@ -98,6 +101,12 @@ static NSString* cell_identifier = @"backview-view-cell";
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
+        case tableViewItemSpineSequencing:
+            cell.textLabel.text = @"● Spine Sequencing";
+            if((PACChecklistBackView & backViewCheckListSpineSequencing) == backViewCheckListSpineSequencing){
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
+            break;
     }
     
     return cell;
@@ -121,6 +130,9 @@ static NSString* cell_identifier = @"backview-view-cell";
         case tableViewItemHumeri: 
             [self.navigationController pushViewController:[[PACHumeriBackViewController alloc] init] animated:YES];
             break;
+        case tableViewItemSpineSequencing:
+            [self.navigationController pushViewController:[[PACSpineSequencingBackViewController alloc] init] animated:YES];
+            break;
     }
 }
 #pragma mark -
@@ -134,7 +146,8 @@ static NSString* cell_identifier = @"backview-view-cell";
             && (PACChecklistBackView  & backViewCheckListFemurs) == backViewCheckListFemurs
             && (PACChecklistBackView  & backViewCheckListPelvis) == backViewCheckListPelvis
             && (PACChecklistBackView  & backViewCheckListScapulae) == backViewCheckListScapulae
-            && (PACChecklistBackView  & backViewCheckListHumeri) == backViewCheckListHumeri){
+            && (PACChecklistBackView  & backViewCheckListHumeri) == backViewCheckListHumeri
+            && (PACChecklistBackView  & backViewCheckListSpineSequencing) == backViewCheckListSpineSequencing){
 
         if(!((PACChecklistMain & mainChecklistBackView) == mainChecklistBackView)){
             PACChecklistMain |= mainChecklistBackView;

@@ -50,6 +50,9 @@
 		E79E0FC41A2D39C600CABD55 /* scapulae_back_detail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E79E0FC31A2D39C600CABD55 /* scapulae_back_detail.jpg */; };
 		E79E0FC71A2E391E00CABD55 /* PACHumeriBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E79E0FC61A2E391E00CABD55 /* PACHumeriBackViewController.m */; };
 		E79E0FC91A2E3D3900CABD55 /* humeri_back_detail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E79E0FC81A2E3D3900CABD55 /* humeri_back_detail.jpg */; };
+		E79E0FCB1A2E4A3000CABD55 /* Postural-Analysis-Guide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E79E0FCA1A2E4A3000CABD55 /* Postural-Analysis-Guide.pdf */; };
+		E79E0FCE1A2E72EF00CABD55 /* PACSpineSequencingBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E79E0FCD1A2E72EF00CABD55 /* PACSpineSequencingBackViewController.m */; };
+		E79E0FD01A2E748C00CABD55 /* spine_sequencing.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E79E0FCF1A2E748C00CABD55 /* spine_sequencing.jpg */; };
 		E7B0E9BE19F702200011BB49 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B0E9BD19F702200011BB49 /* main.m */; };
 		E7B0E9C119F702200011BB49 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B0E9C019F702200011BB49 /* AppDelegate.m */; };
 		E7B0E9C419F702200011BB49 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B0E9C319F702200011BB49 /* MasterViewController.m */; };
@@ -143,6 +146,10 @@
 		E79E0FC51A2E391E00CABD55 /* PACHumeriBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACHumeriBackViewController.h; sourceTree = "<group>"; };
 		E79E0FC61A2E391E00CABD55 /* PACHumeriBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACHumeriBackViewController.m; sourceTree = "<group>"; };
 		E79E0FC81A2E3D3900CABD55 /* humeri_back_detail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = humeri_back_detail.jpg; sourceTree = "<group>"; };
+		E79E0FCA1A2E4A3000CABD55 /* Postural-Analysis-Guide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Postural-Analysis-Guide.pdf"; sourceTree = "<group>"; };
+		E79E0FCC1A2E72EF00CABD55 /* PACSpineSequencingBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACSpineSequencingBackViewController.h; sourceTree = "<group>"; };
+		E79E0FCD1A2E72EF00CABD55 /* PACSpineSequencingBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACSpineSequencingBackViewController.m; sourceTree = "<group>"; };
+		E79E0FCF1A2E748C00CABD55 /* spine_sequencing.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = spine_sequencing.jpg; sourceTree = "<group>"; };
 		E7B0E9B819F702200011BB49 /* Pilates Postural Analysis Checklist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pilates Postural Analysis Checklist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7B0E9BC19F702200011BB49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7B0E9BD19F702200011BB49 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -274,6 +281,8 @@
 				E79E0FC11A2D373800CABD55 /* PACScapulaeBackViewController.m */,
 				E79E0FC51A2E391E00CABD55 /* PACHumeriBackViewController.h */,
 				E79E0FC61A2E391E00CABD55 /* PACHumeriBackViewController.m */,
+				E79E0FCC1A2E72EF00CABD55 /* PACSpineSequencingBackViewController.h */,
+				E79E0FCD1A2E72EF00CABD55 /* PACSpineSequencingBackViewController.m */,
 			);
 			path = "Pilates Postural Analysis Checklist";
 			sourceTree = "<group>";
@@ -307,6 +316,7 @@
 		E7B0E9E419F707BD0011BB49 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				E79E0FCA1A2E4A3000CABD55 /* Postural-Analysis-Guide.pdf */,
 				E79E0FC31A2D39C600CABD55 /* scapulae_back_detail.jpg */,
 				E711C5A019F976C80036873E /* alignment_detail.jpg */,
 				E711C5A519F97A2E0036873E /* alignment_main.jpg */,
@@ -316,6 +326,7 @@
 				E711C5D419FEFA170036873E /* cervical_spine_detail.jpg */,
 				E7C42B2D1A0AFEE5003FF7B9 /* feet_front_detail.jpg */,
 				E7C42B221A0AEFF0003FF7B9 /* head_detail.jpg */,
+				E79E0FCF1A2E748C00CABD55 /* spine_sequencing.jpg */,
 				E7134E7C1A0C477800F2CEE8 /* head_front_detail.jpg */,
 				E711C5BC19F9BE620036873E /* hipjoint_detail.png */,
 				E711C5B319F9B5460036873E /* knee_detail.png */,
@@ -418,6 +429,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E79E0FCB1A2E4A3000CABD55 /* Postural-Analysis-Guide.pdf in Resources */,
 				E7134E7D1A0C477800F2CEE8 /* head_front_detail.jpg in Resources */,
 				E79E0FC91A2E3D3900CABD55 /* humeri_back_detail.jpg in Resources */,
 				E711C5D019FEF65D0036873E /* upper_thoracic_detail.jpg in Resources */,
@@ -444,6 +456,7 @@
 				E7134E661A0BE9F900F2CEE8 /* knee_front_detail.png in Resources */,
 				E7134E781A0C26C200F2CEE8 /* shoulder_front_detail.png in Resources */,
 				E7134E731A0C026000F2CEE8 /* ribcage_front_detail.jpg in Resources */,
+				E79E0FD01A2E748C00CABD55 /* spine_sequencing.jpg in Resources */,
 				E7B0E9CC19F702200011BB49 /* Images.xcassets in Resources */,
 				E711C5A119F976C80036873E /* alignment_detail.jpg in Resources */,
 			);
@@ -463,6 +476,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E79E0FCE1A2E72EF00CABD55 /* PACSpineSequencingBackViewController.m in Sources */,
 				E7134E6C1A0BF1FE00F2CEE8 /* PACPelvisFrontViewController.m in Sources */,
 				E7C42B2C1A0AFD89003FF7B9 /* PACFeetFrontViewController.m in Sources */,
 				E711C5AC19F9A3BF0036873E /* PACAnkleJointsViewController.m in Sources */,

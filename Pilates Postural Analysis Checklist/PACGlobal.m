@@ -7,9 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "PACGlobal.h"
 
-
+static const char* source_pdf = "Postural-Analysis-Guide.pdf";
 
 unsigned int PACChecklistMain      = 0;
 unsigned int PACPlumbLineAlignment = 0;
@@ -78,3 +79,51 @@ int PACScapulaeBackAlignmentRight = -1;
 int PACHumeriBackAlignmentLeft  = -1;
 int PACHumeriBackAlignmentRight = -1;
 
+int PACSpineSequencing = 0;
+int PACSpineImbalance  = 0;
+#if 0
+
+void create_document()
+{
+    NSString* source_path = [[NSBundle mainBundle] pathForResource:@"Postural-Analysis-Guide" ofType:@"pdf"];
+
+    if(source_path){
+        NSURL* source_url = [NSURL fileURLWithPath:source_path];
+        CGPDFDocumentRef source_doc = CGPDFDocumentCreateWithURL((__bridge CFURLRef)source_url);
+        if(source_doc){
+            CGPDFDocumentRelease(source_doc);
+        }
+    }
+}
+
+
+
+
+- (void)helloWorldPDF {
+    // Open the source pdf
+    NSURL               *sourceURL      = [NSURL fileURLWithPath:@"path to original pdf"];
+    CGPDFDocumentRef    sourceDoc       = CGPDFDocumentCreateWithURL((__bridge CFURLRef)sourceURL);
+
+    // Create the new destination pdf & set the font
+    NSURL               *destURL        = [NSURL fileURLWithPath:@"path to new pdf"];
+    CGContextRef        destPDFContext  = CGPDFContextCreateWithURL((__bridge CFURLRef)destURL, NULL, NULL);
+    CGContextSelectFont(destPDFContext, "CourierNewPS-BoldMT", 12.0, kCGEncodingFontSpecific);
+
+    // Copy the first page of the source pdf into the destination pdf
+    CGPDFPageRef        pdfPage         = CGPDFDocumentGetPage(sourceDoc, 1);
+    CGRect              pdfCropBoxRect  = CGPDFPageGetBoxRect(pdfPage, kCGPDFMediaBox);
+    CGContextBeginPage  (destPDFContext, &pdfCropBoxRect);
+    CGContextDrawPDFPage(destPDFContext, pdfPage);
+
+    // Close the source file
+    CGPDFDocumentRelease(sourceDoc);
+
+    // Draw the text
+    const char *text = "second line!";
+    CGContextShowTextAtPoint(destPDFContext, 10.0, 30.0, text, strlen(text));
+
+    // Close the destination file
+    CGContextRelease(destPDFContext);
+}
+
+#endif
