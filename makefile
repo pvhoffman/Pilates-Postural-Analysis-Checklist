@@ -32,7 +32,7 @@ clean:
 	-rm $(FULL_PATH_TO_RELEASE_IPA)
 
 pretty:
-	uncrustify -c default.cfg -l OC+ --replace Classes/*.m ccode/*.m
+	uncrustify -c default.cfg -l OC+ --replace Pilates\ Postural\ Analysis\ Checklist/*.m Pilates\ Postural\ Analysis\ Checklist/*.h
 
 ctags:
 	$(CTAGS) $(CTAGS_FLAGS)

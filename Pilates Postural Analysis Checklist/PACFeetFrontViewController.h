@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface PACFeetFrontViewController : UIViewController <UITableViewDelegate
-                                                                , UITableViewDataSource
-                                                                >
+	                                                  , UITableViewDataSource
+	                                                  >
 
 @end

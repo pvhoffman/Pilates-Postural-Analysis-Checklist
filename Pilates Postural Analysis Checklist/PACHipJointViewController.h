@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface PACHipJointViewController : UIViewController <UITableViewDelegate
-                                                                , UITableViewDataSource
-                                                                >
+	                                                 , UITableViewDataSource
+	                                                 >
 
 @end

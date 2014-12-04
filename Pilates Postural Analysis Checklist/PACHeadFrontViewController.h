@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface PACHeadFrontViewController : UIViewController <UITableViewDelegate
-                                                                , UITableViewDataSource
-                                                                >
+	                                                  , UITableViewDataSource
+	                                                  >
 
 @end

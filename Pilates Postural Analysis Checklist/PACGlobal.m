@@ -85,64 +85,64 @@ int PACSpineImbalance  = 0;
 
 UIImage* pac_plumbline_indicator()
 {
-        return [UIImage imageNamed:@"llb_ball_15.png"];
+	return [UIImage imageNamed:@"llb_ball_15.png"];
 }
 UIImage* pac_sideview_indicator()
 {
-        return [UIImage imageNamed:@"g_ball_15.png"];
+	return [UIImage imageNamed:@"g_ball_15.png"];
 }
 UIImage* pac_frontview_indicator()
 {
-        return [UIImage imageNamed:@"o_ball_15.png"];
+	return [UIImage imageNamed:@"o_ball_15.png"];
 }
 UIImage* pac_backview_indicator()
 {
-        return [UIImage imageNamed:@"p_ball_15.png"];
+	return [UIImage imageNamed:@"p_ball_15.png"];
 }
 
 #if 0
 
 void create_document()
 {
-    NSString* source_path = [[NSBundle mainBundle] pathForResource:@"Postural-Analysis-Guide" ofType:@"pdf"];
+	NSString* source_path = [[NSBundle mainBundle] pathForResource:@"Postural-Analysis-Guide" ofType:@"pdf"];
 
-    if(source_path){
-        NSURL* source_url = [NSURL fileURLWithPath:source_path];
-        CGPDFDocumentRef source_doc = CGPDFDocumentCreateWithURL((__bridge CFURLRef)source_url);
-        if(source_doc){
-            CGPDFDocumentRelease(source_doc);
-        }
-    }
+	if(source_path) {
+		NSURL* source_url = [NSURL fileURLWithPath:source_path];
+		CGPDFDocumentRef source_doc = CGPDFDocumentCreateWithURL((__bridge CFURLRef)source_url);
+		if(source_doc) {
+			CGPDFDocumentRelease(source_doc);
+		}
+	}
 }
 
 
 
 
 - (void)helloWorldPDF {
-    // Open the source pdf
-    NSURL               *sourceURL      = [NSURL fileURLWithPath:@"path to original pdf"];
-    CGPDFDocumentRef    sourceDoc       = CGPDFDocumentCreateWithURL((__bridge CFURLRef)sourceURL);
+	// Open the source pdf
+	NSURL               *sourceURL      = [NSURL fileURLWithPath:@"path to original pdf"];
+	CGPDFDocumentRef sourceDoc       = CGPDFDocumentCreateWithURL((__bridge CFURLRef)sourceURL);
 
-    // Create the new destination pdf & set the font
-    NSURL               *destURL        = [NSURL fileURLWithPath:@"path to new pdf"];
-    CGContextRef        destPDFContext  = CGPDFContextCreateWithURL((__bridge CFURLRef)destURL, NULL, NULL);
-    CGContextSelectFont(destPDFContext, "CourierNewPS-BoldMT", 12.0, kCGEncodingFontSpecific);
+	// Create the new destination pdf & set the font
+	NSURL               *destURL        = [NSURL fileURLWithPath:@"path to new pdf"];
+	CGContextRef destPDFContext  = CGPDFContextCreateWithURL((__bridge CFURLRef)destURL, NULL, NULL);
+	CGContextSelectFont(destPDFContext, "CourierNewPS-BoldMT", 12.0, kCGEncodingFontSpecific);
 
-    // Copy the first page of the source pdf into the destination pdf
-    CGPDFPageRef        pdfPage         = CGPDFDocumentGetPage(sourceDoc, 1);
-    CGRect              pdfCropBoxRect  = CGPDFPageGetBoxRect(pdfPage, kCGPDFMediaBox);
-    CGContextBeginPage  (destPDFContext, &pdfCropBoxRect);
-    CGContextDrawPDFPage(destPDFContext, pdfPage);
+	// Copy the first page of the source pdf into the destination pdf
+	CGPDFPageRef pdfPage         = CGPDFDocumentGetPage(sourceDoc, 1);
+	CGRect pdfCropBoxRect  = CGPDFPageGetBoxRect(pdfPage, kCGPDFMediaBox);
+	CGContextBeginPage  (destPDFContext, &pdfCropBoxRect);
+	CGContextDrawPDFPage(destPDFContext, pdfPage);
 
-    // Close the source file
-    CGPDFDocumentRelease(sourceDoc);
+	// Close the source file
+	CGPDFDocumentRelease(sourceDoc);
 
-    // Draw the text
-    const char *text = "second line!";
-    CGContextShowTextAtPoint(destPDFContext, 10.0, 30.0, text, strlen(text));
+	// Draw the text
+	const char *text = "second line!";
+	CGContextShowTextAtPoint(destPDFContext, 10.0, 30.0, text, strlen(text));
 
-    // Close the destination file
-    CGContextRelease(destPDFContext);
+	// Close the destination file
+	CGContextRelease(destPDFContext);
 }
 
 #endif

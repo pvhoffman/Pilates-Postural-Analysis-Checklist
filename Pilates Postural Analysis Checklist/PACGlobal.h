@@ -10,255 +10,255 @@
 #define Pilates_Postural_Analysis_Checklist_PACGlobal_h
 
 typedef enum {
-        mainChecklistPlumbline               = (1 << 0)
-            , mainChecklistAlignedInRelation = (1 << 1)
-            , mainChecklistSideView          = (1 << 2)
-            , mainChecklistFrontView         = (1 << 3)
-            , mainChecklistBackView          = (1 << 4)
+	mainChecklistPlumbline               = (1 << 0)
+	, mainChecklistAlignedInRelation = (1 << 1)
+	, mainChecklistSideView          = (1 << 2)
+	, mainChecklistFrontView         = (1 << 3)
+	, mainChecklistBackView          = (1 << 4)
 } PACChecklistMain_t;
 
 typedef enum {
-        plumbHeadForward            = (1 << 0)
-            , plumbHeadAligned      = (1 << 1)
-            , plumbHeadBehind       = (1 << 2)
-            , plumbShouldersForward = (1 << 3)
-            , plumbShouldersAligned = (1 << 4)
-            , plumbShouldersBehind  = (1 << 5)
-            , plumbUpperBodyForward = (1 << 6)
-            , plumbUpperBodyAligned = (1 << 7)
-            , plumbUpperBodyBehind  = (1 << 8)
-            , plumbPelvisForward    = (1 << 9)
-            , plumbPelvisAligned    = (1 << 10)
-            , plumbPelvisBehind     = (1 << 11)
-            , plumbKneesForward     = (1 << 12)
-            , plumbKneesAligned     = (1 << 13)
-            , plumbKneesBehind      = (1 << 14)
+	plumbHeadForward            = (1 << 0)
+	, plumbHeadAligned      = (1 << 1)
+	, plumbHeadBehind       = (1 << 2)
+	, plumbShouldersForward = (1 << 3)
+	, plumbShouldersAligned = (1 << 4)
+	, plumbShouldersBehind  = (1 << 5)
+	, plumbUpperBodyForward = (1 << 6)
+	, plumbUpperBodyAligned = (1 << 7)
+	, plumbUpperBodyBehind  = (1 << 8)
+	, plumbPelvisForward    = (1 << 9)
+	, plumbPelvisAligned    = (1 << 10)
+	, plumbPelvisBehind     = (1 << 11)
+	, plumbKneesForward     = (1 << 12)
+	, plumbKneesAligned     = (1 << 13)
+	, plumbKneesBehind      = (1 << 14)
 } PACPlumbLineAlignment_t;
 
 // Side View Checklist
 typedef enum {
-    sideViewCheckListAnkleJoint          = (1 << 0)
-        , sideViewCheckListKnee          = (1 << 1)
-        , sideViewCheckListHipJoint      = (1 << 2)
-        , sideViewCheckListPelvis        = (1 << 3)
-        , sideViewCheckListLumbar        = (1 << 4)
-        , sideViewCheckListLowerThoracic = (1 << 5)
-        , sideViewCheckListUpperThoracic = (1 << 6)
-        , sideViewCheckListCervicalSpine = (1 << 7)
-        , sideViewCheckListHead          = (1 << 8)
+	sideViewCheckListAnkleJoint          = (1 << 0)
+	, sideViewCheckListKnee          = (1 << 1)
+	, sideViewCheckListHipJoint      = (1 << 2)
+	, sideViewCheckListPelvis        = (1 << 3)
+	, sideViewCheckListLumbar        = (1 << 4)
+	, sideViewCheckListLowerThoracic = (1 << 5)
+	, sideViewCheckListUpperThoracic = (1 << 6)
+	, sideViewCheckListCervicalSpine = (1 << 7)
+	, sideViewCheckListHead          = (1 << 8)
 } PACChecklistSideView_t;
 
 // Side View Ankle
 typedef enum {
-    ankleAlignmentNeutral = 0
-        ,ankleAlignmentPlantarflex = 1
-        ,ankleAlignmentDorsiflex = 2
+	ankleAlignmentNeutral = 0
+	,ankleAlignmentPlantarflex = 1
+	,ankleAlignmentDorsiflex = 2
 } PACAnkleAlignment_t;
 
 // Side View Knee
 typedef enum {
-    kneeSideAlignmentNeutral = 0
-        ,kneeSideAlignmentHyperextended = 1
-        ,kneeSideAlignmentFlexed = 2
+	kneeSideAlignmentNeutral = 0
+	,kneeSideAlignmentHyperextended = 1
+	,kneeSideAlignmentFlexed = 2
 } PACKneeSideAlignment_t;
 
 // Side View Hip
 typedef enum {
-    hipAlignmentNeutral = 0
-        ,hipAlignmentExtended = 1
-        ,hipAlignmentFlexed = 2
+	hipAlignmentNeutral = 0
+	,hipAlignmentExtended = 1
+	,hipAlignmentFlexed = 2
 } PACHipAlignment_t;
 
 // Side View Pelvis
 typedef enum {
-    pelvisSideAlignmentNeutral = 0
-        ,pelvisSideAlignmentAnteriorTilt = 1
-        ,pelvisSideAlignmentPosteriorTilt = 2
+	pelvisSideAlignmentNeutral = 0
+	,pelvisSideAlignmentAnteriorTilt = 1
+	,pelvisSideAlignmentPosteriorTilt = 2
 } PACPelvisSideAlignment_t;
 
 // Side View Lumbar Spine
 typedef enum {
-    lumbarAlignmentNeutral = 0
-        ,lumbarAlignmentFlat = 1
-        ,lumbarAlignmentFlexed = 2
+	lumbarAlignmentNeutral = 0
+	,lumbarAlignmentFlat = 1
+	,lumbarAlignmentFlexed = 2
 } PACLumbarAlignment_t;
 
 // Side View Lower Thoracic
 typedef enum {
-    lowerThoracicAlignmentNeutral = 0
-        , lowerThoracicAlignmentFlat = 1
-        , lowerThoracicAlignmentFlexed = 2
+	lowerThoracicAlignmentNeutral = 0
+	, lowerThoracicAlignmentFlat = 1
+	, lowerThoracicAlignmentFlexed = 2
 } PACLowerThoracicAlignment_t;
 
 // Side View Upper Thoracic
 typedef enum {
-    upperThoracicAlignmentNeutral      = 0
-        , upperThoracicAlignmentFlat   = 1
-        , upperThoracicAlignmentFlexed = 2
+	upperThoracicAlignmentNeutral      = 0
+	, upperThoracicAlignmentFlat   = 1
+	, upperThoracicAlignmentFlexed = 2
 } PACUpperThoracicAlignment_t;
 
 // Side View Cervical Spine
 typedef enum {
-    cervicalSpineAlignmentNeutral      = 0
-        , cervicalSpineAlignmentFlat   = 1
-        , cervicalSpineAlignmentFlexed = 2
+	cervicalSpineAlignmentNeutral      = 0
+	, cervicalSpineAlignmentFlat   = 1
+	, cervicalSpineAlignmentFlexed = 2
 } PACCervicalSpineAlignment_t;
 
 // Side View Head
 typedef enum {
-        headSideAlignmentNeutral         = 0
-            , headSideAlignmentForward   = 1
-            , headSideAlignmentRetracted = 2
+	headSideAlignmentNeutral         = 0
+	, headSideAlignmentForward   = 1
+	, headSideAlignmentRetracted = 2
 }PACHeadSideAlignment_t;
 
 // Front View Check List
 typedef enum {
-        frontViewCheckListFeet            = (1 << 0)
-            , frontViewCheckListKnees     = (1 << 1)
-            , frontViewCheckListPelvis    = (1 << 2)
-            , frontViewCheckListRibcage   = (1 << 3)
-            , frontViewCheckListShoulders = (1 << 4)
-            , frontViewCheckListHead      = (1 << 5)
+	frontViewCheckListFeet            = (1 << 0)
+	, frontViewCheckListKnees     = (1 << 1)
+	, frontViewCheckListPelvis    = (1 << 2)
+	, frontViewCheckListRibcage   = (1 << 3)
+	, frontViewCheckListShoulders = (1 << 4)
+	, frontViewCheckListHead      = (1 << 5)
 } PACChecklistFrontView_t;
 
 // Front View Feet
 typedef enum {
-    feetFrontAlignmentNeutral        = 0
-        , feetFrontAlignmentInverted = 1
-        , feetFrontAlignmentEverted  = 2
+	feetFrontAlignmentNeutral        = 0
+	, feetFrontAlignmentInverted = 1
+	, feetFrontAlignmentEverted  = 2
 }PACFeetFrontAlignment_t;
 
 // Front View Knees
 typedef enum {
-        kneeFrontAlignmentNeutral       = 0
-            , kneeFrontAlignmentKnocked = 1
-            , kneeFrontAlignmentBow     = 2
+	kneeFrontAlignmentNeutral       = 0
+	, kneeFrontAlignmentKnocked = 1
+	, kneeFrontAlignmentBow     = 2
 } PACKneeFrontAlignment_t;
 
 // Front View Pelvis
 typedef enum {
-    pelvisFrontAlignmentLevel                         = 0
-        , pelvisFrontAlignmentElevatedLeft            = 1
-        , pelvisFrontAlignmentElevatedRight           = 2
-        , pelvisFrontAlignmentRotatedClockwise        = 3
-        , pelvisFrontAlignmentRotatedCounterClockwise = 4
+	pelvisFrontAlignmentLevel                         = 0
+	, pelvisFrontAlignmentElevatedLeft            = 1
+	, pelvisFrontAlignmentElevatedRight           = 2
+	, pelvisFrontAlignmentRotatedClockwise        = 3
+	, pelvisFrontAlignmentRotatedCounterClockwise = 4
 } PACPelvisFrontAlignment_t;
 
 // Front View Rib Cage
 typedef enum {
-    ribCageAlignmentNeutral                       = 0
-        , ribCageAlignmentElevatedLeft            = (1 << 0)
-        , ribCageAlignmentElevatedRight           = (1 << 2)
-        , ribCageAlignmentShiftedLeft             = (1 << 3)
-        , ribCageAlignmentShiftedRight            = (1 << 4)
-        , ribCageAlignmentRotatedClockwise        = (1 << 5)
-        , ribCageAlignmentRotatedCounterClockwise = (1 << 6)
+	ribCageAlignmentNeutral                       = 0
+	, ribCageAlignmentElevatedLeft            = (1 << 0)
+	, ribCageAlignmentElevatedRight           = (1 << 2)
+	, ribCageAlignmentShiftedLeft             = (1 << 3)
+	, ribCageAlignmentShiftedRight            = (1 << 4)
+	, ribCageAlignmentRotatedClockwise        = (1 << 5)
+	, ribCageAlignmentRotatedCounterClockwise = (1 << 6)
 }PACRibCageFrontAlignment_t;
 
 
 // Front View Shoulders
 typedef enum {
-    shouldersFrontAlignmentLevel = (1 << 0)
-        , shouldersFrontAlignmentElevatedLeft   = (1 << 1)
-        , shouldersFrontAlignmentElevatedRight  = (1 << 2)
-        , shouldersFrontAlignmentDepressedLeft  = (1 << 3)
-        , shouldersFrontAlignmentDepressedRight = (1 << 4)
+	shouldersFrontAlignmentLevel = (1 << 0)
+	, shouldersFrontAlignmentElevatedLeft   = (1 << 1)
+	, shouldersFrontAlignmentElevatedRight  = (1 << 2)
+	, shouldersFrontAlignmentDepressedLeft  = (1 << 3)
+	, shouldersFrontAlignmentDepressedRight = (1 << 4)
 } PACShouldersFrontAlignment_t;
 
 // Front View Head
 typedef enum {
-        headFrontAlignmentNeutral                       = (1 << 0)
-            , headFrontAlignmentRotatedClockwise        = (1 << 2)
-            , headFrontAlignmentRotatedCounterClockwise = (1 << 3)
-            , headFrontAlignmentTiltedLeft              = (1 << 4)
-            , headFrontAlignmentTiltedRight             = (1 << 5)
-            , headFrontAlignmentShiftedLeft             = (1 << 6)
-            , headFrontAlignmentShiftedRight            = (1 << 7)
+	headFrontAlignmentNeutral                       = (1 << 0)
+	, headFrontAlignmentRotatedClockwise        = (1 << 2)
+	, headFrontAlignmentRotatedCounterClockwise = (1 << 3)
+	, headFrontAlignmentTiltedLeft              = (1 << 4)
+	, headFrontAlignmentTiltedRight             = (1 << 5)
+	, headFrontAlignmentShiftedLeft             = (1 << 6)
+	, headFrontAlignmentShiftedRight            = (1 << 7)
 }PACHeadFrontAlignment_t;
 
 // Back View Check List
 typedef enum {
-        backViewCheckListFeet                  = (1 << 0)
-            , backViewCheckListFemurs          = (1 << 1)
-            , backViewCheckListPelvis          = (1 << 2)
-            , backViewCheckListScapulae        = (1 << 3)
-            , backViewCheckListHumeri          = (1 << 4)
-            , backViewCheckListSpineSequencing = (1 << 5)
+	backViewCheckListFeet                  = (1 << 0)
+	, backViewCheckListFemurs          = (1 << 1)
+	, backViewCheckListPelvis          = (1 << 2)
+	, backViewCheckListScapulae        = (1 << 3)
+	, backViewCheckListHumeri          = (1 << 4)
+	, backViewCheckListSpineSequencing = (1 << 5)
 } PACChecklistBackView_t;
 
 // Back View Feet
 typedef enum {
-    feetBackAlignmentNeutral        = 0
-        , feetBackAlignmentInverted = 1
-        , feetBackAlignmentEverted  = 2
+	feetBackAlignmentNeutral        = 0
+	, feetBackAlignmentInverted = 1
+	, feetBackAlignmentEverted  = 2
 }PACFeetBackAlignment_t;
 
 // Back View Femurs
 typedef enum {
-    femurBackAlignmentNeutral              = 0
-        , femurBackAlignmentRotatedMedial  = 1
-        , femurBackAlignmentRotatedLateral = 2
+	femurBackAlignmentNeutral              = 0
+	, femurBackAlignmentRotatedMedial  = 1
+	, femurBackAlignmentRotatedLateral = 2
 } PACFemurBackAlignment_t;
 
 // Back View Pelvis
 typedef enum {
-    pelvisBackAlignmentLevel                         = (1 << 0)
-        , pelvisBackAlignmentElevatedLeft            = (1 << 1)
-        , pelvisBackAlignmentElevatedRight           = (1 << 2)
-        , pelvisBackAlignmentRotatedClockwise        = (1 << 3)
-        , pelvisBackAlignmentRotatedCounterClockwise = (1 << 4)
+	pelvisBackAlignmentLevel                         = (1 << 0)
+	, pelvisBackAlignmentElevatedLeft            = (1 << 1)
+	, pelvisBackAlignmentElevatedRight           = (1 << 2)
+	, pelvisBackAlignmentRotatedClockwise        = (1 << 3)
+	, pelvisBackAlignmentRotatedCounterClockwise = (1 << 4)
 } PACPelvisBackAlignment_t;
 
 
 // Back View Scapulae
 typedef enum {
-        scapulaeBackAlignmentNeutral           =  0
-            , scapulaeBackAlignmentProtracted  =  1
-            , scapulaeBackAlignmentRetracted   =  2
-            , scapulaeBackAlignmentElevated    =  3
-            , scapulaeBackAlignmentDepressed   =  4
-            , scapulaeBackAlignmentRotatedUp   =  5
-            , scapulaeBackAlignmentRotatedDown =  6
-            , scapulaeBackAlignmentWinging     =  7
-            , scapulaeBackAlignmentTipping     =  8
+	scapulaeBackAlignmentNeutral           =  0
+	, scapulaeBackAlignmentProtracted  =  1
+	, scapulaeBackAlignmentRetracted   =  2
+	, scapulaeBackAlignmentElevated    =  3
+	, scapulaeBackAlignmentDepressed   =  4
+	, scapulaeBackAlignmentRotatedUp   =  5
+	, scapulaeBackAlignmentRotatedDown =  6
+	, scapulaeBackAlignmentWinging     =  7
+	, scapulaeBackAlignmentTipping     =  8
 } PACScapulaeBackAlignment_t;
 
 // Back View Humeri
 typedef enum {
-    humeriBackAlignmentNeutral       = 0
-        , humeriBackAlignmentRotated = 1
+	humeriBackAlignmentNeutral       = 0
+	, humeriBackAlignmentRotated = 1
 } PACHumeriBackAlignment_t;
 
 // Back Sequencing through spine for flat spots
 typedef enum {
-    spineSequencingNone                = (1 << 0) // none
-        , spineSequencingUpperCervical = (1 << 1) // C1 - C4
-        , spineSequencingLowerCervical = (1 << 2) // C4 - C7
-        , spineSequencingUpperThoracic = (1 << 3) // T1 - T6
-        , spineSequencingLowerThoracic = (1 << 4) // T6 - T12
-        , spineSequencingUpperLumbar   = (1 << 5) // L1 - L3
-        , spineSequencingLowerLumbar   = (1 << 6) // L3 - L5
+	spineSequencingNone                = (1 << 0)// none
+	, spineSequencingUpperCervical = (1 << 1) // C1 - C4
+	, spineSequencingLowerCervical = (1 << 2) // C4 - C7
+	, spineSequencingUpperThoracic = (1 << 3) // T1 - T6
+	, spineSequencingLowerThoracic = (1 << 4) // T6 - T12
+	, spineSequencingUpperLumbar   = (1 << 5) // L1 - L3
+	, spineSequencingLowerLumbar   = (1 << 6) // L3 - L5
 } PACSpineSequencing_t;
 
 // Back Sequencing through spine for imbalances
 #if 0
 typedef enum {
-        spineImbalanceNone            = (1 << 0)
-            , spineImbalanceHead      = (1 << 1)
-            , spineImbalanceShoulders = (1 << 2)
-            , spineImbalancePelvis    = (1 << 3)
-            , spineImbalanceKnees     = (1 << 4)
-            , spineImbalanceAnkles    = (1 << 5)
+	spineImbalanceNone            = (1 << 0)
+	, spineImbalanceHead      = (1 << 1)
+	, spineImbalanceShoulders = (1 << 2)
+	, spineImbalancePelvis    = (1 << 3)
+	, spineImbalanceKnees     = (1 << 4)
+	, spineImbalanceAnkles    = (1 << 5)
 }PACSpineImbalance_t;
 #else
 typedef enum {
-        spineImbalanceNone                     = (1 << 0)
-            , spineImbalanceUpperScapulaeLeft  = (1 << 1)
-            , spineImbalanceUpperScapulaeRight = (1 << 2)
-            , spineImbalanceLowerScapulaeLeft  = (1 << 3)
-            , spineImbalanceLowerScapulaeRight = (1 << 4)
-            , spineImbalanceLumbarLeft         = (1 << 5)
-            , spineImbalanceLumbarRight        = (1 << 6)
+	spineImbalanceNone                     = (1 << 0)
+	, spineImbalanceUpperScapulaeLeft  = (1 << 1)
+	, spineImbalanceUpperScapulaeRight = (1 << 2)
+	, spineImbalanceLowerScapulaeLeft  = (1 << 3)
+	, spineImbalanceLowerScapulaeRight = (1 << 4)
+	, spineImbalanceLumbarLeft         = (1 << 5)
+	, spineImbalanceLumbarRight        = (1 << 6)
 }PACSpineImbalance_t;
 
 #endif
@@ -332,7 +332,7 @@ extern const char* PACCheckListBackViewDidChange;
 UIImage* pac_plumbline_indicator();
 UIImage* pac_sideview_indicator();
 UIImage* pac_frontview_indicator();
-UIImage* pac_backview_indicator(); 
+UIImage* pac_backview_indicator();
 
 #endif
 

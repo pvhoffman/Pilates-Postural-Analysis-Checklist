@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface PACRibCageViewController : UIViewController <UITableViewDelegate
-                                                                , UITableViewDataSource
-                                                                >
+	                                                , UITableViewDataSource
+	                                                >
 
 @end
