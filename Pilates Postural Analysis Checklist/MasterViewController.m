@@ -18,14 +18,11 @@
 
 
 enum {
-	tableViewItemPlumbLine               = 0
-/*
-        , tableViewItemAlignedInRelation = 1
- */
-	, tableViewItemSideView          = 1
-	, tableViewItemFrontView         = 2
-	, tableViewItemBackView          = 3
-	, tableViewItemCount             = 4
+	tableViewItemPlumbLine   = 0
+	, tableViewItemSideView  = 1
+	, tableViewItemFrontView = 2
+	, tableViewItemBackView  = 3
+	, tableViewItemCount     = 4
 };
 
 static NSString* cell_identifier = @"master-view-cell";
@@ -151,14 +148,6 @@ static NSString* cell_identifier = @"master-view-cell";
 		[self.navigationController pushViewController:view_controller animated:YES];
 		break;
 	}
-/*
-        case tableViewItemAlignedInRelation: {
-            PACRelativeAlignmentViewController* view_controller = [[PACRelativeAlignmentViewController alloc] init];
-            [self.navigationController pushViewController:view_controller animated:YES];
-            break;
-                                             }
-
- */
 	case tableViewItemSideView: {
 		PACSideViewTableViewController* view_controller = [[PACSideViewTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
 		[self.navigationController pushViewController:view_controller animated:YES];
