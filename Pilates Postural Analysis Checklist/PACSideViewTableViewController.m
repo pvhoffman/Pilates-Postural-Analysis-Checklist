@@ -19,16 +19,16 @@
 #import "PACGlobal.h"
 
 enum {
-        tableViewItemAnkleJoints          = 0
-            , tableViewItemKnees          = 1
-            , tableViewItemHipJoints      = 2
-            , tableViewItemPelvis         = 3
-            , tableViewItemLumbarSpine    = 4
+        tableViewItemAnkleJoints              = 0
+            , tableViewItemKnees              = 1
+            , tableViewItemHipJoints          = 2
+            , tableViewItemPelvis             = 3
+            , tableViewItemLumbarSpine        = 4
             , tableViewItemLowerThoracicSpine = 5
             , tableViewItemUpperThoracicSpine = 6
-            , tableViewItemCervicalSpine  = 7
-            , tableViewItemHead           = 8
-            , tableViewItemCount          = 9
+            , tableViewItemCervicalSpine      = 7
+            , tableViewItemHead               = 8
+            , tableViewItemCount              = 9
 };
 
 static NSString* cell_identifier = @"sideview-view-cell";
@@ -78,7 +78,7 @@ static NSString* cell_identifier = @"sideview-view-cell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cell_identifier forIndexPath:indexPath];
-
+    cell.imageView.image = pac_sideview_indicator();
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cell_identifier];
     }

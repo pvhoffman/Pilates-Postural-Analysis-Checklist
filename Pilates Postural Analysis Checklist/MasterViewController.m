@@ -10,7 +10,7 @@
 #import "DetailViewController.h"
 
 #import "PACPlumbLineViewController.h"
-#import "PACRelativeAlignmentViewController.h"
+// #import "PACRelativeAlignmentViewController.h"
 #import "PACSideViewTableViewController.h"
 #import "PACFrontViewTableViewController.h"
 #import "PACBackViewTableViewController.h"
@@ -19,17 +19,20 @@
 
 enum {
     tableViewItemPlumbLine               = 0
+/*
         , tableViewItemAlignedInRelation = 1
-        , tableViewItemSideView          = 2
-        , tableViewItemFrontView         = 3
-        , tableViewItemBackView          = 4
-        , tableViewItemCount             = 5
+*/
+        , tableViewItemSideView          = 1
+        , tableViewItemFrontView         = 2
+        , tableViewItemBackView          = 3
+        , tableViewItemCount             = 4
 };
 
 static NSString* cell_identifier = @"master-view-cell";
 
 @interface MasterViewController ()
 -(void) mainCheckListDidChange:(NSNotification*)notification; 
+-(void) menuButtonClicked:(id)sender;
 @property NSMutableArray *objects;
 @end
 
@@ -52,6 +55,18 @@ static NSString* cell_identifier = @"master-view-cell";
 
     self.navigationItem.title = @"Main";//[detailItem description];
 
+    UIBarButtonItem* barItem1 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Menu", @"")
+                                                                 style:UIBarButtonItemStylePlain
+                                                                target:self
+                                                                action:@selector(menuButtonClicked:)];
+    //barItem1.tag = tagBarButtonMenu;
+    //[self.navigationBar.topItem setRightBarButtonItem:barItem1 animated:NO];
+    //[barItem1 release];
+
+    [self.navigationController.navigationBar.topItem setRightBarButtonItem:barItem1 animated:NO];
+
+
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mainCheckListDidChange:) name:[NSString stringWithUTF8String:PACCheckListMainDidChange] object:nil];
 
 
@@ -72,17 +87,7 @@ static NSString* cell_identifier = @"master-view-cell";
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
-/*
-#pragma mark - Segues
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender 
-{
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = self.objects[indexPath.row];
-        [[segue destinationViewController] setDetailItem:object];
-    }
-}
-*/
+
 #pragma mark - Table View
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
 {
@@ -105,31 +110,29 @@ static NSString* cell_identifier = @"master-view-cell";
 
     switch(indexPath.row){
         case tableViewItemPlumbLine:
-            cell.textLabel.text  = @"● Plumb Line";
+            cell.textLabel.text  = @"Plumb Line";
+            cell.imageView.image = pac_plumbline_indicator();
             if((PACChecklistMain & mainChecklistPlumbline) == mainChecklistPlumbline){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
-        case tableViewItemAlignedInRelation:
-            cell.textLabel.text = @"● Relative Alignment";
-            if((PACChecklistMain & mainChecklistAlignedInRelation) == mainChecklistAlignedInRelation){
-                cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            }
-            break;
         case tableViewItemSideView:
-            cell.textLabel.text = @"● Side View";
+            cell.textLabel.text = @"Side View";
+            cell.imageView.image = pac_sideview_indicator();
             if((PACChecklistMain & mainChecklistSideView) == mainChecklistSideView){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemFrontView:
-            cell.textLabel.text = @"● Front View";
+            cell.textLabel.text = @"Front View";
+            cell.imageView.image = pac_frontview_indicator();
             if((PACChecklistMain & mainChecklistFrontView) == mainChecklistFrontView){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemBackView:
-            cell.textLabel.text = @"● Back View";
+            cell.textLabel.text = @"Back View";
+            cell.imageView.image = pac_backview_indicator();
             if((PACChecklistMain & mainChecklistBackView) == mainChecklistBackView){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
@@ -148,11 +151,14 @@ static NSString* cell_identifier = @"master-view-cell";
             [self.navigationController pushViewController:view_controller animated:YES];
             break;
                                      }
+/*
         case tableViewItemAlignedInRelation: {
             PACRelativeAlignmentViewController* view_controller = [[PACRelativeAlignmentViewController alloc] init];
             [self.navigationController pushViewController:view_controller animated:YES];
             break;
                                              }
+
+*/
         case tableViewItemSideView:{
             PACSideViewTableViewController* view_controller = [[PACSideViewTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
             [self.navigationController pushViewController:view_controller animated:YES];
@@ -206,6 +212,13 @@ static NSString* cell_identifier = @"master-view-cell";
 -(void) mainCheckListDidChange:(NSNotification*)notification;
 {
         [self.tableView reloadData];
+}
+-(void) menuButtonClicked:(id)sender
+{
+    // menu items:
+    // Save Profile
+    // New Profile
+    // Email Analysis
 }
 @end
 

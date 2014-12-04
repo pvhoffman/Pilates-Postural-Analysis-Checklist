@@ -68,41 +68,42 @@ static NSString* cell_identifier = @"backview-view-cell";
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cell_identifier forIndexPath:indexPath];
     cell.accessoryType    = UITableViewCellAccessoryDisclosureIndicator;
+    cell.imageView.image = pac_backview_indicator();
     
     // Configure the cell...
     switch(indexPath.row){
         case tableViewItemFeet:
-            cell.textLabel.text = @"● Feet";
+            cell.textLabel.text = @"Feet";
             if((PACChecklistBackView & backViewCheckListFeet) == backViewCheckListFeet){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemFemurs:
-            cell.textLabel.text = @"● Femurs";
+            cell.textLabel.text = @"Femurs";
             if((PACChecklistBackView & backViewCheckListFemurs) == backViewCheckListFemurs){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemPelvis:
-            cell.textLabel.text = @"● Pelvis";
+            cell.textLabel.text = @"Pelvis";
             if((PACChecklistBackView & backViewCheckListPelvis) == backViewCheckListPelvis){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemScapulae:
-            cell.textLabel.text = @"● Scapulae";
+            cell.textLabel.text = @"Scapulae";
             if((PACChecklistBackView & backViewCheckListScapulae) == backViewCheckListScapulae){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemHumeri:
-            cell.textLabel.text = @"● Humeri";
+            cell.textLabel.text = @"Humeri";
             if((PACChecklistBackView & backViewCheckListHumeri) == backViewCheckListHumeri){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemSpineSequencing:
-            cell.textLabel.text = @"● Spine Sequencing";
+            cell.textLabel.text = @"Spine Sequencing";
             if((PACChecklistBackView & backViewCheckListSpineSequencing) == backViewCheckListSpineSequencing){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }

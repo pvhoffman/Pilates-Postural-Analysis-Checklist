@@ -67,40 +67,41 @@ static NSString* cell_identifier = @"frontview-view-cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cell_identifier forIndexPath:indexPath];
     
     cell.accessoryType   = UITableViewCellAccessoryDisclosureIndicator;
+    cell.imageView.image = pac_frontview_indicator();
 
     switch(indexPath.row){
         case tableViewItemFeet:
-            cell.textLabel.text  = @"1. Feet";
+            cell.textLabel.text  = @"Feet";
             if((PACChecklistFrontView & frontViewCheckListFeet) == frontViewCheckListFeet){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemKnees:
-            cell.textLabel.text  = @"2. Knees";
+            cell.textLabel.text  = @"Knees";
             if((PACChecklistFrontView & frontViewCheckListKnees) == frontViewCheckListKnees){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemPelvis:
-            cell.textLabel.text  = @"3. Pelvis";
+            cell.textLabel.text  = @"Pelvis";
             if((PACChecklistFrontView & frontViewCheckListPelvis) == frontViewCheckListPelvis){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemRibcage:
-            cell.textLabel.text  = @"4. Rib Cage";
+            cell.textLabel.text  = @"Rib Cage";
             if((PACChecklistFrontView & frontViewCheckListRibcage) == frontViewCheckListRibcage){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemShoulders:
-            cell.textLabel.text  = @"5. Shoulders";
+            cell.textLabel.text  = @"Shoulders";
             if((PACChecklistFrontView & frontViewCheckListShoulders) == frontViewCheckListShoulders){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
         case tableViewItemHead:
-            cell.textLabel.text  = @"6. Head";
+            cell.textLabel.text  = @"Head";
             if((PACChecklistFrontView & frontViewCheckListHead) == frontViewCheckListHead){
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }

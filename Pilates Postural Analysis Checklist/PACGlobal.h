@@ -329,6 +329,10 @@ extern const char* PACCheckListSideViewDidChange;
 extern const char* PACCheckListFrontViewDidChange;
 extern const char* PACCheckListBackViewDidChange;
 
+UIImage* pac_plumbline_indicator();
+UIImage* pac_sideview_indicator();
+UIImage* pac_frontview_indicator();
+UIImage* pac_backview_indicator(); 
 
 #endif
 

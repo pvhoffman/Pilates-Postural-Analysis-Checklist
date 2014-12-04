@@ -15,19 +15,31 @@ enum {
 };
 
 enum {
-        tableViewRowHead = 0
-            , tableViewRowShoulders = 1
-            , tableViewRowUpperBody = 2
-            , tableViewRowPelvis    = 3
-            , tableViewRowKnees     = 4
-            , tableViewRowCount     = 5
+        tableViewRowHead                    = 0
+            , tableViewRowShoulders         = 1
+            , tableViewRowUpperBody         = 2
+            , tableViewRowPelvis            = 3
+            , tableViewRowKnees             = 4
+            , tableViewRowRelativeAlignment = 5
+            , tableViewRowCount             = 6
 };
 
 static NSString* cell_identifier = @"plumbline-cell";
-
+//-----------------------------------------------------------------------------
+@interface PACPlumbLineTableViewCell : UITableViewCell
+@end
+@implementation PACPlumbLineTableViewCell 
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+        self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
+        return self;
+}
+@end
+//-----------------------------------------------------------------------------
 @interface PACPlumbLineViewController ()
 -(void) segmentvaluechanged:(id)sender;
 -(void) clearAllButtonClicked:(id)sender;
+-(void) switchvaluechanged:(id)sender;
 @end
 
 @implementation PACPlumbLineViewController
@@ -58,12 +70,14 @@ static NSString* cell_identifier = @"plumbline-cell";
     tableView.dataSource = self;
     tableView.delegate = self;
 
-    [tableView registerClass:[UITableViewCell class ] forCellReuseIdentifier:cell_identifier];
+    [tableView registerClass:[PACPlumbLineTableViewCell class ] forCellReuseIdentifier:cell_identifier];
     //tableView.tag = tagTableView;
     [content_view addSubview:tableView];
 
 
     [self.view addSubview:content_view];
+
+
 }
 - (void)didReceiveMemoryWarning 
 {
@@ -86,27 +100,34 @@ static NSString* cell_identifier = @"plumbline-cell";
 #pragma mark UITableViewDataSource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cell_identifier forIndexPath:indexPath];
-
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 /*UITableViewCellStyleDefault*/ reuseIdentifier:cell_identifier];
-        cell.accessoryView = nil;
-    }
+    PACPlumbLineTableViewCell* cell = (PACPlumbLineTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cell_identifier forIndexPath:indexPath];
 
     if(!cell.accessoryView){
-        UISegmentedControl *segment = [[UISegmentedControl alloc] init];
-        segment.frame = CGRectMake(0,0,200,30);
-        segment.tag   = indexPath.row;
-        [segment insertSegmentWithTitle:@"Forward" atIndex:0 animated:NO];
-        [segment insertSegmentWithTitle:@"Aligned" atIndex:1 animated:NO];
-        [segment insertSegmentWithTitle:@"Behind"  atIndex:2 animated:NO];
-        [segment addTarget:self action:@selector(segmentvaluechanged:) forControlEvents:UIControlEventValueChanged];
-        
-        cell.accessoryView = segment;
+        if(indexPath.row == tableViewRowRelativeAlignment){
+            UISwitch* sitch = [[UISwitch alloc] init];
+            sitch.frame = CGRectMake(0.0f, 0.0f, 60.0f, 21.0f);
+            sitch.tag   = indexPath.row;
+            sitch.on    = ((PACChecklistMain & mainChecklistAlignedInRelation) == mainChecklistAlignedInRelation);
+            [sitch addTarget:self action:@selector(switchvaluechanged:) forControlEvents:UIControlEventValueChanged];
+            cell.accessoryView = sitch;
+        } else {
+            UISegmentedControl *segment = [[UISegmentedControl alloc] init];
+            segment.frame = CGRectMake(0,0,200,30);
+            segment.tag   = indexPath.row;
+            [segment insertSegmentWithTitle:@"Forward" atIndex:0 animated:NO];
+            [segment insertSegmentWithTitle:@"Aligned" atIndex:1 animated:NO];
+            [segment insertSegmentWithTitle:@"Behind"  atIndex:2 animated:NO];
+            [segment addTarget:self action:@selector(segmentvaluechanged:) forControlEvents:UIControlEventValueChanged];
+
+            cell.accessoryView = segment;
+        }
     }
 
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    ((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = -1;
+
+    if(indexPath.row != tableViewRowRelativeAlignment){
+        ((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = -1;
+    }
 
     switch(indexPath.row){
         case tableViewRowHead:
@@ -159,6 +180,10 @@ static NSString* cell_identifier = @"plumbline-cell";
                 ((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = 2;
             }
             break;
+        case tableViewRowRelativeAlignment:
+            cell.textLabel.text = @"Relative Alignment";
+            cell.detailTextLabel.text = @"Are the head, thorax and pelvic relatively aligned?";
+            break;
         default:
             cell.textLabel.text = [NSString stringWithFormat:@"cell %d", (int)indexPath.row];
             break;
@@ -191,6 +216,7 @@ static NSString* cell_identifier = @"plumbline-cell";
 {
 	return 44.0f;
 }
+/*
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UIButton* button1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -206,6 +232,7 @@ static NSString* cell_identifier = @"plumbline-cell";
 {
         return 30.0f;
 }
+*/
 #pragma mark -
 #pragma mark UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -227,6 +254,17 @@ static NSString* cell_identifier = @"plumbline-cell";
 
 
 
+}
+-(void) switchvaluechanged:(id)sender
+{
+    UISwitch* s = (UISwitch*)sender;
+
+    if(s.on){
+        PACChecklistMain |= mainChecklistAlignedInRelation;
+    } else {
+        PACChecklistMain &= ~mainChecklistAlignedInRelation;
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListMainDidChange] object:nil];
 }
 -(void) segmentvaluechanged:(id)sender
 {
@@ -315,6 +353,8 @@ static NSString* cell_identifier = @"plumbline-cell";
             
             }
             break;
+        case tableViewRowRelativeAlignment:
+            break;
     }
 
     if( ((PACPlumbLineAlignment & plumbHeadForward) == plumbHeadForward 
@@ -340,5 +380,8 @@ static NSString* cell_identifier = @"plumbline-cell";
     [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListMainDidChange] object:nil];
 
  
+}
+-(void) menuButtonClicked:(id)sender
+{
 }
 @end

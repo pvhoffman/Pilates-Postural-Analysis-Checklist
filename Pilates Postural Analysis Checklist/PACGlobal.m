@@ -81,6 +81,25 @@ int PACHumeriBackAlignmentRight = -1;
 
 int PACSpineSequencing = 0;
 int PACSpineImbalance  = 0;
+
+
+UIImage* pac_plumbline_indicator()
+{
+        return [UIImage imageNamed:@"llb_ball_15.png"];
+}
+UIImage* pac_sideview_indicator()
+{
+        return [UIImage imageNamed:@"g_ball_15.png"];
+}
+UIImage* pac_frontview_indicator()
+{
+        return [UIImage imageNamed:@"o_ball_15.png"];
+}
+UIImage* pac_backview_indicator()
+{
+        return [UIImage imageNamed:@"p_ball_15.png"];
+}
+
 #if 0
 
 void create_document()
