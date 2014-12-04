@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "PACGlobal.h"
 
-static const char* source_pdf = "Postural-Analysis-Guide.pdf";
+// static const char* source_pdf = "Postural-Analysis-Guide.pdf";
 
 unsigned int PACChecklistMain      = 0;
 unsigned int PACPlumbLineAlignment = 0;

@@ -38,6 +38,7 @@ enum {
         , tableViewFlatAreasRowCount         = 7
 };
 
+#if 0
 enum {
         tableViewImbalancesRowNone            = 0
             , tableViewImbalancesRowHead      = 1
@@ -47,6 +48,20 @@ enum {
             , tableViewImbalancesRowAnkles    = 5
             , tableViewImbalancesRowCount     = 6
 };
+#else
+
+enum {
+    tableViewImbalanceRowNone                     = 0
+        , tableViewImbalanceRowUpperScapulaeLeft  = 1
+        , tableViewImbalanceRowUpperScapulaeRight = 2
+        , tableViewImbalanceRowLowerScapulaeLeft  = 3
+        , tableViewImbalanceRowLowerScapulaeRight = 4
+        , tableViewImbalanceRowLumbarLeft         = 5
+        , tableViewImbalanceRowLumbarRight        = 6
+        , tableViewImbalancesRowCount             = 7
+};
+
+#endif
 
 static NSString* cell_identifier            = @"spinesequencing-back-cell";
 static NSString* cell_identifier_flatareas  = @"spinesequencing-back-cell-flatareas";
@@ -131,7 +146,7 @@ static NSString* cell_identifier_imbalances = @"spinesequencing-back-cell-imbala
 
     fy = fy + look.size.height + fgutter;
 
-    UITableView* tableView = [[UITableView alloc] initWithFrame:CGRectMake(3.0f, fy + 30.0f, frame.size.width - 3.0f, 300.0f) style:UITableViewStyleGrouped];
+    UITableView* tableView = [[UITableView alloc] initWithFrame:CGRectMake(3.0f, fy + 30.0f, frame.size.width - 3.0f, 280.0f) style:UITableViewStyleGrouped];
     tableView.tag = tagTableView;
     tableView.dataSource = self;
     tableView.delegate = self;
@@ -150,13 +165,19 @@ static NSString* cell_identifier_imbalances = @"spinesequencing-back-cell-imbala
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cell_identifier forIndexPath:indexPath];
 
-    cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;// UITableViewCellAccessoryNone;
     switch(indexPath.row){
         case tableViewMainRowFlatAreas:
-            cell.textLabel.text = @"● Flat Areas";
+            cell.textLabel.text = @"Flat Areas";
+            if(PACSpineSequencing){
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
             break;
         case tableViewMainRowImbalances:
-            cell.textLabel.text = @"● Imbalances";
+            cell.textLabel.text = @"Imbalances";
+            if(PACSpineImbalance){
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
             break;
     }
     return cell;
@@ -227,39 +248,45 @@ static NSString* cell_identifier_imbalances = @"spinesequencing-back-cell-imbala
 
     cell.accessoryType = UITableViewCellAccessoryNone;
     switch(indexPath.row){
-        case tableViewImbalancesRowNone:
+        case tableViewImbalanceRowNone:
             cell.textLabel.text = @"None";
             if(PACSpineImbalance == spineImbalanceNone){
                  cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
-        case tableViewImbalancesRowHead:
-            cell.textLabel.text = @"Head";
-            if((PACSpineImbalance & spineImbalanceHead) == spineImbalanceHead){
+        case tableViewImbalanceRowUpperScapulaeLeft:
+            cell.textLabel.text = @"Upper/Left Scapulae";
+            if((PACSpineImbalance & spineImbalanceUpperScapulaeLeft) == spineImbalanceUpperScapulaeLeft){
                  cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
-        case tableViewImbalancesRowShoulders:
-            cell.textLabel.text = @"Shoulders";
-            if((PACSpineImbalance & spineImbalanceShoulders) == spineImbalanceShoulders){
+        case tableViewImbalanceRowUpperScapulaeRight:
+            cell.textLabel.text = @"Upper/Right Scapulae";
+            if((PACSpineImbalance & spineImbalanceUpperScapulaeRight) == spineImbalanceUpperScapulaeRight){
                  cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
-        case tableViewImbalancesRowPelvis:
-            cell.textLabel.text = @"Pelvis";
-            if((PACSpineImbalance & spineImbalancePelvis) == spineImbalancePelvis){
+        case tableViewImbalanceRowLowerScapulaeLeft:
+            cell.textLabel.text = @"Lower/Left Scapulae";
+            if((PACSpineImbalance & spineImbalanceLowerScapulaeLeft) == spineImbalanceLowerScapulaeLeft){
                  cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
-        case tableViewImbalancesRowKnees:
-            cell.textLabel.text = @"Knees";
-            if((PACSpineImbalance & spineImbalanceKnees) == spineImbalanceKnees){
+        case tableViewImbalanceRowLowerScapulaeRight:
+            cell.textLabel.text = @"Lower/Right Scapulae";
+            if((PACSpineImbalance & spineImbalanceLowerScapulaeRight) == spineImbalanceLowerScapulaeRight){
                  cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
-        case tableViewImbalancesRowAnkles:
-            cell.textLabel.text = @"Ankles";
-            if((PACSpineImbalance & spineImbalanceAnkles) == spineImbalanceAnkles){
+        case tableViewImbalanceRowLumbarLeft:
+            cell.textLabel.text = @"Left Lumbar";
+            if((PACSpineImbalance & spineImbalanceLumbarLeft) == spineImbalanceLumbarLeft){
+                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
+            break;
+        case tableViewImbalanceRowLumbarRight:
+            cell.textLabel.text = @"Right Lumbar";
+            if((PACSpineImbalance & spineImbalanceLumbarRight) == spineImbalanceLumbarRight){
                  cell.accessoryType = UITableViewCellAccessoryCheckmark;
             }
             break;
@@ -309,7 +336,7 @@ static NSString* cell_identifier_imbalances = @"spinesequencing-back-cell-imbala
 }
 - (UIView *) viewForHeaderInSectionMain:(NSInteger)section
 {
-    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0f, self.view.frame.size.width, 38.0f)];
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0f, self.view.frame.size.width, 64.0f)];
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor blackColor];
     label.font = [UIFont boldSystemFontOfSize:16.0];
@@ -357,7 +384,14 @@ static NSString* cell_identifier_imbalances = @"spinesequencing-back-cell-imbala
 }
 -(CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 38.0f;
+    switch(tableView.tag){
+        case tagTableView:
+            return 64.0f;
+        case tagTableViewFlatAreas:
+        case tagTableViewImbalances:
+            return 38.0f;
+    }
+    return 0.0f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -419,18 +453,10 @@ static NSString* cell_identifier_imbalances = @"spinesequencing-back-cell-imbala
         PACSpineSequencing |= (1 << indexPath.row);
     }
     [tableView reloadData];
-/*
-    UITableView* table_view  = [[UITableView alloc] initWithFrame:tableView.frame style:UITableViewStyleGrouped];
-    table_view.scrollEnabled = YES;
-    table_view.dataSource    = self;
-    table_view.delegate      = self;
-    table_view.tag           = tagTableView;
-    [UIView transitionFromView:tableView toView:table_view duration:0.45 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){}];
-*/
 }
 - (void) didSelectRowAtIndexPathImbalances:(UITableView*)tableView at:(NSIndexPath *)indexPath
 {
-    if(indexPath.row == tableViewImbalancesRowNone){
+    if(indexPath.row == tableViewImbalanceRowNone){
         PACSpineImbalance = spineImbalanceNone;
     } else {
         PACSpineImbalance &= ~spineImbalanceNone;
@@ -462,5 +488,13 @@ static NSString* cell_identifier_imbalances = @"spinesequencing-back-cell-imbala
     [table_view registerClass:[UITableViewCell class] forCellReuseIdentifier:cell_identifier];
 
     [UIView transitionFromView:tableView toView:table_view duration:0.45 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){}];
+
+    if(PACSpineImbalance && PACSpineSequencing){
+        if(!((PACChecklistBackView & backViewCheckListSpineSequencing) == backViewCheckListSpineSequencing)){
+            PACChecklistBackView |= backViewCheckListSpineSequencing;
+            [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListBackViewDidChange] object:nil];
+        }
+    }
 }
 @end
+
