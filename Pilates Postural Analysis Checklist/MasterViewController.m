@@ -57,7 +57,6 @@ static NSString* cell_identifier = @"master-view-cell";
 	                             action:@selector(menuButtonClicked:)];
 	[self.navigationController.navigationBar.topItem setRightBarButtonItem:barItem1 animated:NO];
 
-
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mainCheckListDidChange:) name:[NSString stringWithUTF8String:PACCheckListMainDidChange] object:nil];
 
 

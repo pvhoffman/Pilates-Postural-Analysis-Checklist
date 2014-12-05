@@ -5,9 +5,12 @@
 //  Created by Paul Hoffman on 10/22/14.
 //  Copyright (c) 2014 Paul Hoffman. All rights reserved.
 //
-
 #ifndef Pilates_Postural_Analysis_Checklist_PACGlobal_h
 #define Pilates_Postural_Analysis_Checklist_PACGlobal_h
+
+#include <sqlite3.h>
+
+
 
 typedef enum {
 	mainChecklistPlumbline               = (1 << 0)
@@ -178,7 +181,7 @@ typedef enum {
 
 // Back View Check List
 typedef enum {
-	backViewCheckListFeet                  = (1 << 0)
+	backViewCheckListFeet              = (1 << 0)
 	, backViewCheckListFemurs          = (1 << 1)
 	, backViewCheckListPelvis          = (1 << 2)
 	, backViewCheckListScapulae        = (1 << 3)
@@ -251,8 +254,9 @@ typedef enum {
 	, spineImbalanceAnkles    = (1 << 5)
 }PACSpineImbalance_t;
 #else
+
 typedef enum {
-	spineImbalanceNone                     = (1 << 0)
+	spineImbalanceNone                 = (1 << 0)
 	, spineImbalanceUpperScapulaeLeft  = (1 << 1)
 	, spineImbalanceUpperScapulaeRight = (1 << 2)
 	, spineImbalanceLowerScapulaeLeft  = (1 << 3)
@@ -334,5 +338,9 @@ UIImage* pac_sideview_indicator();
 UIImage* pac_frontview_indicator();
 UIImage* pac_backview_indicator();
 
+
+void pac_reset_all(); 
+
+struct sqlite3* pac_database();
 #endif
 

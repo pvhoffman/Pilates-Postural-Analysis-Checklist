@@ -10,11 +10,12 @@
 #import "PACGlobal.h"
 
 enum {
-        tableViewRowSaveProfile         = 0
-            , tableViewRowLoadProfile   = 1
-            , tableViewRowEmailAnalysis = 2
-            , tableViewRowDismiss       = 3
-            , tableViewRowCount         = 4
+        tableViewRowNewProfile         = 0
+            , tableViewRowSaveProfile   = 1
+            , tableViewRowLoadProfile   = 2
+            , tableViewRowEmailAnalysis = 3
+            , tableViewRowDismiss       = 4
+            , tableViewRowCount         = 5
 };
 
 enum {
@@ -62,6 +63,9 @@ static NSString* cell_identifier = @"main-menu-cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cell_identifier forIndexPath:indexPath];
 
     switch(indexPath.row){
+        case tableViewRowNewProfile:
+            cell.textLabel.text = @"New Analysis";
+            break;
         case tableViewRowSaveProfile:
             cell.textLabel.text = @"Save Analysis";
             break;
@@ -80,7 +84,7 @@ static NSString* cell_identifier = @"main-menu-cell";
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 16.0f, tableView.frame.size.width, 28.0f)];
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 18.0f, tableView.frame.size.width, 28.0f)];
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor blackColor];
     label.font = [UIFont boldSystemFontOfSize:16.0];
@@ -95,7 +99,17 @@ static NSString* cell_identifier = @"main-menu-cell";
 	return 42.0f;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+{  
+    switch(indexPath.row){
+        case tableViewRowNewProfile:
+            pac_reset_all(); 
+            [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListMainDidChange] object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListSideViewDidChange] object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListFrontViewDidChange] object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListBackViewDidChange] object:nil];
+            break;
+    }
+
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 

@@ -47,6 +47,8 @@
 		E74666781A311B5A00A7B50A /* o_ball_15.png in Resources */ = {isa = PBXBuildFile; fileRef = E74666771A311B5A00A7B50A /* o_ball_15.png */; };
 		E746667A1A311C8F00A7B50A /* p_ball_15.png in Resources */ = {isa = PBXBuildFile; fileRef = E74666791A311C8F00A7B50A /* p_ball_15.png */; };
 		E746667D1A3123C100A7B50A /* PACMainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E746667C1A3123C100A7B50A /* PACMainMenuViewController.m */; };
+		E74666801A32572F00A7B50A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E746667F1A32572F00A7B50A /* libsqlite3.dylib */; };
+		E74666821A32574400A7B50A /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E74666811A32574400A7B50A /* libsqlite3.0.dylib */; };
 		E74AAAEF1A13F51C00C008CE /* PACFemursBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E74AAAEE1A13F51C00C008CE /* PACFemursBackViewController.m */; };
 		E74AAAF11A13FA1A00C008CE /* femurs_back_detail.gif in Resources */ = {isa = PBXBuildFile; fileRef = E74AAAF01A13FA1A00C008CE /* femurs_back_detail.gif */; };
 		E74AAAF51A142D7200C008CE /* main-view.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E74AAAF41A142D7200C008CE /* main-view.jpg */; };
@@ -146,6 +148,8 @@
 		E74666791A311C8F00A7B50A /* p_ball_15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p_ball_15.png; sourceTree = "<group>"; };
 		E746667B1A3123C100A7B50A /* PACMainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACMainMenuViewController.h; sourceTree = "<group>"; };
 		E746667C1A3123C100A7B50A /* PACMainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACMainMenuViewController.m; sourceTree = "<group>"; };
+		E746667F1A32572F00A7B50A /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		E74666811A32574400A7B50A /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		E74AAAED1A13F51C00C008CE /* PACFemursBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACFemursBackViewController.h; sourceTree = "<group>"; };
 		E74AAAEE1A13F51C00C008CE /* PACFemursBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACFemursBackViewController.m; sourceTree = "<group>"; };
 		E74AAAF01A13FA1A00C008CE /* femurs_back_detail.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = femurs_back_detail.gif; sourceTree = "<group>"; };
@@ -198,6 +202,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E74666821A32574400A7B50A /* libsqlite3.0.dylib in Frameworks */,
+				E74666801A32572F00A7B50A /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +220,8 @@
 		E7B0E9AF19F702200011BB49 = {
 			isa = PBXGroup;
 			children = (
+				E74666811A32574400A7B50A /* libsqlite3.0.dylib */,
+				E746667F1A32572F00A7B50A /* libsqlite3.dylib */,
 				E7B0E9E419F707BD0011BB49 /* images */,
 				E7B0E9BA19F702200011BB49 /* Pilates Postural Analysis Checklist */,
 				E7B0E9D719F702200011BB49 /* Pilates Postural Analysis ChecklistTests */,
