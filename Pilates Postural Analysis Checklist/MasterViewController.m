@@ -14,6 +14,7 @@
 #import "PACSideViewTableViewController.h"
 #import "PACFrontViewTableViewController.h"
 #import "PACBackViewTableViewController.h"
+#import "PACMainMenuViewController.h"
 #import "PACGlobal.h"
 
 
@@ -24,6 +25,7 @@ enum {
 	, tableViewItemBackView  = 3
 	, tableViewItemCount     = 4
 };
+//static UIPopoverController* _popover_controller = nil;
 
 static NSString* cell_identifier = @"master-view-cell";
 
@@ -43,25 +45,17 @@ static NSString* cell_identifier = @"master-view-cell";
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-	//self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-	//UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-	//self.navigationItem.rightBarButtonItem = addButton;
+	// Do any additional setup after loading the view, typically from a nib.
 	[self.tableView registerClass:[UITableViewCell class ] forCellReuseIdentifier:cell_identifier];
 
-	self.navigationItem.title = @"Main";//[detailItem description];
+	self.navigationItem.title = @"Main";
 
 	UIBarButtonItem* barItem1 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Menu", @"")
 	                             style:UIBarButtonItemStylePlain
 	                             target:self
 	                             action:@selector(menuButtonClicked:)];
-	//barItem1.tag = tagBarButtonMenu;
-	//[self.navigationBar.topItem setRightBarButtonItem:barItem1 animated:NO];
-	//[barItem1 release];
-
 	[self.navigationController.navigationBar.topItem setRightBarButtonItem:barItem1 animated:NO];
-
 
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mainCheckListDidChange:) name:[NSString stringWithUTF8String:PACCheckListMainDidChange] object:nil];
@@ -204,10 +198,8 @@ static NSString* cell_identifier = @"master-view-cell";
 }
 -(void) menuButtonClicked:(id)sender
 {
-	// menu items:
-	// Save Profile
-	// New Profile
-	// Email Analysis
+    PACMainMenuViewController* controller = [[PACMainMenuViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    [self.view.window.rootViewController presentViewController:controller animated:YES completion:^(void){}];
 }
 @end
 
