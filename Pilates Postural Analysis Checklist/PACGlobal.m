@@ -178,7 +178,7 @@ static NSString* pac_database_filename()
 static void pac_init_analysis_table()
 {
     int rc = sqlite3_exec(pacDatabase
-            , "create table if not exists analysis_t (analysis_index integer primary key autoincrement not null"\
+            , "create table if not exists analysis_t (analysis_id integer primary key autoincrement not null"\
             ", analysis_name text"\
             ", analysis_datetime text"\
             ", analysis_plumbline integer default 0"\
@@ -194,7 +194,7 @@ static void pac_init_analysis_table()
 static void pac_init_plumbline_table()
 {
     int rc = sqlite3_exec(pacDatabase
-            , "create table if not exists plumbline_t (plumbline_index integer primary key autoincrement not null"\
+            , "create table if not exists plumbline_t (plumbline_id integer primary key autoincrement not null"\
             ", plumbline_analysis integer default 0"\
             ", plumbline_alignment integer default 0);"
             , 0, 0, 0);
@@ -206,7 +206,7 @@ static void pac_init_plumbline_table()
 static void pac_init_sideviewtable()
 {
     int rc = sqlite3_exec(pacDatabase
-            , "create table if not exists sideview_t (sideview_index integer primary key autoincrement not null"\
+            , "create table if not exists sideview_t (sideview_id integer primary key autoincrement not null"\
             ", sideview_analysis integer default 0"\
             ", sideview_ankle_left integer default 0"\
             ", sideview_ankle_right integer default 0"\
@@ -231,7 +231,7 @@ static void pac_init_sideviewtable()
 static void pac_init_frontview_table()
 {
     int rc = sqlite3_exec(pacDatabase
-            , "create table if not exists frontview_t (frontview_index integer primary key autoincrement not null"\
+            , "create table if not exists frontview_t (frontview_id integer primary key autoincrement not null"\
             ", frontview_analysis integer default 0"\
             ", frontview_foot_left integer default 0"\
             ", frontview_foot_right integer default 0"\
@@ -251,7 +251,7 @@ static void pac_init_frontview_table()
 static void pac_init_backview_table()
 {
     int rc = sqlite3_exec(pacDatabase
-            , "create table if not exists backview_t (backview_index integer primary key autoincrement not null"\
+            , "create table if not exists backview_t (backview_id integer primary key autoincrement not null"\
             ", backview_analysis integer default 0"\
             ", backview_foot_left integer default 0"\
             ", backview_foot_right integer default 0"\
@@ -303,14 +303,189 @@ static struct sqlite3* pac_database()
         }
         return pacDatabase;
 } 
-static void pac_save_analysis_plumbline()
+static void pac_save_analysis_plumbline(const int analysis_id)
 {
-        
+    sqlite3_stmt* stmt = 0;
+    struct sqlite3* db = pac_database();
+
+    sqlite3_prepare(db
+            , "insert into plumbline_t (plumbline_analysis, plumbline_alignment) values (?, ?)"
+            , -1
+            , &stmt
+            , 0);
+    sqlite3_bind_int(stmt, 1, PACPlumbLineAlignment);
+    sqlite3_bind_int(stmt, 2, analysis_id);
+    sqlite3_step(stmt);
+    sqlite3_finalize(stmt);
+
+    int rowid = sqlite3_last_insert_rowid(db);
+
+    sqlite3_prepare(db
+            , "upate analysis_t set analysis_plumbline = ? where analysis_id = ?"
+            , -1
+            , &stmt
+            , 0);
+    sqlite3_bind_int(stmt, 1, rowid);
+    sqlite3_bind_int(stmt, 2, analysis_id);
+    sqlite3_step(stmt);
+    sqlite3_finalize(stmt);
+}
+static void pac_save_analysis_sideview(const int analysis_id)
+{
+    sqlite3_stmt* stmt = 0;
+    struct sqlite3* db = pac_database();
+
+    sqlite3_prepare(db
+            , "insert into sideview_t (sideview_analysis, sideview_ankle_left, sideview_ankle_right, sideview_knee_left, sideview_knee_right, sideview_hip_left, sideview_hip_right"\
+            " , sideview_pelvis_left, sideview_pelvis_right, sideview_lumbar, sideview_thoracic_lower, sideview_thoracic_upper, sideview_cervical, sideview_head)"\
+            " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            , -1
+            , &stmt
+            , 0);
+
+    sqlite3_bind_int(stmt, 1, analysis_id);
+
+    sqlite3_bind_int(stmt, 2, PACAnkleAlignmentLeft);
+    sqlite3_bind_int(stmt, 3, PACAnkleAlignmentRight);
+
+    sqlite3_bind_int(stmt, 4, PACKneeAlignmentSideLeft);
+    sqlite3_bind_int(stmt, 5, PACKneeAlignmentSideRight);
+    
+    sqlite3_bind_int(stmt, 6, PACHipAlignmentLeft);
+    sqlite3_bind_int(stmt, 7, PACHipAlignmentRight);
+
+    sqlite3_bind_int(stmt, 8, PACPelvisSideAlignmentLeft); 
+    sqlite3_bind_int(stmt, 9, PACPelvisSideAlignmentRight); 
+    
+    sqlite3_bind_int(stmt, 10, PACLumbarAlignment);
+
+    sqlite3_bind_int(stmt, 11, PACLowerThoracicAlignment);
+    sqlite3_bind_int(stmt, 12, PACUpperThoracicAlignment);
+
+    sqlite3_bind_int(stmt, 13, PACCervicalSpineAlignment); 
+
+    sqlite3_bind_int(stmt, 14, PACHeadSideAlignment);
+
+    sqlite3_step(stmt);
+    sqlite3_finalize(stmt);
+
+    int rowid = sqlite3_last_insert_rowid(db);
+
+    sqlite3_prepare(db
+            , "update analysis_t set analysis_sideview = ? where analysis_id = ?"
+            , -1
+            , &stmt
+            , 0);
+    sqlite3_bind_int(stmt, rowid);
+    sqlite3_bind_int(stmt, analysis_id);
+    sqlite3_step(stmt);
+    sqlite3_finalize(stmt);
+}
+static void pac_save_analysis_frontview(const int analysis_id)
+{    
+    sqlite3_stmt* stmt = 0;
+    struct sqlite3* db = pac_database();
+
+    sqlite3_prepare(db
+            , "insert into frontview_t (frontview_analysis, frontview_foot_left, frontview_foot_right, frontview_knee_left, frontview_knee_right"\
+            ", frontview_pelvis, frontview_ribcage, frontview_shoulders, frontview_head) values (?, ?, ?, ?, ?, ?, ?, ?, ?);"
+            , -1
+            , &stmt
+            , 0);
+
+    sqlite3_bind_int(stmt, 1, analysis_id);
+
+    sqlite3_bind_int(stmt, 2, PACFeetFrontAlignmentLeft);
+    sqlite3_bind_int(stmt, 3, PACFeetFrontAlignmentRight);
+
+    sqlite3_bind_int(stmt, 4, PACKneeFrontAlignmentLeft);
+    sqlite3_bind_int(stmt, 5, PACKneeFrontAlignmentRight);
+
+    sqlite3_bind_int(stmt, 6, PACPelvisFrontAlignment); 
+
+    sqlite3_bind_int(stmt, 7, PACRibCageFrontAlignment); 
+
+    sqlite3_bind_int(stmt, 8, PACShouldersFrontAlignment); 
+
+    sqlite3_bind_int(stmt, 9, PACHeadFrontAlignment);
+    
+    sqlite3_step(stmt);
+    sqlite3_finalize(stmt);
+
+    int rowid = sqlite3_last_insert_rowid(db);
+
+    sqlite3_prepare(db
+            , "update analysis_t set analysis_frontview = ? where analysis_id = ?"
+            , -1
+            , &stmt
+            , 0);
+    sqlite3_bind_int(stmt, 1, rowid);
+    sqlite3_bind_int(stmt, 2, anaysis_id);
+    sqlite3_step(stmt);
+    sqlite3_finalize(stmt);
+}
+
+static void pac_save_analysis_backview(const int analysis_id)
+{
+    sqlite3_stmt* stmt = 0;
+    struct sqlite3* db = pac_database();
+
+    sqlite3_prepare(db
+            , "insert into backview_t (backview_analysis, backview_foot_left, backview_foot_right, backview_femur_left, backview_femur_right, backview_pelvis"\
+              ", backview_scapulae_left, backview_scapulae_right, backview_humeri_left, backview_humeri_right, backview_sequence, backview_imbalance)"\
+              " values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);"
+            , -1
+            , &stmt
+            , 0);
+
+    sqlite3_bind_int(stmt, 1, analysis_id);
+
+    sqlite3_bind_int(stmt, 2, PACFeetBackAlignmentLeft);
+    sqlite3_bind_int(stmt, 3, PACFeetBackAlignmentRight);
+
+    sqlite3_bind_int(stmt, 4, PACFemurBackAlignmentLeft);
+    sqlite3_bind_int(stmt, 5, PACFemurBackAlignmentRight);
+
+    sqlite3_bind_int(stmt, 6, PACPelvisBackAlignment);
+
+    sqlite3_bind_int(stmt, 7, PACScapulaeBackAlignmentLeft);
+    sqlite3_bind_int(stmt, 8, PACScapulaeBackAlignmentRight);
+
+    sqlite3_bind_int(stmt, 9, PACHumeriBackAlignmentLeft);
+    sqlite3_bind_int(stmt, 10, PACHumeriBackAlignmentRight);
+
+    sqlite3_bind_int(stmt, 11, PACSpineSequencing);
+    sqlite3_bind_int(stmt, 12, PACSpineImbalance);
+
+    sqlite3_step(stmt);
+    sqlite3_finalize(stmt);
+
+    const int rowid = sqlite3_last_insert_rowid(db);
+
+    sqlite3_prepare(db
+            , "update analysis_t set analysis_backview = ? where analysis_id = ?"
+            , -1
+            , &stmt
+            , 0);
+    sqlite3_bind_int(stmt, 1, rowid);
+    sqlite3_bind_int(stmt, 2, analysis_id);
+    sqlite3_step(stmt);
+    sqlite3_finalize(stmt);
+}
+static NSString* pac_current_datetime_string()
+{
+    NSDate* now = [NSDate date];
+    NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
+    [dateFormater setDateFormat:@"MM/dd/yyyy hh:mma"];
+
+    return [dateFormat stringFromDate:now];
 }
 void pac_save_analysis(const char* name)
 {
     sqlite3_stmt* stmt = 0;
     struct sqlite3* db = pac_database();
+
+    NSString* date_time = pac_current_datetime_string();
 
     sqlite3_prepare(db
             , "insert into analysis_t (analysis_name, analysis_datetime) values (?, ?)"
@@ -318,14 +493,38 @@ void pac_save_analysis(const char* name)
             , &stmt
             , 0);
     sqlite3_bind_text(stmt, 1, name, -1, 0);
-    sqlite3_bind_text(stmt, 2, date_time, -1, 0);
+    sqlite3_bind_text(stmt, 2, [date_time UTF8String], -1, 0);
     sqlite3_step(stmt);
     sqlite3_finalize(stmt);
 
-    pac_save_analysis_plumbline();
-        
+    const int rowid = sqlite3_last_insert_rowid(db);
+
+    pac_save_analysis_plumbline(rowid);
+    pac_save_analysis_sideview(rowid);
+    pac_save_analysis_frontview(rowid);
+    pac_save_analysis_backview(rowid);
 }
 
+static void pac_load_analysis_plumbline(const int analysis_id)
+{
+    sqlite3_stmt* stmt = 0;
+    struct sqlite3* db = pac_database();
+
+    sqlite3_prepare(db
+            , " select plumbline_alignment from plumbline_t where plumbline_analysis = ?"
+            , -1
+            , &stmt
+            , 0);
+    sqlite3_bind_int(stmt, 1, analysis_id);
+    if(sqlite3_step(stmt) == SQLITE_ROW){
+        PACPlumbLineAlignment = sqlite3_column_int(stmt, 0);
+    }
+    sqlite3_finalize(stmt);
+}
+void pac_load_analysis(const int analysis_id)
+{
+    pac_load_analysis_plumbline(analysis_id);
+}
 
 #if 0
 

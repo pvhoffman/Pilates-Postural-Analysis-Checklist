@@ -25,7 +25,7 @@ enum {
 static NSString* cell_identifier = @"main-menu-cell";
 
 @interface PACMainMenuViewController ()
-
+-(void) saveProfile;
 @end
 
 @implementation PACMainMenuViewController
@@ -108,9 +108,26 @@ static NSString* cell_identifier = @"main-menu-cell";
             [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListFrontViewDidChange] object:nil];
             [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListBackViewDidChange] object:nil];
             break;
+        case tableViewRowSaveProfile:
+            [self saveProfile];
+            break;
     }
 
     [self dismissViewControllerAnimated:YES completion:NULL];
+}
+-(void) saveProfile
+{
+    UIAlertView* dialog = [[UIAlertView alloc] initWithTitle:@"Save as" message:@"" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Save", nil];
+    dialog.alertViewStyle = UIAlertViewStylePlainTextInput;
+
+    [dialog show];
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        NSString* name = [[alertView textFieldAtIndex:0] text];
+        pac_save_analysis([name UTF8String]);
+    }
 }
 
 @end
