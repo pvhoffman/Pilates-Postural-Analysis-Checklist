@@ -296,13 +296,37 @@ static void pac_open_database()
         pac_init_database();
     }
 }
-struct sqlite3* pac_database()
+static struct sqlite3* pac_database()
 {
         if(!pacDatabase){
                 pac_open_database();
         }
         return pacDatabase;
 } 
+static void pac_save_analysis_plumbline()
+{
+        
+}
+void pac_save_analysis(const char* name)
+{
+    sqlite3_stmt* stmt = 0;
+    struct sqlite3* db = pac_database();
+
+    sqlite3_prepare(db
+            , "insert into analysis_t (analysis_name, analysis_datetime) values (?, ?)"
+            , -1
+            , &stmt
+            , 0);
+    sqlite3_bind_text(stmt, 1, name, -1, 0);
+    sqlite3_bind_text(stmt, 2, date_time, -1, 0);
+    sqlite3_step(stmt);
+    sqlite3_finalize(stmt);
+
+    pac_save_analysis_plumbline();
+        
+}
+
+
 #if 0
 
 

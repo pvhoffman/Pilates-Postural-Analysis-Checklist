@@ -341,6 +341,5 @@ UIImage* pac_backview_indicator();
 
 void pac_reset_all(); 
 
-struct sqlite3* pac_database();
 #endif
 
