@@ -26,6 +26,7 @@ static NSString* cell_identifier = @"main-menu-cell";
 
 @interface PACMainMenuViewController ()
 -(void) saveProfile;
+-(void) loadProfile;
 @end
 
 @implementation PACMainMenuViewController
@@ -110,6 +111,9 @@ static NSString* cell_identifier = @"main-menu-cell";
             break;
         case tableViewRowSaveProfile:
             [self saveProfile];
+            break;
+        case tableViewRowLoadProfile:
+            [self loadProfile];
             break;
     }
 

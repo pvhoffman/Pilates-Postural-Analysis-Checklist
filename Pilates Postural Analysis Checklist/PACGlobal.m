@@ -318,7 +318,7 @@ static void pac_save_analysis_plumbline(const int analysis_id)
     sqlite3_step(stmt);
     sqlite3_finalize(stmt);
 
-    int rowid = sqlite3_last_insert_rowid(db);
+    int rowid = (int)sqlite3_last_insert_rowid(db);
 
     sqlite3_prepare(db
             , "upate analysis_t set analysis_plumbline = ? where analysis_id = ?"
@@ -369,15 +369,15 @@ static void pac_save_analysis_sideview(const int analysis_id)
     sqlite3_step(stmt);
     sqlite3_finalize(stmt);
 
-    int rowid = sqlite3_last_insert_rowid(db);
+    int rowid = (int)sqlite3_last_insert_rowid(db);
 
     sqlite3_prepare(db
             , "update analysis_t set analysis_sideview = ? where analysis_id = ?"
             , -1
             , &stmt
             , 0);
-    sqlite3_bind_int(stmt, rowid);
-    sqlite3_bind_int(stmt, analysis_id);
+    sqlite3_bind_int(stmt, 1, rowid);
+    sqlite3_bind_int(stmt, 2, analysis_id);
     sqlite3_step(stmt);
     sqlite3_finalize(stmt);
 }
@@ -412,7 +412,7 @@ static void pac_save_analysis_frontview(const int analysis_id)
     sqlite3_step(stmt);
     sqlite3_finalize(stmt);
 
-    int rowid = sqlite3_last_insert_rowid(db);
+    int rowid = (int)sqlite3_last_insert_rowid(db);
 
     sqlite3_prepare(db
             , "update analysis_t set analysis_frontview = ? where analysis_id = ?"
@@ -420,7 +420,7 @@ static void pac_save_analysis_frontview(const int analysis_id)
             , &stmt
             , 0);
     sqlite3_bind_int(stmt, 1, rowid);
-    sqlite3_bind_int(stmt, 2, anaysis_id);
+    sqlite3_bind_int(stmt, 2, analysis_id);
     sqlite3_step(stmt);
     sqlite3_finalize(stmt);
 }
@@ -460,7 +460,7 @@ static void pac_save_analysis_backview(const int analysis_id)
     sqlite3_step(stmt);
     sqlite3_finalize(stmt);
 
-    const int rowid = sqlite3_last_insert_rowid(db);
+    const int rowid = (int)sqlite3_last_insert_rowid(db);
 
     sqlite3_prepare(db
             , "update analysis_t set analysis_backview = ? where analysis_id = ?"
@@ -478,7 +478,7 @@ static NSString* pac_current_datetime_string()
     NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
     [dateFormater setDateFormat:@"MM/dd/yyyy hh:mma"];
 
-    return [dateFormat stringFromDate:now];
+    return [dateFormater stringFromDate:now];
 }
 void pac_save_analysis(const char* name)
 {
@@ -521,9 +521,120 @@ static void pac_load_analysis_plumbline(const int analysis_id)
     }
     sqlite3_finalize(stmt);
 }
+static void pac_load_analysis_sideview(const int analysis_id)
+{
+    sqlite3_stmt* stmt = 0;
+    struct sqlite3* db = pac_database();
+
+    sqlite3_prepare(db
+            , "select sideview_ankle_left, sideview_ankle_right, sideview_knee_left, sideview_knee_right, sideview_hip_left, sideview_hip_right"\
+            " , sideview_pelvis_left, sideview_pelvis_right, sideview_lumbar, sideview_thoracic_lower, sideview_thoracic_upper, sideview_cervical, sideview_head"\
+            " from sideview_t where sideview_analysis = ?"
+            , -1
+            , &stmt
+            , 0);
+
+    sqlite3_bind_int(stmt, 1, analysis_id);
+    if(sqlite3_step(stmt) == SQLITE_ROW){
+        PACAnkleAlignmentLeft  = sqlite3_column_int(stmt, 0);
+        PACAnkleAlignmentRight = sqlite3_column_int(stmt, 1);
+
+        PACKneeAlignmentSideLeft  = sqlite3_column_int(stmt, 2);
+        PACKneeAlignmentSideRight = sqlite3_column_int(stmt, 3);
+
+        PACHipAlignmentLeft  = sqlite3_column_int(stmt, 4);
+        PACHipAlignmentRight = sqlite3_column_int(stmt, 5);
+
+        PACPelvisSideAlignmentLeft  = sqlite3_column_int(stmt, 6);
+        PACPelvisSideAlignmentRight = sqlite3_column_int(stmt, 7);
+
+        PACLumbarAlignment = sqlite3_column_int(stmt, 8);
+
+        PACLowerThoracicAlignment = sqlite3_column_int(stmt, 9);
+        PACUpperThoracicAlignment = sqlite3_column_int(stmt, 10);
+
+        PACCervicalSpineAlignment = sqlite3_column_int(stmt, 11);
+
+        PACHeadSideAlignment = sqlite3_column_int(stmt, 12);
+    }
+    sqlite3_finalize(stmt);
+}
+static void pac_load_analysis_frontview(const int analysis_id)
+{
+    sqlite3_stmt* stmt = 0;
+    struct sqlite3* db = pac_database();
+
+    sqlite3_prepare(db
+            , "select frontview_foot_left, frontview_foot_right, frontview_knee_left, frontview_knee_right"\
+            ", frontview_pelvis, frontview_ribcage, frontview_shoulders, frontview_head from frontview_t where frontview_analysis = ?"
+            , -1
+            , &stmt
+            , 0);
+
+    sqlite3_bind_int(stmt, 1, analysis_id);
+    if(sqlite3_step(stmt) == SQLITE_ROW){
+         PACFeetFrontAlignmentLeft = sqlite3_column_int(stmt, 0);
+         PACFeetFrontAlignmentRight = sqlite3_column_int(stmt, 1);
+
+         PACKneeFrontAlignmentLeft = sqlite3_column_int(stmt, 2);
+         PACKneeFrontAlignmentRight = sqlite3_column_int(stmt, 3);
+
+         PACPelvisFrontAlignment = sqlite3_column_int(stmt, 4); 
+
+         PACRibCageFrontAlignment; = sqlite3_column_int(stmt, 5); 
+
+         PACShouldersFrontAlignment = sqlite3_column_int(stmt, 6); 
+
+         PACHeadFrontAlignment = sqlite3_column_int(stmt, 7);
+ 
+    }
+    sqlite3_finalize(stmt);
+
+}
+static void pac_load_analysis_backview(const int analysis_id)
+{
+    sqlite3_stmt* stmt = 0;
+    struct sqlite3* db = pac_database();
+
+    sqlite3_prepare(db
+            , "select backview_foot_left, backview_foot_right, backview_femur_left, backview_femur_right, backview_pelvis"\
+              ", backview_scapulae_left, backview_scapulae_right, backview_humeri_left, backview_humeri_right, backview_sequence, backview_imbalance"\
+              " from backview_t where backview_analysis = ?"
+            , -1
+            , &stmt
+            , 0);
+
+    sqlite3_bind_int(stmt, 1, analysis_id);
+    if(sqlite3_step(stmt) == SQLITE_ROW){
+        PACFeetBackAlignmentLeft = sqlite3_column_int(stmt, 0);
+        PACFeetBackAlignmentRight = sqlite3_column_int(stmt, 1);
+
+        PACFemurBackAlignmentLeft = sqlite3_column_int(stmt, 2);
+        PACFemurBackAlignmentRight = sqlite3_column_int(stmt, 3);
+
+        PACPelvisBackAlignment = sqlite3_column_int(stmt, 4);
+
+        PACScapulaeBackAlignmentLeft = sqlite3_column_int(stmt, 5);
+        PACScapulaeBackAlignmentRight = sqlite3_column_int(stmt, 6);
+
+        PACHumeriBackAlignmentLeft = sqlite3_column_int(stmt, 7);
+        PACHumeriBackAlignmentRight = sqlite3_column_int(stmt, 8);
+
+        PACSpineSequencing = sqlite3_column_int(stmt, 9);
+        PACSpineImbalance = sqlite3_column_int(stmt, 10);
+    }
+    sqlite3_finalize(stmt);
+
+
+
+
+}
 void pac_load_analysis(const int analysis_id)
 {
     pac_load_analysis_plumbline(analysis_id);
+    pac_load_analysis_sideview(analysis_id);
+    pac_load_analysis_frontview(analysis_id);
+    pac_load_analysis_backview(analysis_id);
 }
 
 #if 0
