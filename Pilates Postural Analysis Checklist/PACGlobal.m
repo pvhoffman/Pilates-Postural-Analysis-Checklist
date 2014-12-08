@@ -497,7 +497,7 @@ void pac_save_analysis(const char* name)
     sqlite3_step(stmt);
     sqlite3_finalize(stmt);
 
-    const int rowid = sqlite3_last_insert_rowid(db);
+    const int rowid = (int)sqlite3_last_insert_rowid(db);
 
     pac_save_analysis_plumbline(rowid);
     pac_save_analysis_sideview(rowid);
@@ -581,7 +581,7 @@ static void pac_load_analysis_frontview(const int analysis_id)
 
          PACPelvisFrontAlignment = sqlite3_column_int(stmt, 4); 
 
-         PACRibCageFrontAlignment; = sqlite3_column_int(stmt, 5); 
+         PACRibCageFrontAlignment = sqlite3_column_int(stmt, 5); 
 
          PACShouldersFrontAlignment = sqlite3_column_int(stmt, 6); 
 

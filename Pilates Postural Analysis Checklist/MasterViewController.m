@@ -14,9 +14,13 @@
 #import "PACSideViewTableViewController.h"
 #import "PACFrontViewTableViewController.h"
 #import "PACBackViewTableViewController.h"
-#import "PACMainMenuViewController.h"
+// #import "PACMainMenuViewController.h"
 #import "PACGlobal.h"
 
+enum {
+        tagMenuView = 101
+            , tagOverlayView
+};
 
 enum {
 	tableViewItemPlumbLine   = 0
@@ -59,6 +63,7 @@ static NSString* cell_identifier = @"master-view-cell";
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mainCheckListDidChange:) name:[NSString stringWithUTF8String:PACCheckListMainDidChange] object:nil];
 
+        //pac_open_database();
 
 }
 
@@ -197,8 +202,54 @@ static NSString* cell_identifier = @"master-view-cell";
 }
 -(void) menuButtonClicked:(id)sender
 {
-    PACMainMenuViewController* controller = [[PACMainMenuViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    [self.view.window.rootViewController presentViewController:controller animated:YES completion:^(void){}];
+    CGRect frame1 = self.tableView.frame;
+
+    const float height = 365.0f;
+    const float overlay = frame1.size.height - height;
+
+    CGRect frame2 = CGRectMake(0.0f, frame1.size.height, frame1.size.width, height); //frame1.size.height);
+    CGRect frame3 = CGRectMake(0.0f, -overlay, frame1.size.width, overlay);
+
+    PACMainMenuView* menu = [[PACMainMenuView alloc] initWithFrame:frame2];
+    menu.tag = tagMenuView;
+    menu.menu_delegate = self;
+
+    UIView* overlayView = [[UIView alloc] initWithFrame:frame3];
+    overlayView.backgroundColor  = [UIColor blackColor];
+    overlayView.alpha            = 0.42f;
+    overlayView.tag              = tagOverlayView;
+
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.5f];
+
+    [self.view addSubview:menu];
+    [self.view addSubview:overlayView];
+
+    menu.frame  = CGRectMake(0.0f, frame1.size.height - height, frame1.size.width, height);
+    overlayView.frame = CGRectMake(0.0f, 0.0f, frame1.size.width, overlay);
+
+    [UIView commitAnimations];
+
+}
+#pragma mark -
+#pragma mark PACMainMenuDelegate
+-(void)mainMenuDismiss:(PACMainMenuView*)menu
+{
+    UIView* v1 = [self.view viewWithTag:tagMenuView];
+    UIView* v2 = [self.view viewWithTag:tagOverlayView];
+
+    if(v1 && v2){
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationDuration:0.5f];
+
+        [v1 removeFromSuperview];
+        [v2 removeFromSuperview];
+
+        [UIView commitAnimations];
+
+    } 
 }
 @end
 

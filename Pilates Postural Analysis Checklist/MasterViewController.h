@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PACMainMenuView.h"
 
-@interface MasterViewController : UITableViewController
+@interface MasterViewController : UITableViewController <PACMainMenuDelegate> 
 
 
 @end
