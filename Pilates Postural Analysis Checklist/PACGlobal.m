@@ -89,6 +89,8 @@ int PACSpineSequencing = 0;
 int PACSpineImbalance  = 0;
 
 
+int PACCurrentAnalysis = -1;
+
 UIImage* pac_plumbline_indicator()
 {
 	return [UIImage imageNamed:@"llb_ball_15.png"];
@@ -164,6 +166,9 @@ void pac_reset_all()
     pac_reset_sideview();
     pac_reset_frontview();
     pac_reset_backview();
+
+    PACCurrentAnalysis = -1;
+
 }
 
 static NSString* pac_document_path()
@@ -305,6 +310,7 @@ static struct sqlite3* pac_database()
 } 
 static void pac_save_analysis_plumbline(const int analysis_id)
 {
+    int rc;
     sqlite3_stmt* stmt = 0;
     struct sqlite3* db = pac_database();
 
@@ -313,22 +319,33 @@ static void pac_save_analysis_plumbline(const int analysis_id)
             , -1
             , &stmt
             , 0);
-    sqlite3_bind_int(stmt, 1, PACPlumbLineAlignment);
-    sqlite3_bind_int(stmt, 2, analysis_id);
-    sqlite3_step(stmt);
+    sqlite3_bind_int(stmt, 1, analysis_id);
+    sqlite3_bind_int(stmt, 2, PACPlumbLineAlignment);
+    rc = sqlite3_step(stmt);
     sqlite3_finalize(stmt);
+
+    
+    if(!(rc == SQLITE_OK || rc == SQLITE_DONE) ) {
+        const char* errmsg = sqlite3_errmsg(db);
+        NSLog(@"Sqlite error: %s", errmsg);
+    }
 
     int rowid = (int)sqlite3_last_insert_rowid(db);
 
     sqlite3_prepare(db
-            , "upate analysis_t set analysis_plumbline = ? where analysis_id = ?"
+            , "update analysis_t set analysis_plumbline = ? where analysis_id = ?"
             , -1
             , &stmt
             , 0);
     sqlite3_bind_int(stmt, 1, rowid);
     sqlite3_bind_int(stmt, 2, analysis_id);
-    sqlite3_step(stmt);
+    rc = sqlite3_step(stmt);
     sqlite3_finalize(stmt);
+
+    if(!(rc == SQLITE_OK || rc == SQLITE_DONE) ) {
+        const char* errmsg = sqlite3_errmsg(db);
+        NSLog(@"Sqlite error: %s", errmsg);
+    }
 }
 static void pac_save_analysis_sideview(const int analysis_id)
 {
@@ -480,10 +497,12 @@ static NSString* pac_current_datetime_string()
 
     return [dateFormater stringFromDate:now];
 }
-void pac_save_analysis(const char* name)
+void pac_save_analysis(const char* name, int analysis_id)
 {
     sqlite3_stmt* stmt = 0;
     struct sqlite3* db = pac_database();
+
+    if(analysis_id < 0){
 
     NSString* date_time = pac_current_datetime_string();
 
@@ -497,12 +516,15 @@ void pac_save_analysis(const char* name)
     sqlite3_step(stmt);
     sqlite3_finalize(stmt);
 
-    const int rowid = (int)sqlite3_last_insert_rowid(db);
+        analysis_id = (int)sqlite3_last_insert_rowid(db);
+    } 
 
-    pac_save_analysis_plumbline(rowid);
-    pac_save_analysis_sideview(rowid);
-    pac_save_analysis_frontview(rowid);
-    pac_save_analysis_backview(rowid);
+    pac_save_analysis_plumbline(analysis_id);
+    pac_save_analysis_sideview(analysis_id);
+    pac_save_analysis_frontview(analysis_id);
+    pac_save_analysis_backview(analysis_id);
+
+    PACCurrentAnalysis = analysis_id;
 }
 
 static void pac_load_analysis_plumbline(const int analysis_id)
@@ -637,6 +659,25 @@ void pac_load_analysis(const int analysis_id)
     pac_load_analysis_backview(analysis_id);
 }
 
+NSArray* pac_all_analysis()
+{
+        NSMutableArray* res = [[NSMutableArray alloc] init];
+        sqlite3_stmt* stmt;
+        struct sqlite3* db = pac_database();
+
+        sqlite3_prepare(db
+                , "select analysis_id from analysis_t"
+                , -1
+                , &stmt
+                , 0);
+
+        while(sqlite3_step(stmt) == SQLITE_ROW){
+                [res addObject:[NSNumber numberWithInt:sqlite3_column_int(stmt, 0)]];
+        }
+        sqlite3_finalize(stmt);
+
+        return res;
+}
 #if 0
 
 

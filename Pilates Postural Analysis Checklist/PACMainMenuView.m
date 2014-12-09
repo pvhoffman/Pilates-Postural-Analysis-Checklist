@@ -12,6 +12,7 @@
 enum {
     tagContentView = 100
         , tagTableViewMain
+        , tagTableViewLoad
 };
 
 enum {
@@ -28,14 +29,21 @@ enum {
 };
 
 static NSString* cell_identifier = @"main-menu-cell";
+static NSString* cell_identifier_load = @"load-menu-cell";
 
 
 
 @interface PACMainMenuView()
 -(void)dismissMenuSelected;
 -(UITableViewCell*)cellForTableViewMain:(UITableView*)tableView at:(NSIndexPath*)indexPath;
+-(UITableViewCell*)cellForTableViewLoad:(UITableView*)tableView at:(NSIndexPath*)indexPath;
 -(UIView*) viewForHeaderMainInSection:(UITableView*)tableView;
+
+
+
 -(void)didSelectRowMain:(UITableView*)tableView at:(NSIndexPath*)indexPath;
+-(void)saveCurrentProfile;
+-(void)loadProfile;
 @end
 
 @implementation PACMainMenuView
@@ -64,6 +72,8 @@ static NSString* cell_identifier = @"main-menu-cell";
 
             [self addSubview:content_view];
 
+            _analysis = nil;
+
         }
         return self;
 }
@@ -78,6 +88,8 @@ static NSString* cell_identifier = @"main-menu-cell";
     switch(tableView.tag){
         case tagTableViewMain:
             return tableViewMainRowCount;
+        case tagTableViewLoad:
+            return [_analysis count];
     }
     return 0;
 }
@@ -87,6 +99,8 @@ static NSString* cell_identifier = @"main-menu-cell";
     switch(tableView.tag) {
         case tagTableViewMain:
                 return [self cellForTableViewMain:tableView at:indexPath];
+        case tagTableViewLoad:
+                return [self cellForTableViewLoad:tableView at:indexPath];
     }
     return nil;
 }
@@ -139,6 +153,12 @@ static NSString* cell_identifier = @"main-menu-cell";
     
     return cell;
 }
+-(UITableViewCell*)cellForTableViewLoad:(UITableView*)tableView at:(NSIndexPath*)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cell_identifier_load forIndexPath:indexPath];
+
+    return cell;
+}
 -(UIView*) viewForHeaderMainInSection:(UITableView*)tableView
 {
     UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 18.0f, tableView.frame.size.width, 28.0f)];
@@ -156,10 +176,13 @@ static NSString* cell_identifier = @"main-menu-cell";
 
     switch(indexPath.row){
         case tableViewMainRowNewProfile:
+            pac_reset_all();
             break;
         case tableViewMainRowSaveProfile:
+            [self saveCurrentProfile];
             break;
         case tableViewMainRowLoadProfile:
+            [self loadProfile];
             break;
         case tableViewMainRowEmailAnalysis:
             break;
@@ -176,4 +199,45 @@ static NSString* cell_identifier = @"main-menu-cell";
       [_menu_delegate mainMenuDismiss:self];
     }
 }
+-(void)saveCurrentProfile
+{
+    if(PACCurrentAnalysis < 0){
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Save as"
+                                                                       message:@""
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+
+        [alert addTextFieldWithConfigurationHandler:NULL];
+
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {NSString* name = ((UITextField*)[alert.textFields objectAtIndex:0]).text; if(name && [name length]) pac_save_analysis([name UTF8String], -1);[self dismissMenuSelected];}];
+        UIAlertAction* cancelAction  = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+
+        [alert addAction:defaultAction]; 
+        [alert addAction:cancelAction]; 
+
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];//(animated:YES completion:nil)];
+    } else {
+        pac_save_analysis(0, PACCurrentAnalysis);
+    }
+}
+
+-(void)loadProfile
+{
+    _analysis = pac_all_analysis();
+
+    UIView* content_view = [self vieWithTag:tagContentView];
+    UITableView* table_view = (UITableView*)[content_view vieWithTag:tagTableView];
+
+    CGRect frame = table_view.frame;
+
+    UITableView* tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height) style:UITableViewStyleGrouped];
+    tableView.tag = tagTableViewLoad;
+    tableView.dataSource = self;
+    tableView.delegate = self;
+    tableView.scrollEnabled = NO;
+    [tableView registerClass:[UITableViewCell class ] forCellReuseIdentifier:cell_identifier_load];
+
+    [UIView transitionFromView:table_view toView:tableView duration:0.45 options:UIViewAnimationOptionTransitionFlipFromLeft completion:^(BOOL finished){}];
+
+}
 @end
+

@@ -333,6 +333,8 @@ extern const char* PACCheckListSideViewDidChange;
 extern const char* PACCheckListFrontViewDidChange;
 extern const char* PACCheckListBackViewDidChange;
 
+extern int PACCurrentAnalysis;
+
 UIImage* pac_plumbline_indicator();
 UIImage* pac_sideview_indicator();
 UIImage* pac_frontview_indicator();
@@ -341,8 +343,10 @@ UIImage* pac_backview_indicator();
 
 void pac_reset_all(); 
 
-void pac_save_analysis(const char* name);
+void pac_save_analysis(const char* name, int analysis_id);
 void pac_load_analysis(const int analysis_id);
+
+NSArray* pac_all_analysis();
 
 
 
