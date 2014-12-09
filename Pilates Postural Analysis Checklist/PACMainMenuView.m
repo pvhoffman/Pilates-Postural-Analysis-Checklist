@@ -79,7 +79,7 @@ static NSString* cell_identifier_load = @"load-menu-cell";
             tableView.dataSource = self;
             tableView.delegate = self;
             tableView.scrollEnabled = NO;
-            [tableView registerClass:[UITableViewCell class ] forCellReuseIdentifier:cell_identifier];
+            [tableView registerClass:[PACLoadMenuTableViewCell class ] forCellReuseIdentifier:cell_identifier];
 
             [content_view addSubview:tableView];
 
@@ -153,7 +153,7 @@ static NSString* cell_identifier_load = @"load-menu-cell";
 #pragma mark Private
 -(UITableViewCell*)cellForTableViewMain:(UITableView*)tableView at:(NSIndexPath*)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cell_identifier forIndexPath:indexPath];
+    PACLoadMenuTableViewCell* cell = (PACLoadMenuTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cell_identifier forIndexPath:indexPath];
 
     switch(indexPath.row){
         case tableViewMainRowNewProfile:
@@ -161,6 +161,9 @@ static NSString* cell_identifier_load = @"load-menu-cell";
             break;
         case tableViewMainRowSaveProfile:
             cell.textLabel.text = @"Save Analysis";
+            if(PACCurrentAnalysis > 0){
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"saving as: %s", pac_analysis_name_from_analysisid(PACCurrentAnalysis)];
+            }
             break;
         case tableViewMainRowLoadProfile:
             cell.textLabel.text = @"Load Analysis";
@@ -227,6 +230,12 @@ static NSString* cell_identifier_load = @"load-menu-cell";
     switch(indexPath.row){
         case tableViewMainRowNewProfile:
             pac_reset_all();
+            PACCurrentAnalysis = -1;
+            [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListMainDidChange] object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListSideViewDidChange] object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListFrontViewDidChange] object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListBackViewDidChange] object:nil];
+            [self dismissMenuSelected];
             break;
         case tableViewMainRowSaveProfile:
             [self saveCurrentProfile];
@@ -248,6 +257,10 @@ static NSString* cell_identifier_load = @"load-menu-cell";
     if(indexPath.row < [_analysis count]){
         const int n = [[_analysis objectAtIndex:indexPath.row] intValue];
         pac_load_analysis(n);
+        [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListMainDidChange] object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListSideViewDidChange] object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListFrontViewDidChange] object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListBackViewDidChange] object:nil];
     }
     [self dismissMenuSelected];
 }

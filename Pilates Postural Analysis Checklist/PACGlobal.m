@@ -504,17 +504,17 @@ void pac_save_analysis(const char* name, int analysis_id)
 
     if(analysis_id < 0){
 
-    NSString* date_time = pac_current_datetime_string();
+        NSString* date_time = pac_current_datetime_string();
 
-    sqlite3_prepare(db
-            , "insert into analysis_t (analysis_name, analysis_datetime) values (?, ?)"
-            , -1
-            , &stmt
-            , 0);
-    sqlite3_bind_text(stmt, 1, name, -1, 0);
-    sqlite3_bind_text(stmt, 2, [date_time UTF8String], -1, 0);
-    sqlite3_step(stmt);
-    sqlite3_finalize(stmt);
+        sqlite3_prepare(db
+                , "insert into analysis_t (analysis_name, analysis_datetime) values (?, ?)"
+                , -1
+                , &stmt
+                , 0);
+        sqlite3_bind_text(stmt, 1, name, -1, 0);
+        sqlite3_bind_text(stmt, 2, [date_time UTF8String], -1, 0);
+        sqlite3_step(stmt);
+        sqlite3_finalize(stmt);
 
         analysis_id = (int)sqlite3_last_insert_rowid(db);
     } 
@@ -542,11 +542,32 @@ static void pac_load_analysis_plumbline(const int analysis_id)
         PACPlumbLineAlignment = sqlite3_column_int(stmt, 0);
     }
     sqlite3_finalize(stmt);
+
+    // set the check lists
+    if( ((PACPlumbLineAlignment & plumbHeadForward) == plumbHeadForward
+                || (PACPlumbLineAlignment & plumbHeadAligned) == plumbHeadAligned
+                || (PACPlumbLineAlignment & plumbHeadBehind) == plumbHeadBehind)
+            && ((PACPlumbLineAlignment & plumbShouldersForward) == plumbShouldersForward
+                || (PACPlumbLineAlignment & plumbShouldersAligned) == plumbShouldersAligned
+                || (PACPlumbLineAlignment & plumbShouldersBehind) == plumbShouldersBehind)
+            && ((PACPlumbLineAlignment & plumbUpperBodyForward) == plumbUpperBodyForward
+                || (PACPlumbLineAlignment & plumbUpperBodyAligned) == plumbUpperBodyAligned
+                || (PACPlumbLineAlignment & plumbUpperBodyBehind) == plumbUpperBodyBehind)
+            && ((PACPlumbLineAlignment & plumbPelvisForward) == plumbPelvisForward
+                || (PACPlumbLineAlignment & plumbPelvisAligned) == plumbPelvisAligned
+                || (PACPlumbLineAlignment & plumbPelvisBehind) == plumbPelvisBehind)
+            && ((PACPlumbLineAlignment & plumbKneesForward) == plumbKneesForward
+                || (PACPlumbLineAlignment & plumbKneesAligned) == plumbKneesAligned
+                || (PACPlumbLineAlignment & plumbKneesBehind) == plumbKneesBehind) 
+            && ((PACPlumbLineAlignment & plumbRelativeAlign) == plumbRelativeAlign) ) {
+        PACChecklistMain |= mainChecklistPlumbline;
+    }
 }
 static void pac_load_analysis_sideview(const int analysis_id)
 {
     sqlite3_stmt* stmt = 0;
     struct sqlite3* db = pac_database();
+
 
     sqlite3_prepare(db
             , "select sideview_ankle_left, sideview_ankle_right, sideview_knee_left, sideview_knee_right, sideview_hip_left, sideview_hip_right"\
@@ -580,6 +601,46 @@ static void pac_load_analysis_sideview(const int analysis_id)
         PACHeadSideAlignment = sqlite3_column_int(stmt, 12);
     }
     sqlite3_finalize(stmt);
+
+    // set the check lists
+    if(PACAnkleAlignmentRight > -1 && PACAnkleAlignmentLeft > -1) {
+        PACChecklistSideView |= sideViewCheckListAnkleJoint;
+    }
+    if(PACKneeAlignmentSideRight > -1 && PACKneeAlignmentSideLeft > -1) {
+        PACChecklistSideView |= sideViewCheckListKnee;
+    }
+    if(PACHipAlignmentRight > -1 && PACHipAlignmentLeft > -1) {
+        PACChecklistSideView |= sideViewCheckListHipJoint;
+    }
+    if(PACPelvisSideAlignmentRight > -1 && PACPelvisSideAlignmentLeft > -1) {
+        PACChecklistSideView |= sideViewCheckListPelvis;
+    }
+    if(PACLumbarAlignment > -1){
+        PACChecklistSideView |= sideViewCheckListLumbar;
+    }
+    if(PACLowerThoracicAlignment > -1){
+        PACChecklistSideView |= sideViewCheckListLowerThoracic;
+    }
+    if(PACUpperThoracicAlignment > -1){
+        PACChecklistSideView |= sideViewCheckListUpperThoracic;
+    }
+    if(PACCervicalSpineAlignment > -1){
+        PACChecklistSideView |= sideViewCheckListCervicalSpine;
+    }
+    if(PACHeadSideAlignment > -1){
+        PACChecklistSideView |= sideViewCheckListHead;
+    }
+    if((PACChecklistSideView & sideViewCheckListAnkleJoint) == sideViewCheckListAnkleJoint
+            && (PACChecklistSideView & sideViewCheckListKnee) == sideViewCheckListKnee
+            && (PACChecklistSideView & sideViewCheckListHipJoint) == sideViewCheckListHipJoint
+            && (PACChecklistSideView & sideViewCheckListPelvis) == sideViewCheckListPelvis
+            && (PACChecklistSideView & sideViewCheckListLumbar) == sideViewCheckListLumbar
+            && (PACChecklistSideView & sideViewCheckListLowerThoracic) == sideViewCheckListLowerThoracic
+            && (PACChecklistSideView & sideViewCheckListUpperThoracic) == sideViewCheckListUpperThoracic
+            && (PACChecklistSideView & sideViewCheckListCervicalSpine) == sideViewCheckListCervicalSpine
+            && (PACChecklistSideView & sideViewCheckListHead) == sideViewCheckListHead) {
+        PACChecklistMain = PACChecklistMain | mainChecklistSideView;
+    }
 }
 static void pac_load_analysis_frontview(const int analysis_id)
 {
@@ -612,6 +673,34 @@ static void pac_load_analysis_frontview(const int analysis_id)
     }
     sqlite3_finalize(stmt);
 
+    // set the check lists
+    if(PACFeetFrontAlignmentLeft > -1 && PACFeetFrontAlignmentRight > -1) {
+        PACChecklistFrontView = PACChecklistFrontView | frontViewCheckListFeet;
+    }
+    if(PACKneeFrontAlignmentLeft > -1 && PACKneeFrontAlignmentRight > -1) {
+        PACChecklistFrontView = PACChecklistFrontView | frontViewCheckListKnees;
+    }
+    if(PACPelvisFrontAlignment > -1){
+        PACChecklistFrontView = PACChecklistFrontView | frontViewCheckListPelvis;
+    }
+    if(PACRibCageFrontAlignment > -1){
+        PACChecklistFrontView |= frontViewCheckListRibcage;
+    }
+    if(PACShouldersFrontAlignment > 0){
+        PACChecklistFrontView |= frontViewCheckListShoulders;
+    }
+    if(PACHeadFrontAlignment > 0){
+        PACChecklistFrontView |= frontViewCheckListHead;
+    }
+    if((PACChecklistFrontView & frontViewCheckListFeet) == frontViewCheckListFeet
+            && (PACChecklistFrontView & frontViewCheckListKnees) == frontViewCheckListKnees
+            && (PACChecklistFrontView & frontViewCheckListPelvis) == frontViewCheckListPelvis
+            && (PACChecklistFrontView & frontViewCheckListRibcage) == frontViewCheckListRibcage
+            && (PACChecklistFrontView & frontViewCheckListShoulders) == frontViewCheckListShoulders
+            && (PACChecklistFrontView & frontViewCheckListHead) == frontViewCheckListHead) {
+        PACChecklistMain |= mainChecklistFrontView;
+    }
+	
 }
 static void pac_load_analysis_backview(const int analysis_id)
 {
@@ -647,16 +736,46 @@ static void pac_load_analysis_backview(const int analysis_id)
     }
     sqlite3_finalize(stmt);
 
+    // set the check lists
+    if(PACFeetBackAlignmentLeft > -1 && PACFeetBackAlignmentRight > -1){ 
+        PACChecklistBackView |= backViewCheckListFeet;
+    }
+    if(PACFemurBackAlignmentLeft > -1 && PACFemurBackAlignmentRight > -1) {
+        PACChecklistBackView |= backViewCheckListFemurs;
+    }
+    if(PACPelvisBackAlignment > -1) {
+        PACChecklistBackView |= backViewCheckListPelvis;
+    }
+    if(PACScapulaeBackAlignmentLeft > -1 && PACScapulaeBackAlignmentRight > -1) {
+        PACChecklistBackView |= backViewCheckListScapulae;
+    }
+    if(PACHumeriBackAlignmentLeft > -1 && PACHumeriBackAlignmentRight > -1) {
+        PACChecklistBackView |= backViewCheckListHumeri;
+    }
 
-
-
+    if(PACSpineImbalance && PACSpineSequencing) {
+        PACChecklistBackView |= backViewCheckListSpineSequencing;
+    }
+    if((PACChecklistBackView & backViewCheckListFeet) == backViewCheckListFeet
+            && (PACChecklistBackView  & backViewCheckListFemurs) == backViewCheckListFemurs
+            && (PACChecklistBackView  & backViewCheckListPelvis) == backViewCheckListPelvis
+            && (PACChecklistBackView  & backViewCheckListScapulae) == backViewCheckListScapulae
+            && (PACChecklistBackView  & backViewCheckListHumeri) == backViewCheckListHumeri
+            && (PACChecklistBackView  & backViewCheckListSpineSequencing) == backViewCheckListSpineSequencing) {
+        PACChecklistMain |= mainChecklistBackView;
+    }
 }
 void pac_load_analysis(const int analysis_id)
 {
+
+    pac_reset_all();
+
     pac_load_analysis_plumbline(analysis_id);
     pac_load_analysis_sideview(analysis_id);
     pac_load_analysis_frontview(analysis_id);
     pac_load_analysis_backview(analysis_id);
+
+    PACCurrentAnalysis = analysis_id;
 }
 
 NSArray* pac_all_analysis()
@@ -730,51 +849,3 @@ const char* pac_analysis_date_from_analysisid(const int n)
     return &res[0];
 }
 
-#if 0
-
-
-
-void create_document()
-{
-	NSString* source_path = [[NSBundle mainBundle] pathForResource:@"Postural-Analysis-Guide" ofType:@"pdf"];
-
-	if(source_path) {
-		NSURL* source_url = [NSURL fileURLWithPath:source_path];
-		CGPDFDocumentRef source_doc = CGPDFDocumentCreateWithURL((__bridge CFURLRef)source_url);
-		if(source_doc) {
-			CGPDFDocumentRelease(source_doc);
-		}
-	}
-}
-
-
-
-
-- (void)helloWorldPDF {
-	// Open the source pdf
-	NSURL               *sourceURL      = [NSURL fileURLWithPath:@"path to original pdf"];
-	CGPDFDocumentRef sourceDoc       = CGPDFDocumentCreateWithURL((__bridge CFURLRef)sourceURL);
-
-	// Create the new destination pdf & set the font
-	NSURL               *destURL        = [NSURL fileURLWithPath:@"path to new pdf"];
-	CGContextRef destPDFContext  = CGPDFContextCreateWithURL((__bridge CFURLRef)destURL, NULL, NULL);
-	CGContextSelectFont(destPDFContext, "CourierNewPS-BoldMT", 12.0, kCGEncodingFontSpecific);
-
-	// Copy the first page of the source pdf into the destination pdf
-	CGPDFPageRef pdfPage         = CGPDFDocumentGetPage(sourceDoc, 1);
-	CGRect pdfCropBoxRect  = CGPDFPageGetBoxRect(pdfPage, kCGPDFMediaBox);
-	CGContextBeginPage  (destPDFContext, &pdfCropBoxRect);
-	CGContextDrawPDFPage(destPDFContext, pdfPage);
-
-	// Close the source file
-	CGPDFDocumentRelease(sourceDoc);
-
-	// Draw the text
-	const char *text = "second line!";
-	CGContextShowTextAtPoint(destPDFContext, 10.0, 30.0, text, strlen(text));
-
-	// Close the destination file
-	CGContextRelease(destPDFContext);
-}
-
-#endif

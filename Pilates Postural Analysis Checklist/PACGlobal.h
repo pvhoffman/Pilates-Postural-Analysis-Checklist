@@ -36,6 +36,7 @@ typedef enum {
 	, plumbKneesForward     = (1 << 12)
 	, plumbKneesAligned     = (1 << 13)
 	, plumbKneesBehind      = (1 << 14)
+        , plumbRelativeAlign    = (1 << 15)
 } PACPlumbLineAlignment_t;
 
 // Side View Checklist

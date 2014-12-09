@@ -107,7 +107,6 @@ static NSString* cell_identifier = @"plumbline-cell";
 			UISwitch* sitch = [[UISwitch alloc] init];
 			sitch.frame = CGRectMake(0.0f, 0.0f, 60.0f, 21.0f);
 			sitch.tag   = indexPath.row;
-			sitch.on    = ((PACChecklistMain & mainChecklistAlignedInRelation) == mainChecklistAlignedInRelation);
 			[sitch addTarget:self action:@selector(switchvaluechanged:) forControlEvents:UIControlEventValueChanged];
 			cell.accessoryView = sitch;
 		} else {
@@ -183,6 +182,7 @@ static NSString* cell_identifier = @"plumbline-cell";
 	case tableViewRowRelativeAlignment:
 		cell.textLabel.text = @"Relative Alignment";
 		cell.detailTextLabel.text = @"Are the head, thorax and pelvic relatively aligned?";
+	        ((UISwitch*)cell.accessoryView).on = ((PACPlumbLineAlignment & plumbRelativeAlign) == plumbRelativeAlign);//((PACChecklistMain & mainChecklistAlignedInRelation) == mainChecklistAlignedInRelation);
 		break;
 	default:
 		cell.textLabel.text = [NSString stringWithFormat:@"cell %d", (int)indexPath.row];
@@ -261,8 +261,10 @@ static NSString* cell_identifier = @"plumbline-cell";
 
 	if(s.on) {
 		PACChecklistMain |= mainChecklistAlignedInRelation;
+                PACPlumbLineAlignment |= plumbRelativeAlign;
 	} else {
 		PACChecklistMain &= ~mainChecklistAlignedInRelation;
+                PACPlumbLineAlignment &= ~plumbRelativeAlign;
 	}
 	[[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListMainDidChange] object:nil];
 }
@@ -371,7 +373,8 @@ static NSString* cell_identifier = @"plumbline-cell";
 	        || (PACPlumbLineAlignment & plumbPelvisBehind) == plumbPelvisBehind)
 	    && ((PACPlumbLineAlignment & plumbKneesForward) == plumbKneesForward
 	        || (PACPlumbLineAlignment & plumbKneesAligned) == plumbKneesAligned
-	        || (PACPlumbLineAlignment & plumbKneesBehind) == plumbKneesBehind) ) {
+	        || (PACPlumbLineAlignment & plumbKneesBehind) == plumbKneesBehind) 
+            && ((PACPlumbLineAlignment & plumbRelativeAlign) == plumbRelativeAlign) ) {
 		PACChecklistMain |= mainChecklistPlumbline;
 	} else {
 		PACChecklistMain &= ~mainChecklistPlumbline;

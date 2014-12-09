@@ -85,9 +85,9 @@ void pac_typeset_plumbline_analysis(CGContextRef pdf_ctx)
         [bs addObject:@"Pelvis"];
     }
 
-    if((PACPlumbLineAlignment & plumbKneesForward)     == plumbKneesForward){
+    if((PACPlumbLineAlignment & plumbKneesForward) == plumbKneesForward){
         [fs addObject:@"Knees"];
-    } else if((PACPlumbLineAlignment & plumbKneesBehind)      == plumbKneesBehind){
+    } else if((PACPlumbLineAlignment & plumbKneesBehind) == plumbKneesBehind){
         [bs addObject:@"Knees"];
     }
 
@@ -132,7 +132,7 @@ void pac_typeset_plumbline_analysis(CGContextRef pdf_ctx)
         }
     }
 
-    if((PACChecklistMain & mainChecklistAlignedInRelation) == mainChecklistAlignedInRelation){
+    if((PACPlumbLineAlignment & plumbRelativeAlign) == plumbRelativeAlign){
         NSDictionary* attribs = @{NSFontAttributeName:[UIFont fontWithName:@"Helvetica-Bold" size:13.0]};
         NSAttributedString* fontStr = [[NSAttributedString alloc] initWithString:@"\u2713" attributes:attribs];
 

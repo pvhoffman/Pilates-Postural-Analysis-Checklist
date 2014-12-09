@@ -239,14 +239,14 @@ static NSString* cell_identifier = @"master-view-cell";
     UIView* v2 = [self.view viewWithTag:tagOverlayView];
 
     if(v1 && v2){
-        [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationBeginsFromCurrentState:YES];
-        [UIView setAnimationDuration:0.5f];
 
         [v1 removeFromSuperview];
-        [v2 removeFromSuperview];
 
-        [UIView commitAnimations];
+        // using transitions adds the layover view many times possibly
+        while(v2){
+            [v2 removeFromSuperview];
+            v2 = [self.view viewWithTag:tagOverlayView];
+        }
 
     } 
 }
