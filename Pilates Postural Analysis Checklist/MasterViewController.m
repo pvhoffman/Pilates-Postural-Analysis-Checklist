@@ -201,34 +201,38 @@ static NSString* cell_identifier = @"master-view-cell";
 }
 -(void) menuButtonClicked:(id)sender
 {
-    CGRect frame1 = self.tableView.frame;
 
-    const float height = 365.0f;
-    const float overlay = frame1.size.height - height;
+    UIView* v1 = [self.view viewWithTag:tagMenuView];
+    if(!v1){
+        CGRect frame1 = self.tableView.frame;
 
-    CGRect frame2 = CGRectMake(0.0f, frame1.size.height, frame1.size.width, height); //frame1.size.height);
-    CGRect frame3 = CGRectMake(0.0f, -overlay, frame1.size.width, overlay);
+        const float height = 365.0f;
+        const float overlay = frame1.size.height - height;
 
-    PACMainMenuView* menu = [[PACMainMenuView alloc] initWithFrame:frame2];
-    menu.tag = tagMenuView;
-    menu.menu_delegate = self;
+        CGRect frame2 = CGRectMake(0.0f, frame1.size.height, frame1.size.width, height); //frame1.size.height);
+        CGRect frame3 = CGRectMake(0.0f, -overlay, frame1.size.width, overlay);
 
-    UIView* overlayView = [[UIView alloc] initWithFrame:frame3];
-    overlayView.backgroundColor  = [UIColor blackColor];
-    overlayView.alpha            = 0.42f;
-    overlayView.tag              = tagOverlayView;
+        PACMainMenuView* menu = [[PACMainMenuView alloc] initWithFrame:frame2];
+        menu.tag = tagMenuView;
+        menu.menu_delegate = self;
 
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:0.5f];
+        UIView* overlayView = [[UIView alloc] initWithFrame:frame3];
+        overlayView.backgroundColor  = [UIColor blackColor];
+        overlayView.alpha            = 0.42f;
+        overlayView.tag              = tagOverlayView;
 
-    [self.view addSubview:menu];
-    [self.view addSubview:overlayView];
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+        [UIView setAnimationDuration:0.5f];
 
-    menu.frame  = CGRectMake(0.0f, frame1.size.height - height, frame1.size.width, height);
-    overlayView.frame = CGRectMake(0.0f, 0.0f, frame1.size.width, overlay);
+        [self.view addSubview:menu];
+        [self.view addSubview:overlayView];
 
-    [UIView commitAnimations];
+        menu.frame  = CGRectMake(0.0f, frame1.size.height - height, frame1.size.width, height);
+        overlayView.frame = CGRectMake(0.0f, 0.0f, frame1.size.width, overlay);
+
+        [UIView commitAnimations];
+    }
 
 }
 #pragma mark -

@@ -195,7 +195,7 @@ static NSString* cell_identifier_load = @"load-menu-cell";
                 cell.textLabel.text = [NSString stringWithUTF8String:analysis_name];
         }
         if(analysis_date && *analysis_date){
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"saved: %s", analysis_date];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"created on %s", analysis_date];
         }
     }
     return cell;
@@ -288,6 +288,7 @@ static NSString* cell_identifier_load = @"load-menu-cell";
         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];//(animated:YES completion:nil)];
     } else {
         pac_save_analysis(0, PACCurrentAnalysis);
+        [self dismissMenuSelected];
     }
 }
 
@@ -315,7 +316,7 @@ static NSString* cell_identifier_load = @"load-menu-cell";
         tableView.tag = tagTableViewLoad;
         tableView.dataSource = self;
         tableView.delegate = self;
-        tableView.scrollEnabled = NO;
+        tableView.scrollEnabled = YES;
         [tableView registerClass:[PACLoadMenuTableViewCell class] forCellReuseIdentifier:cell_identifier_load];
 
         [UIView transitionFromView:table_view toView:tableView duration:0.45 options:UIViewAnimationOptionTransitionFlipFromLeft completion:^(BOOL finished){}];

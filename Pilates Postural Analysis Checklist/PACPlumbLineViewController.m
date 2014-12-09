@@ -262,6 +262,26 @@ static NSString* cell_identifier = @"plumbline-cell";
 	if(s.on) {
 		PACChecklistMain |= mainChecklistAlignedInRelation;
                 PACPlumbLineAlignment |= plumbRelativeAlign;
+
+                if( ((PACPlumbLineAlignment & plumbHeadForward) == plumbHeadForward
+                            || (PACPlumbLineAlignment & plumbHeadAligned) == plumbHeadAligned
+                            || (PACPlumbLineAlignment & plumbHeadBehind) == plumbHeadBehind)
+                        && ((PACPlumbLineAlignment & plumbShouldersForward) == plumbShouldersForward
+                            || (PACPlumbLineAlignment & plumbShouldersAligned) == plumbShouldersAligned
+                            || (PACPlumbLineAlignment & plumbShouldersBehind) == plumbShouldersBehind)
+                        && ((PACPlumbLineAlignment & plumbUpperBodyForward) == plumbUpperBodyForward
+                            || (PACPlumbLineAlignment & plumbUpperBodyAligned) == plumbUpperBodyAligned
+                            || (PACPlumbLineAlignment & plumbUpperBodyBehind) == plumbUpperBodyBehind)
+                        && ((PACPlumbLineAlignment & plumbPelvisForward) == plumbPelvisForward
+                            || (PACPlumbLineAlignment & plumbPelvisAligned) == plumbPelvisAligned
+                            || (PACPlumbLineAlignment & plumbPelvisBehind) == plumbPelvisBehind)
+                        && ((PACPlumbLineAlignment & plumbKneesForward) == plumbKneesForward
+                            || (PACPlumbLineAlignment & plumbKneesAligned) == plumbKneesAligned
+                            || (PACPlumbLineAlignment & plumbKneesBehind) == plumbKneesBehind) 
+                        && ((PACPlumbLineAlignment & plumbRelativeAlign) == plumbRelativeAlign) ) {
+                    PACChecklistMain |= mainChecklistPlumbline;
+                }
+
 	} else {
 		PACChecklistMain &= ~mainChecklistAlignedInRelation;
                 PACPlumbLineAlignment &= ~plumbRelativeAlign;
@@ -383,8 +403,5 @@ static NSString* cell_identifier = @"plumbline-cell";
 	[[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListMainDidChange] object:nil];
 
 
-}
--(void) menuButtonClicked:(id)sender
-{
 }
 @end

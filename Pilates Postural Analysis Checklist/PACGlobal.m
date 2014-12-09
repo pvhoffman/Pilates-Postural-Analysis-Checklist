@@ -315,6 +315,15 @@ static void pac_save_analysis_plumbline(const int analysis_id)
     struct sqlite3* db = pac_database();
 
     sqlite3_prepare(db
+            , "delete from plumbline_t where plumbline_analysis = ?"
+            , -1
+            , &stmt
+            , 0);
+    sqlite3_bind_int(stmt, 1, analysis_id);
+    rc = sqlite3_step(stmt);
+    sqlite3_finalize(stmt);
+
+    sqlite3_prepare(db
             , "insert into plumbline_t (plumbline_analysis, plumbline_alignment) values (?, ?)"
             , -1
             , &stmt
@@ -323,7 +332,6 @@ static void pac_save_analysis_plumbline(const int analysis_id)
     sqlite3_bind_int(stmt, 2, PACPlumbLineAlignment);
     rc = sqlite3_step(stmt);
     sqlite3_finalize(stmt);
-
     
     if(!(rc == SQLITE_OK || rc == SQLITE_DONE) ) {
         const char* errmsg = sqlite3_errmsg(db);
@@ -351,6 +359,15 @@ static void pac_save_analysis_sideview(const int analysis_id)
 {
     sqlite3_stmt* stmt = 0;
     struct sqlite3* db = pac_database();
+
+    sqlite3_prepare(db
+            , "delete from sideview_t where sideview_analysis = ?"
+            , -1
+            , &stmt
+            , 0);
+    sqlite3_bind_int(stmt, 1, analysis_id);
+    sqlite3_step(stmt);
+    sqlite3_finalize(stmt);
 
     sqlite3_prepare(db
             , "insert into sideview_t (sideview_analysis, sideview_ankle_left, sideview_ankle_right, sideview_knee_left, sideview_knee_right, sideview_hip_left, sideview_hip_right"\
@@ -404,6 +421,15 @@ static void pac_save_analysis_frontview(const int analysis_id)
     struct sqlite3* db = pac_database();
 
     sqlite3_prepare(db
+            , "delete from frontview_t where frontview_analysis = ?"
+            , -1
+            , &stmt
+            , 0);
+    sqlite3_bind_int(stmt, 1, analysis_id);
+    sqlite3_step(stmt);
+    sqlite3_finalize(stmt);
+
+    sqlite3_prepare(db
             , "insert into frontview_t (frontview_analysis, frontview_foot_left, frontview_foot_right, frontview_knee_left, frontview_knee_right"\
             ", frontview_pelvis, frontview_ribcage, frontview_shoulders, frontview_head) values (?, ?, ?, ?, ?, ?, ?, ?, ?);"
             , -1
@@ -446,6 +472,15 @@ static void pac_save_analysis_backview(const int analysis_id)
 {
     sqlite3_stmt* stmt = 0;
     struct sqlite3* db = pac_database();
+
+    sqlite3_prepare(db
+            , "delete from backview_t where backview_analysis = ?"
+            , -1
+            , &stmt
+            , 0);
+    sqlite3_bind_int(stmt, 1, analysis_id);
+    sqlite3_step(stmt);
+    sqlite3_finalize(stmt);
 
     sqlite3_prepare(db
             , "insert into backview_t (backview_analysis, backview_foot_left, backview_foot_right, backview_femur_left, backview_femur_right, backview_pelvis"\
