@@ -13,7 +13,7 @@
 
 
 typedef enum {
-	mainChecklistPlumbline               = (1 << 0)
+	mainChecklistPlumbline           = (1 << 0)
 	, mainChecklistAlignedInRelation = (1 << 1)
 	, mainChecklistSideView          = (1 << 2)
 	, mainChecklistFrontView         = (1 << 3)

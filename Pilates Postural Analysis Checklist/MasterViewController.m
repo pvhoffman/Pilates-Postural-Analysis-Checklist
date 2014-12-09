@@ -10,11 +10,10 @@
 #import "DetailViewController.h"
 
 #import "PACPlumbLineViewController.h"
-// #import "PACRelativeAlignmentViewController.h"
 #import "PACSideViewTableViewController.h"
 #import "PACFrontViewTableViewController.h"
 #import "PACBackViewTableViewController.h"
-// #import "PACMainMenuViewController.h"
+#import "PACTypesetter.h"
 #import "PACGlobal.h"
 
 enum {
@@ -250,6 +249,16 @@ static NSString* cell_identifier = @"master-view-cell";
         [UIView commitAnimations];
 
     } 
+}
+-(void)mainMenuEmailAnalysis:(PACMainMenuView*)menu
+{
+    NSString* failmsg = nil;
+
+    NSString* filename = pac_typeset_current_analysis(&failmsg);
+
+    if(filename){
+        NSLog(@"File name is: %@", filename);
+    }
 }
 @end
 

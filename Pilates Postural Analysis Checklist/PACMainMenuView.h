@@ -13,6 +13,7 @@
 @protocol PACMainMenuDelegate <NSObject>
 @optional
 -(void)mainMenuDismiss:(PACMainMenuView*)menu;
+-(void)mainMenuEmailAnalysis:(PACMainMenuView*)menu;
 @end
 
 @interface PACMainMenuView : UIView <UITableViewDelegate

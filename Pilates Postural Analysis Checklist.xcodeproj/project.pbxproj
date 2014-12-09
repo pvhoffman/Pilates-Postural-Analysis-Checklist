@@ -49,6 +49,7 @@
 		E74666801A32572F00A7B50A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E746667F1A32572F00A7B50A /* libsqlite3.dylib */; };
 		E74666821A32574400A7B50A /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E74666811A32574400A7B50A /* libsqlite3.0.dylib */; };
 		E74666861A365D8100A7B50A /* PACMainMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = E74666851A365D8100A7B50A /* PACMainMenuView.m */; };
+		E74666881A3769ED00A7B50A /* PACTypesetter.m in Sources */ = {isa = PBXBuildFile; fileRef = E74666871A3769ED00A7B50A /* PACTypesetter.m */; };
 		E74AAAEF1A13F51C00C008CE /* PACFemursBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E74AAAEE1A13F51C00C008CE /* PACFemursBackViewController.m */; };
 		E74AAAF11A13FA1A00C008CE /* femurs_back_detail.gif in Resources */ = {isa = PBXBuildFile; fileRef = E74AAAF01A13FA1A00C008CE /* femurs_back_detail.gif */; };
 		E74AAAF51A142D7200C008CE /* main-view.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E74AAAF41A142D7200C008CE /* main-view.jpg */; };
@@ -150,6 +151,8 @@
 		E74666811A32574400A7B50A /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		E74666841A365D8100A7B50A /* PACMainMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACMainMenuView.h; sourceTree = "<group>"; };
 		E74666851A365D8100A7B50A /* PACMainMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACMainMenuView.m; sourceTree = "<group>"; };
+		E74666871A3769ED00A7B50A /* PACTypesetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACTypesetter.m; sourceTree = "<group>"; };
+		E74666891A376A0E00A7B50A /* PACTypesetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACTypesetter.h; sourceTree = "<group>"; };
 		E74AAAED1A13F51C00C008CE /* PACFemursBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACFemursBackViewController.h; sourceTree = "<group>"; };
 		E74AAAEE1A13F51C00C008CE /* PACFemursBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACFemursBackViewController.m; sourceTree = "<group>"; };
 		E74AAAF01A13FA1A00C008CE /* femurs_back_detail.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = femurs_back_detail.gif; sourceTree = "<group>"; };
@@ -306,6 +309,8 @@
 				E7B0E9BB19F702200011BB49 /* Supporting Files */,
 				E74666841A365D8100A7B50A /* PACMainMenuView.h */,
 				E74666851A365D8100A7B50A /* PACMainMenuView.m */,
+				E74666871A3769ED00A7B50A /* PACTypesetter.m */,
+				E74666891A376A0E00A7B50A /* PACTypesetter.h */,
 			);
 			path = "Pilates Postural Analysis Checklist";
 			sourceTree = "<group>";
@@ -535,6 +540,7 @@
 				E711C5C719F9CD7E0036873E /* PACLumbarSpineViewController.m in Sources */,
 				E7B0E9BE19F702200011BB49 /* main.m in Sources */,
 				E711C5D819FEFBB80036873E /* PACCervicalSpineViewController.m in Sources */,
+				E74666881A3769ED00A7B50A /* PACTypesetter.m in Sources */,
 				E711C5D319FEF6A10036873E /* PACUpperThoracicSpineViewController.m in Sources */,
 				E7C42B261A0AF059003FF7B9 /* PACHeadSideViewController.m in Sources */,
 				E7134E761A0C1F5500F2CEE8 /* PACShouldersFrontViewController.m in Sources */,

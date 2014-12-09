@@ -56,6 +56,7 @@ static NSString* cell_identifier_load = @"load-menu-cell";
 
 -(void)saveCurrentProfile;
 -(void)loadProfile;
+-(void)emailAnalysis;
 @end
 
 @implementation PACMainMenuView
@@ -234,6 +235,7 @@ static NSString* cell_identifier_load = @"load-menu-cell";
             [self loadProfile];
             break;
         case tableViewMainRowEmailAnalysis:
+            [self emailAnalysis];
             break;
         case tableViewMainRowDismiss:
             [self dismissMenuSelected];
@@ -291,8 +293,8 @@ static NSString* cell_identifier_load = @"load-menu-cell";
         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];//(animated:YES completion:nil)];
     
     } else {
-        UIView* content_view = [self vieWithTag:tagContentView];
-        UITableView* table_view = (UITableView*)[content_view vieWithTag:tagTableView];
+        UIView* content_view = [self viewWithTag:tagContentView];
+        UITableView* table_view = (UITableView*)[content_view viewWithTag:tagTableViewMain];
 
         CGRect frame = table_view.frame;
 
@@ -306,6 +308,14 @@ static NSString* cell_identifier_load = @"load-menu-cell";
         [UIView transitionFromView:table_view toView:tableView duration:0.45 options:UIViewAnimationOptionTransitionFlipFromLeft completion:^(BOOL finished){}];
     }
 
+}
+-(void)emailAnalysis
+{
+    if(_menu_delegate && [_menu_delegate respondsToSelector:@selector(mainMenuEmailAnalysis:)]){
+      [_menu_delegate mainMenuEmailAnalysis:self];
+    }
+
+    [self dismissMenuSelected];
 }
 @end
 
