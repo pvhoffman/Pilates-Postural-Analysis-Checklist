@@ -31,6 +31,18 @@ enum {
 static NSString* cell_identifier = @"main-menu-cell";
 static NSString* cell_identifier_load = @"load-menu-cell";
 
+//-----------------------------------------------------------------------------
+@interface PACLoadMenuTableViewCell : UITableViewCell
+@end
+
+@implementation PACLoadMenuTableViewCell 
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+	self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
+	return self;
+}
+@end
+//-----------------------------------------------------------------------------
 
 
 @interface PACMainMenuView()
@@ -38,10 +50,10 @@ static NSString* cell_identifier_load = @"load-menu-cell";
 -(UITableViewCell*)cellForTableViewMain:(UITableView*)tableView at:(NSIndexPath*)indexPath;
 -(UITableViewCell*)cellForTableViewLoad:(UITableView*)tableView at:(NSIndexPath*)indexPath;
 -(UIView*) viewForHeaderMainInSection:(UITableView*)tableView;
-
-
-
+-(UIView*) viewForHeaderLoadInSection:(UITableView*)tableView;
 -(void)didSelectRowMain:(UITableView*)tableView at:(NSIndexPath*)indexPath;
+-(void)didSelectRowLoad:(UITableView*)tableView at:(NSIndexPath*)indexPath;
+
 -(void)saveCurrentProfile;
 -(void)loadProfile;
 @end
@@ -109,6 +121,8 @@ static NSString* cell_identifier_load = @"load-menu-cell";
         switch(tableView.tag){
             case tagTableViewMain:
                 return [self viewForHeaderMainInSection:tableView];
+            case tagTableViewLoad:
+                return [self viewForHeaderLoadInSection:tableView];
         }
         return nil;
 }
@@ -117,6 +131,8 @@ static NSString* cell_identifier_load = @"load-menu-cell";
     switch(tableView.tag){
         case tagTableViewMain:
             return 42.0f;
+        case tagTableViewLoad:
+            return 42.0f;
     }
     return 0.0f;
 }
@@ -124,7 +140,12 @@ static NSString* cell_identifier_load = @"load-menu-cell";
 {
         switch(tableView.tag){
             case tagTableViewMain:
-            [self didSelectRowMain:tableView at:indexPath];
+                [self didSelectRowMain:tableView at:indexPath];
+                break;
+            case tagTableViewLoad:
+                [self didSelectRowLoad:tableView at:indexPath];
+                break;
+
         }
 }
 #pragma mark -
@@ -155,8 +176,24 @@ static NSString* cell_identifier_load = @"load-menu-cell";
 }
 -(UITableViewCell*)cellForTableViewLoad:(UITableView*)tableView at:(NSIndexPath*)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cell_identifier_load forIndexPath:indexPath];
+    PACLoadMenuTableViewCell* cell = (PACLoadMenuTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cell_identifier_load forIndexPath:indexPath];
 
+    cell.textLabel.text = @"No name";
+    cell.detailTextLabel.text = @"No date";
+
+    if(indexPath.row < [_analysis count]){
+        const int n = [[_analysis objectAtIndex:indexPath.row] intValue];
+
+        const char* analysis_name = pac_analysis_name_from_analysisid(n);
+        const char* analysis_date = pac_analysis_date_from_analysisid(n);
+
+        if(analysis_name && *analysis_name){
+                cell.textLabel.text = [NSString stringWithUTF8String:analysis_name];
+        }
+        if(analysis_date && *analysis_date){
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"saved: %s", analysis_date];
+        }
+    }
     return cell;
 }
 -(UIView*) viewForHeaderMainInSection:(UITableView*)tableView
@@ -166,6 +203,18 @@ static NSString* cell_identifier_load = @"load-menu-cell";
     label.textColor = [UIColor blackColor];
     label.font = [UIFont boldSystemFontOfSize:16.0];
     label.text = NSLocalizedString(@"Menu", @"");
+    label.numberOfLines = 0;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.lineBreakMode = NSLineBreakByWordWrapping;
+    return label;
+}
+-(UIView*) viewForHeaderLoadInSection:(UITableView*)tableView;
+{
+    UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 18.0f, tableView.frame.size.width, 28.0f)];
+    label.backgroundColor = [UIColor clearColor];
+    label.textColor = [UIColor blackColor];
+    label.font = [UIFont boldSystemFontOfSize:16.0];
+    label.text = NSLocalizedString(@"Load Saved Analysis", @"");
     label.numberOfLines = 0;
     label.textAlignment = NSTextAlignmentCenter;
     label.lineBreakMode = NSLineBreakByWordWrapping;
@@ -192,7 +241,14 @@ static NSString* cell_identifier_load = @"load-menu-cell";
     }
     
 }
-
+-(void)didSelectRowLoad:(UITableView*)tableView at:(NSIndexPath*)indexPath
+{
+    if(indexPath.row < [_analysis count]){
+        const int n = [[_analysis objectAtIndex:indexPath.row] intValue];
+        pac_load_analysis(n);
+    }
+    [self dismissMenuSelected];
+}
 -(void)dismissMenuSelected
 {
     if(_menu_delegate && [_menu_delegate respondsToSelector:@selector(mainMenuDismiss:)]){
@@ -224,19 +280,31 @@ static NSString* cell_identifier_load = @"load-menu-cell";
 {
     _analysis = pac_all_analysis();
 
-    UIView* content_view = [self vieWithTag:tagContentView];
-    UITableView* table_view = (UITableView*)[content_view vieWithTag:tagTableView];
+    if(!_analysis || ![_analysis count]){
+         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Oops"
+                                                                       message:@"You've no saved analysis profiles."
+                                                                preferredStyle:UIAlertControllerStyleAlert];
 
-    CGRect frame = table_view.frame;
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:NULL];
+        [alert addAction:defaultAction]; 
 
-    UITableView* tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height) style:UITableViewStyleGrouped];
-    tableView.tag = tagTableViewLoad;
-    tableView.dataSource = self;
-    tableView.delegate = self;
-    tableView.scrollEnabled = NO;
-    [tableView registerClass:[UITableViewCell class ] forCellReuseIdentifier:cell_identifier_load];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];//(animated:YES completion:nil)];
+    
+    } else {
+        UIView* content_view = [self vieWithTag:tagContentView];
+        UITableView* table_view = (UITableView*)[content_view vieWithTag:tagTableView];
 
-    [UIView transitionFromView:table_view toView:tableView duration:0.45 options:UIViewAnimationOptionTransitionFlipFromLeft completion:^(BOOL finished){}];
+        CGRect frame = table_view.frame;
+
+        UITableView* tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, frame.size.height) style:UITableViewStyleGrouped];
+        tableView.tag = tagTableViewLoad;
+        tableView.dataSource = self;
+        tableView.delegate = self;
+        tableView.scrollEnabled = NO;
+        [tableView registerClass:[PACLoadMenuTableViewCell class] forCellReuseIdentifier:cell_identifier_load];
+
+        [UIView transitionFromView:table_view toView:tableView duration:0.45 options:UIViewAnimationOptionTransitionFlipFromLeft completion:^(BOOL finished){}];
+    }
 
 }
 @end

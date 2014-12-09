@@ -678,6 +678,58 @@ NSArray* pac_all_analysis()
 
         return res;
 }
+const char* pac_analysis_name_from_analysisid(const int n)
+{
+    enum {max_name_length = 255};
+
+    static char res[max_name_length];
+
+    struct sqlite3* db = pac_database();
+    sqlite3_stmt* stmt;
+
+    res[0] = 0;
+
+    sqlite3_prepare(db
+            , "select analysis_name from analysis_t where analysis_id = ?"
+            , -1
+            , &stmt
+            , 0);
+    sqlite3_bind_int(stmt, 1, n);
+    if(sqlite3_step(stmt) == SQLITE_ROW){
+        const char* cptr = (const char*)sqlite3_column_text(stmt, 0);
+        if(cptr && *cptr){
+                strcpy(res, cptr);
+        }
+    }
+    return &res[0];
+}
+const char* pac_analysis_date_from_analysisid(const int n)
+{
+    enum {max_date_length = 255};
+
+    static char res[max_date_length];
+
+    struct sqlite3* db = pac_database();
+    sqlite3_stmt* stmt;
+
+    res[0] = 0;
+
+    sqlite3_prepare(db
+            , "select analysis_datetime from analysis_t where analysis_id = ?"
+            , -1
+            , &stmt
+            , 0);
+    sqlite3_bind_int(stmt, 1, n);
+    if(sqlite3_step(stmt) == SQLITE_ROW){
+        const char* cptr = (const char*)sqlite3_column_text(stmt, 0);
+        if(cptr && *cptr){
+                strcpy(res, cptr);
+        }
+    }
+
+    return &res[0];
+}
+
 #if 0
 
 

@@ -348,6 +348,8 @@ void pac_load_analysis(const int analysis_id);
 
 NSArray* pac_all_analysis();
 
+const char* pac_analysis_name_from_analysisid(const int n);
+const char* pac_analysis_date_from_analysisid(const int n);
 
 
 #endif
