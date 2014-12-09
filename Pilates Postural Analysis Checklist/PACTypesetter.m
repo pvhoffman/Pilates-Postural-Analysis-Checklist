@@ -142,6 +142,122 @@ void pac_typeset_plumbline_analysis(CGContextRef pdf_ctx)
         CFRelease( displayLine );
     }  
 }
+static void pac_typeset_draw_checkmark(CGContextRef pdf_ctx, const float x, const float y)
+{
+    NSDictionary* attribs = @{NSFontAttributeName:[UIFont fontWithName:@"Helvetica-Bold" size:13.0]};
+    NSAttributedString* fontStr = [[NSAttributedString alloc] initWithString:@"\u2713" attributes:attribs];
+
+    CTLineRef displayLine = CTLineCreateWithAttributedString( (__bridge CFAttributedStringRef)fontStr );
+    CGContextSetTextPosition( pdf_ctx, x, y );
+    CTLineDraw( displayLine, pdf_ctx );
+    CFRelease( displayLine );
+}
+static void pac_typeset_draw_circle(CGContextRef pdf_ctx, const float x, const float y, const float w, const float h)
+{
+    CGContextSetLineWidth(pdf_ctx, 1.5);
+    CGContextSetRGBStrokeColor(pdf_ctx, 0.0, 0.0, 0.0, 1.0);
+    CGContextStrokeEllipseInRect(pdf_ctx, CGRectMake(x, y, w, h));
+}
+static void pac_typeset_sideview_ankles(CGContextRef pdf_ctx)
+{
+    const float cbx = 97.5f;
+    const float cby_neutral = 590.0f;
+    const float cby_plantar = 578.0f;
+    const float cby_dorsi   = 566.0f;
+
+    const float cirrx = 187.0f;
+    const float cirlx = 203.0f;
+
+    const float ciry_neutral = 588.0;
+    const float ciry_plantar = 576.0;
+    const float ciry_dorsi   = 563.0;
+
+    const float cirw = 10.0f;
+    const float cirh = 10.0f;
+
+    switch(PACAnkleAlignmentLeft){
+        case ankleAlignmentNeutral:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_neutral);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_neutral, cirw, cirh);
+            break;
+        case ankleAlignmentPlantarflex:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_plantar);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_plantar, cirw, cirh);
+            break;
+        case ankleAlignmentDorsiflex:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_dorsi);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_dorsi, cirw, cirh);
+            break;
+    }
+
+    switch(PACAnkleAlignmentRight){
+        case ankleAlignmentNeutral:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_neutral);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_neutral, cirw, cirh);
+            break;
+        case ankleAlignmentPlantarflex:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_plantar);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_plantar, cirw, cirh);
+            break;
+        case ankleAlignmentDorsiflex:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_dorsi);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_dorsi, cirw, cirh);
+            break;
+    }
+}
+static void pac_typeset_sideview_knees(CGContextRef pdf_ctx)
+{
+    const float cbx = 97.5f;
+    const float cby_neutral  = 536.0f;
+    const float cby_extended = 524.0f;
+    const float cby_flexed   = 512.0f;
+
+    const float cirrx = 187.0f;
+    const float cirlx = 203.0f;
+
+    const float ciry_neutral  = 534.0;
+    const float ciry_extended = 522.0;
+    const float ciry_flexed   = 510.0;
+
+    const float cirw = 10.0f;
+    const float cirh = 10.0f;
+
+    switch(PACKneeAlignmentSideLeft){
+        case kneeSideAlignmentNeutral:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_neutral);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_neutral, cirw, cirh);
+            break;
+        case kneeSideAlignmentHyperextended:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_extended);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_extended, cirw, cirh);
+            break;
+        case kneeSideAlignmentFlexed:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_flexed);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_flexed, cirw, cirh);
+            break;
+    }
+
+    switch(PACKneeAlignmentSideRight){
+        case kneeSideAlignmentNeutral:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_neutral);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_neutral, cirw, cirh);
+            break;
+        case kneeSideAlignmentHyperextended:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_extended);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_extended, cirw, cirh);
+            break;
+        case kneeSideAlignmentFlexed:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_flexed);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_flexed, cirw, cirh);
+            break;
+    }
+
+}
+static void pac_typeset_sideview_analysis(CGContextRef pdf_ctx)
+{
+    pac_typeset_sideview_ankles(pdf_ctx);
+    pac_typeset_sideview_knees(pdf_ctx);
+}
 NSString* pac_typeset_current_analysis(NSString** failmsg)
 {
         NSString* res = nil;
@@ -174,6 +290,7 @@ NSString* pac_typeset_current_analysis(NSString** failmsg)
 
             // typeset the fields
             pac_typeset_plumbline_analysis(pdf_ctx);
+            pac_typeset_sideview_analysis(pdf_ctx);
 
             CGContextEndPage(pdf_ctx);
             CGContextRelease(pdf_ctx);

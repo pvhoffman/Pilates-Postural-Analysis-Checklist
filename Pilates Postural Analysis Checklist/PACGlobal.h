@@ -244,17 +244,6 @@ typedef enum {
 } PACSpineSequencing_t;
 
 // Back Sequencing through spine for imbalances
-#if 0
-typedef enum {
-	spineImbalanceNone            = (1 << 0)
-	, spineImbalanceHead      = (1 << 1)
-	, spineImbalanceShoulders = (1 << 2)
-	, spineImbalancePelvis    = (1 << 3)
-	, spineImbalanceKnees     = (1 << 4)
-	, spineImbalanceAnkles    = (1 << 5)
-}PACSpineImbalance_t;
-#else
-
 typedef enum {
 	spineImbalanceNone                 = (1 << 0)
 	, spineImbalanceUpperScapulaeLeft  = (1 << 1)
@@ -264,8 +253,6 @@ typedef enum {
 	, spineImbalanceLumbarLeft         = (1 << 5)
 	, spineImbalanceLumbarRight        = (1 << 6)
 }PACSpineImbalance_t;
-
-#endif
 
 extern unsigned int PACChecklistMain;
 extern unsigned int PACPlumbLineAlignment;
