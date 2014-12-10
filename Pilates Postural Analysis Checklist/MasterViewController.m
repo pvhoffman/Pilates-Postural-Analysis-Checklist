@@ -5,6 +5,7 @@
 //  Created by Paul Hoffman on 10/21/14.
 //  Copyright (c) 2014 Paul Hoffman. All rights reserved.
 //
+#import <MessageUI/MessageUI.h>
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
@@ -62,8 +63,7 @@ static NSString* cell_identifier = @"master-view-cell";
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mainCheckListDidChange:) name:[NSString stringWithUTF8String:PACCheckListMainDidChange] object:nil];
 
-        //pac_open_database();
-
+        _mailer = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -260,9 +260,30 @@ static NSString* cell_identifier = @"master-view-cell";
 
     NSString* filename = pac_typeset_current_analysis(&failmsg);
 
-    if(filename){
-        NSLog(@"File name is: %@", filename);
+    if(filename && [filename length] && [[NSFileManager defaultManager] fileExistsAtPath:filename] == YES){
+
+        if ([MFMailComposeViewController canSendMail]){
+            _mailer = nil;
+
+            _mailer = [[MFMailComposeViewController alloc] init];
+            _mailer.mailComposeDelegate = self; 
+
+            NSData* pdf_data = [NSData dataWithContentsOfFile:filename];
+
+            [_mailer setSubject:@"Posture Analysis Checklist"];
+            [_mailer setMessageBody:@"Attached to this message is your completed posture analysis checklist." isHTML:NO];
+            [_mailer addAttachmentData:pdf_data mimeType:@"application/pdf" fileName:filename];
+
+            [self presentViewController:_mailer animated:YES completion:NULL];
+        }
+
+    } else {
+        // log an error
     }
+}
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 @end
 

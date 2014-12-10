@@ -939,12 +939,187 @@ static void pac_typeset_backview_scapulae(CGContextRef pdf_ctx)
 
 
 }
+static void pac_typeset_backview_humeri(CGContextRef pdf_ctx)
+{    
+    const float cbx = 444.0f;
+
+    const float cby_neutral = 290.0f;
+    const float cby_rotated = 278.0f;
+
+    const float cirrx = 533.0f;
+    const float cirlx = 549.0f;
+
+    const float cirw = 10.0f;
+    const float cirh = 10.0f;
+
+    const float ciry_neutral = 288.0f;
+    const float ciry_rotated = 276.0f;
+
+    switch(PACHumeriBackAlignmentLeft){
+        case humeriBackAlignmentNeutral:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_neutral);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_neutral, cirw, cirh);
+            break;
+	case humeriBackAlignmentRotated:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_rotated);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_rotated, cirw, cirh);
+            break;
+    }
+    switch(PACHumeriBackAlignmentRight){
+        case humeriBackAlignmentNeutral:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_neutral);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_neutral, cirw, cirh);
+            break;
+	case humeriBackAlignmentRotated:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_rotated);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_rotated, cirw, cirh);
+            break;
+    }
+}
+static void pac_typeset_backview_flatareas(CGContextRef pdf_ctx)
+{    
+    const float cbx = 444.0f;
+    const float cby = 236.0f;
+
+    const float ciryx = 533.0f;
+    const float cirnx = 549.0f;
+
+    const float cirw = 10.0f;
+    const float cirh = 10.0f;
+
+    const float ciry = 234.0f;
+
+    pac_typeset_draw_checkmark(pdf_ctx, cbx, cby);
+
+    if(PACSpineSequencing == spineSequencingNone){
+        pac_typeset_draw_circle(pdf_ctx, cirnx, ciry, cirw, cirh);
+    } else if(PACSpineSequencing > 0) {
+        NSMutableArray* flat_areas = [[NSMutableArray alloc] init];
+        pac_typeset_draw_circle(pdf_ctx, ciryx, ciry, cirw, cirh);
+
+        if((PACSpineSequencing & spineSequencingUpperCervical) == spineSequencingUpperCervical){
+            [flat_areas addObject:@"upper cervical"];
+        }
+        if((PACSpineSequencing & spineSequencingLowerCervical) == spineSequencingLowerCervical){
+            [flat_areas addObject:@"lower cervical"];
+        }
+        if((PACSpineSequencing & spineSequencingUpperThoracic) == spineSequencingUpperThoracic){
+            [flat_areas addObject:@"upper thoracic"];
+        }
+        if((PACSpineSequencing & spineSequencingLowerThoracic) == spineSequencingLowerThoracic){
+            [flat_areas addObject:@"lower thoracic"];
+        }
+        if((PACSpineSequencing & spineSequencingUpperLumbar) == spineSequencingUpperLumbar){
+            [flat_areas addObject:@"upper lumbar"];
+        }
+        if((PACSpineSequencing & spineSequencingLowerLumbar) == spineSequencingLowerLumbar){
+            [flat_areas addObject:@"lower lumbar"];
+        }
+        NSString* line = [NSString stringWithFormat:@"Flat areas: %@", [flat_areas componentsJoinedByString:@", "]];
+
+        NSDictionary *attribs = @{NSFontAttributeName:[UIFont fontWithName:@"Helvetica" size:10.0]};
+        NSAttributedString *fontStr = [[NSAttributedString alloc] initWithString:line attributes:attribs];
+
+        CTLineRef displayLine = CTLineCreateWithAttributedString( (__bridge CFAttributedStringRef)fontStr );
+        CGContextSetTextPosition( pdf_ctx, 35.0f, 110.0f );
+        CTLineDraw( displayLine, pdf_ctx );
+        CFRelease( displayLine );
+        
+    }
+}
+static void pac_typeset_backview_imbalances(CGContextRef pdf_ctx)
+{
+    const float cbx = 444.0f;
+    const float cby = 194.0f;
+
+    const float ciryx = 533.0f;
+    const float cirnx = 549.0f;
+
+    const float cirw = 10.0f;
+    const float cirh = 10.0f;
+
+    const float ciry = 180.0f;
+
+    pac_typeset_draw_checkmark(pdf_ctx, cbx, cby);
+
+    if(PACSpineImbalance == spineImbalanceNone){
+        pac_typeset_draw_circle(pdf_ctx, cirnx, ciry, cirw, cirh);
+    } else if(PACSpineImbalance > 0){
+        NSMutableArray* imbalances = [[NSMutableArray alloc] init];
+
+        pac_typeset_draw_circle(pdf_ctx, ciryx, ciry, cirw, cirh);
+
+        if((PACSpineImbalance & spineImbalanceUpperScapulaeLeft) == spineImbalanceUpperScapulaeLeft){
+            [imbalances addObject:@"upper left scapulae"];
+        }
+        if((PACSpineImbalance & spineImbalanceUpperScapulaeRight) == spineImbalanceUpperScapulaeRight){
+            [imbalances addObject:@"upper right scapulae"];
+        }
+        if((PACSpineImbalance & spineImbalanceLowerScapulaeLeft) == spineImbalanceLowerScapulaeLeft){
+            [imbalances addObject:@"lower left scapulae"];
+        }
+        if((PACSpineImbalance & spineImbalanceLowerScapulaeRight) == spineImbalanceLowerScapulaeRight){
+            [imbalances addObject:@"lower right scapulae"];
+        }
+        if((PACSpineImbalance & spineImbalanceLumbarLeft) == spineImbalanceLumbarLeft){
+            [imbalances addObject:@"left lumbar"];
+        }
+        if((PACSpineImbalance & spineImbalanceLumbarRight) == spineImbalanceLumbarRight){
+            [imbalances addObject:@"right lumbar"];
+        }
+
+        NSString* line = [NSString stringWithFormat:@"Imbalances: %@", [imbalances componentsJoinedByString:@", "]];
+
+        NSDictionary *attribs = @{NSFontAttributeName:[UIFont fontWithName:@"Helvetica" size:10.0]};
+        NSAttributedString *fontStr = [[NSAttributedString alloc] initWithString:line attributes:attribs];
+
+        CTLineRef displayLine = CTLineCreateWithAttributedString( (__bridge CFAttributedStringRef)fontStr );
+        CGContextSetTextPosition( pdf_ctx, 35.0f, 95.0f );
+        CTLineDraw( displayLine, pdf_ctx );
+        CFRelease( displayLine );
+    }
+}
 static void pac_typeset_backview_analysis(CGContextRef pdf_ctx)
 {
     pac_typeset_backview_feet(pdf_ctx);
     pac_typeset_backview_femurs(pdf_ctx);
     pac_typeset_backview_pelvis(pdf_ctx);
     pac_typeset_backview_scapulae(pdf_ctx);
+    pac_typeset_backview_humeri(pdf_ctx);
+    pac_typeset_backview_flatareas(pdf_ctx);
+    pac_typeset_backview_imbalances(pdf_ctx);
+}
+static NSString* pac_typeset_datetime_string()
+{
+    NSDate* now = [NSDate date];
+    NSDateFormatter *dateFormater = [[NSDateFormatter alloc] init];
+    [dateFormater setDateFormat:@"MM/dd/yyyy hh:mma"];
+
+    return [dateFormater stringFromDate:now];
+}
+
+static void pac_typeset_document_info(CGContextRef pdf_ctx)
+{
+    float cx = 35.0f;
+    float cy = 770.0f;
+
+    NSString* line = @"";
+
+
+    if(PACCurrentAnalysis > 0){
+        line = [NSString stringWithFormat:@"Prepared for %s on %@", pac_analysis_name_from_analysisid(PACCurrentAnalysis), pac_typeset_datetime_string()]; 
+    } else {
+        line = [NSString stringWithFormat:@"Prepared on %@", pac_typeset_datetime_string()]; 
+    }
+    NSDictionary *attribs = @{NSFontAttributeName:[UIFont fontWithName:@"Helvetica" size:10.0]};
+    NSAttributedString *fontStr = [[NSAttributedString alloc] initWithString:line attributes:attribs];
+
+    CTLineRef displayLine = CTLineCreateWithAttributedString( (__bridge CFAttributedStringRef)fontStr );
+    CGContextSetTextPosition( pdf_ctx, cx, cy );
+    CTLineDraw( displayLine, pdf_ctx );
+    CFRelease( displayLine );
+ 
+
 }
 NSString* pac_typeset_current_analysis(NSString** failmsg)
 {
@@ -976,6 +1151,7 @@ NSString* pac_typeset_current_analysis(NSString** failmsg)
 
             CGPDFDocumentRelease(doc_src);
 
+            pac_typeset_document_info(pdf_ctx);
             // typeset the fields
             pac_typeset_plumbline_analysis(pdf_ctx);
             pac_typeset_sideview_analysis(pdf_ctx);

@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "PACMainMenuView.h"
 
-@interface MasterViewController : UITableViewController <PACMainMenuDelegate> 
-
+@interface MasterViewController : UITableViewController <PACMainMenuDelegate
+                                                        , MFMailComposeViewControllerDelegate
+                                                        > 
+{
+@private    
+    MFMailComposeViewController* _mailer;
+}
 
 @end
 
