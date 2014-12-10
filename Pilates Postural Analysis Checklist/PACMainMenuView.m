@@ -57,6 +57,9 @@ static NSString* cell_identifier_load = @"load-menu-cell";
 -(void)saveCurrentProfile;
 -(void)loadProfile;
 -(void)emailAnalysis;
+
+-(void)deleteItemClicked:(id)sender;
+
 @end
 
 @implementation PACMainMenuView
@@ -184,6 +187,15 @@ static NSString* cell_identifier_load = @"load-menu-cell";
 
     cell.textLabel.text = @"No name";
     cell.detailTextLabel.text = @"No date";
+
+    if(!cell.accessoryView){
+	UIButton* button1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	button1.frame = CGRectMake(0.0f, 0.0f, 85.0f, 37.0f);
+        button1.tag = indexPath.row;
+	[button1 setTitle:NSLocalizedString(@"Delete", @"") forState:UIControlStateNormal];
+	[button1 addTarget:self action:@selector(deleteItemClicked:) forControlEvents:UIControlEventTouchUpInside];
+        cell.accessoryView = button1;
+    }
 
     if(indexPath.row < [_analysis count]){
         const int n = [[_analysis objectAtIndex:indexPath.row] intValue];
@@ -330,6 +342,21 @@ static NSString* cell_identifier_load = @"load-menu-cell";
     }
 
     [self dismissMenuSelected];
+}
+
+-(void)deleteItemClicked:(id)sender
+{
+    UIButton* button = (UIButton*)sender;
+
+    int analysis_id = [[_analysis objectAtIndex:button.tag] intValue];
+
+    pac_remove_analysis(analysis_id);
+
+    [_analysis removeObjectAtIndex:button.tag];
+
+    UIView* content_view = [self viewWithTag:tagContentView];
+    UITableView* table_view = (UITableView*)[content_view viewWithTag:tagTableViewLoad];
+    [table_view reloadData];
 }
 @end
 

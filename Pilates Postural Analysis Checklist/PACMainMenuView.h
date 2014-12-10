@@ -22,7 +22,7 @@
 {
 @private
         __weak id<PACMainMenuDelegate> _menu_delegate;
-        NSArray* _analysis;
+        NSMutableArray* _analysis;
 }
 @property (nonatomic, weak) id<PACMainMenuDelegate> menu_delegate;
 

@@ -813,7 +813,7 @@ void pac_load_analysis(const int analysis_id)
     PACCurrentAnalysis = analysis_id;
 }
 
-NSArray* pac_all_analysis()
+NSMutableArray* pac_all_analysis()
 {
         NSMutableArray* res = [[NSMutableArray alloc] init];
         sqlite3_stmt* stmt;
@@ -884,3 +884,17 @@ const char* pac_analysis_date_from_analysisid(const int n)
     return &res[0];
 }
 
+void pac_remove_analysis(const int analysis_id)
+{
+    struct sqlite3* db = pac_database();
+    sqlite3_stmt* stmt;
+
+    sqlite3_prepare(db
+            , "delete from analysis_t where analysis_id = ?"
+            , -1
+            , &stmt
+            , 0);
+    sqlite3_bind_int(stmt, 1, analysis_id);
+    sqlite3_step(stmt);
+    sqlite3_finalize(stmt);
+}

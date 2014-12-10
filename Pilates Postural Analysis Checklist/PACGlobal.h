@@ -334,11 +334,12 @@ void pac_reset_all();
 void pac_save_analysis(const char* name, int analysis_id);
 void pac_load_analysis(const int analysis_id);
 
-NSArray* pac_all_analysis();
+NSMutableArray* pac_all_analysis();
 
 const char* pac_analysis_name_from_analysisid(const int n);
 const char* pac_analysis_date_from_analysisid(const int n);
 
 
+void pac_remove_analysis(const int analysis_id);
 #endif
 
