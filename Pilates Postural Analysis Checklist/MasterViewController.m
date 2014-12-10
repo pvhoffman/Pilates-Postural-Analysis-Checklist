@@ -263,6 +263,7 @@ static NSString* cell_identifier = @"master-view-cell";
     if(filename && [filename length] && [[NSFileManager defaultManager] fileExistsAtPath:filename] == YES){
 
         if ([MFMailComposeViewController canSendMail]){
+
             _mailer = nil;
 
             _mailer = [[MFMailComposeViewController alloc] init];
@@ -272,18 +273,76 @@ static NSString* cell_identifier = @"master-view-cell";
 
             [_mailer setSubject:@"Posture Analysis Checklist"];
             [_mailer setMessageBody:@"Attached to this message is your completed posture analysis checklist." isHTML:NO];
-            [_mailer addAttachmentData:pdf_data mimeType:@"application/pdf" fileName:filename];
+            [_mailer addAttachmentData:pdf_data mimeType:@"application/pdf" fileName:@"posture-analysis-checklist.pdf"];
 
             [self presentViewController:_mailer animated:YES completion:NULL];
+        } else {
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                           message:@"Device not configured for email."
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:NULL];
+            [alert addAction:defaultAction];
+
+            [self presentViewController:alert animated:YES completion:nil];
         }
 
     } else {
         // log an error
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                       message:@"Could not create analysis sheet."
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:NULL];
+        [alert addAction:defaultAction];
+
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    NSString* alertCaption = nil;
+    NSString* alertMessage = nil;
+
+    [controller dismissViewControllerAnimated:YES completion:NULL];
+
+    switch(result) {
+        case MFMailComposeResultCancelled:
+                alertCaption = [NSString stringWithString:NSLocalizedString(@"Email Cancelled", "")];
+                alertMessage = [NSString stringWithString:NSLocalizedString(@"No email message was queued.", @"")];
+                break;
+        case MFMailComposeResultSaved:
+                alertCaption = [NSString stringWithString:NSLocalizedString(@"Email Draft Saved", @"")];
+                alertMessage = [NSString stringWithString:NSLocalizedString(@"Email successfully saved in Drafts folder.", @"")];
+                break;
+        case MFMailComposeResultSent:
+                alertCaption = [NSString stringWithString : NSLocalizedString (@"Email Message Queued to Outbox", @"")];
+                alertMessage = [NSString stringWithString:NSLocalizedString(@"Email will be sent the next time email is connected.", @"")];
+                break;
+        case MFMailComposeResultFailed: {
+                NSString* formatstring = NSLocalizedString(@"Error message is: %@", @"");
+                NSString* errmsg = [error localizedDescription];
+                alertCaption = [NSString stringWithString:NSLocalizedString(@"Email Message Failed", @"")];
+                alertMessage = [NSString stringWithFormat:formatstring, errmsg];
+                }
+                break;
+        default:
+                alertCaption = [NSString stringWithString:NSLocalizedString(@"Email Message Status Unknown", @"")];
+                alertMessage = [NSString stringWithString:NSLocalizedString(@"Unknown result.", @"")];
+                break;
+    }
+
+
+
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:alertCaption
+                message:alertMessage
+                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:NULL];
+
+    [alert addAction:defaultAction];
+
+    [self presentViewController:alert animated:YES completion:nil];
 }
 @end
 
