@@ -516,15 +516,6 @@ static void pac_typeset_frontview_knees(CGContextRef pdf_ctx)
 
     switch(PACKneeFrontAlignmentLeft){
         case kneeFrontAlignmentNeutral:
-            break;
-        case kneeFrontAlignmentKnocked:
-            break;
-        case kneeFrontAlignmentBow:
-            break;
-    }
-
-    switch(PACKneeFrontAlignmentLeft){
-        case kneeFrontAlignmentNeutral:
             pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_neutral);
             break;
         case kneeFrontAlignmentKnocked:
@@ -537,10 +528,48 @@ static void pac_typeset_frontview_knees(CGContextRef pdf_ctx)
 
 
 }
+static void pac_typeset_frontview_pelvis(CGContextRef pdf_ctx)
+{
+
+    const float cbx = 287.0f;
+    const float cby_level      = 482.0f;
+    const float cby_elevated   = 470.0f;
+    const float cby_rotated_c  = 458.0f;
+    const float cby_rotated_cw = 446.0f;
+
+    const float cirrx = 376.0f;
+    const float cirlx = 394.0f;
+
+    const float cirw = 10.0f;
+    const float cirh = 10.0f;
+
+    const float ciry_elevated = 468.0f;
+
+    switch(PACPelvisFrontAlignment){
+        case pelvisFrontAlignmentLevel:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_level);
+            break;
+        case pelvisFrontAlignmentElevatedLeft:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_elevated);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_elevated, cirw, cirh);
+            break;
+        case pelvisFrontAlignmentElevatedRight:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_elevated);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_elevated, cirw, cirh);
+            break;
+        case pelvisFrontAlignmentRotatedClockwise:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_rotated_c);
+            break;
+        case pelvisFrontAlignmentRotatedCounterClockwise:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_rotated_cw);
+            break;
+    }
+}
 static void pac_typeset_frontview_analysis(CGContextRef pdf_ctx)
 {
     pac_typeset_frontview_feet(pdf_ctx);
     pac_typeset_frontview_knees(pdf_ctx);
+    pac_typeset_frontview_pelvis(pdf_ctx);
 }
 NSString* pac_typeset_current_analysis(NSString** failmsg)
 {
