@@ -242,16 +242,15 @@ static NSString* cell_identifier = @"master-view-cell";
     UIView* v1 = [self.view viewWithTag:tagMenuView];
     UIView* v2 = [self.view viewWithTag:tagOverlayView];
 
-    if(v1 && v2){
-
+    if(v1){
         [v1 removeFromSuperview];
-
+    }
+    if(v2){
         // using transitions adds the layover view many times possibly
         while(v2){
             [v2 removeFromSuperview];
             v2 = [self.view viewWithTag:tagOverlayView];
         }
-
     } 
 }
 -(void)mainMenuEmailAnalysis:(PACMainMenuView*)menu
