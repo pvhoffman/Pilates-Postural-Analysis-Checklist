@@ -565,11 +565,139 @@ static void pac_typeset_frontview_pelvis(CGContextRef pdf_ctx)
             break;
     }
 }
+static void pac_typeset_frontview_ribcage(CGContextRef pdf_ctx)
+{    
+    const float cbx = 287.0f;
+    const float cby_neutral    = 416.0f;
+    const float cby_elevated   = 404.0f;
+    const float cby_shifted    = 392.0f;
+    const float cby_rotated_c  = 380.0f;
+    const float cby_rotated_cw = 368.0f;
+
+    const float cirrx = 376.0f;
+    const float cirlx = 394.0f;
+
+    const float cirw = 10.0f;
+    const float cirh = 10.0f;
+
+    const float ciry_elevated = 402.0f;
+    const float ciry_shifted  = 390.0f;
+
+    if(PACRibCageFrontAlignment == ribCageAlignmentNeutral){
+        pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_neutral);
+    } else {
+        if((PACRibCageFrontAlignment & ribCageAlignmentElevatedLeft) == ribCageAlignmentElevatedLeft){
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_elevated);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_elevated, cirw, cirh);
+        }
+        if((PACRibCageFrontAlignment & ribCageAlignmentElevatedRight) == ribCageAlignmentElevatedRight){
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_elevated);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_elevated, cirw, cirh);
+        }
+        if((PACRibCageFrontAlignment & ribCageAlignmentShiftedLeft) == ribCageAlignmentShiftedLeft){
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_elevated);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_shifted, cirw, cirh);
+        }
+        if((PACRibCageFrontAlignment & ribCageAlignmentShiftedRight) == ribCageAlignmentShiftedRight){
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_elevated);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_shifted, cirw, cirh);
+        }
+        if((PACRibCageFrontAlignment & ribCageAlignmentRotatedClockwise) == ribCageAlignmentRotatedClockwise){
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_rotated_c);
+        }
+        if((PACRibCageFrontAlignment & ribCageAlignmentRotatedCounterClockwise) == ribCageAlignmentRotatedCounterClockwise){
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_rotated_cw);
+        }
+    }
+}
+static void pac_typeset_frontview_shoulders(CGContextRef pdf_ctx)
+{
+    const float cbx = 287.0f;
+    const float cby_level     = 338.0f;
+    const float cby_elevated  = 326.0f;
+    const float cby_depressed = 314.0f;
+
+    const float cirrx = 376.0f;
+    const float cirlx = 394.0f;
+
+    const float cirw = 10.0f;
+    const float cirh = 10.0f;
+
+    const float ciry_elevated  = 324.0f;
+    const float ciry_depressed = 312.0f;
+
+    if((PACShouldersFrontAlignment & shouldersFrontAlignmentLevel) == shouldersFrontAlignmentLevel){
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_level);
+    }
+    if((PACShouldersFrontAlignment & shouldersFrontAlignmentElevatedLeft) == shouldersFrontAlignmentElevatedLeft){
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_elevated);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_elevated, cirw, cirh);
+    }
+    if((PACShouldersFrontAlignment & shouldersFrontAlignmentElevatedRight) == shouldersFrontAlignmentElevatedRight){
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_elevated);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_elevated, cirw, cirh);
+    }
+    if((PACShouldersFrontAlignment & shouldersFrontAlignmentDepressedLeft) == shouldersFrontAlignmentDepressedLeft){
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_depressed);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_depressed, cirw, cirh);
+    }
+    if((PACShouldersFrontAlignment & shouldersFrontAlignmentDepressedRight) == shouldersFrontAlignmentDepressedRight){
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_depressed);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_depressed, cirw, cirh);
+    }
+}
+static void pac_typeset_frontview_head(CGContextRef pdf_ctx)
+{
+    const float cbx = 287.0f;
+    const float cby_rotated_c  = 284.0f;
+    const float cby_rotated_cw = 272.0f;
+    const float cby_neutral    = 260.0f;
+    const float cby_tilted     = 248.0f;
+    const float cby_shifted    = 236.0f;
+
+    const float cirrx = 376.0f;
+    const float cirlx = 394.0f;
+
+    const float cirw = 10.0f;
+    const float cirh = 10.0f;
+
+    const float ciry_tilted  = 246.0f;
+    const float ciry_shifted = 234.0f;
+
+    if((PACHeadFrontAlignment & headFrontAlignmentNeutral) == headFrontAlignmentNeutral){
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_neutral);
+    }
+    if((PACHeadFrontAlignment & headFrontAlignmentRotatedClockwise) == headFrontAlignmentRotatedClockwise){
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_rotated_c);
+    }
+    if((PACHeadFrontAlignment & headFrontAlignmentRotatedCounterClockwise) == headFrontAlignmentRotatedCounterClockwise){
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_rotated_cw);
+    }
+    if((PACHeadFrontAlignment & headFrontAlignmentTiltedLeft) == headFrontAlignmentTiltedLeft){
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_tilted);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_tilted, cirw, cirh);
+    }
+    if((PACHeadFrontAlignment & headFrontAlignmentTiltedRight) == headFrontAlignmentTiltedRight){
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_tilted);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_tilted, cirw, cirh);
+    }
+    if((PACHeadFrontAlignment & headFrontAlignmentShiftedLeft) == headFrontAlignmentShiftedLeft){
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_shifted);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_shifted, cirw, cirh);
+    }
+    if((PACHeadFrontAlignment & headFrontAlignmentShiftedRight) == headFrontAlignmentShiftedRight){
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_shifted);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_shifted, cirw, cirh);
+    }
+}
 static void pac_typeset_frontview_analysis(CGContextRef pdf_ctx)
 {
     pac_typeset_frontview_feet(pdf_ctx);
     pac_typeset_frontview_knees(pdf_ctx);
     pac_typeset_frontview_pelvis(pdf_ctx);
+    pac_typeset_frontview_ribcage(pdf_ctx);
+    pac_typeset_frontview_shoulders(pdf_ctx);
+    pac_typeset_frontview_head(pdf_ctx);
 }
 NSString* pac_typeset_current_analysis(NSString** failmsg)
 {
