@@ -595,11 +595,11 @@ static void pac_typeset_frontview_ribcage(CGContextRef pdf_ctx)
             pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_elevated, cirw, cirh);
         }
         if((PACRibCageFrontAlignment & ribCageAlignmentShiftedLeft) == ribCageAlignmentShiftedLeft){
-            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_elevated);
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_shifted);
             pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_shifted, cirw, cirh);
         }
         if((PACRibCageFrontAlignment & ribCageAlignmentShiftedRight) == ribCageAlignmentShiftedRight){
-            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_elevated);
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_shifted);
             pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_shifted, cirw, cirh);
         }
         if((PACRibCageFrontAlignment & ribCageAlignmentRotatedClockwise) == ribCageAlignmentRotatedClockwise){
@@ -699,6 +699,253 @@ static void pac_typeset_frontview_analysis(CGContextRef pdf_ctx)
     pac_typeset_frontview_shoulders(pdf_ctx);
     pac_typeset_frontview_head(pdf_ctx);
 }
+
+static void pac_typeset_backview_feet(CGContextRef pdf_ctx)
+{
+    const float cbx = 444.0f;
+    const float cby_neutral  = 590.0f;
+    const float cby_inverted = 578.0f;
+    const float cby_everted  = 566.0f;
+
+    const float cirrx = 533.0f;
+    const float cirlx = 549.0f;
+
+    const float cirw = 10.0f;
+    const float cirh = 10.0f;
+
+    const float ciry_neutral  = 588.0f;
+    const float ciry_inverted = 576.0f;
+    const float ciry_everted  = 564.0f;
+
+
+    switch(PACFeetBackAlignmentLeft){
+        case feetBackAlignmentNeutral:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_neutral);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_neutral, cirw, cirh);
+            break;
+        case feetBackAlignmentInverted:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_inverted);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_inverted, cirw, cirh);
+            break;
+        case feetBackAlignmentEverted:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_everted);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_everted, cirw, cirh);
+            break;
+    }
+    switch(PACFeetBackAlignmentRight){
+        case feetBackAlignmentNeutral:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_neutral);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_neutral, cirw, cirh);
+            break;
+        case feetBackAlignmentInverted:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_inverted);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_inverted, cirw, cirh);
+            break;
+        case feetBackAlignmentEverted:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_everted);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_everted, cirw, cirh);
+            break;
+    }
+}
+static void pac_typeset_backview_femurs(CGContextRef pdf_ctx)
+{
+    const float cbx = 444.0f;
+    const float cby_neutral = 536.0f;
+    const float cby_medial  = 524.0f;
+    const float cby_lateral = 512.0f;
+
+    const float cirrx = 533.0f;
+    const float cirlx = 549.0f;
+
+    const float cirw = 10.0f;
+    const float cirh = 10.0f;
+
+    const float ciry_neutral = 534.0f;
+    const float ciry_medial  = 522.0f;
+    const float ciry_lateral = 510.0f;
+
+
+    switch(PACFemurBackAlignmentLeft){
+        case femurBackAlignmentNeutral:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_neutral);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_neutral, cirw, cirh);
+            break;
+        case femurBackAlignmentRotatedMedial:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_medial);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_medial, cirw, cirh);
+            break;
+        case femurBackAlignmentRotatedLateral:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_lateral);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_lateral, cirw, cirh);
+            break;
+    }
+
+    switch(PACFemurBackAlignmentRight){
+        case femurBackAlignmentNeutral:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_neutral);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_neutral, cirw, cirh);
+            break;
+        case femurBackAlignmentRotatedMedial:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_medial);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_medial, cirw, cirh);
+            break;
+        case femurBackAlignmentRotatedLateral:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_lateral);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_lateral, cirw, cirh);
+            break;
+    }
+}
+static void pac_typeset_backview_pelvis(CGContextRef pdf_ctx)
+{    
+    const float cbx = 444.0f;
+
+    const float cby_level      = 482.0f;
+    const float cby_elevated   = 470.0f;
+    const float cby_rotated_c  = 458.0f;
+    const float cby_rotated_cw = 446.0f;
+
+    const float cirrx = 533.0f;
+    const float cirlx = 549.0f;
+
+    const float cirw = 10.0f;
+    const float cirh = 10.0f;
+
+    const float ciry_elevated = 468.0f;
+
+    if((PACPelvisBackAlignment & pelvisBackAlignmentLevel) == pelvisBackAlignmentLevel){
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_level);
+    }
+    if((PACPelvisBackAlignment & pelvisBackAlignmentElevatedLeft) == pelvisBackAlignmentElevatedLeft){
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_elevated);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_elevated, cirw, cirh);
+    }
+    if((PACPelvisBackAlignment & pelvisBackAlignmentElevatedRight) == pelvisBackAlignmentElevatedRight){
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_elevated);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_elevated, cirw, cirh);
+    }
+    if((PACPelvisBackAlignment & pelvisBackAlignmentRotatedClockwise) == pelvisBackAlignmentRotatedClockwise){
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_rotated_c);
+    }
+    if((PACPelvisBackAlignment & pelvisBackAlignmentRotatedCounterClockwise) == pelvisBackAlignmentRotatedCounterClockwise){
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_rotated_cw);
+    }
+}
+static void pac_typeset_backview_scapulae(CGContextRef pdf_ctx)
+{    
+    const float cbx = 444.0f;
+
+    const float cby_neutral     = 416.0f;
+    const float cby_protracted  = 404.0f;
+    const float cby_retracted   = 392.0f;
+    const float cby_elevated    = 380.0f;
+    const float cby_depressed   = 368.0f;
+    const float cby_rotated_up   = 356.0f;
+    const float cby_rotated_down = 344.0f;
+    const float cby_winging     = 332.0f;
+    const float cby_tipping     = 320.0f;
+
+    const float cirrx = 533.0f;
+    const float cirlx = 549.0f;
+
+    const float cirw = 10.0f;
+    const float cirh = 10.0f;
+
+    const float ciry_neutral      = 414.0f;
+    const float ciry_protracted   = 402.0f;
+    const float ciry_retracted    = 390.0f;
+    const float ciry_elevated     = 378.0f;
+    const float ciry_depressed    = 366.0f;
+    const float ciry_rotated_up   = 354.0f;
+    const float ciry_rotated_down = 342.0f;
+    const float ciry_winging      = 330.0f;
+    const float ciry_tipping      = 318.0f;
+
+    switch(PACScapulaeBackAlignmentLeft){
+        case scapulaeBackAlignmentNeutral:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_neutral);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_neutral, cirw, cirh);
+            break;
+        case scapulaeBackAlignmentProtracted:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_protracted);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_protracted, cirw, cirh);
+            break;
+        case scapulaeBackAlignmentRetracted:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_retracted);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_retracted, cirw, cirh);
+            break;
+        case scapulaeBackAlignmentElevated:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_elevated);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_elevated, cirw, cirh);
+            break;
+        case scapulaeBackAlignmentDepressed:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_depressed);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_depressed, cirw, cirh);
+            break;
+        case scapulaeBackAlignmentRotatedUp:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_rotated_up);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_rotated_up, cirw, cirh);
+            break;
+        case scapulaeBackAlignmentRotatedDown:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_rotated_down);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_rotated_down, cirw, cirh);
+            break;
+        case scapulaeBackAlignmentWinging:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_winging);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_winging, cirw, cirh);
+            break;
+        case scapulaeBackAlignmentTipping:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_tipping);
+            pac_typeset_draw_circle(pdf_ctx, cirlx, ciry_tipping, cirw, cirh);
+            break;
+    }
+    switch(PACScapulaeBackAlignmentRight){
+        case scapulaeBackAlignmentNeutral:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_neutral);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_neutral, cirw, cirh);
+            break;
+        case scapulaeBackAlignmentProtracted:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_protracted);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_protracted, cirw, cirh);
+            break;
+        case scapulaeBackAlignmentRetracted:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_retracted);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_retracted, cirw, cirh);
+            break;
+        case scapulaeBackAlignmentElevated:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_elevated);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_elevated, cirw, cirh);
+            break;
+        case scapulaeBackAlignmentDepressed:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_depressed);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_depressed, cirw, cirh);
+            break;
+        case scapulaeBackAlignmentRotatedUp:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_rotated_up);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_rotated_up, cirw, cirh);
+            break;
+        case scapulaeBackAlignmentRotatedDown:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_rotated_down);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_rotated_down, cirw, cirh);
+            break;
+        case scapulaeBackAlignmentWinging:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_winging);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_winging, cirw, cirh);
+            break;
+        case scapulaeBackAlignmentTipping:
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_tipping);
+            pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_tipping, cirw, cirh);
+            break;
+    }
+
+
+}
+static void pac_typeset_backview_analysis(CGContextRef pdf_ctx)
+{
+    pac_typeset_backview_feet(pdf_ctx);
+    pac_typeset_backview_femurs(pdf_ctx);
+    pac_typeset_backview_pelvis(pdf_ctx);
+    pac_typeset_backview_scapulae(pdf_ctx);
+}
 NSString* pac_typeset_current_analysis(NSString** failmsg)
 {
         NSString* res = nil;
@@ -733,6 +980,7 @@ NSString* pac_typeset_current_analysis(NSString** failmsg)
             pac_typeset_plumbline_analysis(pdf_ctx);
             pac_typeset_sideview_analysis(pdf_ctx);
             pac_typeset_frontview_analysis(pdf_ctx);
+            pac_typeset_backview_analysis(pdf_ctx);
 
             CGContextEndPage(pdf_ctx);
             CGContextRelease(pdf_ctx);
