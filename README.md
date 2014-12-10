@@ -3,8 +3,11 @@ Pilates-Postural-Analysis-Checklist
 
 Pilates Posutral Analysis Checklist for iOS
 
+Intended as a tool to be used on and iPhone to simply gathering information for a posture analysis by a qualified pilates professional.
 
 ![Main screen](http://i.imgur.com/sfrdOkG.png "Main screen")
+
+![Form completed by the app for email](http://i.imgur.com/nz1PB8X.png "form")
 
 ![Plumbline screen](http://i.imgur.com/MjCgnS9.png "Plumbline.")
 
