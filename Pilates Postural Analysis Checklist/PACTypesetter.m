@@ -339,11 +339,11 @@ static void pac_typeset_sideview_pelvis(CGContextRef pdf_ctx)
             pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_neutral, cirw, cirh);
             break;
         case pelvisSideAlignmentAnteriorTilt:
-            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_neutral);
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_anterior);
             pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_anterior, cirw, cirh);
             break;
         case pelvisSideAlignmentPosteriorTilt:
-            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_neutral);
+            pac_typeset_draw_checkmark(pdf_ctx, cbx, cby_posterior);
             pac_typeset_draw_circle(pdf_ctx, cirrx, ciry_posterior, cirw, cirh);
             break;
     }

@@ -354,9 +354,15 @@ static NSString* cell_identifier_load = @"load-menu-cell";
 
     [_analysis removeObjectAtIndex:button.tag];
 
-    UIView* content_view = [self viewWithTag:tagContentView];
-    UITableView* table_view = (UITableView*)[content_view viewWithTag:tagTableViewLoad];
-    [table_view reloadData];
+    if([_analysis count]){
+        UIView* content_view = [self viewWithTag:tagContentView];
+        UITableView* table_view = (UITableView*)[content_view viewWithTag:tagTableViewLoad];
+        [table_view reloadData];
+    } else {
+        pac_reset_all();
+        PACCurrentAnalysis = -1;
+        [self dismissMenuSelected];
+    }
 }
 @end
 

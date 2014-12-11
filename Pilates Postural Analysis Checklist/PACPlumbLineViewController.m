@@ -69,6 +69,7 @@ static NSString* cell_identifier = @"plumbline-cell";
 	tableView.tag = tagTableView;
 	tableView.dataSource = self;
 	tableView.delegate = self;
+        tableView.scrollEnabled = NO;
 
 	[tableView registerClass:[PACPlumbLineTableViewCell class ] forCellReuseIdentifier:cell_identifier];
 	//tableView.tag = tagTableView;

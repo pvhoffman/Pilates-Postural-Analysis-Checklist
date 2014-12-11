@@ -101,7 +101,7 @@ static NSString* cell_identifier2 = @"scapulae-back-cell2";
 
 	fy = fy + look.size.height + fgutter;
 
-	UITableView* tableView = [[UITableView alloc] initWithFrame:CGRectMake(3.0f, fy + 30.0f, frame.size.width - 3.0f, 320.0f) style:UITableViewStyleGrouped];
+	UITableView* tableView = [[UITableView alloc] initWithFrame:CGRectMake(3.0f, fy + 30.0f, frame.size.width - 3.0f, 280.0f) style:UITableViewStyleGrouped];
 	tableView.tag = tagTableView;
 	tableView.dataSource = self;
 	tableView.delegate = self;

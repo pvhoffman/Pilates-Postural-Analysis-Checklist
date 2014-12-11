@@ -897,4 +897,43 @@ void pac_remove_analysis(const int analysis_id)
     sqlite3_bind_int(stmt, 1, analysis_id);
     sqlite3_step(stmt);
     sqlite3_finalize(stmt);
+
+    sqlite3_prepare(db
+            , "delete from sideview_t where sideview_analysis = ?"
+            , -1
+            , &stmt
+            , 0);
+    sqlite3_bind_int(stmt, 1, analysis_id);
+    sqlite3_step(stmt);
+    sqlite3_finalize(stmt);
+
+    sqlite3_prepare(db
+            , "delete from frontview_t where frontview_analysis = ?"
+            , -1
+            , &stmt
+            , 0);
+    sqlite3_bind_int(stmt, 1, analysis_id);
+    sqlite3_step(stmt);
+    sqlite3_finalize(stmt);
+
+    sqlite3_prepare(db
+            , "delete from backview_t where backview_analysis = ?"
+            , -1
+            , &stmt
+            , 0);
+    sqlite3_bind_int(stmt, 1, analysis_id);
+    sqlite3_step(stmt);
+    sqlite3_finalize(stmt);
+
+    sqlite3_prepare(db
+            , "delete from plumbline_t where plumbline_analysis = ?"
+            , -1
+            , &stmt
+            , 0);
+    sqlite3_bind_int(stmt, 1, analysis_id);
+    sqlite3_step(stmt);
+    sqlite3_finalize(stmt);
+
+
+
 }

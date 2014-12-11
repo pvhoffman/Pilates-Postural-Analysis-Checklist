@@ -53,6 +53,8 @@ static NSString* cell_identifier = @"master-view-cell";
 	// Do any additional setup after loading the view, typically from a nib.
 	[self.tableView registerClass:[UITableViewCell class ] forCellReuseIdentifier:cell_identifier];
 
+        self.tableView.scrollEnabled = NO;
+
 	self.navigationItem.title = @"Main";
 
 	UIBarButtonItem* barItem1 = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Menu", @"")
