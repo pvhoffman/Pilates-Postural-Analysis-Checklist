@@ -255,6 +255,17 @@ typedef enum {
 	, spineImbalanceLumbarRight        = (1 << 6)
 }PACSpineImbalance_t;
 
+
+// Posture type
+typedef enum {
+    postureTypeOptimal        = 0
+        , postureTypeKyphosis = (1 << 0)
+        , postureTypeLordosis = (1 << 1)
+        , postureTypeSwayBack = (1 << 2)
+        , postureTypeFlatBack = (1 << 3)
+        , postureTypeMilitary = (1 << 4)
+} PACPostureType_t;
+
 extern unsigned int PACChecklistMain;
 extern unsigned int PACPlumbLineAlignment;
 
@@ -339,7 +350,8 @@ NSMutableArray* pac_all_analysis();
 const char* pac_analysis_name_from_analysisid(const int n);
 const char* pac_analysis_date_from_analysisid(const int n);
 
-
 void pac_remove_analysis(const int analysis_id);
+
+int pac_posture_type();
 #endif
 

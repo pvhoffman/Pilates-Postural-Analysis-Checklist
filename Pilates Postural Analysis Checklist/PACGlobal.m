@@ -10,8 +10,6 @@
 #import <UIKit/UIKit.h>
 #import "PACGlobal.h"
 
-// static const char* source_pdf = "Postural-Analysis-Guide.pdf";
-
 static const char* db_filename = "pac.sqlite";
 
 
@@ -171,15 +169,49 @@ void pac_reset_all()
 
 }
 
+static const int PAC_SCHEMA_VERSION_1_0 = 10;
+//static const int PAC_SCHEMA_VERSION_1_1 = 11;
+static const int PAC_CURRENT_SCHEMA_VERSION = PAC_SCHEMA_VERSION_1_0;
+
+static const char* PACSchemaVersionFilename = ".pacschema"
+
 static NSString* pac_document_path()
 {
     return [NSSearchPathForDirectoriesInDomains ( NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+}
+static void pac_set_schema_version(const int version)
+{
+    NSString* path = [pac_document_path() stringByAppendingPathComponent:[NSString stringWithUTF8String:PACSchemaVersionFilename]]; 
+    [[NSString stringWithFormat:@"%d", version] writeToFile:path atomically:NO encoding:NSUTF8StringEncoding error:NULL];
+}
+static int pac_get_schema_version()
+{
+    NSString* path = [pac_document_path() stringByAppendingPathComponent:[NSString stringWithUTF8String:PACSchemaVersionFilename]]; 
+    if([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+             return [[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL] intValue];
+    }
+    pac_set_schema_version(PAC_SCHEMA_VERSION_1_0);
+    return (PAC_SCHEMA_VERSION_1_0);
+
+}
+static void pac_update_schema(struct sqlite3* db)
+{
+    int version = pac_get_schema_version();
+
+    while(version < PAC_CURRENT_SCHEMA_VERSION){
+/*
+        if(version < PAC_SCHEMA_VERSION_1_1){
+                // make updates to the database here
+                version = PAC_SCHEMA_VERSION_1_1;
+        }  else if ...
+*/
+    } 
+    pac_set_schema_version(version);
 }
 static NSString* pac_database_filename()
 {
     return [pac_document_path()stringByAppendingPathComponent:[NSString stringWithUTF8String:db_filename]];
 }
-
 static void pac_init_analysis_table()
 {
     int rc = sqlite3_exec(pacDatabase
@@ -300,6 +332,7 @@ static void pac_open_database()
     if(NO == exists){
         pac_init_database();
     }
+    pac_update_schema(pacDatabase);
 }
 static struct sqlite3* pac_database()
 {
@@ -936,4 +969,144 @@ void pac_remove_analysis(const int analysis_id)
 
 
 
+}
+int pac_posture_type(NSDictionary** explanation)
+{
+    int res = postureTypeOptimal;
+
+    NSMutableDictionary* explain = [[NSMutableDicationary alloc] init];
+
+    [explain setObject:[[NSMutableArray alloc] init] forKey:[NSNumber numberWithInt:postureTypeOptimal]];
+    [explain setObject:[[NSMutableArray alloc] init] forKey:[NSNumber numberWithInt:postureTypeKyphosis]];
+    [explain setObject:[[NSMutableArray alloc] init] forKey:[NSNumber numberWithInt:postureTypeLordosis]];
+    [explain setObject:[[NSMutableArray alloc] init] forKey:[NSNumber numberWithInt:postureTypeSwayBack]];
+    [explain setObject:[[NSMutableArray alloc] init] forKey:[NSNumber numberWithInt:postureTypeFlatBack]];
+    [explain setObject:[[NSMutableArray alloc] init] forKey:[NSNumber numberWithInt:postureTypeMilitary]];
+
+    [[explain objectForKey:[NSNumber numberWithInt:postureTypeOptimal]] addObject:@"congratulations for having optimal posture"];
+
+    // is the head forward
+    if((PACPlumbLineAlignment & plumbHeadForward) == plumbHeadForward || PACHeadSideAlignment == headSideAlignmentForward){
+        // check for kyphosis
+        if(PACUpperThoracicAlignment == upperThoracicAlignmentFlexed){ 
+            res = res | postureTypeKyphosis;
+            res = res | postureTypeFlatBack;
+            [[explain objectForKey:[NSNumber numberWithInt:postureTypeKyphosis]] addObject:@"head forward + upper thoracic flexed"];
+            [[explain objectForKey:[NSNumber numberWithInt:postureTypeFlatBack]] addObject:@"head forward + upper thoracic flexed"];
+        }
+        if(PACScapulaeBackAlignmentLeft == scapulaeBackAlignmentProtracted && PACScapulaeBackAlignmentRight == scapulaeBackAlignmentProtracted){
+            res = res | postureTypeKyphosis;
+            res = res | postureTypeFlatBack;
+            [[explain objectForKey:[NSNumber numberWithInt:postureTypeKyphosis]] addObject:@"head forward + scapulae protracted"];
+            [[explain objectForKey:[NSNumber numberWithInt:postureTypeFlatBack]] addObject:@"head forward + scapulae protracted"];
+        }
+        // check for lordosis
+        if(PACLumbarAlignment == lumbarAlignmentFlexed && PACPelvisSideAlignment == pelvisSideAlignmentAnteriorTilt){
+            res = res | postureTypeLordosis;
+            [[explain objectForKey:[NSNumber numberWithInt:postureTypeLordosis]] addObject:@"head forward + lumbar flexed + pelvis anterior tilt"];
+            if(PACHipAlignmentLeft == hipAlignmentFlexed && PACHipAlignmentRight == hipAlignmentFlexed){
+                [[explain objectForKey:[NSNumber numberWithInt:postureTypeLordosis]] addObject:@"hip flexed"];
+            }
+        }
+        // common to kyphosis and lordosis and swayback and flat back
+        // knees behind plumbline
+        if((PACPlumbLineAlignment & plumbKneesBehind) == plumbKneesBehind){
+            res = res | postureTypeKyphosis;
+            res = res | postureTypeLordosis;
+            res = res | postureTypeSwayBack;
+            res = res | postureTypeFlatBack;
+            [[explain objectForKey:[NSNumber numberWithInt:postureTypeKyphosis]] addObject:@"knees behind plumbline"];
+            [[explain objectForKey:[NSNumber numberWithInt:postureTypeLordosis]] addObject:@"knees behind plumbline"];
+            [[explain objectForKey:[NSNumber numberWithInt:postureTypeSwayBack]] addObject:@"knees behind plumbline"];
+            [[explain objectForKey:[NSNumber numberWithInt:postureTypeFlatBack]] addObject:@"knees behind plumbline"];
+        }
+        // knees hyperextended
+        if(PACKneeAlignmentSideLeft == kneeSideAlignmentHyperextended && PACKneeAlignmentSideRight == kneeSideAlignmentHyperextended){
+            res = res | postureTypeKyphosis;
+            res = res | postureTypeLordosis;
+            res = res | postureTypeSwayBack;
+            res = res | postureTypeFlatBack;
+            [[explain objectForKey:[NSNumber numberWithInt:postureTypeKyphosis]] addObject:@"knees hyperextended"];
+            [[explain objectForKey:[NSNumber numberWithInt:postureTypeLordosis]] addObject:@"knees hyperextended"];
+            [[explain objectForKey:[NSNumber numberWithInt:postureTypeSwayBack]] addObject:@"knees hyperextended"];
+            [[explain objectForKey:[NSNumber numberWithInt:postureTypeFlatBack]] addObject:@"knees hyperextended"];
+        }
+
+        // check for swayback characteristics
+        if(PACCervicalSpineAlignment == cervicalSpineAlignmentFlexed) {
+            res = res | postureTypeSwayBack;
+            [[explain objectForKey:[NSNumber numberWithInt:postureTypeSwayBack]] addObject:@"head forward + cervical spine flexed"];
+
+            if(PACUpperThoracicAlignment == upperThoracicAlignmentFlexed){ 
+                [[explain objectForKey:[NSNumber numberWithInt:postureTypeSwayBack]] addObject:@"upper thoracic flexed"];
+            }
+        }
+        if(PACPelvisSideAlignmentLeft == pelvisSideAlignmentPosteriorTilt  && PACPelvisSideAlignmentRight == pelvisSideAlignmentPosteriorTilt){
+            res = res | postureTypeSwayBack;
+            [[explain objectForKey:[NSNumber numberWithInt:postureTypeSwayBack]] addObject:@"head forward + pelvis posterior tilt"];
+            if(PACCervicalSpineAlignment != cervicalSpineAlignmentFlexed) {
+                if(PACUpperThoracicAlignment == upperThoracicAlignmentFlexed){ 
+                    [[explain objectForKey:[NSNumber numberWithInt:postureTypeSwayBack]] addObject:@"upper thoracic flexed"];
+                }
+            }
+            if((PACPlumbLineAlignment & plumbUpperBodyForward) == plumbUpperBodyForward){
+                [[explain objectForKey:[NSNumber numberWithInt:postureTypeSwayBack]] addObject:@"upper body forward"];
+            }
+        }
+
+        // check for flat back characteristics
+        if(PACLumbarAlignment == lumbarAlignmentFlat && PACPelvisSideAlignment == pelvisSideAlignmentPosteriorTilt){
+            res = res | postureTypeFlatBack;
+            [[explain objectForKey:[NSNumber numberWithInt:postureTypeFlatBack]] addObject:@"head forward + lumbar flat + pelvis posterior tilt"];
+        }
+
+    } else {
+        // head is not forward of the body
+        //
+        // check for swayback
+        if(PACCervicalSpineAlignment == cervicalSpineAlignmentFlexed) {
+            res = res | postureTypeSwayBack;
+            [[explain objectForKey:[NSNumber numberWithInt:postureTypeSwayBack]] addObject:@"cervical spine flexed"];
+
+            if(PACUpperThoracicAlignment == upperThoracicAlignmentFlexed){ 
+                [[explain objectForKey:[NSNumber numberWithInt:postureTypeSwayBack]] addObject:@"upper thoracic flexed"];
+            }
+        }
+        if(PACPelvisSideAlignmentLeft == pelvisSideAlignmentPosteriorTilt  && PACPelvisSideAlignmentRight == pelvisSideAlignmentPosteriorTilt){
+            res = res | postureTypeSwayBack;
+            [[explain objectForKey:[NSNumber numberWithInt:postureTypeSwayBack]] addObject:@"pelvis posterior tilt"];
+            if(PACCervicalSpineAlignment != cervicalSpineAlignmentFlexed) {
+                if(PACUpperThoracicAlignment == upperThoracicAlignmentFlexed){ 
+                    [[explain objectForKey:[NSNumber numberWithInt:postureTypeSwayBack]] addObject:@"upper thoracic flexed"];
+                }
+            }
+            if((PACPlumbLineAlignment & plumbUpperBodyForward) == plumbUpperBodyForward){
+                [[explain objectForKey:[NSNumber numberWithInt:postureTypeSwayBack]] addObject:@"upper body forward"];
+            }
+        }
+
+
+        // check for military characterists
+        if(PACUpperThoracicAlignment == upperThoracicAlignmentFlat){
+            res = res | postureTypeMilitary;
+            [[explain objectForKey:[NSNumber numberWithInt:postureTypeMilitary]] addObject:@"flat upper thoracic"];
+        }
+        if(PACLowerThoracicAlignment == lowerThoracicAlignmentFlat){
+            res = res | postureTypeMilitary;
+            [[explain objectForKey:[NSNumber numberWithInt:postureTypeMilitary]] addObject:@"flat lower thoracic"];
+        }
+        if(PACLumbarAlignment == lumbarAlignmentFlexed){
+            res = res | postureTypeMilitary;
+            [[explain objectForKey:[NSNumber numberWithInt:postureTypeMilitary]] addObject:@"flexed lumbar"];
+        }
+
+        if(PACPelvisSideAlignmentLeft == pelvisSideAlignmentAnteriorTilt  && PACPelvisSideAlignmentRight == pelvisSideAlignmentAnteriorTilt){
+            res = res | postureTypeMilitary;
+            [[explain objectForKey:[NSNumber numberWithInt:postureTypeMilitary]] addObject:@"pelvis anterior tilt"];
+        }
+    }
+    if(explanation){
+        *explanation = explain;
+    }
+    return res;
 }
