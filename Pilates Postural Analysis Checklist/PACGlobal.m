@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <stdlib.h>
+#import <stdio.h>
 #import "PACGlobal.h"
 
 static const char* db_filename = "pac.sqlite";
@@ -105,6 +107,10 @@ UIImage* pac_backview_indicator()
 {
 	return [UIImage imageNamed:@"p_ball_15.png"];
 }
+UIImage* pac_analysisview_indicator()
+{
+	return [UIImage imageNamed:@"br_ball_15.png"];
+}
 static void pac_reset_plumbline()
 {
     PACChecklistMain &= ~mainChecklistPlumbline;
@@ -173,7 +179,7 @@ static const int PAC_SCHEMA_VERSION_1_0 = 10;
 //static const int PAC_SCHEMA_VERSION_1_1 = 11;
 static const int PAC_CURRENT_SCHEMA_VERSION = PAC_SCHEMA_VERSION_1_0;
 
-static const char* PACSchemaVersionFilename = ".pacschema"
+static const char* PACSchemaVersionFilename = ".pacschema";
 
 static NSString* pac_document_path()
 {
@@ -974,7 +980,7 @@ int pac_posture_type(NSDictionary** explanation)
 {
     int res = postureTypeOptimal;
 
-    NSMutableDictionary* explain = [[NSMutableDicationary alloc] init];
+    NSMutableDictionary* explain = [[NSMutableDictionary alloc] init];
 
     [explain setObject:[[NSMutableArray alloc] init] forKey:[NSNumber numberWithInt:postureTypeOptimal]];
     [explain setObject:[[NSMutableArray alloc] init] forKey:[NSNumber numberWithInt:postureTypeKyphosis]];
@@ -1001,7 +1007,7 @@ int pac_posture_type(NSDictionary** explanation)
             [[explain objectForKey:[NSNumber numberWithInt:postureTypeFlatBack]] addObject:@"head forward + scapulae protracted"];
         }
         // check for lordosis
-        if(PACLumbarAlignment == lumbarAlignmentFlexed && PACPelvisSideAlignment == pelvisSideAlignmentAnteriorTilt){
+        if(PACLumbarAlignment == lumbarAlignmentFlexed && PACPelvisSideAlignmentLeft == pelvisSideAlignmentAnteriorTilt){
             res = res | postureTypeLordosis;
             [[explain objectForKey:[NSNumber numberWithInt:postureTypeLordosis]] addObject:@"head forward + lumbar flexed + pelvis anterior tilt"];
             if(PACHipAlignmentLeft == hipAlignmentFlexed && PACHipAlignmentRight == hipAlignmentFlexed){
@@ -1055,7 +1061,7 @@ int pac_posture_type(NSDictionary** explanation)
         }
 
         // check for flat back characteristics
-        if(PACLumbarAlignment == lumbarAlignmentFlat && PACPelvisSideAlignment == pelvisSideAlignmentPosteriorTilt){
+        if(PACLumbarAlignment == lumbarAlignmentFlat && PACPelvisSideAlignmentLeft == pelvisSideAlignmentPosteriorTilt){
             res = res | postureTypeFlatBack;
             [[explain objectForKey:[NSNumber numberWithInt:postureTypeFlatBack]] addObject:@"head forward + lumbar flat + pelvis posterior tilt"];
         }
@@ -1109,4 +1115,87 @@ int pac_posture_type(NSDictionary** explanation)
         *explanation = explain;
     }
     return res;
+}
+NSString* pac_create_html_analysis()
+{
+    NSString* fn = nil;
+
+    NSString* filename = [NSTemporaryDirectory() stringByAppendingPathComponent:[[[NSUUID UUID] UUIDString] stringByAppendingString:@".html"]];
+
+    FILE* fp = 0;
+    do {
+        NSDictionary* dict = 0;
+        int posture_type = pac_posture_type(&dict);
+
+        fp = fopen([filename UTF8String], "wt");
+        if(!fp) break;
+
+        fprintf(fp, "<html><head></head><body>\n");
+
+        if(posture_type == postureTypeOptimal){
+            fprintf(fp, "<h2>Optimal Posture</h2>\n");
+            fprintf(fp, "<ul>\n");
+            for(NSString* str in [dict objectForKey:[NSNumber numberWithInt:postureTypeOptimal]]){
+                fprintf(fp, "<li>%s</li>\n", [str UTF8String]);
+            }
+            fprintf(fp, "</ul>\n");
+        } else {
+            if((posture_type & postureTypeKyphosis) == postureTypeKyphosis){
+                fprintf(fp, "<h2>Kyphosis</h2>\n");
+                fprintf(fp, "<p>reasons:</p>\n");
+                fprintf(fp, "<ul>\n");
+                for(NSString* str in [dict objectForKey:[NSNumber numberWithInt:postureTypeKyphosis]]){
+                    fprintf(fp, "<li>%s</li>\n", [str UTF8String]);
+                }
+                fprintf(fp, "</ul>\n");
+            }
+
+            if((posture_type & postureTypeLordosis) == postureTypeLordosis){
+                fprintf(fp, "<h2>Lordosis</h2>\n");
+                fprintf(fp, "<p>reasons:</p>\n");
+                fprintf(fp, "<ul>\n");
+                for(NSString* str in [dict objectForKey:[NSNumber numberWithInt:postureTypeLordosis]]){
+                    fprintf(fp, "<li>%s</li>\n", [str UTF8String]);
+                }
+                fprintf(fp, "</ul>\n");
+            }
+
+            if((posture_type & postureTypeSwayBack) == postureTypeSwayBack){
+                fprintf(fp, "<h2>Sway Back</h2>\n");
+                fprintf(fp, "<p>reasons:</p>\n");
+                fprintf(fp, "<ul>\n");
+                for(NSString* str in [dict objectForKey:[NSNumber numberWithInt:postureTypeSwayBack]]){
+                    fprintf(fp, "<li>%s</li>\n", [str UTF8String]);
+                }
+                fprintf(fp, "</ul>\n");
+            }
+
+            if((posture_type & postureTypeFlatBack) == postureTypeFlatBack){
+                fprintf(fp, "<h2>Flat Back</h2>\n");
+                fprintf(fp, "<p>reasons:</p>\n");
+                fprintf(fp, "<ul>\n");
+                for(NSString* str in [dict objectForKey:[NSNumber numberWithInt:postureTypeFlatBack]]){
+                    fprintf(fp, "<li>%s</li>\n", [str UTF8String]);
+                }
+                fprintf(fp, "</ul>\n");
+            }
+
+            if((posture_type & postureTypeMilitary) == postureTypeMilitary){
+                fprintf(fp, "<h2>Military</h2>\n");
+                fprintf(fp, "<p>reasons:</p>\n");
+                fprintf(fp, "<ul>\n");
+                for(NSString* str in [dict objectForKey:[NSNumber numberWithInt:postureTypeMilitary]]){
+                    fprintf(fp, "<li>%s</li>\n", [str UTF8String]);
+                }
+                fprintf(fp, "</ul>\n");
+            }
+        }
+        fprintf(fp, "</body></html>");
+        fclose(fp);
+        fp = 0;
+
+        fn = filename;
+    } while(0);
+    if(fp) fclose(fp);
+    return fn;
 }

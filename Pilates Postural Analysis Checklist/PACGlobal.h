@@ -338,7 +338,7 @@ UIImage* pac_plumbline_indicator();
 UIImage* pac_sideview_indicator();
 UIImage* pac_frontview_indicator();
 UIImage* pac_backview_indicator();
-
+UIImage* pac_analysisview_indicator();
 
 void pac_reset_all(); 
 
@@ -352,6 +352,9 @@ const char* pac_analysis_date_from_analysisid(const int n);
 
 void pac_remove_analysis(const int analysis_id);
 
-int pac_posture_type();
+int pac_posture_type(NSDictionary** explanation);
+
+NSString* pac_create_html_analysis();
+
 #endif
 

@@ -9,11 +9,11 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
-
 #import "PACPlumbLineViewController.h"
 #import "PACSideViewTableViewController.h"
 #import "PACFrontViewTableViewController.h"
 #import "PACBackViewTableViewController.h"
+#import "PACViewAnalysisViewController.h"
 #import "PACTypesetter.h"
 #import "PACGlobal.h"
 
@@ -92,7 +92,14 @@ static NSString* cell_identifier = @"master-view-cell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return tableViewItemCount;
+    if((PACChecklistMain & mainChecklistPlumbline) == mainChecklistPlumbline
+        && (PACChecklistMain & mainChecklistSideView) == mainChecklistSideView
+        && (PACChecklistMain & mainChecklistFrontView) == mainChecklistFrontView
+        && (PACChecklistMain & mainChecklistBackView) == mainChecklistBackView){
+        return tableViewItemCount + 1;
+    }
+    return tableViewItemCount;
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -134,7 +141,16 @@ static NSString* cell_identifier = @"master-view-cell";
 		}
 		break;
 	default:
-		cell.textLabel.text = [NSString stringWithFormat:@"cell %d", (int)indexPath.row];
+                if((PACChecklistMain & mainChecklistPlumbline) == mainChecklistPlumbline
+                        && (PACChecklistMain & mainChecklistSideView) == mainChecklistSideView
+                        && (PACChecklistMain & mainChecklistFrontView) == mainChecklistFrontView
+                        && (PACChecklistMain & mainChecklistBackView) == mainChecklistBackView
+                        && indexPath.row == tableViewItemCount){
+                    cell.textLabel.text = @"View Analysis";
+                    cell.imageView.image = pac_analysisview_indicator();
+                } else {
+                    cell.textLabel.text = [NSString stringWithFormat:@"cell %d", (int)indexPath.row];
+                }
 		break;
 	}
 	return cell;
@@ -161,6 +177,13 @@ static NSString* cell_identifier = @"master-view-cell";
 		[self.navigationController pushViewController:[[PACBackViewTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
 		break;
 	default:
+                if((PACChecklistMain & mainChecklistPlumbline) == mainChecklistPlumbline
+                        && (PACChecklistMain & mainChecklistSideView) == mainChecklistSideView
+                        && (PACChecklistMain & mainChecklistFrontView) == mainChecklistFrontView
+                        && (PACChecklistMain & mainChecklistBackView) == mainChecklistBackView
+                        && indexPath.row == tableViewItemCount){
+		[self.navigationController pushViewController:[[PACViewAnalysisViewController alloc] init] animated:YES];
+                }
 		break;
 	}
 }

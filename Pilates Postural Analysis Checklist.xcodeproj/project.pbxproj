@@ -50,6 +50,8 @@
 		E74666821A32574400A7B50A /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E74666811A32574400A7B50A /* libsqlite3.0.dylib */; };
 		E74666861A365D8100A7B50A /* PACMainMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = E74666851A365D8100A7B50A /* PACMainMenuView.m */; };
 		E74666881A3769ED00A7B50A /* PACTypesetter.m in Sources */ = {isa = PBXBuildFile; fileRef = E74666871A3769ED00A7B50A /* PACTypesetter.m */; };
+		E746668C1A3A633800A7B50A /* br_ball_15.png in Resources */ = {isa = PBXBuildFile; fileRef = E746668B1A3A633800A7B50A /* br_ball_15.png */; };
+		E746668F1A3A64D100A7B50A /* PACViewAnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E746668E1A3A64D100A7B50A /* PACViewAnalysisViewController.m */; };
 		E74AAAEF1A13F51C00C008CE /* PACFemursBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E74AAAEE1A13F51C00C008CE /* PACFemursBackViewController.m */; };
 		E74AAAF11A13FA1A00C008CE /* femurs_back_detail.gif in Resources */ = {isa = PBXBuildFile; fileRef = E74AAAF01A13FA1A00C008CE /* femurs_back_detail.gif */; };
 		E74AAAF51A142D7200C008CE /* main-view.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E74AAAF41A142D7200C008CE /* main-view.jpg */; };
@@ -153,6 +155,9 @@
 		E74666851A365D8100A7B50A /* PACMainMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACMainMenuView.m; sourceTree = "<group>"; };
 		E74666871A3769ED00A7B50A /* PACTypesetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACTypesetter.m; sourceTree = "<group>"; };
 		E74666891A376A0E00A7B50A /* PACTypesetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACTypesetter.h; sourceTree = "<group>"; };
+		E746668B1A3A633800A7B50A /* br_ball_15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = br_ball_15.png; path = "../MSM - iPad/MobileSalesMagic/br_ball_15.png"; sourceTree = "<group>"; };
+		E746668D1A3A64D100A7B50A /* PACViewAnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACViewAnalysisViewController.h; sourceTree = "<group>"; };
+		E746668E1A3A64D100A7B50A /* PACViewAnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACViewAnalysisViewController.m; sourceTree = "<group>"; };
 		E74AAAED1A13F51C00C008CE /* PACFemursBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACFemursBackViewController.h; sourceTree = "<group>"; };
 		E74AAAEE1A13F51C00C008CE /* PACFemursBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACFemursBackViewController.m; sourceTree = "<group>"; };
 		E74AAAF01A13FA1A00C008CE /* femurs_back_detail.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = femurs_back_detail.gif; sourceTree = "<group>"; };
@@ -311,6 +316,8 @@
 				E74666851A365D8100A7B50A /* PACMainMenuView.m */,
 				E74666871A3769ED00A7B50A /* PACTypesetter.m */,
 				E74666891A376A0E00A7B50A /* PACTypesetter.h */,
+				E746668D1A3A64D100A7B50A /* PACViewAnalysisViewController.h */,
+				E746668E1A3A64D100A7B50A /* PACViewAnalysisViewController.m */,
 			);
 			path = "Pilates Postural Analysis Checklist";
 			sourceTree = "<group>";
@@ -353,6 +360,7 @@
 				E74AAAF01A13FA1A00C008CE /* femurs_back_detail.gif */,
 				E74666751A31189500A7B50A /* g_ball_15.png */,
 				E7C42B221A0AEFF0003FF7B9 /* head_detail.jpg */,
+				E746668B1A3A633800A7B50A /* br_ball_15.png */,
 				E7134E7C1A0C477800F2CEE8 /* head_front_detail.jpg */,
 				E711C5BC19F9BE620036873E /* hipjoint_detail.png */,
 				E79E0FC81A2E3D3900CABD55 /* humeri_back_detail.jpg */,
@@ -494,6 +502,7 @@
 				E7134E781A0C26C200F2CEE8 /* shoulder_front_detail.png in Resources */,
 				E74666741A31153C00A7B50A /* llb_ball_15.png in Resources */,
 				E7134E731A0C026000F2CEE8 /* ribcage_front_detail.jpg in Resources */,
+				E746668C1A3A633800A7B50A /* br_ball_15.png in Resources */,
 				E79E0FD01A2E748C00CABD55 /* spine_sequencing.jpg in Resources */,
 				E7B0E9CC19F702200011BB49 /* Images.xcassets in Resources */,
 				E711C5A119F976C80036873E /* alignment_detail.jpg in Resources */,
@@ -544,6 +553,7 @@
 				E711C5D319FEF6A10036873E /* PACUpperThoracicSpineViewController.m in Sources */,
 				E7C42B261A0AF059003FF7B9 /* PACHeadSideViewController.m in Sources */,
 				E7134E761A0C1F5500F2CEE8 /* PACShouldersFrontViewController.m in Sources */,
+				E746668F1A3A64D100A7B50A /* PACViewAnalysisViewController.m in Sources */,
 				E7B0E9C719F702200011BB49 /* DetailViewController.m in Sources */,
 				E79E0FC71A2E391E00CABD55 /* PACHumeriBackViewController.m in Sources */,
 				E711C5C219F9C7C80036873E /* PACPelvisSideViewController.m in Sources */,
