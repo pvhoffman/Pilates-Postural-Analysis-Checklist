@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PACViewAnalysisViewController : UIViewController
+@interface PACViewAnalysisViewController : UIViewController <UIWebViewDelegate>
 
 @end

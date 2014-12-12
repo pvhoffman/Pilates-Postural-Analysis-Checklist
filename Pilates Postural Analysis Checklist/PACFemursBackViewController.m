@@ -95,7 +95,7 @@ static NSString* cell_identifier = @"femur-back-cell";
 
 	if(!cell.accessoryView) {
 		UISegmentedControl *segment = [[UISegmentedControl alloc] init];
-		segment.frame = CGRectMake(0,0,230,30);
+		segment.frame = CGRectMake(0,0,200,30);
 		segment.tag   = indexPath.row;
 		[segment insertSegmentWithTitle:@"Neutral" atIndex:0 animated:NO];
 		[segment insertSegmentWithTitle:@"Medial" atIndex:1 animated:NO];
@@ -108,11 +108,11 @@ static NSString* cell_identifier = @"femur-back-cell";
 
 	switch(indexPath.row) {
 	case tableViewRowLeftFemur:
-		cell.textLabel.text = @"Left Femur";
+		cell.textLabel.text = @"Left";
 		((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = PACFemurBackAlignmentLeft;
 		break;
 	case tableViewRowRightFemur:
-		cell.textLabel.text = @"Right Femur";
+		cell.textLabel.text = @"Right";
 		((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = PACFemurBackAlignmentRight;
 		break;
 	}

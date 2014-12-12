@@ -96,11 +96,11 @@ static NSString* cell_identifier = @"feet-back-cell";
 
 	if(!cell.accessoryView) {
 		UISegmentedControl *segment = [[UISegmentedControl alloc] init];
-		segment.frame = CGRectMake(0,0,230,30);
+		segment.frame = CGRectMake(0,0,200,30);
 		segment.tag   = indexPath.row;
 		[segment insertSegmentWithTitle:@"Neutral" atIndex:0 animated:NO];
-		[segment insertSegmentWithTitle:@"Supinated" atIndex:1 animated:NO];
-		[segment insertSegmentWithTitle:@"Pronated" atIndex:1 animated:NO];
+		[segment insertSegmentWithTitle:@"Supinate" atIndex:1 animated:NO];
+		[segment insertSegmentWithTitle:@"Pronate" atIndex:1 animated:NO];
 		[segment addTarget:self action:@selector(segmentvaluechanged:) forControlEvents:UIControlEventValueChanged];
 
 		cell.accessoryView = segment;
@@ -109,11 +109,11 @@ static NSString* cell_identifier = @"feet-back-cell";
 
 	switch(indexPath.row) {
 	case tableViewRowLeftFoot:
-		cell.textLabel.text = @"Left Foot";
+		cell.textLabel.text = @"Left";
 		((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = PACFeetBackAlignmentLeft;
 		break;
 	case tableViewRowRightFoot:
-		cell.textLabel.text = @"Right Foot";
+		cell.textLabel.text = @"Right";
 		((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = PACFeetBackAlignmentRight;
 		break;
 	}

@@ -258,6 +258,14 @@ typedef enum {
 
 // Posture type
 typedef enum {
+        postureTypeIdeal = 0
+            , postureTypeKyphosisLordosis
+            , postureTypeSwayBack
+            , postureTypeMilitary
+            , postureTypeFlatBack
+} PACPostureType_t;
+#if 0
+typedef enum {
     postureTypeOptimal        = 0
         , postureTypeKyphosis = (1 << 0)
         , postureTypeLordosis = (1 << 1)
@@ -265,7 +273,7 @@ typedef enum {
         , postureTypeFlatBack = (1 << 3)
         , postureTypeMilitary = (1 << 4)
 } PACPostureType_t;
-
+#endif
 extern unsigned int PACChecklistMain;
 extern unsigned int PACPlumbLineAlignment;
 
@@ -352,9 +360,10 @@ const char* pac_analysis_date_from_analysisid(const int n);
 
 void pac_remove_analysis(const int analysis_id);
 
+#if 0
 int pac_posture_type(NSDictionary** explanation);
-
 NSString* pac_create_html_analysis();
+#endif // 0
 
 #endif
 

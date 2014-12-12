@@ -976,6 +976,7 @@ void pac_remove_analysis(const int analysis_id)
 
 
 }
+#if 0
 int pac_posture_type(NSDictionary** explanation)
 {
     int res = postureTypeOptimal;
@@ -1199,3 +1200,4 @@ NSString* pac_create_html_analysis()
     if(fp) fclose(fp);
     return fn;
 }
+#endif // !0

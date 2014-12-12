@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
 #import "PACMainMenuView.h"
 
 @interface MasterViewController : UITableViewController <PACMainMenuDelegate
                                                         , MFMailComposeViewControllerDelegate
-                                                        > 
+                                                        , UINavigationControllerDelegate
+                                                        >
 {
 @private    
     MFMailComposeViewController* _mailer;

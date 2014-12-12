@@ -74,7 +74,7 @@ static NSString* cell_identifier = @"pelvis-back-cell";
 
 	fy = fy + look.size.height + fgutter;
 
-	UITableView* tableView = [[UITableView alloc] initWithFrame:CGRectMake(3.0f, fy + 30.0f, frame.size.width - 3.0f, 350.0f) style:UITableViewStyleGrouped];
+	UITableView* tableView = [[UITableView alloc] initWithFrame:CGRectMake(3.0f, fy + 30.0f, frame.size.width - 3.0f, 280.0f) style:UITableViewStyleGrouped];
 	tableView.tag = tagTableView;
 	tableView.dataSource = self;
 	tableView.delegate = self;
@@ -97,7 +97,7 @@ static NSString* cell_identifier = @"pelvis-back-cell";
 
 	if(indexPath.row == tableViewRowPelvisElevated && !cell.accessoryView) {
 		UISegmentedControl *segment = [[UISegmentedControl alloc] init];
-		segment.frame = CGRectMake(0,0,230,30);
+		segment.frame = CGRectMake(0,0,200,30);
 		segment.tag   = indexPath.row;
 		[segment insertSegmentWithTitle:@"Left" atIndex:0 animated:NO];
 		[segment insertSegmentWithTitle:@"Right" atIndex:1 animated:NO];
@@ -105,7 +105,7 @@ static NSString* cell_identifier = @"pelvis-back-cell";
 		cell.accessoryView = segment;
 	} else if(indexPath.row == tableViewRowPelvisRotated && !cell.accessoryView) {
 		UISegmentedControl *segment = [[UISegmentedControl alloc] init];
-		segment.frame = CGRectMake(0,0,230,30);
+		segment.frame = CGRectMake(0,0,200,30);
 		segment.tag   = indexPath.row;
 		[segment insertSegmentWithTitle:@"Clockwise" atIndex:0 animated:NO];
 		[segment insertSegmentWithTitle:@"Counter-Clockwise" atIndex:1 animated:NO];
