@@ -111,7 +111,7 @@ static NSString* cell_identifier = @"pelvis-side-cell";
 
 	if(!cell.accessoryView) {
 		UISegmentedControl *segment = [[UISegmentedControl alloc] init];
-		segment.frame = CGRectMake(0,0,220,30);
+		segment.frame = CGRectMake(0,0,200,30);
 		segment.tag   = indexPath.row;
 		[segment insertSegmentWithTitle:@"Neutral" atIndex:0 animated:NO];
 		[segment insertSegmentWithTitle:@"Ant Tilt" atIndex:1 animated:NO];
@@ -125,11 +125,11 @@ static NSString* cell_identifier = @"pelvis-side-cell";
 
 	switch(indexPath.row) {
 	case tableViewRowLeftPelvis:
-		cell.textLabel.text = @"Left Pelvis";
+		cell.textLabel.text = @"Left";
 		((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = PACPelvisSideAlignmentLeft;
 		break;
 	case tableViewRowRightPelvis:
-		cell.textLabel.text = @"Right Pelvis";
+		cell.textLabel.text = @"Right";
 		((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = PACPelvisSideAlignmentRight;
 		break;
 	}

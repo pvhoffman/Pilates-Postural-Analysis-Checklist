@@ -78,11 +78,11 @@ static NSString* cell_identifier = @"ribcage-front-cell";
 
 	fy = fy + look.size.height + fgutter;
 
-	UITableView* tableView = [[UITableView alloc] initWithFrame:CGRectMake(3.0f, fy + 30.0f, frame.size.width - 3.0f, 350.0f) style:UITableViewStyleGrouped];
+	UITableView* tableView = [[UITableView alloc] initWithFrame:CGRectMake(3.0f, fy + 30.0f, frame.size.width - 3.0f, 280.0f) style:UITableViewStyleGrouped];
 	tableView.tag = tagTableView;
 	tableView.dataSource = self;
 	tableView.delegate = self;
-	tableView.scrollEnabled = NO;
+	tableView.scrollEnabled = YES;
 	[content_view addSubview:tableView];
 
 	[tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cell_identifier];

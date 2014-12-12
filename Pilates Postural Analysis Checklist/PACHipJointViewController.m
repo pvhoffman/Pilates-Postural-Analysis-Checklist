@@ -112,7 +112,7 @@ static NSString* cell_identifier = @"hip-joint-cell";
 
 	if(!cell.accessoryView) {
 		UISegmentedControl *segment = [[UISegmentedControl alloc] init];
-		segment.frame = CGRectMake(0,0,260,30);
+		segment.frame = CGRectMake(0,0,192,30);
 		segment.tag   = indexPath.row;
 		[segment insertSegmentWithTitle:@"Neutral" atIndex:0 animated:NO];
 		[segment insertSegmentWithTitle:@"Extended" atIndex:1 animated:NO];
@@ -126,11 +126,11 @@ static NSString* cell_identifier = @"hip-joint-cell";
 
 	switch(indexPath.row) {
 	case tableViewRowLeftHip:
-		cell.textLabel.text = @"Left Hip";
+		cell.textLabel.text = @"Left";
 		((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = PACHipAlignmentLeft;
 		break;
 	case tableViewRowRightHip:
-		cell.textLabel.text = @"Right Hip";
+		cell.textLabel.text = @"Right";
 		((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = PACHipAlignmentRight;
 		break;
 	}

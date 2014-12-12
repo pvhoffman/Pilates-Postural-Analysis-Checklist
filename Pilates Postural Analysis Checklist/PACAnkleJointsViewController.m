@@ -118,11 +118,11 @@ static NSString* cell_identifier = @"ankle-joint-cell";
 
 	if(!cell.accessoryView) {
 		UISegmentedControl *segment = [[UISegmentedControl alloc] init];
-		segment.frame = CGRectMake(0,0,230,30);
+		segment.frame = CGRectMake(0,0,180,30);
 		segment.tag   = indexPath.row;
 		[segment insertSegmentWithTitle:@"Neutral" atIndex:0 animated:NO];
-		[segment insertSegmentWithTitle:@"Plantarflex" atIndex:1 animated:NO];
-		[segment insertSegmentWithTitle:@"Dorsiflex"  atIndex:2 animated:NO];
+		[segment insertSegmentWithTitle:@"Plantar" atIndex:1 animated:NO];
+		[segment insertSegmentWithTitle:@"Dorsi"  atIndex:2 animated:NO];
 		[segment addTarget:self action:@selector(segmentvaluechanged:) forControlEvents:UIControlEventValueChanged];
 
 		cell.accessoryView = segment;
@@ -133,11 +133,11 @@ static NSString* cell_identifier = @"ankle-joint-cell";
 
 	switch(indexPath.row) {
 	case tableViewRowLeftAnkle:
-		cell.textLabel.text = @"Left Ankle";
+		cell.textLabel.text = @"Left";
 		((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = PACAnkleAlignmentLeft;
 		break;
 	case tableViewRowRightAnkle:
-		cell.textLabel.text = @"Right Ankle";
+		cell.textLabel.text = @"Right";
 		((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = PACAnkleAlignmentRight;
 		break;
 	}

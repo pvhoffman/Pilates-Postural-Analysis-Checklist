@@ -101,10 +101,10 @@ static NSString* cell_identifier = @"knee-side-cell";
 
 	if(!cell.accessoryView) {
 		UISegmentedControl *segment = [[UISegmentedControl alloc] init];
-		segment.frame = CGRectMake(0,0,260,30);
+		segment.frame = CGRectMake(0,0,192,30);
 		segment.tag   = indexPath.row;
 		[segment insertSegmentWithTitle:@"Neutral" atIndex:0 animated:NO];
-		[segment insertSegmentWithTitle:@"Hyperextended" atIndex:1 animated:NO];
+		[segment insertSegmentWithTitle:@"Extended" atIndex:1 animated:NO];
 		[segment insertSegmentWithTitle:@"Flexed"  atIndex:2 animated:NO];
 		[segment addTarget:self action:@selector(segmentvaluechanged:) forControlEvents:UIControlEventValueChanged];
 
@@ -115,11 +115,11 @@ static NSString* cell_identifier = @"knee-side-cell";
 
 	switch(indexPath.row) {
 	case tableViewRowLeftKnee:
-		cell.textLabel.text = @"Left Knee";
+		cell.textLabel.text = @"Left";
 		((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = PACKneeAlignmentSideLeft;
 		break;
 	case tableViewRowRightKnee:
-		cell.textLabel.text = @"Right Knee";
+		cell.textLabel.text = @"Right";
 		((UISegmentedControl*)cell.accessoryView).selectedSegmentIndex = PACKneeAlignmentSideRight;
 		break;
 	}

@@ -61,7 +61,7 @@ static NSString* cell_identifier = @"plumbline-cell";
 
 	UIImage* image = [UIImage imageNamed:@"plumbline_detail.gif"];
 
-	UIImageView* image_view = [[UIImageView alloc] initWithFrame:CGRectMake((frame.size.width / 2.0f) - (image.size.width / 2.0f), 5.0, image.size.height, image.size.width)];
+	UIImageView* image_view = [[UIImageView alloc] initWithFrame:CGRectMake((frame.size.width / 2.0f) - (image.size.width / 2.0f), 5.0, image.size.width, image.size.height)];
 	image_view.image = image;
 	[content_view addSubview:image_view];
 
@@ -112,7 +112,7 @@ static NSString* cell_identifier = @"plumbline-cell";
 			cell.accessoryView = sitch;
 		} else {
 			UISegmentedControl *segment = [[UISegmentedControl alloc] init];
-			segment.frame = CGRectMake(0,0,200,30);
+			segment.frame = CGRectMake(0,0,170,30);
 			segment.tag   = indexPath.row;
 			[segment insertSegmentWithTitle:@"Forward" atIndex:0 animated:NO];
 			[segment insertSegmentWithTitle:@"Aligned" atIndex:1 animated:NO];

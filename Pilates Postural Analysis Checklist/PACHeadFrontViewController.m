@@ -75,11 +75,11 @@ static NSString* cell_identifier = @"head-front-cell";
  */
 	fy = fy + look.size.height + fgutter;
 
-	UITableView* tableView = [[UITableView alloc] initWithFrame:CGRectMake(3.0f, fy + 30.0f, frame.size.width - 3.0f, 350.0f) style:UITableViewStyleGrouped];
+	UITableView* tableView = [[UITableView alloc] initWithFrame:CGRectMake(3.0f, fy + 30.0f, frame.size.width - 3.0f, 250.0f) style:UITableViewStyleGrouped];
 	tableView.tag = tagTableView;
 	tableView.dataSource = self;
 	tableView.delegate = self;
-	tableView.scrollEnabled = NO;
+	tableView.scrollEnabled = YES;
 	[content_view addSubview:tableView];
 
 	[tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cell_identifier];
@@ -98,7 +98,7 @@ static NSString* cell_identifier = @"head-front-cell";
 	if(indexPath.row == tableViewRowHeadTilted || indexPath.row == tableViewRowHeadShifted) {
 		if(!cell.accessoryView) {
 			UISegmentedControl *segment = [[UISegmentedControl alloc] init];
-			segment.frame = CGRectMake(0,0,230,30);
+			segment.frame = CGRectMake(0,0,200,30);
 			segment.tag   = indexPath.row;
 			[segment insertSegmentWithTitle:@"Left" atIndex:0 animated:NO];
 			[segment insertSegmentWithTitle:@"Right" atIndex:1 animated:NO];
