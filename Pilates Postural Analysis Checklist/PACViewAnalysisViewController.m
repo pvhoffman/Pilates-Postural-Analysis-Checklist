@@ -9,6 +9,7 @@
 #import <stdio.h>
 
 #import "PACViewAnalysisViewController.h"
+#import "PACKyphosisLordosisMainTableViewController.h"
 #import "PACGlobal.h"
 
 
@@ -67,7 +68,8 @@ static NSString* create_analysis_html_file();
                             case '0':  // postureTypeIdeal
                                 return YES;
                             case '1':  // postureTypeKyphosisLordosis
-                                return YES;
+                                [self.navigationController pushViewController:[[PACKyphosisLordosisMainTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
+                                return NO;
                             case '2':  // postureTypeSwayBack
                                 return YES;
                             case '3':  // postureTypeMilitary
