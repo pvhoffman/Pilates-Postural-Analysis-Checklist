@@ -267,7 +267,7 @@ static NSString* create_analysis_html_file()
                 fputs("<hr />\n", fpout);
                 switch(i){
                     case postureTypeIdeal:
-                        fprintf(fpout, "<h3><a href='#0'>Ideal Posture:</a> %2.1f%%</h3>", ((ideal_count / cp_ideal) * 100.0f));
+                        fprintf(fpout, "<h3>Ideal Posture: %2.1f%%</h3>", ((ideal_count / cp_ideal) * 100.0f));
                         break;
                     case postureTypeKyphosisLordosis:
                         fprintf(fpout, "<h3><a href='#1'>Kyphosis-Lordosis:</a> %2.1f%%</h3>", ((kyphosislordosis_count / cp_kyphosislordosis) * 100.0f));

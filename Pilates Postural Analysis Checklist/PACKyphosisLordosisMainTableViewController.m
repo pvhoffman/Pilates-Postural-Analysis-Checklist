@@ -7,6 +7,9 @@
 //
 
 #import "PACKyphosisLordosisMainTableViewController.h"
+#import "PACKyphosisLordosisEssentailMatworkLayer1.h"
+#import "PACKyphosisLordosisEssentailMatworkLayer2.h"
+#import "PACKyphosisLordosisEssentailMatworkLayer3.h"
 #import "PACGlobal.h"
 
 enum {
@@ -17,13 +20,14 @@ enum {
 };
 
 enum {
-    tableViewRowEssentialMatwork = 0
-        , tableViewRowEssentailReformer
-        , tableViewRowMatworkAndReformer
+    tableViewRowLayer1 = 0
+        , tableViewRowLayer2
+        , tableViewRowLayer3
         , tableViewRowCount
 };
 
 static NSString* cell_identifier  = @"kypholodoris-back-cell";
+
 
 @interface PACKyphosisLordosisMainTableViewController ()
 
@@ -65,13 +69,13 @@ static NSString* cell_identifier  = @"kypholodoris-back-cell";
     cell.accessoryType   = UITableViewCellAccessoryDisclosureIndicator;
 
     switch(indexPath.row){
-        case tableViewRowEssentialMatwork:
+        case tableViewRowLayer1:
             cell.textLabel.text = @"Layer 1";
             break;
-        case tableViewRowEssentailReformer:
+        case tableViewRowLayer2:
             cell.textLabel.text = @"Layer 2";
             break;
-        case tableViewRowMatworkAndReformer:
+        case tableViewRowLayer3:
             cell.textLabel.text = @"Layer 3";
             break;
     }
@@ -107,5 +111,27 @@ static NSString* cell_identifier  = @"kypholodoris-back-cell";
 	return 26.0f;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+        switch(indexPath.section){
+            case tableViewSectionEssentailMatwork:
+                switch(indexPath.row){
+                    case tableViewRowLayer1:
+                        [self.navigationController pushViewController:[[PACKyphosisLordosisEssentailMatworkLayer1 alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
+                        break;
+                    case tableViewRowLayer2:
+                        [self.navigationController pushViewController:[[PACKyphosisLordosisEssentailMatworkLayer2 alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
+                        break;
+                    case tableViewRowLayer3:
+                        [self.navigationController pushViewController:[[PACKyphosisLordosisEssentailMatworkLayer3 alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
+                        break;
+                }
+            break;
+            case tableViewSectionEssentailReformer:
+            break;
+            case tableViewSectionMatworkAndReformer:
+            break;
+        }
+}
 @end
 
