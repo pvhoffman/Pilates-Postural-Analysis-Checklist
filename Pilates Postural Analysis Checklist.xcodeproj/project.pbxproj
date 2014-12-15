@@ -43,9 +43,6 @@
 		E7134E831A1180B300F2CEE8 /* PACFeetBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7134E821A1180B300F2CEE8 /* PACFeetBackViewController.m */; };
 		E71AE1191A3F4E7F009B102D /* PACKyphosisLordosisEssentailMatworkLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71AE1181A3F4E7F009B102D /* PACKyphosisLordosisEssentailMatworkLayer.m */; };
 		E742027F1A3B85FF008AFAD3 /* PACKyphosisLordosisMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E742027E1A3B85FF008AFAD3 /* PACKyphosisLordosisMainTableViewController.m */; };
-		E74202821A3B913F008AFAD3 /* PACKyphosisLordosisEssentailMatworkLayer1.m in Sources */ = {isa = PBXBuildFile; fileRef = E74202811A3B913F008AFAD3 /* PACKyphosisLordosisEssentailMatworkLayer1.m */; };
-		E74202851A3B956B008AFAD3 /* PACKyphosisLordosisEssentailMatworkLayer2.m in Sources */ = {isa = PBXBuildFile; fileRef = E74202841A3B956B008AFAD3 /* PACKyphosisLordosisEssentailMatworkLayer2.m */; };
-		E74202881A3B97B8008AFAD3 /* PACKyphosisLordosisEssentailMatworkLayer3.m in Sources */ = {isa = PBXBuildFile; fileRef = E74202871A3B97B8008AFAD3 /* PACKyphosisLordosisEssentailMatworkLayer3.m */; };
 		E74666721A30D41A00A7B50A /* feet_back_detail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E74666711A30D41A00A7B50A /* feet_back_detail.jpg */; };
 		E74666741A31153C00A7B50A /* llb_ball_15.png in Resources */ = {isa = PBXBuildFile; fileRef = E74666731A31153C00A7B50A /* llb_ball_15.png */; };
 		E74666761A31189500A7B50A /* g_ball_15.png in Resources */ = {isa = PBXBuildFile; fileRef = E74666751A31189500A7B50A /* g_ball_15.png */; };
@@ -153,12 +150,6 @@
 		E71AE1181A3F4E7F009B102D /* PACKyphosisLordosisEssentailMatworkLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACKyphosisLordosisEssentailMatworkLayer.m; sourceTree = "<group>"; };
 		E742027D1A3B85FF008AFAD3 /* PACKyphosisLordosisMainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACKyphosisLordosisMainTableViewController.h; sourceTree = "<group>"; };
 		E742027E1A3B85FF008AFAD3 /* PACKyphosisLordosisMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACKyphosisLordosisMainTableViewController.m; sourceTree = "<group>"; };
-		E74202801A3B913F008AFAD3 /* PACKyphosisLordosisEssentailMatworkLayer1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACKyphosisLordosisEssentailMatworkLayer1.h; sourceTree = "<group>"; };
-		E74202811A3B913F008AFAD3 /* PACKyphosisLordosisEssentailMatworkLayer1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACKyphosisLordosisEssentailMatworkLayer1.m; sourceTree = "<group>"; };
-		E74202831A3B956B008AFAD3 /* PACKyphosisLordosisEssentailMatworkLayer2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACKyphosisLordosisEssentailMatworkLayer2.h; sourceTree = "<group>"; };
-		E74202841A3B956B008AFAD3 /* PACKyphosisLordosisEssentailMatworkLayer2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACKyphosisLordosisEssentailMatworkLayer2.m; sourceTree = "<group>"; };
-		E74202861A3B97B8008AFAD3 /* PACKyphosisLordosisEssentailMatworkLayer3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACKyphosisLordosisEssentailMatworkLayer3.h; sourceTree = "<group>"; };
-		E74202871A3B97B8008AFAD3 /* PACKyphosisLordosisEssentailMatworkLayer3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACKyphosisLordosisEssentailMatworkLayer3.m; sourceTree = "<group>"; };
 		E74666711A30D41A00A7B50A /* feet_back_detail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = feet_back_detail.jpg; sourceTree = "<group>"; };
 		E74666731A31153C00A7B50A /* llb_ball_15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = llb_ball_15.png; sourceTree = "<group>"; };
 		E74666751A31189500A7B50A /* g_ball_15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = g_ball_15.png; sourceTree = "<group>"; };
@@ -335,12 +326,6 @@
 				E746668E1A3A64D100A7B50A /* PACViewAnalysisViewController.m */,
 				E742027D1A3B85FF008AFAD3 /* PACKyphosisLordosisMainTableViewController.h */,
 				E742027E1A3B85FF008AFAD3 /* PACKyphosisLordosisMainTableViewController.m */,
-				E74202801A3B913F008AFAD3 /* PACKyphosisLordosisEssentailMatworkLayer1.h */,
-				E74202811A3B913F008AFAD3 /* PACKyphosisLordosisEssentailMatworkLayer1.m */,
-				E74202831A3B956B008AFAD3 /* PACKyphosisLordosisEssentailMatworkLayer2.h */,
-				E74202841A3B956B008AFAD3 /* PACKyphosisLordosisEssentailMatworkLayer2.m */,
-				E74202861A3B97B8008AFAD3 /* PACKyphosisLordosisEssentailMatworkLayer3.h */,
-				E74202871A3B97B8008AFAD3 /* PACKyphosisLordosisEssentailMatworkLayer3.m */,
 				E71AE1171A3F4E7F009B102D /* PACKyphosisLordosisEssentailMatworkLayer.h */,
 				E71AE1181A3F4E7F009B102D /* PACKyphosisLordosisEssentailMatworkLayer.m */,
 			);
@@ -550,7 +535,6 @@
 			files = (
 				E79E0FCE1A2E72EF00CABD55 /* PACSpineSequencingBackViewController.m in Sources */,
 				E7134E6C1A0BF1FE00F2CEE8 /* PACPelvisFrontViewController.m in Sources */,
-				E74202821A3B913F008AFAD3 /* PACKyphosisLordosisEssentailMatworkLayer1.m in Sources */,
 				E7C42B2C1A0AFD89003FF7B9 /* PACFeetFrontViewController.m in Sources */,
 				E711C5AC19F9A3BF0036873E /* PACAnkleJointsViewController.m in Sources */,
 				E74AAAEF1A13F51C00C008CE /* PACFemursBackViewController.m in Sources */,
@@ -577,9 +561,7 @@
 				E7B0E9BE19F702200011BB49 /* main.m in Sources */,
 				E711C5D819FEFBB80036873E /* PACCervicalSpineViewController.m in Sources */,
 				E74666881A3769ED00A7B50A /* PACTypesetter.m in Sources */,
-				E74202851A3B956B008AFAD3 /* PACKyphosisLordosisEssentailMatworkLayer2.m in Sources */,
 				E711C5D319FEF6A10036873E /* PACUpperThoracicSpineViewController.m in Sources */,
-				E74202881A3B97B8008AFAD3 /* PACKyphosisLordosisEssentailMatworkLayer3.m in Sources */,
 				E7C42B261A0AF059003FF7B9 /* PACHeadSideViewController.m in Sources */,
 				E742027F1A3B85FF008AFAD3 /* PACKyphosisLordosisMainTableViewController.m in Sources */,
 				E7134E761A0C1F5500F2CEE8 /* PACShouldersFrontViewController.m in Sources */,

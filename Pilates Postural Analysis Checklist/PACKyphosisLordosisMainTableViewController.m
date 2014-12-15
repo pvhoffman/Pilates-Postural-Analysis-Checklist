@@ -7,9 +7,7 @@
 //
 
 #import "PACKyphosisLordosisMainTableViewController.h"
-#import "PACKyphosisLordosisEssentailMatworkLayer1.h"
-#import "PACKyphosisLordosisEssentailMatworkLayer2.h"
-#import "PACKyphosisLordosisEssentailMatworkLayer3.h"
+#import "PACKyphosisLordosisEssentailMatworkLayer.h"
 #import "PACGlobal.h"
 
 enum {
@@ -113,25 +111,28 @@ static NSString* cell_identifier  = @"kypholodoris-back-cell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        switch(indexPath.section){
-            case tableViewSectionEssentailMatwork:
-                switch(indexPath.row){
-                    case tableViewRowLayer1:
-                        [self.navigationController pushViewController:[[PACKyphosisLordosisEssentailMatworkLayer1 alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
+    PACKyphosisLordosisEssentailMatworkLayer* essentail_matwork = nil;
+    switch(indexPath.section){
+        case tableViewSectionEssentailMatwork:
+            essentail_matwork  = [[PACKyphosisLordosisEssentailMatworkLayer alloc] initWithStyle:UITableViewStyleGrouped];
+            switch(indexPath.row){
+                case tableViewRowLayer1:
+                        [essentail_matwork setLayer:kyphosisLordosisEssentailMatworkLayer1]; 
                         break;
-                    case tableViewRowLayer2:
-                        [self.navigationController pushViewController:[[PACKyphosisLordosisEssentailMatworkLayer2 alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
+                case tableViewRowLayer2:
+                        [essentail_matwork setLayer:kyphosisLordosisEssentailMatworkLayer2]; 
                         break;
-                    case tableViewRowLayer3:
-                        [self.navigationController pushViewController:[[PACKyphosisLordosisEssentailMatworkLayer3 alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
+                case tableViewRowLayer3:
+                        [essentail_matwork setLayer:kyphosisLordosisEssentailMatworkLayer3]; 
                         break;
-                }
+            }
+            [self.navigationController pushViewController:essentail_matwork animated:YES];
             break;
-            case tableViewSectionEssentailReformer:
+        case tableViewSectionEssentailReformer:
             break;
-            case tableViewSectionMatworkAndReformer:
+        case tableViewSectionMatworkAndReformer:
             break;
-        }
+    }
 }
 @end
 

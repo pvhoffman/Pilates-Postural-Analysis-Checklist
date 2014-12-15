@@ -263,7 +263,7 @@ static NSString* create_analysis_html_file()
 
             fputs("<html><head></head><body>\n", fpout);
 
-            for(int i = 0, j = [explain count]; i < j; i++){
+            for(int i = 0, j = (int)[explain count]; i < j; i++){
                 fputs("<hr />\n", fpout);
                 switch(i){
                     case postureTypeIdeal:
