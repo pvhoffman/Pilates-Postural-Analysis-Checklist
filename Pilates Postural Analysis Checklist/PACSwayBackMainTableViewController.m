@@ -1,15 +1,17 @@
 //
-//  PACKyphosisLordosisMainTableViewController.m
+//  PACSwayBackMainTableViewController.m
 //  Pilates Postural Analysis Checklist
 //
 //  Created by Paul Hoffman on 12/12/14.
 //  Copyright (c) 2014 Paul Hoffman. All rights reserved.
 //
 
-#import "PACKyphosisLordosisMainTableViewController.h"
-#import "PACKyphosisLordosisEssentailMatworkLayer.h"
-#import "PACKyphosisLordosisEssentailReformerLayer.h"
-#import "PACKyphosisLordosisEssentailMatworkReformerLayer.h"
+#import "PACSwayBackMainTableViewController.h"
+/*
+#import "PACSwayBackEssentailMatworkLayer.h"
+#import "PACSwayBackEssentailReformerLayer.h"
+#import "PACSwayBackEssentailMatworkReformerLayer.h"
+*/
 #import "PACGlobal.h"
 
 enum {
@@ -26,19 +28,19 @@ enum {
         , tableViewRowCount
 };
 
-static NSString* cell_identifier  = @"kypholodoris-back-cell";
+static NSString* cell_identifier  = @"swayback-back-cell";
 
-@interface PACKyphosisLordosisMainTableViewController ()
+@interface PACSwayBackMainTableViewController ()
 
 @end
 
-@implementation PACKyphosisLordosisMainTableViewController
+@implementation PACSwayBackMainTableViewController
 
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
 
-    self.navigationItem.title = @"Kyphosis-Lordosis";
+    self.navigationItem.title = @"Sway-Back";
 
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cell_identifier];
     
@@ -112,56 +114,58 @@ static NSString* cell_identifier  = @"kypholodoris-back-cell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PACKyphosisLordosisEssentailMatworkLayer* essentail_matwork = nil;
-    PACKyphosisLordosisEssentailReformerLayer* essential_reformer = nil;
-    PACKyphosisLordosisEssentailMatworkReformerLayer* matwork_reformer = nil;
+/*
+    PACSwayBackEssentailMatworkLayer* essentail_matwork = nil;
+    PACSwayBackEssentailReformerLayer* essential_reformer = nil;
+    PACSwayBackEssentailMatworkReformerLayer* matwork_reformer = nil;
     switch(indexPath.section){
         case tableViewSectionEssentailMatwork:
-            essentail_matwork  = [[PACKyphosisLordosisEssentailMatworkLayer alloc] initWithStyle:UITableViewStyleGrouped];
+            essentail_matwork  = [[PACSwayBackEssentailMatworkLayer alloc] initWithStyle:UITableViewStyleGrouped];
             switch(indexPath.row){
                 case tableViewRowLayer1:
-                        [essentail_matwork setLayer:kyphosisLordosisEssentailMatworkLayer1]; 
+                        [essentail_matwork setLayer:swayBackEssentailMatworkLayer1]; 
                         break;
                 case tableViewRowLayer2:
-                        [essentail_matwork setLayer:kyphosisLordosisEssentailMatworkLayer2]; 
+                        [essentail_matwork setLayer:SwayBackEssentailMatworkLayer2]; 
                         break;
                 case tableViewRowLayer3:
-                        [essentail_matwork setLayer:kyphosisLordosisEssentailMatworkLayer3]; 
+                        [essentail_matwork setLayer:SwayBackEssentailMatworkLayer3]; 
                         break;
             }
             [self.navigationController pushViewController:essentail_matwork animated:YES];
             break;
         case tableViewSectionEssentailReformer:
-            essential_reformer  = [[PACKyphosisLordosisEssentailReformerLayer alloc] initWithStyle:UITableViewStyleGrouped];
+            essential_reformer  = [[PACSwayBackEssentailReformerLayer alloc] initWithStyle:UITableViewStyleGrouped];
             switch(indexPath.row){
                 case tableViewRowLayer1:
-                    [essential_reformer setLayer:kyphosisLordosisEssentailReformerLayer1];
+                    [essential_reformer setLayer:swayBackEssentailReformerLayer1];
                     break;
                 case tableViewRowLayer2:
-                    [essential_reformer setLayer:kyphosisLordosisEssentailReformerLayer2];
+                    [essential_reformer setLayer:swayBackEssentailReformerLayer2];
                     break;
                 case tableViewRowLayer3:
-                    [essential_reformer setLayer:kyphosisLordosisEssentailReformerLayer3];
+                    [essential_reformer setLayer:swayBackEssentailReformerLayer3];
                     break;
             }
             [self.navigationController pushViewController:essential_reformer animated:YES];
             break;
         case tableViewSectionMatworkAndReformer:
-            matwork_reformer = [[PACKyphosisLordosisEssentailMatworkReformerLayer alloc] initWithStyle:UITableViewStyleGrouped];
+            matwork_reformer = [[PACSwayBackEssentailMatworkReformerLayer alloc] initWithStyle:UITableViewStyleGrouped];
             switch(indexPath.row){
                 case tableViewRowLayer1:
-                    [matwork_reformer setLayer:kyphosisLordosisEssentailMatworkReformerLayer1];
+                    [matwork_reformer setLayer:swayBackEssentailMatworkReformerLayer1];
                     break;
                 case tableViewRowLayer2:
-                    [matwork_reformer setLayer:kyphosisLordosisEssentailMatworkReformerLayer2];
+                    [matwork_reformer setLayer:swayBackEssentailMatworkReformerLayer2];
                     break;
                 case tableViewRowLayer3:
-                    [matwork_reformer setLayer:kyphosisLordosisEssentailMatworkReformerLayer3];
+                    [matwork_reformer setLayer:swayBackEssentailMatworkReformerLayer3];
                     break;
             }
             [self.navigationController pushViewController:matwork_reformer animated:YES];
             break;
     }
+*/
 }
 @end
 
