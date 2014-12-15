@@ -18,8 +18,24 @@ enum {
 static NSArray* _warmup    = nil;
 static NSArray* _exercises = nil;
 
+static int _bold_warmup[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+static int _bold_exercises[] = {1, 1, 1, 1, 1, 1, 1, 1};
 
 static NSString* cell_identifier  = @"kypholodoris-layer1-matwork-cell";
+
+//-----------------------------------------------------------------------------
+@interface PACSKyphosisLordosisEssentailMatworkLayer1TableViewCell : UITableViewCell
+@end
+
+@implementation PACSKyphosisLordosisEssentailMatworkLayer1TableViewCell
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+	self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
+	return self;
+}
+@end
+//-----------------------------------------------------------------------------
+
 
 
 @interface PACKyphosisLordosisEssentailMatworkLayer1 ()
@@ -56,7 +72,7 @@ static NSString* cell_identifier  = @"kypholodoris-layer1-matwork-cell";
     
     self.navigationItem.title = @"Layer 1";
 
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cell_identifier];
+    [self.tableView registerClass:[PACSKyphosisLordosisEssentailMatworkLayer1TableViewCell class] forCellReuseIdentifier:cell_identifier];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -88,10 +104,33 @@ static NSString* cell_identifier  = @"kypholodoris-layer1-matwork-cell";
 
     switch(indexPath.section){
         case tableViewSectionWarmup:
+            if(_bold_warmup[indexPath.row]){
+                cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
+            }
+            switch(indexPath.row){
+                case 3:
+                    cell.detailTextLabel.text = @"careful not to exaggerate lordosis, emphasize pec strech";
+                    break;
+            }
             cell.textLabel.text = [_warmup objectAtIndex:indexPath.row];
             break;
         case tableViewSectionExercises:
+            if(_bold_exercises[indexPath.row]){
+                cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
+            }
             cell.textLabel.text = [_exercises objectAtIndex:indexPath.row];
+            switch(indexPath.row){
+                case 0:
+                    cell.detailTextLabel.text = @"hands behind head, legs over arc barrel, imprinted";
+                    break;
+                case 4:
+                    cell.detailTextLabel.text = @"both knees bent";
+                    break;
+                case 5:
+                    cell.detailTextLabel.text = @"on pillow, cross-legged, or pillow or arc";
+                    break;
+
+            }
             break;
     }
     return cell;
