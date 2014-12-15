@@ -9,6 +9,7 @@
 #import "PACKyphosisLordosisMainTableViewController.h"
 #import "PACKyphosisLordosisEssentailMatworkLayer.h"
 #import "PACKyphosisLordosisEssentailReformerLayer.h"
+#import "PACKyphosisLordosisEssentailMatworkReformerLayer.h"
 #import "PACGlobal.h"
 
 enum {
@@ -114,6 +115,7 @@ static NSString* cell_identifier  = @"kypholodoris-back-cell";
 {
     PACKyphosisLordosisEssentailMatworkLayer* essentail_matwork = nil;
     PACKyphosisLordosisEssentailReformerLayer* essential_reformer = nil;
+    PACKyphosisLordosisEssentailMatworkReformerLayer* matwork_reformer = nil;
     switch(indexPath.section){
         case tableViewSectionEssentailMatwork:
             essentail_matwork  = [[PACKyphosisLordosisEssentailMatworkLayer alloc] initWithStyle:UITableViewStyleGrouped];
@@ -146,6 +148,19 @@ static NSString* cell_identifier  = @"kypholodoris-back-cell";
             [self.navigationController pushViewController:essential_reformer animated:YES];
             break;
         case tableViewSectionMatworkAndReformer:
+            matwork_reformer = [[PACKyphosisLordosisEssentailMatworkReformerLayer alloc] initWithStyle:UITableViewStyleGrouped];
+            switch(indexPath.row){
+                case tableViewRowLayer1:
+                    [matwork_reformer setLayer:kyphosisLordosisEssentailMatworkReformerLayer1];
+                    break;
+                case tableViewRowLayer2:
+                    [matwork_reformer setLayer:kyphosisLordosisEssentailMatworkReformerLayer2];
+                    break;
+                case tableViewRowLayer3:
+                    [matwork_reformer setLayer:kyphosisLordosisEssentailMatworkReformerLayer3];
+                    break;
+            }
+            [self.navigationController pushViewController:matwork_reformer animated:YES];
             break;
     }
 }

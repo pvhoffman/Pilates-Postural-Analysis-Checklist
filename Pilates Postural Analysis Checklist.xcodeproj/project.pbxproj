@@ -43,6 +43,7 @@
 		E7134E831A1180B300F2CEE8 /* PACFeetBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7134E821A1180B300F2CEE8 /* PACFeetBackViewController.m */; };
 		E71AE1191A3F4E7F009B102D /* PACKyphosisLordosisEssentailMatworkLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71AE1181A3F4E7F009B102D /* PACKyphosisLordosisEssentailMatworkLayer.m */; };
 		E71AE11C1A3F9169009B102D /* PACKyphosisLordosisEssentailReformerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71AE11B1A3F9169009B102D /* PACKyphosisLordosisEssentailReformerLayer.m */; };
+		E71AE11F1A3F968C009B102D /* PACKyphosisLordosisEssentailMatworkReformerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71AE11E1A3F968C009B102D /* PACKyphosisLordosisEssentailMatworkReformerLayer.m */; };
 		E742027F1A3B85FF008AFAD3 /* PACKyphosisLordosisMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E742027E1A3B85FF008AFAD3 /* PACKyphosisLordosisMainTableViewController.m */; };
 		E74666721A30D41A00A7B50A /* feet_back_detail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E74666711A30D41A00A7B50A /* feet_back_detail.jpg */; };
 		E74666741A31153C00A7B50A /* llb_ball_15.png in Resources */ = {isa = PBXBuildFile; fileRef = E74666731A31153C00A7B50A /* llb_ball_15.png */; };
@@ -151,6 +152,8 @@
 		E71AE1181A3F4E7F009B102D /* PACKyphosisLordosisEssentailMatworkLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACKyphosisLordosisEssentailMatworkLayer.m; sourceTree = "<group>"; };
 		E71AE11A1A3F9169009B102D /* PACKyphosisLordosisEssentailReformerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACKyphosisLordosisEssentailReformerLayer.h; sourceTree = "<group>"; };
 		E71AE11B1A3F9169009B102D /* PACKyphosisLordosisEssentailReformerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACKyphosisLordosisEssentailReformerLayer.m; sourceTree = "<group>"; };
+		E71AE11D1A3F968C009B102D /* PACKyphosisLordosisEssentailMatworkReformerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACKyphosisLordosisEssentailMatworkReformerLayer.h; sourceTree = "<group>"; };
+		E71AE11E1A3F968C009B102D /* PACKyphosisLordosisEssentailMatworkReformerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACKyphosisLordosisEssentailMatworkReformerLayer.m; sourceTree = "<group>"; };
 		E742027D1A3B85FF008AFAD3 /* PACKyphosisLordosisMainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACKyphosisLordosisMainTableViewController.h; sourceTree = "<group>"; };
 		E742027E1A3B85FF008AFAD3 /* PACKyphosisLordosisMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACKyphosisLordosisMainTableViewController.m; sourceTree = "<group>"; };
 		E74666711A30D41A00A7B50A /* feet_back_detail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = feet_back_detail.jpg; sourceTree = "<group>"; };
@@ -258,6 +261,8 @@
 		E7B0E9BA19F702200011BB49 /* Pilates Postural Analysis Checklist */ = {
 			isa = PBXGroup;
 			children = (
+				E71AE11D1A3F968C009B102D /* PACKyphosisLordosisEssentailMatworkReformerLayer.h */,
+				E71AE11E1A3F968C009B102D /* PACKyphosisLordosisEssentailMatworkReformerLayer.m */,
 				E7B0E9BF19F702200011BB49 /* AppDelegate.h */,
 				E7B0E9C019F702200011BB49 /* AppDelegate.m */,
 				E7B0E9C519F702200011BB49 /* DetailViewController.h */,
@@ -570,6 +575,7 @@
 				E711C5D319FEF6A10036873E /* PACUpperThoracicSpineViewController.m in Sources */,
 				E7C42B261A0AF059003FF7B9 /* PACHeadSideViewController.m in Sources */,
 				E742027F1A3B85FF008AFAD3 /* PACKyphosisLordosisMainTableViewController.m in Sources */,
+				E71AE11F1A3F968C009B102D /* PACKyphosisLordosisEssentailMatworkReformerLayer.m in Sources */,
 				E7134E761A0C1F5500F2CEE8 /* PACShouldersFrontViewController.m in Sources */,
 				E746668F1A3A64D100A7B50A /* PACViewAnalysisViewController.m in Sources */,
 				E7B0E9C719F702200011BB49 /* DetailViewController.m in Sources */,
