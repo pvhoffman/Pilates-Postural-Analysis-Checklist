@@ -42,14 +42,8 @@ static NSString* cell_identifier  = @"kypholodoris-layer-matwork-cell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-/*
-➤ Bar
-➤ Foo 
-    _warmup = nil;
-    _exercises = nil;
-*/
-    [self.tableView registerClass:[PACSKyphosisLordosisEssentailMatworkLayerTableViewCell class] forCellReuseIdentifier:cell_identifier];
 
+    [self.tableView registerClass:[PACSKyphosisLordosisEssentailMatworkLayerTableViewCell class] forCellReuseIdentifier:cell_identifier];
 }
 
 - (void)didReceiveMemoryWarning 

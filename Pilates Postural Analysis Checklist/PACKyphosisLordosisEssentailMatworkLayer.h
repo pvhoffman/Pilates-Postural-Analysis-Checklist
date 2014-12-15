@@ -27,6 +27,5 @@ typedef enum {
         NSArray* _warmup_bold;
         NSArray* _exercises_bold;
 }
-
 -(void) setLayer:(PACKyphosisLordosisEssentailMatworkLayer_t)layer;
 @end

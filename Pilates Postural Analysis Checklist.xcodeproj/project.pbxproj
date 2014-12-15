@@ -42,6 +42,7 @@
 		E7134E801A117A1D00F2CEE8 /* PACBackViewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7134E7F1A117A1D00F2CEE8 /* PACBackViewTableViewController.m */; };
 		E7134E831A1180B300F2CEE8 /* PACFeetBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7134E821A1180B300F2CEE8 /* PACFeetBackViewController.m */; };
 		E71AE1191A3F4E7F009B102D /* PACKyphosisLordosisEssentailMatworkLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71AE1181A3F4E7F009B102D /* PACKyphosisLordosisEssentailMatworkLayer.m */; };
+		E71AE11C1A3F9169009B102D /* PACKyphosisLordosisEssentailReformerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71AE11B1A3F9169009B102D /* PACKyphosisLordosisEssentailReformerLayer.m */; };
 		E742027F1A3B85FF008AFAD3 /* PACKyphosisLordosisMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E742027E1A3B85FF008AFAD3 /* PACKyphosisLordosisMainTableViewController.m */; };
 		E74666721A30D41A00A7B50A /* feet_back_detail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E74666711A30D41A00A7B50A /* feet_back_detail.jpg */; };
 		E74666741A31153C00A7B50A /* llb_ball_15.png in Resources */ = {isa = PBXBuildFile; fileRef = E74666731A31153C00A7B50A /* llb_ball_15.png */; };
@@ -148,6 +149,8 @@
 		E7134E821A1180B300F2CEE8 /* PACFeetBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACFeetBackViewController.m; sourceTree = "<group>"; };
 		E71AE1171A3F4E7F009B102D /* PACKyphosisLordosisEssentailMatworkLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACKyphosisLordosisEssentailMatworkLayer.h; sourceTree = "<group>"; };
 		E71AE1181A3F4E7F009B102D /* PACKyphosisLordosisEssentailMatworkLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACKyphosisLordosisEssentailMatworkLayer.m; sourceTree = "<group>"; };
+		E71AE11A1A3F9169009B102D /* PACKyphosisLordosisEssentailReformerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACKyphosisLordosisEssentailReformerLayer.h; sourceTree = "<group>"; };
+		E71AE11B1A3F9169009B102D /* PACKyphosisLordosisEssentailReformerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACKyphosisLordosisEssentailReformerLayer.m; sourceTree = "<group>"; };
 		E742027D1A3B85FF008AFAD3 /* PACKyphosisLordosisMainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACKyphosisLordosisMainTableViewController.h; sourceTree = "<group>"; };
 		E742027E1A3B85FF008AFAD3 /* PACKyphosisLordosisMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACKyphosisLordosisMainTableViewController.m; sourceTree = "<group>"; };
 		E74666711A30D41A00A7B50A /* feet_back_detail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = feet_back_detail.jpg; sourceTree = "<group>"; };
@@ -291,10 +294,16 @@
 				E7134E681A0BEA2100F2CEE8 /* PACKneeFrontViewController.m */,
 				E711C5B519F9B5780036873E /* PACKneeSideViewController.h */,
 				E711C5B619F9B5780036873E /* PACKneeSideViewController.m */,
+				E71AE1171A3F4E7F009B102D /* PACKyphosisLordosisEssentailMatworkLayer.h */,
+				E71AE1181A3F4E7F009B102D /* PACKyphosisLordosisEssentailMatworkLayer.m */,
+				E742027D1A3B85FF008AFAD3 /* PACKyphosisLordosisMainTableViewController.h */,
+				E742027E1A3B85FF008AFAD3 /* PACKyphosisLordosisMainTableViewController.m */,
 				E711C5CA19FECDF10036873E /* PACLowerThoracicSpineViewController.h */,
 				E711C5CB19FECDF10036873E /* PACLowerThoracicSpineViewController.m */,
 				E711C5C519F9CD7E0036873E /* PACLumbarSpineViewController.h */,
 				E711C5C619F9CD7E0036873E /* PACLumbarSpineViewController.m */,
+				E74666841A365D8100A7B50A /* PACMainMenuView.h */,
+				E74666851A365D8100A7B50A /* PACMainMenuView.m */,
 				E79E0FBB1A2D223A00CABD55 /* PACPelvisBackViewController.h */,
 				E79E0FBC1A2D223A00CABD55 /* PACPelvisBackViewController.m */,
 				E7134E6A1A0BF1FE00F2CEE8 /* PACPelvisFrontViewController.h */,
@@ -315,19 +324,15 @@
 				E711C5A819F98F390036873E /* PACSideViewTableViewController.m */,
 				E79E0FCC1A2E72EF00CABD55 /* PACSpineSequencingBackViewController.h */,
 				E79E0FCD1A2E72EF00CABD55 /* PACSpineSequencingBackViewController.m */,
+				E74666891A376A0E00A7B50A /* PACTypesetter.h */,
+				E74666871A3769ED00A7B50A /* PACTypesetter.m */,
 				E711C5D119FEF6A10036873E /* PACUpperThoracicSpineViewController.h */,
 				E711C5D219FEF6A10036873E /* PACUpperThoracicSpineViewController.m */,
-				E7B0E9BB19F702200011BB49 /* Supporting Files */,
-				E74666841A365D8100A7B50A /* PACMainMenuView.h */,
-				E74666851A365D8100A7B50A /* PACMainMenuView.m */,
-				E74666871A3769ED00A7B50A /* PACTypesetter.m */,
-				E74666891A376A0E00A7B50A /* PACTypesetter.h */,
 				E746668D1A3A64D100A7B50A /* PACViewAnalysisViewController.h */,
 				E746668E1A3A64D100A7B50A /* PACViewAnalysisViewController.m */,
-				E742027D1A3B85FF008AFAD3 /* PACKyphosisLordosisMainTableViewController.h */,
-				E742027E1A3B85FF008AFAD3 /* PACKyphosisLordosisMainTableViewController.m */,
-				E71AE1171A3F4E7F009B102D /* PACKyphosisLordosisEssentailMatworkLayer.h */,
-				E71AE1181A3F4E7F009B102D /* PACKyphosisLordosisEssentailMatworkLayer.m */,
+				E7B0E9BB19F702200011BB49 /* Supporting Files */,
+				E71AE11A1A3F9169009B102D /* PACKyphosisLordosisEssentailReformerLayer.h */,
+				E71AE11B1A3F9169009B102D /* PACKyphosisLordosisEssentailReformerLayer.m */,
 			);
 			path = "Pilates Postural Analysis Checklist";
 			sourceTree = "<group>";
@@ -554,6 +559,7 @@
 				E79E0FC21A2D373800CABD55 /* PACScapulaeBackViewController.m in Sources */,
 				E711C5A919F98F390036873E /* PACSideViewTableViewController.m in Sources */,
 				E7134E7B1A0C44CE00F2CEE8 /* PACHeadFrontViewController.m in Sources */,
+				E71AE11C1A3F9169009B102D /* PACKyphosisLordosisEssentailReformerLayer.m in Sources */,
 				E711C5CC19FECDF10036873E /* PACLowerThoracicSpineViewController.m in Sources */,
 				E74666861A365D8100A7B50A /* PACMainMenuView.m in Sources */,
 				E7B0E9F219F813940011BB49 /* PACGlobal.m in Sources */,
