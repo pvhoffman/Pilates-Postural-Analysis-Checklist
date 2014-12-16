@@ -7,8 +7,8 @@
 //
 
 #import "PACSwayBackMainTableViewController.h"
+#import "PACSwayBackEssentialMatworkLayer.h"
 /*
-#import "PACSwayBackEssentailMatworkLayer.h"
 #import "PACSwayBackEssentailReformerLayer.h"
 #import "PACSwayBackEssentailMatworkReformerLayer.h"
 */
@@ -114,8 +114,8 @@ static NSString* cell_identifier  = @"swayback-back-cell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    PACSwayBackEssentialMatworkLayer* essentail_matwork = nil;
 /*
-    PACSwayBackEssentailMatworkLayer* essentail_matwork = nil;
     PACSwayBackEssentailReformerLayer* essential_reformer = nil;
     PACSwayBackEssentailMatworkReformerLayer* matwork_reformer = nil;
     switch(indexPath.section){
