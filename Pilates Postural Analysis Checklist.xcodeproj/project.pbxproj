@@ -46,6 +46,7 @@
 		E71AE11F1A3F968C009B102D /* PACKyphosisLordosisEssentailMatworkReformerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71AE11E1A3F968C009B102D /* PACKyphosisLordosisEssentailMatworkReformerLayer.m */; };
 		E71AE1221A3F9D45009B102D /* PACSwayBackMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71AE1211A3F9D45009B102D /* PACSwayBackMainTableViewController.m */; };
 		E71AE1251A3FB05A009B102D /* PACSwayBackEssentialMatworkLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71AE1241A3FB05A009B102D /* PACSwayBackEssentialMatworkLayer.m */; };
+		E71AE1281A3FB4C6009B102D /* PACSwayBackEssentialReformerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71AE1271A3FB4C6009B102D /* PACSwayBackEssentialReformerLayer.m */; };
 		E742027F1A3B85FF008AFAD3 /* PACKyphosisLordosisMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E742027E1A3B85FF008AFAD3 /* PACKyphosisLordosisMainTableViewController.m */; };
 		E74666721A30D41A00A7B50A /* feet_back_detail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E74666711A30D41A00A7B50A /* feet_back_detail.jpg */; };
 		E74666741A31153C00A7B50A /* llb_ball_15.png in Resources */ = {isa = PBXBuildFile; fileRef = E74666731A31153C00A7B50A /* llb_ball_15.png */; };
@@ -160,6 +161,8 @@
 		E71AE1211A3F9D45009B102D /* PACSwayBackMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACSwayBackMainTableViewController.m; sourceTree = "<group>"; };
 		E71AE1231A3FB05A009B102D /* PACSwaybackEssentialMatworkLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACSwaybackEssentialMatworkLayer.h; sourceTree = "<group>"; };
 		E71AE1241A3FB05A009B102D /* PACSwayBackEssentialMatworkLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACSwayBackEssentialMatworkLayer.m; sourceTree = "<group>"; };
+		E71AE1261A3FB4C6009B102D /* PACSwayBackEssentialReformerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACSwayBackEssentialReformerLayer.h; sourceTree = "<group>"; };
+		E71AE1271A3FB4C6009B102D /* PACSwayBackEssentialReformerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACSwayBackEssentialReformerLayer.m; sourceTree = "<group>"; };
 		E742027D1A3B85FF008AFAD3 /* PACKyphosisLordosisMainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACKyphosisLordosisMainTableViewController.h; sourceTree = "<group>"; };
 		E742027E1A3B85FF008AFAD3 /* PACKyphosisLordosisMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACKyphosisLordosisMainTableViewController.m; sourceTree = "<group>"; };
 		E74666711A30D41A00A7B50A /* feet_back_detail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = feet_back_detail.jpg; sourceTree = "<group>"; };
@@ -267,6 +270,8 @@
 		E7B0E9BA19F702200011BB49 /* Pilates Postural Analysis Checklist */ = {
 			isa = PBXGroup;
 			children = (
+				E71AE1261A3FB4C6009B102D /* PACSwayBackEssentialReformerLayer.h */,
+				E71AE1271A3FB4C6009B102D /* PACSwayBackEssentialReformerLayer.m */,
 				E71AE1231A3FB05A009B102D /* PACSwaybackEssentialMatworkLayer.h */,
 				E71AE1241A3FB05A009B102D /* PACSwayBackEssentialMatworkLayer.m */,
 				E71AE1201A3F9D45009B102D /* PACSwayBackMainTableViewController.h */,
@@ -592,6 +597,7 @@
 				E746668F1A3A64D100A7B50A /* PACViewAnalysisViewController.m in Sources */,
 				E7B0E9C719F702200011BB49 /* DetailViewController.m in Sources */,
 				E79E0FC71A2E391E00CABD55 /* PACHumeriBackViewController.m in Sources */,
+				E71AE1281A3FB4C6009B102D /* PACSwayBackEssentialReformerLayer.m in Sources */,
 				E711C5C219F9C7C80036873E /* PACPelvisSideViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

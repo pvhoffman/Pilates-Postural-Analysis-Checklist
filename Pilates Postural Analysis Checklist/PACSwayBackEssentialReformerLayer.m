@@ -1,12 +1,12 @@
 //
-//  PACSwayBackEssentailMatworkLayer.m
+//  PACSwayBackEssentailReformerLayer.m
 //  Pilates Postural Analysis Checklist
 //
 //  Created by Paul Hoffman on 12/15/14.
 //  Copyright (c) 2014 Paul Hoffman. All rights reserved.
 //
 
-#import "PACSwayBackEssentialMatworkLayer.h"
+#import "PACSwayBackEssentialReformerLayer.h"
 #import "PACGlobal.h"
 
 enum {
@@ -15,13 +15,13 @@ enum {
             , tableViewSectionCount
 };
 
-static NSString* cell_identifier  = @"swayback-layer-matwork-cell";
+static NSString* cell_identifier  = @"swayback-layer-reformer-cell";
 
 //-----------------------------------------------------------------------------
-@interface PACSwayBackEssentialMatworkLayerTableViewCell : UITableViewCell
+@interface PACSwayBackEssentialReformerLayerTableViewCell : UITableViewCell
 @end
 
-@implementation PACSwayBackEssentialMatworkLayerTableViewCell 
+@implementation PACSwayBackEssentialReformerLayerTableViewCell 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
 	self = [super initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:reuseIdentifier];
@@ -29,7 +29,7 @@ static NSString* cell_identifier  = @"swayback-layer-matwork-cell";
 }
 @end
 //-----------------------------------------------------------------------------
-@interface PACSwayBackEssentialMatworkLayer ()
+@interface PACSwayBackEssentialReformerLayer ()
 -(void)initLayer1;
 -(void)initLayer2;
 -(void)initLayer3;
@@ -37,13 +37,13 @@ static NSString* cell_identifier  = @"swayback-layer-matwork-cell";
 - (UITableViewCell *)cellForExercises:(UITableView*)tableView at:(NSIndexPath*)indexPath;
 @end
 
-@implementation PACSwayBackEssentialMatworkLayer
+@implementation PACSwayBackEssentialReformerLayer
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    [self.tableView registerClass:[PACSwayBackEssentialMatworkLayerTableViewCell class] forCellReuseIdentifier:cell_identifier];
+    [self.tableView registerClass:[PACSwayBackEssentialReformerLayerTableViewCell class] forCellReuseIdentifier:cell_identifier];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -114,18 +114,18 @@ static NSString* cell_identifier  = @"swayback-layer-matwork-cell";
 
 }
 
--(void) setLayer:(PACSwayBackEssentialMatworkLayer_t)layer
+-(void) setLayer:(PACSwayBackEssentialReformerLayer_t)layer
 {
     switch(layer){
-        case swayBackEssentialMatworkLayer1:
+        case swayBackEssentialReformerLayer1:
             self.navigationItem.title = @"Layer 1";
             [self initLayer1];
             break;
-        case swayBackEssentialMatworkLayer2:
+        case swayBackEssentialReformerLayer2:
             self.navigationItem.title = @"Layer 2";
             [self initLayer2];
             break;
-        case swayBackEssentialMatworkLayer3:
+        case swayBackEssentialReformerLayer3:
             self.navigationItem.title = @"Layer 3";
             [self initLayer3];
             break;
@@ -152,7 +152,7 @@ static NSString* cell_identifier  = @"swayback-layer-matwork-cell";
 }
 - (UITableViewCell *)cellForWarmup:(UITableView*)tableView at:(NSIndexPath*)indexPath
 {
-    PACSwayBackEssentialMatworkLayerTableViewCell* cell = (PACSwayBackEssentialMatworkLayerTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cell_identifier forIndexPath:indexPath];
+    PACSwayBackEssentialReformerLayerTableViewCell* cell = (PACSwayBackEssentialReformerLayerTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cell_identifier forIndexPath:indexPath];
 
     if([[_warmup_bold objectAtIndex:indexPath.row] intValue]){
         cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
@@ -167,7 +167,7 @@ static NSString* cell_identifier  = @"swayback-layer-matwork-cell";
 }
 - (UITableViewCell *)cellForExercises:(UITableView*)tableView at:(NSIndexPath*)indexPath
 {
-    PACSwayBackEssentialMatworkLayerTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cell_identifier forIndexPath:indexPath];
+    PACSwayBackEssentialReformerLayerTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cell_identifier forIndexPath:indexPath];
 
     if([[_exercises_bold objectAtIndex:indexPath.row] intValue]){
         cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
