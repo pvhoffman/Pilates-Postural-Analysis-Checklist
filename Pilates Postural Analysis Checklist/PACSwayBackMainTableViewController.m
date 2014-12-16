@@ -9,9 +9,7 @@
 #import "PACSwayBackMainTableViewController.h"
 #import "PACSwayBackEssentialMatworkLayer.h"
 #import "PACSwayBackEssentialReformerLayer.h"
-/*
-#import "PACSwayBackEssentailMatworkReformerLayer.h"
-*/
+#import "PACSwayBackMatworkReformerLayer.h"
 #import "PACGlobal.h"
 
 enum {
@@ -116,56 +114,55 @@ static NSString* cell_identifier  = @"swayback-back-cell";
 {
     PACSwayBackEssentialMatworkLayer* essentail_matwork = nil;
     PACSwayBackEssentialReformerLayer* essential_reformer = nil;
-/*
-    PACSwayBackEssentailMatworkReformerLayer* matwork_reformer = nil;
+    PACSwayBackMatworkReformerLayer* matwork_reformer = nil;
+
     switch(indexPath.section){
         case tableViewSectionEssentailMatwork:
-            essentail_matwork  = [[PACSwayBackEssentailMatworkLayer alloc] initWithStyle:UITableViewStyleGrouped];
+            essentail_matwork  = [[PACSwayBackEssentialMatworkLayer alloc] initWithStyle:UITableViewStyleGrouped];
             switch(indexPath.row){
                 case tableViewRowLayer1:
-                        [essentail_matwork setLayer:swayBackEssentailMatworkLayer1]; 
+                        [essentail_matwork setLayer:swayBackEssentialMatworkLayer1]; 
                         break;
                 case tableViewRowLayer2:
-                        [essentail_matwork setLayer:SwayBackEssentailMatworkLayer2]; 
+                        [essentail_matwork setLayer:swayBackEssentialMatworkLayer2]; 
                         break;
                 case tableViewRowLayer3:
-                        [essentail_matwork setLayer:SwayBackEssentailMatworkLayer3]; 
+                        [essentail_matwork setLayer:swayBackEssentialMatworkLayer3]; 
                         break;
             }
             [self.navigationController pushViewController:essentail_matwork animated:YES];
             break;
         case tableViewSectionEssentailReformer:
-            essential_reformer  = [[PACSwayBackEssentailReformerLayer alloc] initWithStyle:UITableViewStyleGrouped];
+            essential_reformer  = [[PACSwayBackEssentialReformerLayer alloc] initWithStyle:UITableViewStyleGrouped];
             switch(indexPath.row){
                 case tableViewRowLayer1:
-                    [essential_reformer setLayer:swayBackEssentailReformerLayer1];
+                    [essential_reformer setLayer:swayBackEssentialReformerLayer1];
                     break;
                 case tableViewRowLayer2:
-                    [essential_reformer setLayer:swayBackEssentailReformerLayer2];
+                    [essential_reformer setLayer:swayBackEssentialReformerLayer2];
                     break;
                 case tableViewRowLayer3:
-                    [essential_reformer setLayer:swayBackEssentailReformerLayer3];
+                    [essential_reformer setLayer:swayBackEssentialReformerLayer3];
                     break;
             }
             [self.navigationController pushViewController:essential_reformer animated:YES];
             break;
         case tableViewSectionMatworkAndReformer:
-            matwork_reformer = [[PACSwayBackEssentailMatworkReformerLayer alloc] initWithStyle:UITableViewStyleGrouped];
+            matwork_reformer = [[PACSwayBackMatworkReformerLayer alloc] initWithStyle:UITableViewStyleGrouped];
             switch(indexPath.row){
                 case tableViewRowLayer1:
-                    [matwork_reformer setLayer:swayBackEssentailMatworkReformerLayer1];
+                    [matwork_reformer setLayer:swayBackMatworkReformerLayer1];
                     break;
                 case tableViewRowLayer2:
-                    [matwork_reformer setLayer:swayBackEssentailMatworkReformerLayer2];
+                    [matwork_reformer setLayer:swayBackMatworkReformerLayer2];
                     break;
                 case tableViewRowLayer3:
-                    [matwork_reformer setLayer:swayBackEssentailMatworkReformerLayer3];
+                    [matwork_reformer setLayer:swayBackMatworkReformerLayer3];
                     break;
             }
             [self.navigationController pushViewController:matwork_reformer animated:YES];
             break;
     }
-*/
 }
 @end
 
