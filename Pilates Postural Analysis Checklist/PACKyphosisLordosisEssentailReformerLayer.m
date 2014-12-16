@@ -11,7 +11,6 @@
 
 enum {
         tableViewSectionWarmup = 0
-            , tableViewSectionExercises
             , tableViewSectionCount
 };
 
@@ -83,66 +82,179 @@ static NSString* cell_identifier  = @"kypholodoris-layer-reformer-cell";
 }
 -(void)initLayer1
 {
-    _warmup = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _warmup_details = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _warmup_bold = [NSArray arrayWithObjects:[NSNumber numberWithInt:0]
-        , nil];
-
-    _exercises = [NSArray arrayWithObjects:@""
+    _exercises = [NSArray arrayWithObjects:@"Footwork 1 2 3 4 5"
+        , @"Second Position 1"
+        , @"Midback Series 1 2 3 4"
+        , @"Stomach Massage Prep"
+        , @"Mermaid"
+        , @"Knee Stretches Prep"
+        , @"Hip Rolls Prep"
+        , @"Single Thigh Stretch"
         , nil];
 
     _exercises_details = [NSArray arrayWithObjects:@""
+        , @""
+        , @""
+        , @""
+        , @""
+        , @""
+        , @""
+        , @"standing"
         , nil];
 
-    _exercises_bold = [NSArray arrayWithObjects:[NSNumber numberWithInt:0]
+    _exercises_bold = [NSArray arrayWithObjects:[NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
         , nil];
 
 }
 -(void)initLayer2
 {
-    _warmup = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _warmup_details = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _warmup_bold = [NSArray arrayWithObjects:[NSNumber numberWithInt:0]
-        , nil];
-
-    _exercises = [NSArray arrayWithObjects:@""
+    _exercises = [NSArray arrayWithObjects:@"Footwork 1 2 3 4 5"
+        , @"Second Position 1 2"
+        , @"Hundred"
+        , @"Bend & Stretch 1 2"
+        , @"Lift & Lower 1 2"
+        , @"Adductor Stretch"
+        , @"Midback Series 1 2 3 4 5"
+        , @"Back Rowing Preps 1 2 3 5"
+        , @"Side Arm Preps Setting 1 2 3 4"
+        , @"Side Twist Sitting"
+        , @"Front Row Preps 1 3"
+        , @"Stomach Massage Prep 2"
+        , @"LB Arms Pulling Straps 1 2"
+        , @"SB Round Back"
+        , @"Mermaid"
+        , @"Knee Stretches Prep 1 2"
+        , @"Running"
+        , @"Hip Rolls Prep"
+        , @"Single Thigh Stretch"
         , nil];
 
     _exercises_details = [NSArray arrayWithObjects:@""
+        , @""
+        , @"tabletop legs, head down"
+        , @""
+        , @""
+        , @""
+        , @""
+        , @"on a pillow"
+        , @"on a pillow"
+        , @"on a pillow"
+        , @"on a pillow"
+        , @""
+        , @""
+        , @"light resistance, instructor holding feet"
+        , @""
+        , @""
+        , @""
+        , @""
+        , @""
+        , @"standing"
         , nil];
 
     _exercises_bold = [NSArray arrayWithObjects:[NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
         , nil];
-
 }
 -(void)initLayer3
 {
-    _warmup = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _warmup_details = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _warmup_bold = [NSArray arrayWithObjects:[NSNumber numberWithInt:0]
-        , nil];
-
-    _exercises = [NSArray arrayWithObjects:@""
+    _exercises = [NSArray arrayWithObjects:@"Footwork 1 2 3 4 5"
+        , @"Second Position 1 2"
+        , @"Single Leg 1 3"
+        , @"Hundred"
+        , @"Bend & Stretch 1 2"
+        , @"Short Spine Prep"
+        , @"Back Rowing Preps 1 2 3 5"
+        , @"Side Arm Preps Sitting 1 2 3 4"
+        , @"Side Twist Sitting"
+        , @"Front Rowing Preps 1 3"
+        , @"Stomach Massage Prep 2"
+        , @"LB Arms Pulling Straps 1 2"
+        , @"SB Round Back"
+        , @"SB Twist"
+        , @"SB Tree"
+        , @"Elephant 1 2"
+        , @"Mermaid"
+        , @"Leg Circles 1"
+        , @"Knee Stretches 1 2"
+        , @"Running"
+        , @"Hip Rolls Prep"
+        , @"Single Thight Stretch"
+        , @"Side Splits 1 2"
         , nil];
 
     _exercises_details = [NSArray arrayWithObjects:@""
+        , @""
+        , @""
+        , @"tabletop legs, head lifted"
+        , @""
+        , @""
+        , @"on a pillow"
+        , @"on a pillow"
+        , @"on a pillow"
+        , @"on a pillow"
+        , @""
+        , @"light resistance, instructor holding feet"
+        , @""
+        , @""
+        , @"half roll back"
+        , @""
+        , @""
+        , @""
+        , @""
+        , @""
+        , @""
+        , @"standing"
+        , @""
         , nil];
 
     _exercises_bold = [NSArray arrayWithObjects:[NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:1]
         , nil];
-
 }
 -(UITableViewCell *)cellForWarmup:(UITableView*)tableView at:(NSIndexPath*)indexPath
 {
