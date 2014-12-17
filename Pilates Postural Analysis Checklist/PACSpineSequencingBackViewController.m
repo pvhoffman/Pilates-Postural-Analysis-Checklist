@@ -5,7 +5,7 @@
 //  Created by Paul Hoffman on 12/2/14.
 //  Copyright (c) 2014 Paul Hoffman. All rights reserved.
 //
-
+#import <QuartzCore/QuartzCore.h>
 #import "PACSpineSequencingBackViewController.h"
 #import "PACGlobal.h"
 
@@ -14,6 +14,7 @@ enum {
 	, tagTableView
 	, tagTableViewFlatAreas
 	, tagTableViewImbalances
+        , tagButtonOverlay
 };
 
 
@@ -66,7 +67,6 @@ enum {
 static NSString* cell_identifier            = @"spinesequencing-back-cell";
 static NSString* cell_identifier_flatareas  = @"spinesequencing-back-cell-flatareas";
 static NSString* cell_identifier_imbalances = @"spinesequencing-back-cell-imbalances";
-
 //-----------------------------------------------------------------------------
 @interface PACSpineFlatAreaTableViewCell : UITableViewCell
 @end
@@ -349,7 +349,7 @@ static NSString* cell_identifier_imbalances = @"spinesequencing-back-cell-imbala
 - (UIView *) viewForHeaderInSectionFlatAreas:(NSInteger)section
 {
 
-	UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0f, self.view.frame.size.width, 38.0f)];
+	UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0f, self.view.frame.size.width, 64.0f)];
 	label.backgroundColor = [UIColor clearColor];
 	label.textColor = [UIColor blackColor];
 	label.font = [UIFont boldSystemFontOfSize:16.0];
@@ -386,14 +386,14 @@ static NSString* cell_identifier_imbalances = @"spinesequencing-back-cell-imbala
 {
 	switch(tableView.tag) {
 	case tagTableView:
+	case tagTableViewFlatAreas:
 		return 64.0f;
 	case tagTableViewImbalances:
-	case tagTableViewFlatAreas:
 		return 38.0f;
 	}
 	return 0.0f;
 }
-
+/*
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
 	CGFloat res = 0.0f;
@@ -421,7 +421,7 @@ static NSString* cell_identifier_imbalances = @"spinesequencing-back-cell-imbala
 
 
 }
-
+*/
 #pragma mark -
 #pragma mark UITableViewDelegate
 - (void) didSelectRowAtIndexPathMain:(UITableView*)tableView at:(NSIndexPath *)indexPath
@@ -444,6 +444,41 @@ static NSString* cell_identifier_imbalances = @"spinesequencing-back-cell-imbala
 	}
 
 	[UIView transitionFromView:tableView toView:table_view duration:0.45 options:UIViewAnimationOptionTransitionFlipFromLeft completion:^(BOOL finished){}];
+
+        const float button_width = 180.0f;
+
+        UIWindow* main_window = [[UIApplication sharedApplication] keyWindow];
+        CGRect main_frame     = main_window.frame;
+
+        UIView* overlay_view = [[UIView alloc] initWithFrame:CGRectMake(3.0f, -55.0f, main_frame.size.width - 6.0f, 55.0f)];
+        overlay_view.backgroundColor = [UIColor colorWithRed:1.0f green:0.8f blue:0.1f alpha:1.0f];
+        overlay_view.alpha = 0.78f;
+        overlay_view.tag = tagButtonOverlay;
+        overlay_view.layer.cornerRadius = 15.0f;
+
+        UIButton* button1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        button1.frame = CGRectMake(((main_frame.size.width - 6.0f) / 2.0f) - (button_width / 2.0f)
+                , 10.0f
+                , button_width
+                , 37.0f);
+        button1.tag   = table_view.tag;
+        [button1 setTitle:NSLocalizedString(@"Select one or more items", @"") forState:UIControlStateNormal];
+
+        if((table_view.tag == tagTableViewFlatAreas && PACSpineSequencing) || (table_view.tag == tagTableViewImbalances && PACSpineImbalance)){
+            [button1 setTitle:NSLocalizedString(@"Done", @"") forState:UIControlStateNormal];
+        }
+
+        [button1 addTarget:self action:@selector(doneButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [overlay_view addSubview:button1];
+
+	[UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+	[UIView setAnimationDuration:0.5];
+
+        [main_window addSubview:overlay_view];
+        overlay_view.frame = CGRectMake(3.0f, table_view.frame.origin.y, main_frame.size.width - 6.0f, 55.0f);
+
+	[UIView commitAnimations];
 }
 - (void) didSelectRowAtIndexPathFlatAreas:(UITableView*)tableView at:(NSIndexPath *)indexPath
 {
@@ -454,6 +489,16 @@ static NSString* cell_identifier_imbalances = @"spinesequencing-back-cell-imbala
 		PACSpineSequencing |= (1 << indexPath.row);
 	}
 	[tableView reloadData];
+
+        UIWindow* main_window = [[UIApplication sharedApplication] keyWindow];
+        UIView* overlay_view = [main_window viewWithTag:tagButtonOverlay];
+        if(overlay_view){
+                UIButton* button = (UIButton*)[overlay_view viewWithTag:tableView.tag];
+                if(button){
+                    [button setTitle:NSLocalizedString(@"Done", @"") forState:UIControlStateNormal];
+                }
+        }
+
 }
 - (void) didSelectRowAtIndexPathImbalances:(UITableView*)tableView at:(NSIndexPath *)indexPath
 {
@@ -464,6 +509,17 @@ static NSString* cell_identifier_imbalances = @"spinesequencing-back-cell-imbala
 		PACSpineImbalance |= (1 << indexPath.row);
 	}
 	[tableView reloadData];
+
+        UIWindow* main_window = [[UIApplication sharedApplication] keyWindow];
+        UIView* overlay_view = [main_window viewWithTag:tagButtonOverlay];
+        if(overlay_view){
+                UIButton* button = (UIButton*)[overlay_view viewWithTag:tableView.tag];
+                if(button){
+                    [button setTitle:NSLocalizedString(@"Done", @"") forState:UIControlStateNormal];
+                }
+        }
+
+
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -479,23 +535,36 @@ static NSString* cell_identifier_imbalances = @"spinesequencing-back-cell-imbala
 -(void) doneButtonClicked:(id)sender
 {
 	UIButton* button = (UIButton*)sender;
-	UITableView* tableView = (UITableView*)[self.view viewWithTag:button.tag];
 
-	UITableView* table_view  = [[UITableView alloc] initWithFrame:tableView.frame style:UITableViewStyleGrouped];
-	table_view.scrollEnabled = YES;
-	table_view.dataSource    = self;
-	table_view.delegate      = self;
-	table_view.tag           = tagTableView;
-	[table_view registerClass:[UITableViewCell class] forCellReuseIdentifier:cell_identifier];
+        NSString* caption = [button titleForState:UIControlStateNormal];
 
-	[UIView transitionFromView:tableView toView:table_view duration:0.45 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){}];
+        if([caption compare:@"Done"] == NSOrderedSame){ 
 
-	if(PACSpineImbalance && PACSpineSequencing) {
-		if(!((PACChecklistBackView & backViewCheckListSpineSequencing) == backViewCheckListSpineSequencing)) {
-			PACChecklistBackView |= backViewCheckListSpineSequencing;
-			[[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListBackViewDidChange] object:nil];
-		}
-	}
+            UITableView* tableView = (UITableView*)[self.view viewWithTag:button.tag];
+
+            UITableView* table_view  = [[UITableView alloc] initWithFrame:tableView.frame style:UITableViewStyleGrouped];
+            table_view.scrollEnabled = YES;
+            table_view.dataSource    = self;
+            table_view.delegate      = self;
+            table_view.tag           = tagTableView;
+            [table_view registerClass:[UITableViewCell class] forCellReuseIdentifier:cell_identifier];
+
+            [UIView transitionFromView:tableView toView:table_view duration:0.45 options:UIViewAnimationOptionTransitionFlipFromRight completion:^(BOOL finished){}];
+
+            if(PACSpineImbalance && PACSpineSequencing) {
+                if(!((PACChecklistBackView & backViewCheckListSpineSequencing) == backViewCheckListSpineSequencing)) {
+                    PACChecklistBackView |= backViewCheckListSpineSequencing;
+                    [[NSNotificationCenter defaultCenter] postNotificationName:[NSString stringWithUTF8String:PACCheckListBackViewDidChange] object:nil];
+                }
+            }
+
+            UIWindow* main_window = [[UIApplication sharedApplication] keyWindow];
+
+            UIView* view = [main_window viewWithTag:tagButtonOverlay];
+            if(view){
+                [view removeFromSuperview];
+            }
+        }
 }
 @end
 
