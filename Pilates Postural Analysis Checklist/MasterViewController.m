@@ -27,11 +27,13 @@ enum {
 	, tableViewItemSideView  = 1
 	, tableViewItemFrontView = 2
 	, tableViewItemBackView  = 3
-	, tableViewItemCount     = 4
+        , tableViewItemViewAnalysis = 4
+	, tableViewItemCount     = 5
 };
 //static UIPopoverController* _popover_controller = nil;
 
 static NSString* cell_identifier = @"master-view-cell";
+static void _message_box(UIViewController* view_controller, NSString* caption, NSString* message);
 
 @interface MasterViewController ()
 -(void) mainCheckListDidChange:(NSNotification*)notification;
@@ -92,12 +94,14 @@ static NSString* cell_identifier = @"master-view-cell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+/*
     if((PACChecklistMain & mainChecklistPlumbline) == mainChecklistPlumbline
         && (PACChecklistMain & mainChecklistSideView) == mainChecklistSideView
         && (PACChecklistMain & mainChecklistFrontView) == mainChecklistFrontView
         && (PACChecklistMain & mainChecklistBackView) == mainChecklistBackView){
         return tableViewItemCount + 1;
     }
+*/
     return tableViewItemCount;
 
 }
@@ -140,17 +144,23 @@ static NSString* cell_identifier = @"master-view-cell";
 			cell.accessoryType = UITableViewCellAccessoryCheckmark;
 		}
 		break;
-	default:
+        case tableViewItemViewAnalysis:
                 if((PACChecklistMain & mainChecklistPlumbline) == mainChecklistPlumbline
                         && (PACChecklistMain & mainChecklistSideView) == mainChecklistSideView
                         && (PACChecklistMain & mainChecklistFrontView) == mainChecklistFrontView
-                        && (PACChecklistMain & mainChecklistBackView) == mainChecklistBackView
-                        && indexPath.row == tableViewItemCount){
-                    cell.textLabel.text = @"View Analysis";
-                    cell.imageView.image = pac_analysisview_indicator();
+                        && (PACChecklistMain & mainChecklistBackView) == mainChecklistBackView){
+                    cell.textLabel.textColor = [UIColor blackColor];
+                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                    cell.imageView.image = pac_analysisview_complete_indicator();
                 } else {
-                    cell.textLabel.text = [NSString stringWithFormat:@"cell %d", (int)indexPath.row];
+                    cell.textLabel.textColor = [UIColor lightGrayColor];
+                    cell.accessoryType = UITableViewCellAccessoryNone;
+                    cell.imageView.image = pac_analysisview_incomplete_indicator();
                 }
+                cell.textLabel.text = @"View Analysis";
+                break;
+	default:
+                cell.textLabel.text = [NSString stringWithFormat:@"cell %d", (int)indexPath.row];
 		break;
 	}
 	return cell;
@@ -176,14 +186,28 @@ static NSString* cell_identifier = @"master-view-cell";
 	case tableViewItemBackView:
 		[self.navigationController pushViewController:[[PACBackViewTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
 		break;
-	default:
-                if((PACChecklistMain & mainChecklistPlumbline) == mainChecklistPlumbline
-                        && (PACChecklistMain & mainChecklistSideView) == mainChecklistSideView
-                        && (PACChecklistMain & mainChecklistFrontView) == mainChecklistFrontView
-                        && (PACChecklistMain & mainChecklistBackView) == mainChecklistBackView
-                        && indexPath.row == tableViewItemCount){
-		[self.navigationController pushViewController:[[PACViewAnalysisViewController alloc] init] animated:YES];
+        case tableViewItemViewAnalysis:
+                if((PACChecklistMain & mainChecklistPlumbline) != mainChecklistPlumbline){
+                    _message_box(self, @"Information", @"Plumbline section must be completed before viewing analysis.");
+                    break;
                 }
+
+                if((PACChecklistMain & mainChecklistSideView) != mainChecklistSideView){
+                    _message_box(self, @"Information", @"Side view section must be completed before viewing analysis.");
+                    break;
+                }
+
+                if((PACChecklistMain & mainChecklistFrontView) != mainChecklistFrontView){
+                    _message_box(self, @"Information", @"Front view section must be complted before viewing analysis.");
+                    break;
+                }
+                if((PACChecklistMain & mainChecklistBackView) != mainChecklistBackView){
+                    _message_box(self, @"Information", @"Back view section must be complted before viewing analysis.");
+                    break;
+                }
+		[self.navigationController pushViewController:[[PACViewAnalysisViewController alloc] init] animated:YES];
+                break;
+	default:
 		break;
 	}
 }
@@ -370,3 +394,16 @@ static NSString* cell_identifier = @"master-view-cell";
 }
 @end
 
+static void _message_box(UIViewController* view_controller, NSString* caption, NSString* message)
+{
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:caption
+                message:message
+                preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:NULL];
+
+    [alert addAction:defaultAction];
+
+    [view_controller presentViewController:alert animated:YES completion:nil];
+
+}

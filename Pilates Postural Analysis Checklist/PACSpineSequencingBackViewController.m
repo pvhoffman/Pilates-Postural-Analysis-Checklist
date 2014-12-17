@@ -348,6 +348,7 @@ static NSString* cell_identifier_imbalances = @"spinesequencing-back-cell-imbala
 }
 - (UIView *) viewForHeaderInSectionFlatAreas:(NSInteger)section
 {
+
 	UILabel* label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0f, self.view.frame.size.width, 38.0f)];
 	label.backgroundColor = [UIColor clearColor];
 	label.textColor = [UIColor blackColor];
@@ -356,7 +357,6 @@ static NSString* cell_identifier_imbalances = @"spinesequencing-back-cell-imbala
 	label.numberOfLines = 0;
 	label.lineBreakMode = NSLineBreakByWordWrapping;
 	return label;
-
 }
 - (UIView *) viewForHeaderInSectionImbalances:(NSInteger)section
 {
@@ -387,8 +387,8 @@ static NSString* cell_identifier_imbalances = @"spinesequencing-back-cell-imbala
 	switch(tableView.tag) {
 	case tagTableView:
 		return 64.0f;
-	case tagTableViewFlatAreas:
 	case tagTableViewImbalances:
+	case tagTableViewFlatAreas:
 		return 38.0f;
 	}
 	return 0.0f;
@@ -421,6 +421,7 @@ static NSString* cell_identifier_imbalances = @"spinesequencing-back-cell-imbala
 
 
 }
+
 #pragma mark -
 #pragma mark UITableViewDelegate
 - (void) didSelectRowAtIndexPathMain:(UITableView*)tableView at:(NSIndexPath *)indexPath

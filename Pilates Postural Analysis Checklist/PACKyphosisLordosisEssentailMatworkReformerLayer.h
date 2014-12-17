@@ -19,13 +19,16 @@ typedef enum {
 {
 @private
     NSArray* _warmup;
-    NSArray* _exercises;
+    NSArray* _exercises_matwork;
+    NSArray* _exercises_reformer;
 
     NSArray* _warmup_details;
-    NSArray* _exercises_details;
+    NSArray* _exercises_details_matwork;
+    NSArray* _exercises_details_reformer;
 
     NSArray* _warmup_bold;
-    NSArray* _exercises_bold;
+    NSArray* _exercises_bold_matwork;
+    NSArray* _exercises_bold_reformer;
 }
 -(void) setLayer:(PACKyphosisLordosisEssentailMatworkReformerLayer_t)layer;
 @end

@@ -63,6 +63,8 @@
 		E74AAAEF1A13F51C00C008CE /* PACFemursBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E74AAAEE1A13F51C00C008CE /* PACFemursBackViewController.m */; };
 		E74AAAF11A13FA1A00C008CE /* femurs_back_detail.gif in Resources */ = {isa = PBXBuildFile; fileRef = E74AAAF01A13FA1A00C008CE /* femurs_back_detail.gif */; };
 		E74AAAF51A142D7200C008CE /* main-view.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E74AAAF41A142D7200C008CE /* main-view.jpg */; };
+		E75C26781A40F756005F969E /* main.png in Resources */ = {isa = PBXBuildFile; fileRef = E75C26771A40F756005F969E /* main.png */; };
+		E75C267A1A4104C6005F969E /* w_ball_15.png in Resources */ = {isa = PBXBuildFile; fileRef = E75C26791A4104C6005F969E /* w_ball_15.png */; };
 		E79E0FBD1A2D223A00CABD55 /* PACPelvisBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E79E0FBC1A2D223A00CABD55 /* PACPelvisBackViewController.m */; };
 		E79E0FBF1A2D254400CABD55 /* pelvis_back_detail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E79E0FBE1A2D254400CABD55 /* pelvis_back_detail.jpg */; };
 		E79E0FC21A2D373800CABD55 /* PACScapulaeBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E79E0FC11A2D373800CABD55 /* PACScapulaeBackViewController.m */; };
@@ -186,6 +188,8 @@
 		E74AAAEE1A13F51C00C008CE /* PACFemursBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACFemursBackViewController.m; sourceTree = "<group>"; };
 		E74AAAF01A13FA1A00C008CE /* femurs_back_detail.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = femurs_back_detail.gif; sourceTree = "<group>"; };
 		E74AAAF41A142D7200C008CE /* main-view.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "main-view.jpg"; sourceTree = "<group>"; };
+		E75C26771A40F756005F969E /* main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = main.png; path = ../../Downloads/main.png; sourceTree = "<group>"; };
+		E75C26791A4104C6005F969E /* w_ball_15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = w_ball_15.png; path = "../MSM - iPad/MobileSalesMagic/w_ball_15.png"; sourceTree = "<group>"; };
 		E79E0FBB1A2D223A00CABD55 /* PACPelvisBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACPelvisBackViewController.h; sourceTree = "<group>"; };
 		E79E0FBC1A2D223A00CABD55 /* PACPelvisBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACPelvisBackViewController.m; sourceTree = "<group>"; };
 		E79E0FBE1A2D254400CABD55 /* pelvis_back_detail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pelvis_back_detail.jpg; sourceTree = "<group>"; };
@@ -396,6 +400,7 @@
 				E711C5B119F9A84B0036873E /* angle_detail.jpg */,
 				E746668B1A3A633800A7B50A /* br_ball_15.png */,
 				E711C5D419FEFA170036873E /* cervical_spine_detail.jpg */,
+				E75C26771A40F756005F969E /* main.png */,
 				E74666711A30D41A00A7B50A /* feet_back_detail.jpg */,
 				E7C42B2D1A0AFEE5003FF7B9 /* feet_front_detail.jpg */,
 				E74AAAF01A13FA1A00C008CE /* femurs_back_detail.gif */,
@@ -419,6 +424,7 @@
 				E7B0E9F719F81EBD0011BB49 /* plumbline_detail.gif */,
 				E7B0E9EF19F813400011BB49 /* plumbline_main.jpg */,
 				E79E0FCA1A2E4A3000CABD55 /* Postural-Analysis-Guide.pdf */,
+				E75C26791A4104C6005F969E /* w_ball_15.png */,
 				E7134E721A0C026000F2CEE8 /* ribcage_front_detail.jpg */,
 				E79E0FC31A2D39C600CABD55 /* scapulae_back_detail.jpg */,
 				E7134E771A0C26C200F2CEE8 /* shoulder_front_detail.png */,
@@ -510,6 +516,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E75C267A1A4104C6005F969E /* w_ball_15.png in Resources */,
 				E79E0FCB1A2E4A3000CABD55 /* Postural-Analysis-Guide.pdf in Resources */,
 				E7134E7D1A0C477800F2CEE8 /* head_front_detail.jpg in Resources */,
 				E79E0FC91A2E3D3900CABD55 /* humeri_back_detail.jpg in Resources */,
@@ -526,6 +533,7 @@
 				E74AAAF51A142D7200C008CE /* main-view.jpg in Resources */,
 				E7134E6E1A0BF2B400F2CEE8 /* pelvis_front_detail.gif in Resources */,
 				E74666781A311B5A00A7B50A /* o_ball_15.png in Resources */,
+				E75C26781A40F756005F969E /* main.png in Resources */,
 				E7C42B2E1A0AFEE5003FF7B9 /* feet_front_detail.jpg in Resources */,
 				E74666761A31189500A7B50A /* g_ball_15.png in Resources */,
 				E711C5B019F9A6C30036873E /* touch.jpg in Resources */,

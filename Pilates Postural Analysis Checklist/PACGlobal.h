@@ -346,8 +346,9 @@ UIImage* pac_plumbline_indicator();
 UIImage* pac_sideview_indicator();
 UIImage* pac_frontview_indicator();
 UIImage* pac_backview_indicator();
-UIImage* pac_analysisview_indicator();
-
+//UIImage* pac_analysisview_indicator();
+UIImage* pac_analysisview_complete_indicator();
+UIImage* pac_analysisview_incomplete_indicator();
 void pac_reset_all(); 
 
 void pac_save_analysis(const char* name, int analysis_id);

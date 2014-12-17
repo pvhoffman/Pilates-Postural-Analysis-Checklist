@@ -107,9 +107,13 @@ UIImage* pac_backview_indicator()
 {
 	return [UIImage imageNamed:@"p_ball_15.png"];
 }
-UIImage* pac_analysisview_indicator()
+UIImage* pac_analysisview_complete_indicator()//pac_analysisview_indicator()
 {
 	return [UIImage imageNamed:@"br_ball_15.png"];
+}
+UIImage* pac_analysisview_incomplete_indicator()
+{
+	return [UIImage imageNamed:@"w_ball_15.png"];
 }
 static void pac_reset_plumbline()
 {
