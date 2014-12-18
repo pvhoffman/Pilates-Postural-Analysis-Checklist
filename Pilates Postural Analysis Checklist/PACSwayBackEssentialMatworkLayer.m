@@ -18,6 +18,44 @@ enum {
 static NSString* cell_identifier  = @"swayback-layer-matwork-cell";
 
 //-----------------------------------------------------------------------------
+typedef struct pac_swayback_essential_matwork_s {
+    const char* name;
+    const char* details;
+    int is_bold;
+}pac_swayback_essential_matwork_t;
+
+static pac_swayback_essential_matwork_t pac_swayback_essential_matwork_layer1_warmup[] = {
+        {"", "", 1}
+      , {0, 0, -1}
+};
+static pac_swayback_essential_matwork_t pac_swayback_essential_matwork_layer1_exercises[] = {
+        {"", "", 1}
+      , {0, 0, -1}
+};
+
+static pac_swayback_essential_matwork_t pac_swayback_essential_matwork_layer2_warmup[] = {
+        {"", "", 1}
+      , {0, 0, -1}
+};
+static pac_swayback_essential_matwork_t pac_swayback_essential_matwork_layer2_exercises[] = {
+        {"", "", 1}
+      , {0, 0, -1}
+};
+
+static pac_swayback_essential_matwork_t pac_swayback_essential_matwork_layer3_warmup[] = {
+        {"", "", 1}
+      , {0, 0, -1}
+};
+static pac_swayback_essential_matwork_t pac_swayback_essential_matwork_layer3_exercises[] = {
+        {"", "", 1}
+      , {0, 0, -1}
+};
+
+static pac_swayback_essential_matwork_t* _current_warmup_layer = 0;
+static pac_swayback_essential_matwork_t* _current_exercise_layer = 0;
+static int _row_count_warmup = 0;
+static int _row_count_exercises = 0;
+//-----------------------------------------------------------------------------
 @interface PACSwayBackEssentialMatworkLayerTableViewCell : UITableViewCell
 @end
 
@@ -53,65 +91,27 @@ static NSString* cell_identifier  = @"swayback-layer-matwork-cell";
 
 -(void)initLayer1
 {
-    _warmup = [NSArray arrayWithObjects:@""
-       , nil];
+    _current_warmup_layer   = pac_swayback_essential_matwork_layer1_warmup;
+    _current_exercise_layer = pac_swayback_essential_matwork_layer1_exercises;
 
-    _warmup_details = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _warmup_bold = [NSArray arrayWithObjects:[NSNumber numberWithInt:1]
-        , nil];
-
-    _exercises = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _exercises_details = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _exercises_bold = [NSArray arrayWithObjects:[NSNumber numberWithInt:1]
-        , nil];
+    _row_count_warmup     = (sizeof(pac_swayback_essential_matwork_layer1_warmup) / sizeof(pac_swayback_essential_matwork_layer1_warmup[0])) - 1;
+    _row_count_exercises  = (sizeof(pac_swayback_essential_matwork_layer1_exercises) / sizeof(pac_swayback_essential_matwork_layer1_exercises[0])) - 1;
 }
 -(void)initLayer2
 {
-    _warmup = [NSArray arrayWithObjects:@""
-        , nil];
+    _current_warmup_layer   = pac_swayback_essential_matwork_layer2_warmup;
+    _current_exercise_layer = pac_swayback_essential_matwork_layer2_exercises;
 
-    _warmup_details = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _warmup_bold = [NSArray arrayWithObjects:[NSNumber numberWithInt:0]
-        , nil];
-
-    _exercises = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _exercises_details = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _exercises_bold = [NSArray arrayWithObjects:[NSNumber numberWithInt:0]
-        , nil];
-
+    _row_count_warmup     = (sizeof(pac_swayback_essential_matwork_layer2_warmup) / sizeof(pac_swayback_essential_matwork_layer2_warmup[0])) - 1;
+    _row_count_exercises  = (sizeof(pac_swayback_essential_matwork_layer2_exercises) / sizeof(pac_swayback_essential_matwork_layer2_exercises[0])) - 1;
 }
 -(void)initLayer3
 {
-    _warmup = [NSArray arrayWithObjects:@""
-        , nil];
+    _current_warmup_layer   = pac_swayback_essential_matwork_layer3_warmup;
+    _current_exercise_layer = pac_swayback_essential_matwork_layer3_exercises;
 
-    _warmup_details = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _warmup_bold = [NSArray arrayWithObjects:[NSNumber numberWithInt:0]
-        , nil];
-
-    _exercises = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _exercises_details = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _exercises_bold = [NSArray arrayWithObjects:[NSNumber numberWithInt:1]
-        , nil];
-
+    _row_count_warmup     = (sizeof(pac_swayback_essential_matwork_layer3_warmup) / sizeof(pac_swayback_essential_matwork_layer3_warmup[0])) - 1;
+    _row_count_exercises  = (sizeof(pac_swayback_essential_matwork_layer3_exercises) / sizeof(pac_swayback_essential_matwork_layer3_exercises[0])) - 1;
 }
 
 -(void) setLayer:(PACSwayBackEssentialMatworkLayer_t)layer
@@ -144,9 +144,9 @@ static NSString* cell_identifier  = @"swayback-layer-matwork-cell";
 {
     switch(section){
         case tableViewSectionWarmup:
-            return [_warmup count];
+            return _row_count_warmup;
         case tableViewSectionExercises:
-            return [_exercises count];
+            return _row_count_exercises;
     }
     return 0;
 }
@@ -154,29 +154,29 @@ static NSString* cell_identifier  = @"swayback-layer-matwork-cell";
 {
     PACSwayBackEssentialMatworkLayerTableViewCell* cell = (PACSwayBackEssentialMatworkLayerTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cell_identifier forIndexPath:indexPath];
 
-    if([[_warmup_bold objectAtIndex:indexPath.row] intValue]){
+    if(_current_warmup_layer[indexPath.row].is_bold){
         cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
-        cell.textLabel.text = [NSString stringWithFormat:@"➤ %@", [_warmup objectAtIndex:indexPath.row]];
+        cell.textLabel.text = [NSString stringWithFormat:@"➤ %s", _current_warmup_layer[indexPath.row].name]; 
     } else {
         cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:14.0];
-        cell.textLabel.text = [_warmup objectAtIndex:indexPath.row];
+        cell.textLabel.text = [NSString stringWithUTF8String:_current_warmup_layer[indexPath.row].name];
     }
         
-    cell.detailTextLabel.text = [_warmup_details objectAtIndex:indexPath.row];
+    cell.detailTextLabel.text = [NSString stringWithUTF8String:_current_warmup_layer[indexPath.row].details];
     return cell;
 }
 - (UITableViewCell *)cellForExercises:(UITableView*)tableView at:(NSIndexPath*)indexPath
 {
     PACSwayBackEssentialMatworkLayerTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cell_identifier forIndexPath:indexPath];
 
-    if([[_exercises_bold objectAtIndex:indexPath.row] intValue]){
+    if(_current_exercise_layer[indexPath.row].is_bold){
         cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
-        cell.textLabel.text = [NSString stringWithFormat:@"➤ %@", [_exercises objectAtIndex:indexPath.row]];
+        cell.textLabel.text = [NSString stringWithFormat:@"➤ %s", _current_exercise_layer[indexPath.row].name];
     } else {
         cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:14.0];
-        cell.textLabel.text = [_exercises objectAtIndex:indexPath.row];
+        cell.textLabel.text = [NSString stringWithUTF8String:_current_exercise_layer[indexPath.row].name];
     }
-    cell.detailTextLabel.text = [_exercises_details objectAtIndex:indexPath.row];
+    cell.detailTextLabel.text = [NSString stringWithUTF8String:_current_exercise_layer[indexPath.row].details];
     return cell;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
@@ -215,3 +215,4 @@ static NSString* cell_identifier  = @"swayback-layer-matwork-cell";
 	return 26.0f;
 }
 @end
+

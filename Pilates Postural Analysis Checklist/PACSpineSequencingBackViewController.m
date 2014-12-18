@@ -476,7 +476,7 @@ static NSString* cell_identifier_imbalances = @"spinesequencing-back-cell-imbala
 	[UIView setAnimationDuration:0.5];
 
         [main_window addSubview:overlay_view];
-        overlay_view.frame = CGRectMake(3.0f, table_view.frame.origin.y, main_frame.size.width - 6.0f, 55.0f);
+        overlay_view.frame = CGRectMake(3.0f, 32.0f, main_frame.size.width - 6.0f, 55.0f);
 
 	[UIView commitAnimations];
 }
