@@ -10,13 +10,33 @@
 #import "PACGlobal.h"
 
 enum {
-        tableViewSectionWarmup = 0
-            , tableViewSectionExercises
+            tableViewSectionExercises = 0
             , tableViewSectionCount
 };
 
 static NSString* cell_identifier  = @"swayback-layer-reformer-cell";
 
+//-----------------------------------------------------------------------------
+typedef struct pac_swayback_essential_reformer_s {
+    const char* name;
+    const char* details;
+    int is_bold;
+} pac_swayback_essential_reformer_t;
+
+static pac_swayback_essential_reformer_t pac_swayback_essential_reformer_layer1[] = {
+        {"", "", 1}
+        , {0, 0, -1}
+};
+static pac_swayback_essential_reformer_t pac_swayback_essential_reformer_layer2[] = {
+        {"", "", 1}
+        , {0, 0, -1}
+};
+static pac_swayback_essential_reformer_t pac_swayback_essential_reformer_layer3[] = {
+        {"", "", 1}
+        , {0, 0, -1}
+};
+static pac_swayback_essential_reformer_t* _current_layer = 0;
+static int _row_count_exercises = 0;
 //-----------------------------------------------------------------------------
 @interface PACSwayBackEssentialReformerLayerTableViewCell : UITableViewCell
 @end
@@ -33,8 +53,6 @@ static NSString* cell_identifier  = @"swayback-layer-reformer-cell";
 -(void)initLayer1;
 -(void)initLayer2;
 -(void)initLayer3;
-- (UITableViewCell *)cellForWarmup:(UITableView*)tableView at:(NSIndexPath*)indexPath;
-- (UITableViewCell *)cellForExercises:(UITableView*)tableView at:(NSIndexPath*)indexPath;
 @end
 
 @implementation PACSwayBackEssentialReformerLayer
@@ -53,65 +71,18 @@ static NSString* cell_identifier  = @"swayback-layer-reformer-cell";
 
 -(void)initLayer1
 {
-    _warmup = [NSArray arrayWithObjects:@""
-       , nil];
-
-    _warmup_details = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _warmup_bold = [NSArray arrayWithObjects:[NSNumber numberWithInt:1]
-        , nil];
-
-    _exercises = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _exercises_details = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _exercises_bold = [NSArray arrayWithObjects:[NSNumber numberWithInt:1]
-        , nil];
+    _current_layer = pac_swayback_essential_reformer_layer1;
+    _row_count_exercises  = (sizeof(pac_swayback_essential_reformer_layer1) / sizeof(pac_swayback_essential_reformer_layer1[0])) - 1;
 }
 -(void)initLayer2
 {
-    _warmup = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _warmup_details = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _warmup_bold = [NSArray arrayWithObjects:[NSNumber numberWithInt:0]
-        , nil];
-
-    _exercises = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _exercises_details = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _exercises_bold = [NSArray arrayWithObjects:[NSNumber numberWithInt:0]
-        , nil];
-
+    _current_layer = pac_swayback_essential_reformer_layer2;
+    _row_count_exercises  = (sizeof(pac_swayback_essential_reformer_layer2) / sizeof(pac_swayback_essential_reformer_layer2[0])) - 1;
 }
 -(void)initLayer3
 {
-    _warmup = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _warmup_details = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _warmup_bold = [NSArray arrayWithObjects:[NSNumber numberWithInt:0]
-        , nil];
-
-    _exercises = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _exercises_details = [NSArray arrayWithObjects:@""
-        , nil];
-
-    _exercises_bold = [NSArray arrayWithObjects:[NSNumber numberWithInt:1]
-        , nil];
-
+    _current_layer = pac_swayback_essential_reformer_layer3;
+    _row_count_exercises  = (sizeof(pac_swayback_essential_reformer_layer3) / sizeof(pac_swayback_essential_reformer_layer3[0])) - 1;
 }
 
 -(void) setLayer:(PACSwayBackEssentialReformerLayer_t)layer
@@ -142,53 +113,21 @@ static NSString* cell_identifier  = @"swayback-layer-reformer-cell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section 
 {
-    switch(section){
-        case tableViewSectionWarmup:
-            return [_warmup count];
-        case tableViewSectionExercises:
-            return [_exercises count];
-    }
-    return 0;
-}
-- (UITableViewCell *)cellForWarmup:(UITableView*)tableView at:(NSIndexPath*)indexPath
-{
-    PACSwayBackEssentialReformerLayerTableViewCell* cell = (PACSwayBackEssentialReformerLayerTableViewCell*)[tableView dequeueReusableCellWithIdentifier:cell_identifier forIndexPath:indexPath];
-
-    if([[_warmup_bold objectAtIndex:indexPath.row] intValue]){
-        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
-        cell.textLabel.text = [NSString stringWithFormat:@"➤ %@", [_warmup objectAtIndex:indexPath.row]];
-    } else {
-        cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:14.0];
-        cell.textLabel.text = [_warmup objectAtIndex:indexPath.row];
-    }
-        
-    cell.detailTextLabel.text = [_warmup_details objectAtIndex:indexPath.row];
-    return cell;
-}
-- (UITableViewCell *)cellForExercises:(UITableView*)tableView at:(NSIndexPath*)indexPath
-{
-    PACSwayBackEssentialReformerLayerTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cell_identifier forIndexPath:indexPath];
-
-    if([[_exercises_bold objectAtIndex:indexPath.row] intValue]){
-        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
-        cell.textLabel.text = [NSString stringWithFormat:@"➤ %@", [_exercises objectAtIndex:indexPath.row]];
-    } else {
-        cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:14.0];
-        cell.textLabel.text = [_exercises objectAtIndex:indexPath.row];
-    }
-    cell.detailTextLabel.text = [_exercises_details objectAtIndex:indexPath.row];
-    return cell;
+    return _row_count_exercises;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    switch(indexPath.section){
-        case tableViewSectionWarmup:
-            return [self cellForWarmup:tableView at:indexPath];
-        case tableViewSectionExercises:
-            return [self cellForExercises:tableView at:indexPath];
-            break;
+    PACSwayBackEssentialReformerLayerTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cell_identifier forIndexPath:indexPath];
+
+    if(_current_layer[indexPath.row].is_bold){
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
+        cell.textLabel.text = [NSString stringWithFormat:@"➤ %s", _current_layer[indexPath.row].name];
+    } else {
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:14.0];
+        cell.textLabel.text = [NSString stringWithUTF8String:_current_layer[indexPath.row].name];
     }
-    return nil;
+    cell.detailTextLabel.text = [NSString stringWithUTF8String:_current_layer[indexPath.row].details];
+    return cell;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -197,14 +136,7 @@ static NSString* cell_identifier  = @"swayback-layer-reformer-cell";
     label.textColor = [UIColor blackColor];
     label.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
     label.textAlignment = NSTextAlignmentCenter;
-    switch(section){
-        case tableViewSectionWarmup:
-            label.text = NSLocalizedString(@"Warm up", @"");
-            break;
-        case tableViewSectionExercises:
-            label.text = NSLocalizedString(@"Exercises", @"");
-            break;
-    }
+    label.text = NSLocalizedString(@"Exercises", @"");
     label.numberOfLines = 0;
     label.lineBreakMode = NSLineBreakByWordWrapping;
     return label;
