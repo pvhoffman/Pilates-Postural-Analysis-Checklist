@@ -65,6 +65,7 @@
 		E74AAAF51A142D7200C008CE /* main-view.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E74AAAF41A142D7200C008CE /* main-view.jpg */; };
 		E75C26781A40F756005F969E /* main.png in Resources */ = {isa = PBXBuildFile; fileRef = E75C26771A40F756005F969E /* main.png */; };
 		E75C267A1A4104C6005F969E /* w_ball_15.png in Resources */ = {isa = PBXBuildFile; fileRef = E75C26791A4104C6005F969E /* w_ball_15.png */; };
+		E75C267E1A423C67005F969E /* main-view.png in Resources */ = {isa = PBXBuildFile; fileRef = E75C267D1A423C67005F969E /* main-view.png */; };
 		E79E0FBD1A2D223A00CABD55 /* PACPelvisBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E79E0FBC1A2D223A00CABD55 /* PACPelvisBackViewController.m */; };
 		E79E0FBF1A2D254400CABD55 /* pelvis_back_detail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E79E0FBE1A2D254400CABD55 /* pelvis_back_detail.jpg */; };
 		E79E0FC21A2D373800CABD55 /* PACScapulaeBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E79E0FC11A2D373800CABD55 /* PACScapulaeBackViewController.m */; };
@@ -190,6 +191,7 @@
 		E74AAAF41A142D7200C008CE /* main-view.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "main-view.jpg"; sourceTree = "<group>"; };
 		E75C26771A40F756005F969E /* main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = main.png; path = ../../Downloads/main.png; sourceTree = "<group>"; };
 		E75C26791A4104C6005F969E /* w_ball_15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = w_ball_15.png; path = "../MSM - iPad/MobileSalesMagic/w_ball_15.png"; sourceTree = "<group>"; };
+		E75C267D1A423C67005F969E /* main-view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main-view.png"; sourceTree = "<group>"; };
 		E79E0FBB1A2D223A00CABD55 /* PACPelvisBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACPelvisBackViewController.h; sourceTree = "<group>"; };
 		E79E0FBC1A2D223A00CABD55 /* PACPelvisBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACPelvisBackViewController.m; sourceTree = "<group>"; };
 		E79E0FBE1A2D254400CABD55 /* pelvis_back_detail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pelvis_back_detail.jpg; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 				E711C5AD19F9A6BA0036873E /* look.jpg */,
 				E711C5CD19FECF950036873E /* lower_thoracic_detail.gif */,
 				E711C5C319F9CD460036873E /* lumbarspineside_detail.jpg */,
+				E75C267D1A423C67005F969E /* main-view.png */,
 				E74AAAF41A142D7200C008CE /* main-view.jpg */,
 				E74666771A311B5A00A7B50A /* o_ball_15.png */,
 				E74666791A311C8F00A7B50A /* p_ball_15.png */,
@@ -551,6 +554,7 @@
 				E74666741A31153C00A7B50A /* llb_ball_15.png in Resources */,
 				E7134E731A0C026000F2CEE8 /* ribcage_front_detail.jpg in Resources */,
 				E746668C1A3A633800A7B50A /* br_ball_15.png in Resources */,
+				E75C267E1A423C67005F969E /* main-view.png in Resources */,
 				E79E0FD01A2E748C00CABD55 /* spine_sequencing.jpg in Resources */,
 				E7B0E9CC19F702200011BB49 /* Images.xcassets in Resources */,
 				E711C5A119F976C80036873E /* alignment_detail.jpg in Resources */,

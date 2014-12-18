@@ -89,91 +89,355 @@ static NSString* cell_identifier  = @"kypholodoris-layer-matworkreformer-cell";
 }
 -(void)initLayer1
 {
-    _warmup = [NSArray arrayWithObjects:@"foo"
+    _warmup = [NSArray arrayWithObjects:@"Breathing"
+        , @"Imprint & Release"
+        , @"Hip Release"
+        , @"Supine Spinal Rotation"
+        , @"Cat Stretch"
+        , @"Hip Rolls"
+        , @"Scapulae Isolatioin"
+        , @"Arm Circles"
+        , @"Head Nods"
+        , @"Scapulae Elevation & Depression"
         , nil];
 
-    _warmup_details = [NSArray arrayWithObjects:@"bar"
+    _warmup_details = [NSArray arrayWithObjects:@""
+        , @""
+        , @""
+        , @"don't exaggerate lordosis, emphasize pec stretch"
+        , @""
+        , @""
+        , @""
+        , @""
+        , @""
+        , @""
         , nil];
 
     _warmup_bold = [NSArray arrayWithObjects:[NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
         , nil];
 
-    _exercises_matwork = [NSArray arrayWithObjects:@"foo"
+    _exercises_matwork = [NSArray arrayWithObjects:@"Ab Prep"
+        , @"Breast Stroke Preps 1 2"
+        , @"Shell Stretch"
+        , @"Half Roll Back"
+        , @"One Leg Circle"
+        , @"Spine Twist"
+        , @"Obliques"
+        , @"Spine Stretch Forward"
         , nil];
 
-    _exercises_reformer = [NSArray arrayWithObjects:@"foo"
+    _exercises_reformer = [NSArray arrayWithObjects:@"Footwork 1 2 3 4 5"
+        , @"Midback Series 1 2 3 4"
+        , @"Mermaid"
+        , @"Hip Rolls Prep"
+        , @"Single Thigh Stretch"
         , nil];
 
-    _exercises_details_matwork = [NSArray arrayWithObjects:@"bar"
+    _exercises_details_matwork = [NSArray arrayWithObjects:@"head supported, legs over arc barrel, imprinted"
+        , @"over arc barrel"
+        , @""
+        , @""
+        , @"both knees bent"
+        , @"on a pillow, cross-legged, or raised mat"
+        , @"prep, legs over arc barrel imprinted, or tabletop legs"
+        , @"against wall"
         , nil];
 
-    _exercises_details_reformer = [NSArray arrayWithObjects:@"bar"
+    _exercises_details_reformer = [NSArray arrayWithObjects:@""
+        , @""
+        , @""
+        , @""
+        , @"standing"
         , nil];
 
     _exercises_bold_matwork = [NSArray arrayWithObjects:[NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
         , nil];
 
     _exercises_bold_reformer = [NSArray arrayWithObjects:[NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
         , nil];
 
 }
 -(void)initLayer2
 {
-    _warmup = [NSArray arrayWithObjects:@""
+    _warmup = [NSArray arrayWithObjects:@"Breathing"
+        , @"Imprint & Release"
+        , @"Hip Release"
+        , @"Supine Spinal Rotation"
+        , @"Cat Stretch"
+        , @"Hip Rolls"
+        , @"Scapulae Isolatioin"
+        , @"Arm Circles"
+        , @"Head Nods"
+        , @"Scapulae Elevation & Depression"
         , nil];
 
     _warmup_details = [NSArray arrayWithObjects:@""
+        , @""
+        , @""
+        , @"don't exaggerate lordosis, emphasize pec stretch"
+        , @""
+        , @""
+        , @""
+        , @""
+        , @""
+        , @""
         , nil];
 
     _warmup_bold = [NSArray arrayWithObjects:[NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
         , nil];
 
-    _exercises_matwork = [NSArray arrayWithObjects:@""
+    _exercises_matwork = [NSArray arrayWithObjects:@"Ab Prep"
+        , @"Breast Stroke Preps 1 2"
+        , @"Shell Stretch"
+        , @"Hundred"
+        , @"Half Roll Back"
+        , @"One Leg Circle"
+        , @"Spine Twist"
+        , @"Rolling Like a Ball Prep"
+        , @"Obliques"
+        , @"Spine Stretch Forward"
+        , @"Single Leg Extension"
+        , @"Swimming Prep"
         , nil];
 
-    _exercises_reformer = [NSArray arrayWithObjects:@""
+    _exercises_reformer = [NSArray arrayWithObjects:@"Footwork 1 2 3 4 5"
+        , @"Second Position 1 3"
+        , @"Bend & Stretch"
+        , @"Lift & Lower 1 2"
+        , @"Midback Series 1 2 3 4 5"
+        , @"Side Arm Preps Sitting"
+        , @"Stomach Massage Prep 2"
+        , @"Mermaid"
+        , @"Knee Stretches Prep 1 2"
+        , @"Hip Rolls Prep"
+        , @"Single Thigh Stretch"
         , nil];
 
-    _exercises_details_matwork = [NSArray arrayWithObjects:@""
+    _exercises_details_matwork = [NSArray arrayWithObjects:@"head supported, legs over arc barrel, imprinted"
+        , @"over arc barrel"
+        , @""
+        , @"head down, legs over arch barrel, imprinted"
+        , @""
+        , @"both knees bent"
+        , @"on a pillow, cross-legged, or raised mat"
+        , @""
+        , @"prep, legs over arc barrel imprinted, or tabletop legs"
+        , @"against wall"
+        , @"pad under ASIS over arc barrel"
+        , @""
         , nil];
 
     _exercises_details_reformer = [NSArray arrayWithObjects:@""
+        , @""
+        , @""
+        , @""
+        , @""
+        , @""
+        , @"on a pillow"
+        , @"on a pillow"
+        , @""
+        , @""
+        , @""
+        , @""
+        , @"standing"
         , nil];
 
+
     _exercises_bold_matwork = [NSArray arrayWithObjects:[NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
         , nil];
 
     _exercises_bold_reformer = [NSArray arrayWithObjects:[NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
         , nil];
-
 }
 -(void)initLayer3
 {
-    _warmup = [NSArray arrayWithObjects:@""
+    _warmup = [NSArray arrayWithObjects:@"Breathing"
+        , @"Imprint & Release"
+        , @"Hip Release"
+        , @"Supine Spinal Rotation"
+        , @"Cat Stretch"
+        , @"Hip Rolls"
+        , @"Scapulae Isolatioin"
+        , @"Arm Circles"
+        , @"Head Nods"
+        , @"Scapulae Elevation & Depression"
         , nil];
 
     _warmup_details = [NSArray arrayWithObjects:@""
+        , @""
+        , @""
+        , @"don't exaggerate lordosis, emphasize pec stretch"
+        , @""
+        , @""
+        , @""
+        , @""
+        , @""
+        , @""
         , nil];
 
     _warmup_bold = [NSArray arrayWithObjects:[NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
         , nil];
 
-    _exercises_matwork = [NSArray arrayWithObjects:@""
+    _exercises_matwork = [NSArray arrayWithObjects:@"Ab Prep"
+        , @"Breast Stroke Preps 1 2"
+        , @"Shell Stretch"
+        , @"Half Roll Back"
+        , @"One Leg Circle"
+        , @"Spine Twist"
+        , @"Rolling Like a Ball Prep"
+        , @"Single Leg Stretch"
+        , @"Obliques"
+        , @"Shoulder Bridge Prep"
+        , @"Swan Dive Prep"
+        , @"Shell Stretch"
+        , @"Side Kicks"
+        , @"Side Leg Lift Series"
         , nil];
 
-    _exercises_reformer = [NSArray arrayWithObjects:@""
+    _exercises_reformer = [NSArray arrayWithObjects:@"Footwork 1 2 3 4 5"
+        , @"Single Leg 1 4"
+        , @"Hundred"
+        , @"Back Rowing Preps 1 2 3 4 5"
+        , @"Side Arm Preps Sitting"
+        , @"Side Twist Sitting"
+        , @"Front Rowing Preps 1 3"
+        , @"LB Arms Pulling Straps 1 2"
+        , @"Stomach Massage Prep 2"
+        , @"SB Tree"
+        , @"Elephant 1 2"
+        , @"Mermaid"
+        , @"Leg Circles 1"
+        , @"Hip Rolls Prep"
+        , @"Single Thigh Stretch"
         , nil];
 
-    _exercises_details_matwork = [NSArray arrayWithObjects:@""
+    _exercises_details_matwork = [NSArray arrayWithObjects:@"arms reaching, no barrel"
+        , @"over arc barrel"
+        , @""
+        , @""
+        , @"both knees bent"
+        , @"on a pillow, cross-legged, or raised mat"
+        , @"full"
+        , @"head down on a pillow"
+        , @"prep, tabletop legs"
+        , @""
+        , @"pad under ASIS"
+        , @""
+        , @"bottom leg bent"
+        , @"bottom leg bent"
+        , @"on all fours, or kneeling"
         , nil];
 
     _exercises_details_reformer = [NSArray arrayWithObjects:@""
+        , @""
+        , @"tabletop legs, head down"
+        , @"on a pillow"
+        , @"on a pillow"
+        , @"on a pillow"
+        , @"on a pillow"
+        , @"light resistance, instructor holding feet"
+        , @""
+        , @"half roll back"
+        , @""
+        , @""
+        , @""
+        , @"full"
+        , @"standing"
         , nil];
 
-    _exercises_bold_matwork = [NSArray arrayWithObjects:[NSNumber numberWithInt:0]
+    _exercises_bold_matwork = [NSArray arrayWithObjects:[NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:0]
         , nil];
 
     _exercises_bold_reformer = [NSArray arrayWithObjects:[NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:0]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:1]
+        , [NSNumber numberWithInt:0]
         , nil];
 
 }
@@ -208,8 +472,9 @@ static NSString* cell_identifier  = @"kypholodoris-layer-matworkreformer-cell";
     PACSKyphosisLordosisEssentailMatworkReformerLayerTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cell_identifier forIndexPath:indexPath];
 
     if(indexPath.row == 0){
-        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
         cell.textLabel.text = @"Matwork";
+        cell.detailTextLabel.text = @"";
     } else if(indexPath.row <= [_exercises_matwork count]){
         if([[_exercises_bold_matwork objectAtIndex:indexPath.row - 1] intValue]){
             cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
@@ -220,17 +485,18 @@ static NSString* cell_identifier  = @"kypholodoris-layer-matworkreformer-cell";
         }
         cell.detailTextLabel.text = [_exercises_details_matwork objectAtIndex:indexPath.row - 1];
     } else if(indexPath.row == [_exercises_matwork count] + 1){
-        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
+        cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:16.0];
         cell.textLabel.text = @"Reformer";
+        cell.detailTextLabel.text = @"";
     } else {
-        if([[_exercises_bold_reformer objectAtIndex:indexPath.row - 3] intValue]){
+        if([[_exercises_bold_reformer objectAtIndex:indexPath.row - ([_exercises_matwork count] + 2)] intValue]){
             cell.textLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:14.0];
-            cell.textLabel.text = [NSString stringWithFormat:@"➤ %@", [_exercises_reformer objectAtIndex:indexPath.row - 3]];
+            cell.textLabel.text = [NSString stringWithFormat:@"➤ %@", [_exercises_reformer objectAtIndex:indexPath.row - ([_exercises_matwork count] + 2)]];
         } else {
             cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:14.0];
-            cell.textLabel.text = [_exercises_reformer objectAtIndex:indexPath.row - 3];
+            cell.textLabel.text = [_exercises_reformer objectAtIndex:indexPath.row - ([_exercises_matwork count] + 2)];
         }
-        cell.detailTextLabel.text = [_exercises_details_reformer objectAtIndex:indexPath.row - 3];
+        cell.detailTextLabel.text = [_exercises_details_reformer objectAtIndex:indexPath.row - ([_exercises_matwork count] + 2)];
     }
     return cell;
 }
@@ -253,10 +519,10 @@ static NSString* cell_identifier  = @"kypholodoris-layer-matworkreformer-cell";
     label.textAlignment = NSTextAlignmentCenter;
     switch(section){
         case tableViewSectionWarmup:
-            label.text = NSLocalizedString(@"Warm up - Matwork", @"");
+            label.text = NSLocalizedString(@"Warm up: Matwork", @"");
             break;
         case tableViewSectionExercises:
-            label.text = NSLocalizedString(@"Exercises - Matwork & Reformer", @"");
+            label.text = NSLocalizedString(@"Exercises: Matwork & Reformer", @"");
             break;
     }
     label.numberOfLines = 0;

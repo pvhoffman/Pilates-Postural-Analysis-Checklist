@@ -222,9 +222,9 @@ static void _message_box(UIViewController* view_controller, NSString* caption, N
 
 	UIView* res = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, frame.size.width, 215.0f)];
 
-	res.backgroundColor = [UIColor whiteColor];
+        res.backgroundColor = [UIColor clearColor];
 
-	UIImage* image = [UIImage imageNamed:@"main-view.jpg"];
+	UIImage* image = [UIImage imageNamed:@"main-view.png"];
 
 	UIImageView* image_view = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, frame.size.width, image.size.height)];
 	image_view.contentMode = UIViewContentModeScaleAspectFit;
@@ -236,7 +236,7 @@ static void _message_box(UIViewController* view_controller, NSString* caption, N
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-	return 215.0f;
+	return 282.0f;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
