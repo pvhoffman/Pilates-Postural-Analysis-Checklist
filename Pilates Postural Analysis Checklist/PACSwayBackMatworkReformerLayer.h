@@ -17,15 +17,6 @@ typedef enum {
 
 @interface PACSwayBackMatworkReformerLayer : UITableViewController
 {
-@private
-        NSArray* _warmup;
-        NSArray* _exercises;
-
-        NSArray* _warmup_details;
-        NSArray* _exercises_details;
-
-        NSArray* _warmup_bold;
-        NSArray* _exercises_bold;
 }
 -(void) setLayer:(PACSwayBackMatworkReformerLayer_t)layer;
 @end
