@@ -11,6 +11,7 @@
 #import "PACViewAnalysisViewController.h"
 #import "PACKyphosisLordosisMainTableViewController.h"
 #import "PACSwayBackMainTableViewController.h"
+#import "PACFlatBackMainTableViewController.h"
 #import "PACGlobal.h"
 
 
@@ -77,7 +78,8 @@ static NSString* create_analysis_html_file();
                             case '3':  // postureTypeMilitary
                                 return YES;
                             case '4':  // postureTypeFlatBack
-                                return YES;
+                                [self.navigationController pushViewController:[[PACFlatBackMainTableViewController alloc] initWithStyle:UITableViewStyleGrouped] animated:YES];
+                                return NO;
                         }
                 }
             }
@@ -278,7 +280,7 @@ static NSString* create_analysis_html_file()
                         fprintf(fpout, "<h3><a href='#2'>Sway-Back:</a> %2.1f%%</h3>", ((swayback_count / cp_swayback) * 100.0f));
                         break;
                     case postureTypeMilitary:
-                        fprintf(fpout, "<h3><a href='#3'>Military:</a> %2.1f%%</h3>", ((military_count / cp_military) * 100.0f));
+                fprintf(fpout, "<h3>Military: %2.1f%%</h3>", ((military_count / cp_military) * 100.0f));
                         break;
                     case postureTypeFlatBack:
                         fprintf(fpout, "<h3><a href='#4'>Flat-Back:</a> %2.1f%%</h3>", ((flatback_count / cp_flatback) * 100.0f));

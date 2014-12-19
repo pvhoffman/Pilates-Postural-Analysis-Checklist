@@ -257,12 +257,12 @@ typedef enum {
 
 
 // Posture type
-typedef enum {
-        postureTypeIdeal = 0
-            , postureTypeKyphosisLordosis
-            , postureTypeSwayBack
-            , postureTypeMilitary
-            , postureTypeFlatBack
+typedef enum { 
+    postureTypeFlatBack = 0
+        , postureTypeKyphosisLordosis
+        , postureTypeSwayBack
+        , postureTypeMilitary
+        , postureTypeIdeal
 } PACPostureType_t;
 #if 0
 typedef enum {

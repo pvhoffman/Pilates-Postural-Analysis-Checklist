@@ -66,6 +66,9 @@
 		E75C26781A40F756005F969E /* main.png in Resources */ = {isa = PBXBuildFile; fileRef = E75C26771A40F756005F969E /* main.png */; };
 		E75C267A1A4104C6005F969E /* w_ball_15.png in Resources */ = {isa = PBXBuildFile; fileRef = E75C26791A4104C6005F969E /* w_ball_15.png */; };
 		E75C267E1A423C67005F969E /* main-view.png in Resources */ = {isa = PBXBuildFile; fileRef = E75C267D1A423C67005F969E /* main-view.png */; };
+		E75C26811A44BEEB005F969E /* PACFlatBackMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E75C26801A44BEEB005F969E /* PACFlatBackMainTableViewController.m */; };
+		E75C26841A44BEFB005F969E /* PACFlatBackEssentialMatworkLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E75C26831A44BEFB005F969E /* PACFlatBackEssentialMatworkLayer.m */; };
+		E75C26871A44C7CD005F969E /* PACFlatBackEssentialReformerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E75C26861A44C7CD005F969E /* PACFlatBackEssentialReformerLayer.m */; };
 		E79E0FBD1A2D223A00CABD55 /* PACPelvisBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E79E0FBC1A2D223A00CABD55 /* PACPelvisBackViewController.m */; };
 		E79E0FBF1A2D254400CABD55 /* pelvis_back_detail.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E79E0FBE1A2D254400CABD55 /* pelvis_back_detail.jpg */; };
 		E79E0FC21A2D373800CABD55 /* PACScapulaeBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E79E0FC11A2D373800CABD55 /* PACScapulaeBackViewController.m */; };
@@ -192,6 +195,12 @@
 		E75C26771A40F756005F969E /* main.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = main.png; path = ../../Downloads/main.png; sourceTree = "<group>"; };
 		E75C26791A4104C6005F969E /* w_ball_15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = w_ball_15.png; path = "../MSM - iPad/MobileSalesMagic/w_ball_15.png"; sourceTree = "<group>"; };
 		E75C267D1A423C67005F969E /* main-view.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main-view.png"; sourceTree = "<group>"; };
+		E75C267F1A44BEEB005F969E /* PACFlatBackMainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACFlatBackMainTableViewController.h; sourceTree = "<group>"; };
+		E75C26801A44BEEB005F969E /* PACFlatBackMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACFlatBackMainTableViewController.m; sourceTree = "<group>"; };
+		E75C26821A44BEFB005F969E /* PACFlatBackEssentialMatworkLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACFlatBackEssentialMatworkLayer.h; sourceTree = "<group>"; };
+		E75C26831A44BEFB005F969E /* PACFlatBackEssentialMatworkLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACFlatBackEssentialMatworkLayer.m; sourceTree = "<group>"; };
+		E75C26851A44C7CD005F969E /* PACFlatBackEssentialReformerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACFlatBackEssentialReformerLayer.h; sourceTree = "<group>"; };
+		E75C26861A44C7CD005F969E /* PACFlatBackEssentialReformerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACFlatBackEssentialReformerLayer.m; sourceTree = "<group>"; };
 		E79E0FBB1A2D223A00CABD55 /* PACPelvisBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PACPelvisBackViewController.h; sourceTree = "<group>"; };
 		E79E0FBC1A2D223A00CABD55 /* PACPelvisBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PACPelvisBackViewController.m; sourceTree = "<group>"; };
 		E79E0FBE1A2D254400CABD55 /* pelvis_back_detail.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pelvis_back_detail.jpg; sourceTree = "<group>"; };
@@ -279,6 +288,12 @@
 		E7B0E9BA19F702200011BB49 /* Pilates Postural Analysis Checklist */ = {
 			isa = PBXGroup;
 			children = (
+				E75C26851A44C7CD005F969E /* PACFlatBackEssentialReformerLayer.h */,
+				E75C26861A44C7CD005F969E /* PACFlatBackEssentialReformerLayer.m */,
+				E75C26821A44BEFB005F969E /* PACFlatBackEssentialMatworkLayer.h */,
+				E75C26831A44BEFB005F969E /* PACFlatBackEssentialMatworkLayer.m */,
+				E75C267F1A44BEEB005F969E /* PACFlatBackMainTableViewController.h */,
+				E75C26801A44BEEB005F969E /* PACFlatBackMainTableViewController.m */,
 				E7B0E9BF19F702200011BB49 /* AppDelegate.h */,
 				E7B0E9C019F702200011BB49 /* AppDelegate.m */,
 				E7B0E9C519F702200011BB49 /* DetailViewController.h */,
@@ -582,6 +597,7 @@
 				E711C5AC19F9A3BF0036873E /* PACAnkleJointsViewController.m in Sources */,
 				E74AAAEF1A13F51C00C008CE /* PACFemursBackViewController.m in Sources */,
 				E711C5BB19F9BABB0036873E /* PACHipJointViewController.m in Sources */,
+				E75C26841A44BEFB005F969E /* PACFlatBackEssentialMatworkLayer.m in Sources */,
 				E711C5B719F9B5780036873E /* PACKneeSideViewController.m in Sources */,
 				E7134E711A0BF8F200F2CEE8 /* PACRibCageViewController.m in Sources */,
 				E7B0E9C119F702200011BB49 /* AppDelegate.m in Sources */,
@@ -593,11 +609,13 @@
 				E711C5A419F979540036873E /* PACRelativeAlignmentViewController.m in Sources */,
 				E71AE1191A3F4E7F009B102D /* PACKyphosisLordosisEssentailMatworkLayer.m in Sources */,
 				E7C42B291A0AF81A003FF7B9 /* PACFrontViewTableViewController.m in Sources */,
+				E75C26811A44BEEB005F969E /* PACFlatBackMainTableViewController.m in Sources */,
 				E7134E801A117A1D00F2CEE8 /* PACBackViewTableViewController.m in Sources */,
 				E79E0FC21A2D373800CABD55 /* PACScapulaeBackViewController.m in Sources */,
 				E711C5A919F98F390036873E /* PACSideViewTableViewController.m in Sources */,
 				E7134E7B1A0C44CE00F2CEE8 /* PACHeadFrontViewController.m in Sources */,
 				E71AE11C1A3F9169009B102D /* PACKyphosisLordosisEssentailReformerLayer.m in Sources */,
+				E75C26871A44C7CD005F969E /* PACFlatBackEssentialReformerLayer.m in Sources */,
 				E711C5CC19FECDF10036873E /* PACLowerThoracicSpineViewController.m in Sources */,
 				E71AE1251A3FB05A009B102D /* PACSwayBackEssentialMatworkLayer.m in Sources */,
 				E71AE12B1A3FB96B009B102D /* PACSwayBackMatworkReformerLayer.m in Sources */,
