@@ -23,16 +23,73 @@ typedef struct pac_swayback_essential_reformer_s {
     int is_bold;
 } pac_swayback_essential_reformer_t;
 
-static pac_swayback_essential_reformer_t pac_swayback_essential_reformer_layer1[] = {
-        {"", "", 1}
+static pac_swayback_essential_reformer_t pac_swayback_essential_reformer_layer1[] = { 
+    {"Footwork 1 2 3 4 5", "", 1}
+        , {"Second Position 1", "", 1}
+        , {"Bend & Stretch 1 2", "", 1}
+        , {"Lift & Lower 1 2", "", 1}
+        , {"Midback Series 1 2 3 4 5", "", 1}
+        , {"Back Rowing Preps 1 2 3 4 5", "on a pillow", 1}
+        , {"Side Arm Preps Sitting 1 2 3 4", "on a pillow", 1}
+        , {"Side Twist Sitting", "on a pillow", 1}
+        , {"Front Rowing Preps 1 3", "on a pillow", 1}
+        , {"Stomach Massage Preps 1 2", "", 1}
+        , {"Mermaid", "", 1}
+        , {"Leg Circles 1 2", "", 1}
+        , {"Knee Stretches Prep 1", "", 1}
+        , {"Running", "", 1}
+        , {"Hip Rolls Prep", "", 1}
         , {0, 0, -1}
 };
-static pac_swayback_essential_reformer_t pac_swayback_essential_reformer_layer2[] = {
-        {"", "", 1}
+static pac_swayback_essential_reformer_t pac_swayback_essential_reformer_layer2[] = { 
+    {"Footwork 1 2 3 4 5", "", 0}
+        , {"Second Position 1 2 3", "", 1}
+        , {"Single Leg 1", "", 1}
+        , {"Hundred", "tabletop legs", 1}
+        , {"Bend & Stretch 1 2", "", 0}
+        , {"Lift & Lower 1 2", "", 0}
+        , {"Short Spine Prep", "", 1}
+        , {"Back Rowing Preps 1 2 3 4 5 6 7 8", "on a pillow", 1}
+        , {"Side Arm Preps Sitting 1 2 3 4", "on a pillow", 0}
+        , {"Side Twist Sitting", "on a pillow", 0}
+        , {"Front Rowing Preps 1 2 3", "on a pillow", 1}
+        , {"Stomach Massage Prep 1 2", "", 0}
+        , {"LB Arms Pulling Straps 1 2 3", "", 1}
+        , {"SB Round Back", "", 1}
+        , {"SB Straight Back", "", 1}
+        , {"SB Twist", "", 1}
+        , {"SB Tree", "", 1}
+        , {"Elephant 1", "", 1}
+        , {"Mermaid", "", 0}
+        , {"Leg Circles 1 2", "", 0}
+        , {"Knee Stretches Prep 1 2", "", 1}
+        , {"Running", "", 0}
+        , {"Hip Rolls Prep", "full", 1}
         , {0, 0, -1}
 };
-static pac_swayback_essential_reformer_t pac_swayback_essential_reformer_layer3[] = {
-        {"", "", 1}
+static pac_swayback_essential_reformer_t pac_swayback_essential_reformer_layer3[] = { 
+    {"Footwork 1 2 3 4 5", "", 0}
+        , {"Second Position 1 2 3", "", 0}
+        , {"Single Leg 1 2", "", 1}
+        , {"Hundred", "tabletop legs", 0}
+        , {"Bend & Stretch", "", 0}
+        , {"Short Spine", "full", 1}
+        , {"Back Rowing Preps 1 2 3 4 5 6 7 8", "on a pillow", 0}
+        , {"Side Arm Preps Sitting 1 2 3 4", "on a pillow", 0}
+        , {"Side Twist Sitting", "on a pillow", 0}
+        , {"Front Rowing Preps 1 2 3", "on a pillow", 0}
+        , {"Stomach Massage Prep 1 2", "", 0}
+        , {"LB Arms Pulling Straps 1 2 3", "", 0}
+        , {"SB Round Back", "", 0}
+        , {"SB Straight Back", "", 0}
+        , {"SB Twist", "", 0}
+        , {"SB Tree", "", 0}
+        , {"Elephant 1 2", "", 1}
+        , {"Mermaid", "", 0}
+        , {"Leg Circles 1 2", "", 0}
+        , {"Knee Stretches Prep 1 2", "", 0}
+        , {"Running", "", 0}
+        , {"Hip Rolls", "", 0}
         , {0, 0, -1}
 };
 static pac_swayback_essential_reformer_t* _current_layer = 0;
